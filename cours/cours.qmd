@@ -1,0 +1,154 @@
+---
+title: "Cours"
+link-external-newwindow: true
+---
+## "Cheat sheets" pour travailler avec tidyverse
+
+Transformation de données [PDF](data-transformation-cs.pdf)
+
+Visualisation de données [PDF](data-visualization-cs.pdf)
+
+Rmarkdown [PDF](rmarkdown-cs.pdf)
+
+Tidyr [PDF](tidyr-cs.pdf)
+
+## 00 - Introduction
+
+Slide: [Web](../../slides/00%20-%20Intro/00%20-%20intro.qmd){target="_blank"} [PDF](00%20-%20intro.pdf)
+
+## 01 - R basics
+
+Slide: [Web](../../slides/01%20-%20Toolbox/01%20-%20toolbox.qmd){target="_blank"} [PDF](01%20-%20toolbox.pdf) <br/>Demo: [UN Votes](../demo/unvotes/unvotes.qmd) <br/>Labs: [Labo01 - Hello WoRld](../labs/lab01-hello-world/lab01-hello-world.qmd) <br/>Exercices: [Exo01 - Pet names](../exercices/exo01-pet-names/exo01-pet-names.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Installer R ([R project](https://www.r-project.org/))
+-   [ ] Installer [Rstudio](https://posit.co/download/rstudio-desktop/)
+-   [ ] Installer [Git](https://git-scm.com/downloads)
+-   [ ] Créer un compte sur [GitHub](https://github.com/)
+-   [ ] Lire le Chapitre [*Introduction*](https://r4ds.hadley.nz/intro) [@wickhamDataScience2023]
+-   [ ] Faire le Lab01
+-   [ ] (optionel) Faire l'exercice 01
+
+Lectures complémentaires:
+
+-   [ ] Chapitre [*Welcome to the Tidyverse*](../papers/Wickham2019_Welcome-to-the-Tidyverse.pdf) [@wickhamWelcomeTidyverse2019]
+
+## 02 - Visualisation de données
+
+Slide Part-1: [Web](../../slides/02%20-%20Dataviz/02%20-%20dataviz.qmd){target="_blank"} [PDF](02%20-%20dataviz%20-%20P1.pdf)
+
+Slide Part-2: [Web](../../slides/02%20-%20Dataviz/02%20-%20dataviz%20-%2002.qmd){target="_blank"} [PDF](02%20-%20dataviz%20-%20P2.pdf)
+
+Demo: Completez l'exercice disposible sur GitHub - <https://github.com/PRO1036/star-wars>
+
+Labs: [Lab02 - Plastic waster](../labs/lab02-plastic-waste/lab02-plastic-waste.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab02
+-   [ ] Envoyer le lab02 sur le repo Github classroom à votre nom
+-   [ ] Lire le Chapitre [*Data Visualisation*](https://r4ds.had.co.nz/data-visualisation.html) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Chapitre [*Exploring numerical data*](https://openintro-ims.netlify.app/explore-numerical) [@cetinkaya-rundelIntroductionModernStatistics2024]
+-   [ ] Chapitre [*Exploring categorical data*](https://openintro-ims.netlify.app/explore-categorical) [@cetinkaya-rundelIntroductionModernStatistics2024]
+-   [ ] Livre [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) [@wickhamGgplot2ElegantGraphics2024]
+
+## 03 - Manipulation de données et forme Tidy
+
+Slides : [Web](../../slides/03 - Tidy-data/03 - tidy-data.qmd){target="_blank"} [PDF](03 - tidy-data.pdf)
+
+Demo : [Hotel Bookings](https://github.com/PRO1036/hotel-bookings)
+
+Labs: [Lab03 - Nobel laureates](../labs/lab03-nobel-laureates/lab03-nobel-laureates.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab03
+-   [ ] Envoyer le lab03 sur le repo Github classroom à votre nom
+-   [ ] Lire le Chapitre [*Data Transformation*](https://r4ds.hadley.nz/data-transform) [@wickhamDataScience2023]
+-   [ ] Lire le Chapitre [*Data Tidy*](https://r4ds.hadley.nz/data-tidy) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Article [*Tidy Data*](../papers/Wickham2014_Tidy-Data.pdf) [@wickhamTidyData2014]
+
+## 04 - Types de données et transformation
+
+Slides : [Web](../../slides/04 - Data types/04 - data-types.qmd){target="_blank"} [PDF](04 - data-types.pdf)
+
+Demo: [Star Wars - Data preparation](https://github.com/PRO1036/star-wars-2)
+
+Labs: [Lab04 - College majors](../labs/lab04-college-majors/lab04-college-majors.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab04
+-   [ ] Envoyer le lab04 sur le repo Github classroom à votre nom
+-   [ ] Lire le Chapitre [*Factors*](https://r4ds.hadley.nz/factors) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Chapitre [*Numbers*](https://r4ds.hadley.nz/numbers) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Strings*](https://r4ds.hadley.nz/strings) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Dates and Time*](https://r4ds.hadley.nz/datetimes) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Missing Values*](https://r4ds.hadley.nz/missing-values) [@wickhamDataScience2023]
+
+
+## 05 - Importation et jointure de données
+
+Slides : [Web](../../slides/05 - import-join/05 - import-join.qmd){target="_blank"} [PDF](05 - import-join.pdf)
+
+Demo: 
+
+- [Importation : Favorite Foods](https://github.com/PRO1036/favorite-foods)
+- [Jointure : NYC flights](https://github.com/PRO1036/nycflights)
+
+## 06 - Fonctions, itérations, conditions
+
+Slides : [PDF](06 - Fonctions_iterations_conditions.pdf)
+
+Demo: 
+
+- [Fonction, itération, condition](https://github.com/PRO1036/fonctions-iterations-condition)
+
+
+## 07 - Régression
+
+Slides : [PDF](07 - Régression.pdf)
+
+Demo: 
+
+- [Régression](https://github.com/PRO1036/paris-painting)
+
+## 08 - Classification
+
+Slides : [Web](08-Classication.html){target="_blank"} [PDF](08-Classification.pdf)
+
+Demo:
+
+- [Classification](https://github.com/PRO1036/Demo-classification)
+
+## 09 - Modélisation avec R et le Tidyverse
+
+Slides : [Web](../../slides/09 - ML/09 - ML.qmd){target="_blank"} [PDF](09 - Modeling.pdf)
+
+Labs: [Lab09 - Hotel bookings](../labs/lab09-hotel-bookings/lab09-hotel-booking.qmd)
+
+## 10 - Exercices
+
+Labs de la semaine passée: [Lab09 - Hotel bookings](../labs/lab09-hotel-bookings/lab09-hotel-booking.qmd)
+
+Exercice de regression: [Exercice Régression](https://github.com/PRO1036/exo_ML)
+
+## 11 - Tests d'hypothèses
+
+"Cours" et Lab: [Lab11 - Statistiques inférentielles](../labs/lab10-inferences/lab10-inferences.qmd)
+
+
+# Références
+
+::: {#refs}
+:::

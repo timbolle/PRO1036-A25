@@ -1,0 +1,163 @@
+---
+title: "00 - intro"
+subtitle: "PRO1036 - Analyse de données scientifiques en R"
+author: "Tim Bollé"
+date: "2024-09-09"
+date-format: long
+footer: "PRO1036 - 00 | Tim Bollé"
+license: "CC BY-SA"
+bibliography: ../template/references.bib
+csl: ../template/apa-fr.csl
+#csl: ../template/apa-note.csl
+format: 
+  revealjs:
+    theme: [dark, ../template/uqtr.scss]
+    logo: ../template/h-UQTR-r.png
+    slide-number: true
+    #width: 1200
+    #height: 1080
+    #smaller: true
+---
+
+# Présentations
+
+## Timothy Bollé
+
+::: columns
+::: {.column width="60%"}
+Originaire de France
+
+::: fragment
+En 2011:
+
+-   Départ pour Lausanne
+-   École des Sciences criminelles
+:::
+
+::: fragment
+`Bachelor` en science forensique
+:::
+
+::: fragment
+`Master` en science forensiqie
+
+-   Spécialisé en traces numérique
+:::
+:::
+
+::: {.column width="40%"}
+![Lausanne](figs/lausanne.png){fig-align="right"}
+:::
+:::
+
+## Timothy Bollé
+
+::: fragment
+`Doctorat` en science forensique:
+
+-   Détection et analyse de liens non-évidents dans les fraudes en ligne
+:::
+
+::: fragment
+École des Sciences Criminelles:
+
+-   `Enseignement` dans le domaine du numérique
+-   `Expertises`
+-   `Formation` professionnelle
+:::
+
+::: fragment
+Depuis 2022: `Professeur` à l'UQTR
+:::
+
+## Et vous ? {.smaller}
+
+::: {layout="[[-1], [1], [-1]]"}
+[![](figs/pikachu-who-are-you.gif){fig-align="center"}](https://gifdb.com/images/high/pikachu-who-are-you-scyni6wmc0q7khqq.gif)
+:::
+
+# Objectifs
+
+## Science des données
+
+Domaine qui vise à transformer des `données` brutes en `connaissances` ou en `décisions`
+
+Le faire de manière `scientifique`
+
+Ce cours vise à vous donner une `méthode` pour exploiter des données !
+
+## FAQ {.no-spacing}
+::: fragment
+:::{.orange}
+Q - Quelles connaissances préalables ?
+:::
+A - Aucunes - on part de la base !
+:::
+
+::: fragment
+:::{.orange}
+<br/>Q - Est-ce que c'est un cours de statistique ?
+:::
+A - Non mais nous allons beaucoup les utiliser.
+:::
+
+::: fragment
+:::{.orange}
+<br/>Q - Est-ce que c'est un cours de programmation ?
+:::
+A - Non... mais nous allons en faire beaucoup !
+:::
+
+
+## Comment
+
+Comment feriez vous pour analyser des données ?
+
+::: fragment
+![Excel](figs/Excel.png){width="70%"}
+:::
+
+
+## Comment
+
+![RStudio](figs/Rstudio.png)
+
+
+## Méthode
+
+![[@wickhamDataScience2023]](figs/data-science-process.png)
+
+
+# À vous de jouer ! ![](figs/un-logo.png){width="20%"}
+
+## Votre première analyse de données
+
+[UN Votes](../demo/unvotes/unvotes.qmd){style="text-align=center"}
+
+::: fragment
+Pour le faire chez vous:
+
+- Ouvrez RStudio
+- [Nouveau Projet > Version Control > Git]{.gray-mono}
+- Entrez l'url: [https://github.com/PRO1036/unvotes](https://github.com/PRO1036/unvotes)
+- Choisissez un dossier sur l'ordinateur
+- Ouvrez le fichier `unvotes.rmd`
+- Validez l'installation des packages.
+- Cliquez sur `knit`
+:::
+
+
+
+## Référence
+
+::: columns
+::: {.column width="40%"}
+![](figs/r4ds.jpg){width="80%"}
+:::
+
+::: {.column width="60%"}
+::: {#refs}
+:::
+
+:::
+:::

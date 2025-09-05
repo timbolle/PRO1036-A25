@@ -1,21 +1,36 @@
 project:
   type: website
+  output-dir: docs # for GitHub Pages
+  render:
+    - "*.qmd"
+    - "!classroom/"
+  
 
 website:
-  title: "PRO1036-A25"
+  title: "PRO1036"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - text: Labs
+        menu:
+          - href: labs/Semaine1.qmd
+            text: Semaine 1
+          - href: labs/Semaine2.qmd
+            text: Semaine 2
+          - href: labs/Semaine3.qmd
+            text: Semaine 3
+          - href: examen/examen.qmd
+            text: Examen
       - about.qmd
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
+    theme: 
+      - sandstone
+      - website-styles.scss
+
     toc: true
 
-
-
+bibliography: template/references.bib
+csl: template/apa-fr.csl
