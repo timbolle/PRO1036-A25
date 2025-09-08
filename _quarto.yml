@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs # for GitHub Pages
+  resources:
+    - template/
+    - template/h-UQTR-r.png
   render:
     - "*.qmd"
     - "!classroom/"
