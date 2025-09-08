@@ -1,9 +1,17 @@
 ---
-title: "About"
+title: "À propos"
 ---
 
-About this site
+## License
 
-```{r}
-1 + 1
-```
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />L'ensemble de ce site est sous license a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+
+
+## Acknowledements
+
+Une partie du cours proposé ici est adapté du matériel proposé par [Data Science in a Box](https://datasciencebox.org/).
+
+
+Ce site a été construit avec [Quarto](https://quarto.org) ! 
+
+<a href="https://www.flaticon.com/free-icons/program" title="program icons">L'icone du site a été créé par Bombasticon Studio - Flaticon</a>

@@ -1,0 +1,12 @@
+---
+title: "ressources"
+format: html
+link-external-newwindow: true
+---
+
+## "Cheat sheets" pour travailler avec tidyverse
+
+- Transformation de données [PDF](cheatsheet/data-transformation-cs.pdf)
+- Visualisation de données [PDF](cheatsheet/data-visualization-cs.pdf)
+- Rmarkdown [PDF](cheatsheet/rmarkdown-cs.pdf)
+- Tidyr [PDF](cheatsheet/tidyr-cs.pdf)

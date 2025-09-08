@@ -2,16 +2,16 @@
 title: "01 - Boite à outils"
 subtitle: "PRO1036 - Analyse de données scientifiques en R"
 author: "Tim Bollé"
-date: "2024-09-09"
+date: "2025-09-08"
 date-format: long
 footer: "PRO1036 - 01 | Tim Bollé"
 license: "CC BY-SA"
-bibliography: ../template/references.bib
-csl: ../template/apa-fr.csl
+bibliography: ../../template/references.bib
+csl: ../../template/apa-fr.csl
 format: 
   revealjs:
-    theme: [dark, ../template/uqtr.scss]
-    logo: ../template/h-UQTR-r.png
+    theme: [dark, ../../template/slides-uqtr.scss]
+    logo: /template/h-UQTR-r.png
     slide-number: true
     #highlight-style: github
     code-block-bg: true
@@ -265,6 +265,26 @@ Github:
 
 - Créez un compte avec votre adresse UQTR
 - Vérifiez votre adresse courriel
+
+# À vous de jouer ! ![](figs/un-logo.png){width="20%"}
+
+## Votre première analyse de données
+
+[UN Votes](/demo/unvotes/unvotes.qmd){style="text-align=center"}
+
+::: fragment
+Pour le faire chez vous:
+
+- Ouvrez RStudio
+- [Nouveau Projet > Version Control > Git]{.gray-mono}
+- Entrez l'url: [https://github.com/PRO1036/unvotes](https://github.com/PRO1036/unvotes)
+- Choisissez un dossier sur l'ordinateur
+- Ouvrez le fichier `unvotes.rmd`
+- Validez l'installation des packages.
+- Cliquez sur `knit`
+:::
+
+
 
 ## Références
 :::{#refs}

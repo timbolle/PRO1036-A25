@@ -1,11 +1,25 @@
 ---
-title: "PRO1036-A25"
+title: "Bienvenue !"
 ---
 
-This is a Quarto website.
+Bienvenue au cours PRO1036 - Analyse de données scientifiques en R !
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+L'ensemble des ressources pour les cours se trouvent sur ce site web. 
 
-```{r}
-1 + 1
-```
+
+## Cours
+
+L'ensemble du matériel de cours se trouve dans l'onglet [Cours](cours/cours.qmd).
+
+## Exercices
+
+Les exercices se trouvent dans l'onglet Exercices
+Les liens pour avoir accès aux repos Github sont sur le portail de cours.
+
+## Ressources
+
+Vous pourrez trouver différentes ressources dans l'onglet [Ressources](ressources.qmd).
+
+## À propos
+
+Les informations sur la licence et les remerciements se trouvent dans l'onglet [À propos](about.qmd).

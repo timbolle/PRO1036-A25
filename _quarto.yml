@@ -8,27 +8,47 @@ project:
 
 website:
   title: "PRO1036"
+  favicon: template/programming-icon.png
+  
+  page-footer: 
+    left: "Fait avec ❤️ et [Quarto](https://quarto.org/)."
+    center:
+      - text: "À propos"
+        href: about.qmd
+    right:
+      - text: <img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/>
+        href: https://creativecommons.org/licenses/by-sa/4.0/
+      - text: "Licence CC BY-SA 4.0"
+        href: license.md
+        
   navbar:
+    logo: template/h-uqtr-r.png
+    search: true
+    collapse: true
     left:
       - href: index.qmd
         text: Home
+      - href: cours/cours.qmd
+        text: Cours
+      - text: Démos
+        menu:
+          - href: demo/unvotes/unvotes.qmd
+            text: UN votes
       - text: Labs
         menu:
-          - href: labs/Semaine1.qmd
-            text: Semaine 1
-          - href: labs/Semaine2.qmd
-            text: Semaine 2
-          - href: labs/Semaine3.qmd
-            text: Semaine 3
-          - href: examen/examen.qmd
-            text: Examen
+          - href: labs/lab01-pet-names/lab01-pet-names.qmd
+            text: Lab 01 - Pet names
+
+      - href: ressources.qmd
+        text: Ressources
       - about.qmd
+  
 
 format:
   html:
     theme: 
       - sandstone
-      - website-styles.scss
+      - template/website-uqtr.scss
 
     toc: true
 
