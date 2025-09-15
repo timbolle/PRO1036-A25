@@ -5,11 +5,11 @@ link-external-newwindow: true
 
 ## 00 - Introduction
 
-Slide: [Web](00 - Intro/00 - intro.qmd){target="_blank"} [PDF](/)
+Slides : [Web](00 - Intro/00 - intro.qmd){target="_blank"} [PDF](00 - Intro/PRO1036_00_intro.pdf)
 
 ## 01 - R basics
 
-Slide: [Web](01 - Toolbox/01 - toolbox.qmd){target="_blank"} [PDF](/) 
+Slides : [Web](01 - Toolbox/01 - toolbox.qmd){target="_blank"} [PDF](01 - Toolbox/PRO1036_01_toolbox.pdf) 
 
 
 
@@ -26,7 +26,26 @@ Lectures complémentaires:
 
 -   [ ] Chapitre [*Welcome to the Tidyverse*](../papers/Wickham2019_Welcome-to-the-Tidyverse.pdf) [@wickhamWelcomeTidyverse2019]
 
+## 02 - Visualisation de données
 
+Slides : [Web](02 - Dataviz/02 - dataviz.qmd){target="_blank"} [PDF](02 - Dataviz/PRO1036_02_dataviz.pdf)
+
+
+Demo: Completez l'exercice disposible sur GitHub - <https://github.com/PRO1036/star-wars>
+
+Labs: [Lab02 - Plastic waster](../labs/lab02-plastic-waste/lab02-plastic-waste.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab02
+-   [ ] Envoyer le lab02 sur le repo Github classroom à votre nom
+-   [ ] Lire le Chapitre [*Data Visualisation*](https://r4ds.had.co.nz/data-visualisation.html) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Chapitre [*Exploring numerical data*](https://openintro-ims.netlify.app/explore-numerical) [@cetinkaya-rundelIntroductionModernStatistics2024]
+-   [ ] Chapitre [*Exploring categorical data*](https://openintro-ims.netlify.app/explore-categorical) [@cetinkaya-rundelIntroductionModernStatistics2024]
+-   [ ] Livre [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) [@wickhamGgplot2ElegantGraphics2024]
 
 
 # Références

@@ -1,5 +1,509 @@
 [
   {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#terminologie",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#terminologie",
+    "title": "02 - Visualisation de données",
+    "section": "Terminologie",
+    "text": "Terminologie\nEn français, on parle de jeu de données. Concrètement, c’est un tableau:\n\nChaque ligne correspond à une observation\nChaque colonne correspond à une variable\n\n\nstarwars\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# ℹ 77 more rows\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#obiwan-kenobi",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#obiwan-kenobi",
+    "title": "02 - Visualisation de données",
+    "section": "Obiwan Kenobi",
+    "text": "Obiwan Kenobi\n\n\n\nTaille = 182cm\nPoids = 77kg\nCouleur des cheuveux = brun\nCouleur des yeux = gris-bleu\nAnnée de naissance = 57BBY\nPlanète d’origine = Stewjon …"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#jetons-un-coup-doeil",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#jetons-un-coup-doeil",
+    "title": "02 - Visualisation de données",
+    "section": "Jetons un coup d’oeil",
+    "text": "Jetons un coup d’oeil\nNous pouvons avoir une vue d’ensemble avec glimpse:\n\nglimpse(starwars)\n\nRows: 87\nColumns: 14\n$ name       &lt;chr&gt; \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color &lt;chr&gt; \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color &lt;chr&gt; \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  &lt;chr&gt; \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        &lt;chr&gt; \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     &lt;chr&gt; \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  &lt;chr&gt; \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    &lt;chr&gt; \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      &lt;list&gt; &lt;\"A New Hope\", \"The Empire Strikes Back\", \"Return of the J…\n$ vehicles   &lt;list&gt; &lt;\"Snowspeeder\", \"Imperial Speeder Bike\"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, \"Imp…\n$ starships  &lt;list&gt; &lt;\"X-wing\", \"Imperial shuttle\"&gt;, &lt;&gt;, &lt;&gt;, \"TIE Advanced x1\",…"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#pour-en-savoir-plus",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#pour-en-savoir-plus",
+    "title": "02 - Visualisation de données",
+    "section": "Pour en savoir plus…",
+    "text": "Pour en savoir plus…\nPour avoir le plus d’information possible, l’aide reste la meilleure option\n\n?starwars"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#description-des-données",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#description-des-données",
+    "title": "02 - Visualisation de données",
+    "section": "Description des données",
+    "text": "Description des données\nUne information importante à connaitre est le nombre de ligne et de colonnes dans le jeu de données\n\nnrow(starwars) # nombre de lignes\n\n[1] 87\n\n\n\nncol(starwars) # nombre de colonnes\n\n[1] 14\n\n\n\ndim(starwars) # dimensions du tableau: lignes x colonnes\n\n[1] 87 14"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#quest-ce-que-cest",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#quest-ce-que-cest",
+    "title": "02 - Visualisation de données",
+    "section": "Qu’est ce que c’est ?",
+    "text": "Qu’est ce que c’est ?\nL’idée de l’exploration de données est de chercher à résumer les principales caractérostiques du jeu de données.\nSouvent, cette analyse est visuelle: c’est de la visualisation de données !\nElle s’accompagne aussi d’analyses statistiques élémentaires."
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#masse-vs-taille",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#masse-vs-taille",
+    "title": "02 - Visualisation de données",
+    "section": "Masse vs Taille",
+    "text": "Masse vs Taille\n\nComment décririez-vous la relation entre la masse et la taille ? Y a-t-il des outliers ?"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#data-visualisation",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#data-visualisation",
+    "title": "02 - Visualisation de données",
+    "section": "Data Visualisation",
+    "text": "Data Visualisation\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey\n\nLa visualisation de données cherche à étudier comment représenter les données.\nIl y a de nombreux outils pour la DataViz\n\nR est l’un d’eux\nIl y a plusieurs modules pour visualiser les données dans R\n\nNous allons utiliser ggplot2"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#ggplot2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#ggplot2",
+    "title": "02 - Visualisation de données",
+    "section": "ggplot2",
+    "text": "ggplot2\n\n\n\nggplot2 fait partie du Tidyverse et sert à la visualisation de données\ngg veut dire Grammar of Graphics\nInspiré du livre Grammar of Graphics de Leland Wilkinson\n\n\n\n\n\n(Wilkinson, 2005)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#grammar-of-graphics",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#grammar-of-graphics",
+    "title": "02 - Visualisation de données",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\nPermet de décrire toutes les briques d’un graphe\n\nsource"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#masse-vs-taille-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#masse-vs-taille-1",
+    "title": "02 - Visualisation de données",
+    "section": "Masse vs Taille",
+    "text": "Masse vs Taille\n\nggplot(data = starwars, mapping = aes(x = height, y = mass)) +\n  geom_point() +\n  labs(title = \"Masse vs. taille des personnages Starwars\",\n       x = \"Taille (cm)\", y = \"Masse (kg)\")\n\nWarning: Removed 28 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#kesako",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#kesako",
+    "title": "02 - Visualisation de données",
+    "section": "Kesako",
+    "text": "Kesako\n\n\nQuelle fonction s’occupe du plotting ?\nQuel jeu de données est visualisé ?\nQuelles variables sont projetées sur quels éléments ( aesthetics ) du graphe ?\nQue siginifie le warning ?\n\n\n\n\nggplot(data = starwars, mapping = aes(x = height, y = mass)) +\n  geom_point() +\n  labs(title = \"Masse vs. taille des personnages Starwars\",\n       x = \"Taille (cm)\", y = \"Masse (kg)\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#hello-ggplot2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#hello-ggplot2",
+    "title": "02 - Visualisation de données",
+    "section": "Hello ggplot2 !",
+    "text": "Hello ggplot2 !\nggplot() est la fonction principale dans ggplot2. Elle est toujours présente.\nLes graphes sont faits en couches. Nous pouvons les résumer de la manière suivante:\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], y = [y-variable])) +\n   geom_xxx() +\n   other options"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#le-quartet-danscombe",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#le-quartet-danscombe",
+    "title": "02 - Visualisation de données",
+    "section": "Le quartet d’Anscombe",
+    "text": "Le quartet d’Anscombe\n\n\n\n\n   set  x     y\n1    I 10  8.04\n2    I  8  6.95\n3    I 13  7.58\n4    I  9  8.81\n5    I 11  8.33\n6    I 14  9.96\n7    I  6  7.24\n8    I  4  4.26\n9    I 12 10.84\n10   I  7  4.82\n11   I  5  5.68\n\n\n\n\n\n   set  x    y\n12  II 10 9.14\n13  II  8 8.14\n14  II 13 8.74\n15  II  9 8.77\n16  II 11 9.26\n17  II 14 8.10\n18  II  6 6.13\n19  II  4 3.10\n20  II 12 9.13\n21  II  7 7.26\n22  II  5 4.74\n\n\n\n\n\n   set  x     y\n23 III 10  7.46\n24 III  8  6.77\n25 III 13 12.74\n26 III  9  7.11\n27 III 11  7.81\n28 III 14  8.84\n29 III  6  6.08\n30 III  4  5.39\n31 III 12  8.15\n32 III  7  6.42\n33 III  5  5.73\n\n\n\n\n\n   set  x     y\n34  IV  8  6.58\n35  IV  8  5.76\n36  IV  8  7.71\n37  IV  8  8.84\n38  IV  8  8.47\n39  IV  8  7.04\n40  IV  8  5.25\n41  IV 19 12.50\n42  IV  8  5.56\n43  IV  8  7.91\n44  IV  8  6.89"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#descrivons-chaque-jeu-de-données",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#descrivons-chaque-jeu-de-données",
+    "title": "02 - Visualisation de données",
+    "section": "Descrivons chaque jeu de données",
+    "text": "Descrivons chaque jeu de données\n\nquartet %&gt;%\n  group_by(set) %&gt;%\n  summarise(\n    mean_x = mean(x), \n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )\n\n# A tibble: 4 × 6\n  set   mean_x mean_y  sd_x  sd_y     r\n  &lt;fct&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 I          9   7.50  3.32  2.03 0.816\n2 II         9   7.50  3.32  2.03 0.816\n3 III        9   7.5   3.32  2.03 0.816\n4 IV         9   7.50  3.32  2.03 0.817"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#maintenant-visualisons",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#maintenant-visualisons",
+    "title": "02 - Visualisation de données",
+    "section": "Maintenant visualisons !",
+    "text": "Maintenant visualisons !"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#dataset-palmer-penguins",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#dataset-palmer-penguins",
+    "title": "02 - Visualisation de données",
+    "section": "Dataset: Palmer Penguins",
+    "text": "Dataset: Palmer Penguins\n\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nsource"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "GrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       colour = \"Species\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-1",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (1)",
+    "text": "Détaillons tout ça ! (1)\n\nOn commence avec le dataset penguins\n\n\n\n\n\nggplot(data = penguins)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-2",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (2)",
+    "text": "Détaillons tout ça ! (2)\n\nOn commence avec le dataset penguins, on map l'épaisseur du bec sur l'axe x\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm))"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-3",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-3",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (3)",
+    "text": "Détaillons tout ça ! (3)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l'axe y\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm))"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-4",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-4",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (4)",
+    "text": "Détaillons tout ça ! (4)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm)) +\n  geom_point()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-5",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-5",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (5)",
+    "text": "Détaillons tout ça ! (5)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-6",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-6",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (6)",
+    "text": "Détaillons tout ça ! (6)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre \"Longueur et épaisseur du bec\"\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-7",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-7",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (7)",
+    "text": "Détaillons tout ça ! (7)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre “Longueur et épaisseur du bec”, et comme sous titre \"Pour les pingouins Adelie, Chinstrap et Gentoo\".\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-8",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-8",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (8)",
+    "text": "Détaillons tout ça ! (8)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre “Longueur et épaisseur du bec”, et comme sous titre “Pour les pingouins Adelie, Chinstrap et Gentoo”. Nomme les axes x et y, \"Épaisseur du bec (mm)\" et \"Longueur du bec (mm)\".\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\",\n       x = \"Épaisseur du bec (mm)\", y = \"Longueur du bec (mm)\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-9",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-9",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (9)",
+    "text": "Détaillons tout ça ! (9)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre “Longueur et épaisseur du bec”, et comme sous titre “Pour les pingouins Adelie, Chinstrap et Gentoo”. Nomme les axes x et y, “Épaisseur du bec (mm)” et “Longueur du bec (mm)”, et la légende \"Espèce\".\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\",\n       x = \"Épaisseur du bec (mm)\", y = \"Longueur du bec (mm)\",\n       colour = \"Espèce\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-10",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-10",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (10)",
+    "text": "Détaillons tout ça ! (10)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre “Longueur et épaisseur du bec”, et comme sous titre “Pour les pingouins Adelie, Chinstrap et Gentoo”. Nomme les axes x et y, “Épaisseur du bec (mm)” et “Longueur du bec (mm)”, et la légende “Espèce”. Ajoute une phrase pour indiquer la source des données.\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\",\n       x = \"Épaisseur du bec (mm)\", y = \"Longueur du bec (mm)\",\n       colour = \"Espèce\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-11",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#détaillons-tout-ça-11",
+    "title": "02 - Visualisation de données",
+    "section": "Détaillons tout ça ! (11)",
+    "text": "Détaillons tout ça ! (11)\n\nOn commence avec le dataset penguins, on map l’épaisseur du bec sur l’axe x, et la longueur du bec sur l’axe y. Représente chaque observation par un point et map la couleur des points en fonction de l’espèce. Ajoute comme titre “Longueur et épaisseur du bec”, et comme sous titre “Pour les pingouins Adelie, Chinstrap et Gentoo”. Nomme les axes x et y, “Épaisseur du bec (mm)” et “Longueur du bec (mm)”, et la légende “Espèce”. Ajoute une phrase pour indiquer la source des données. Pour finir, utilise une échelle de couleur adaptée aux personnes daltoniennes.\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\",\n       x = \"Épaisseur du bec (mm)\", y = \"Longueur du bec (mm)\",\n       colour = \"Espèce\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-1",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "GrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Longueur et épaisseur du bec\",\n       subtitle = \"Pour les pingouins Adelie, Chinstrap et Gentoo\",\n       x = \"Épaisseur du bec (mm)\", y = \"Longueur du bec (mm)\",\n       colour = \"Espèce\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#arguments",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#arguments",
+    "title": "02 - Visualisation de données",
+    "section": "Arguments",
+    "text": "Arguments\nLes deux premiers arguments, data et mapping peuvent être écrits directement pour alléger la notation \n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  scale_colour_viridis_d()\n\n\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species)) +\n  geom_point() +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#options",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#options",
+    "title": "02 - Visualisation de données",
+    "section": "Options",
+    "text": "Options\nLes caractéristiques principales du graphe peuvent être envoyées directement sur des variables dans le jeu de données:\n\n\ncolour\nshape\nsize\nalpha"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#colour",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#colour",
+    "title": "02 - Visualisation de données",
+    "section": "Colour",
+    "text": "Colour\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#shape",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#shape",
+    "title": "02 - Visualisation de données",
+    "section": "Shape",
+    "text": "Shape\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species,\n           shape = island)) +\n  geom_point() +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#size",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#size",
+    "title": "02 - Visualisation de données",
+    "section": "Size",
+    "text": "Size\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species,\n           shape = species,\n           size = body_mass_g)) +\n  geom_point() +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#alpha",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#alpha",
+    "title": "02 - Visualisation de données",
+    "section": "Alpha",
+    "text": "Alpha\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species,\n           shape = species,\n           size = body_mass_g,\n           alpha = flipper_length_mm)) +\n  geom_point() +\n  scale_colour_viridis_d()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#mapping-vs-setting",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#mapping-vs-setting",
+    "title": "02 - Visualisation de données",
+    "section": "Mapping vs Setting",
+    "text": "Mapping vs Setting\n\n\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species,\n           size = body_mass_g,\n           alpha = flipper_length_mm)) +\n  geom_point()\n\n\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           colour = species)) +\n  geom_point(size = 2, alpha = 0.5)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#mapping-vs-setting-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#mapping-vs-setting-1",
+    "title": "02 - Visualisation de données",
+    "section": "Mapping vs Setting",
+    "text": "Mapping vs Setting\nMapping: Détermine la propriété (taille, alpha, forme, …) en fonction d’une propriété des données\n\nVa dans la fonction aes()\n\nSetting: Fixer une propriété, qui ne dépend pas d’une variable dans les données\n\nVa dans la fonction geom_*()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#faceting-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#faceting-1",
+    "title": "02 - Visualisation de données",
+    "section": "Faceting",
+    "text": "Faceting\nL’idée est de faire des sous graphes qui vont représentés des sous catégories dans les données.\nUtile pour explorer des relations conditionnelles dans les données.\n\n\n\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-2",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "Décrivez ce qu’il se passe dans les graphes en fonction du code"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-3",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-3",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ sex)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-4",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-4",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(sex ~ species)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-5",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-5",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-6",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-6",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(. ~ species)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-7",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-7",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species, ncol = 2)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#pour-résumer",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#pour-résumer",
+    "title": "02 - Visualisation de données",
+    "section": "Pour résumer",
+    "text": "Pour résumer\nfacet_grid():\n\nGrille en 2D\nlignes ~ colonnes\nUtilisez le . pour faire du 1D\n\nfacet_wrap():\n\nRuban 1D\nDéroulé selon les arguments spécifiés ou la place à disposition"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-la-couleur",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-la-couleur",
+    "title": "02 - Visualisation de données",
+    "section": "Combinaison avec la couleur",
+    "text": "Combinaison avec la couleur\n\nggplot(\n  penguins, \n  aes(x = bill_depth_mm, \n      y = bill_length_mm, \n      color = species)) +\n  geom_point() +\n  facet_grid(species ~ sex) +\n  scale_color_viridis_d() +\n  guides(color = \"none\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#terminologie-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#terminologie-1",
+    "title": "02 - Visualisation de données",
+    "section": "Terminologie",
+    "text": "Terminologie\nAnalyse :\n\nUnivariée - distribution d’une unique variable\nBivariée - Relation entre deux variables\nMultivariée - Relation entre plusieurs variables, souvent en se concentrant sur la relation entre deux, tout en les conditionnant selon les autres."
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#terminologie-2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#terminologie-2",
+    "title": "02 - Visualisation de données",
+    "section": "Terminologie",
+    "text": "Terminologie\nTypes de variables :"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#lending-club",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#lending-club",
+    "title": "02 - Visualisation de données",
+    "section": "Lending Club",
+    "text": "Lending Club\nPlateforme pour faire des prêts entre particuliers.\nLe jeu de données contient les prêts effectués.\n\n\nlibrary(openintro)\nglimpse(loans_full_schema)\n\nRows: 10,000\nColumns: 55\n$ emp_title                        &lt;chr&gt; \"global config engineer \", \"warehouse…\n$ emp_length                       &lt;dbl&gt; 3, 10, 3, 1, 10, NA, 10, 10, 10, 3, 1…\n$ state                            &lt;fct&gt; NJ, HI, WI, PA, CA, KY, MI, AZ, NV, I…\n$ homeownership                    &lt;fct&gt; MORTGAGE, RENT, RENT, RENT, RENT, OWN…\n$ annual_income                    &lt;dbl&gt; 90000, 40000, 40000, 30000, 35000, 34…\n$ verified_income                  &lt;fct&gt; Verified, Not Verified, Source Verifi…\n$ debt_to_income                   &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.4…\n$ annual_income_joint              &lt;dbl&gt; NA, NA, NA, NA, 57000, NA, 155000, NA…\n$ verification_income_joint        &lt;fct&gt; , , , , Verified, , Not Verified, , ,…\n$ debt_to_income_joint             &lt;dbl&gt; NA, NA, NA, NA, 37.66, NA, 13.12, NA,…\n$ delinq_2y                        &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0…\n$ months_since_last_delinq         &lt;int&gt; 38, NA, 28, NA, NA, 3, NA, 19, 18, NA…\n$ earliest_credit_line             &lt;dbl&gt; 2001, 1996, 2006, 2007, 2008, 1990, 2…\n$ inquiries_last_12m               &lt;int&gt; 6, 1, 4, 0, 7, 6, 1, 1, 3, 0, 4, 4, 8…\n$ total_credit_lines               &lt;int&gt; 28, 30, 31, 4, 22, 32, 12, 30, 35, 9,…\n$ open_credit_lines                &lt;int&gt; 10, 14, 10, 4, 16, 12, 10, 15, 21, 6,…\n$ total_credit_limit               &lt;int&gt; 70795, 28800, 24193, 25400, 69839, 42…\n$ total_credit_utilized            &lt;int&gt; 38767, 4321, 16000, 4997, 52722, 3898…\n$ num_collections_last_12m         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ num_historical_failed_to_pay     &lt;int&gt; 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0…\n$ months_since_90d_late            &lt;int&gt; 38, NA, 28, NA, NA, 60, NA, 71, 18, N…\n$ current_accounts_delinq          &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ total_collection_amount_ever     &lt;int&gt; 1250, 0, 432, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ current_installment_accounts     &lt;int&gt; 2, 0, 1, 1, 1, 0, 2, 2, 6, 1, 2, 1, 2…\n$ accounts_opened_24m              &lt;int&gt; 5, 11, 13, 1, 6, 2, 1, 4, 10, 5, 6, 7…\n$ months_since_last_credit_inquiry &lt;int&gt; 5, 8, 7, 15, 4, 5, 9, 7, 4, 17, 3, 4,…\n$ num_satisfactory_accounts        &lt;int&gt; 10, 14, 10, 4, 16, 12, 10, 15, 21, 6,…\n$ num_accounts_120d_past_due       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, …\n$ num_accounts_30d_past_due        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ num_active_debit_accounts        &lt;int&gt; 2, 3, 3, 2, 10, 1, 3, 5, 11, 3, 2, 2,…\n$ total_debit_limit                &lt;int&gt; 11100, 16500, 4300, 19400, 32700, 272…\n$ num_total_cc_accounts            &lt;int&gt; 14, 24, 14, 3, 20, 27, 8, 16, 19, 7, …\n$ num_open_cc_accounts             &lt;int&gt; 8, 14, 8, 3, 15, 12, 7, 12, 14, 5, 8,…\n$ num_cc_carrying_balance          &lt;int&gt; 6, 4, 6, 2, 13, 5, 6, 10, 14, 3, 5, 3…\n$ num_mort_accounts                &lt;int&gt; 1, 0, 0, 0, 0, 3, 2, 7, 2, 0, 2, 3, 3…\n$ account_never_delinq_percent     &lt;dbl&gt; 92.9, 100.0, 93.5, 100.0, 100.0, 78.1…\n$ tax_liens                        &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ public_record_bankrupt           &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…\n$ loan_purpose                     &lt;fct&gt; moving, debt_consolidation, other, de…\n$ application_type                 &lt;fct&gt; individual, individual, individual, i…\n$ loan_amount                      &lt;int&gt; 28000, 5000, 2000, 21600, 23000, 5000…\n$ term                             &lt;dbl&gt; 60, 36, 36, 36, 36, 36, 60, 60, 36, 3…\n$ interest_rate                    &lt;dbl&gt; 14.07, 12.61, 17.09, 6.72, 14.07, 6.7…\n$ installment                      &lt;dbl&gt; 652.53, 167.54, 71.40, 664.19, 786.87…\n$ grade                            &lt;fct&gt; C, C, D, A, C, A, C, B, C, A, C, B, C…\n$ sub_grade                        &lt;fct&gt; C3, C1, D1, A3, C3, A3, C2, B5, C2, A…\n$ issue_month                      &lt;fct&gt; Mar-2018, Feb-2018, Feb-2018, Jan-201…\n$ loan_status                      &lt;fct&gt; Current, Current, Current, Current, C…\n$ initial_listing_status           &lt;fct&gt; whole, whole, fractional, whole, whol…\n$ disbursement_method              &lt;fct&gt; Cash, Cash, Cash, Cash, Cash, Cash, C…\n$ balance                          &lt;dbl&gt; 27015.86, 4651.37, 1824.63, 18853.26,…\n$ paid_total                       &lt;dbl&gt; 1999.330, 499.120, 281.800, 3312.890,…\n$ paid_principal                   &lt;dbl&gt; 984.14, 348.63, 175.37, 2746.74, 1569…\n$ paid_interest                    &lt;dbl&gt; 1015.19, 150.49, 106.43, 566.15, 754.…\n$ paid_late_fees                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#sélection-de-variables",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#sélection-de-variables",
+    "title": "02 - Visualisation de données",
+    "section": "Sélection de variables",
+    "text": "Sélection de variables\n\nloans &lt;- loans_full_schema %&gt;%\n  select(loan_amount, interest_rate, term, grade, \n         state, annual_income, homeownership, debt_to_income)\nglimpse(loans)\n\nRows: 10,000\nColumns: 8\n$ loan_amount    &lt;int&gt; 28000, 5000, 2000, 21600, 23000, 5000, 24000, 20000, 20…\n$ interest_rate  &lt;dbl&gt; 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, 13.59, 11.99, 1…\n$ term           &lt;dbl&gt; 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, 60, 60, 36, 60,…\n$ grade          &lt;fct&gt; C, C, D, A, C, A, C, B, C, A, C, B, C, B, D, D, D, F, E…\n$ state          &lt;fct&gt; NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, IL, FL, SC, CO,…\n$ annual_income  &lt;dbl&gt; 90000, 40000, 40000, 30000, 35000, 34000, 35000, 110000…\n$ homeownership  &lt;fct&gt; MORTGAGE, RENT, RENT, RENT, RENT, OWN, MORTGAGE, MORTGA…\n$ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.19, 3…"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#variables-sélectionnées",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#variables-sélectionnées",
+    "title": "02 - Visualisation de données",
+    "section": "Variables sélectionnées",
+    "text": "Variables sélectionnées\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nloan_amount\nMontant du prêt reçu en US Dollards\n\n\ninterest_rate\nIntérêt sur le prêt, en pourcentage annuel\n\n\nterm\nDurée du prêt en mois\n\n\ngrade\nNote du prêt, de A à G, qui représente la qualité du prêt et les changes qu’ils soit remboursé\n\n\nstate\nÉtat américain dans lequel le prêt a été accordé\n\n\nannual_income\nRevenu annuel dudébiteur, en US Dollards\n\n\nhomeownership\nIndique si la personne est propriétaire, est propriétaire avec un emprunt ou bien loue sa résidence\n\n\ndebt_to_income\nRatio Dette/Revenu"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#types-des-variables",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#types-des-variables",
+    "title": "02 - Visualisation de données",
+    "section": "Types des variables",
+    "text": "Types des variables\n\n\n\nvariable\ntype\n\n\n\n\nloan_amount\nQuantitatif, Ratio\n\n\ninterest_rate\nQuantitatif, Ratio\n\n\nterm\nQuantitatif, Ratio\n\n\ngrade\nQualitatif, Ordinal\n\n\nstate\nQualitatif, Nominal\n\n\nannual_income\nQuantitatif, Ratio\n\n\nhomeownership\nQualitatif, Nominal\n\n\ndebt_to_income\nQuantitatif, Ratio"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#histogramme-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#histogramme-1",
+    "title": "02 - Visualisation de données",
+    "section": "Histogramme",
+    "text": "Histogramme\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-8",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-8",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "binwidth = 1000binwidth = 5000binwidth = 20000\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 1000)\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 5000)\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 20000)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives",
+    "title": "02 - Visualisation de données",
+    "section": "Combinaison avec des variables qualitatives",
+    "text": "Combinaison avec des variables qualitatives\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount, \n                  fill = homeownership)) +\n  geom_histogram(binwidth = 5000,\n                 alpha = 0.5) +\n  labs(\n    x = \"Loan amount ($)\",\n    y = \"Frequency\",\n    title = \"Amounts of Lending Club loans\"\n  )"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#avec-des-facettes",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#avec-des-facettes",
+    "title": "02 - Visualisation de données",
+    "section": "Avec des facettes",
+    "text": "Avec des facettes\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount, fill = homeownership)) + \n  geom_histogram(binwidth = 5000) +\n  labs(\n    x = \"Loan amount ($)\",\n    y = \"Frequency\",\n    title = \"Amounts of Lending Club loans\"\n  ) +\n  facet_wrap(~ homeownership, nrow = 3)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#density-plot",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#density-plot",
+    "title": "02 - Visualisation de données",
+    "section": "Density plot",
+    "text": "Density plot\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_density()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#ajustement-de-la-précision",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#ajustement-de-la-précision",
+    "title": "02 - Visualisation de données",
+    "section": "Ajustement de la précision",
+    "text": "Ajustement de la précision\n\nadjust = 0.5adjust = 1adjust = 2\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_density(adjust = 0.5)\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_density(adjust = 1)\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_density(adjust = 2)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives-1",
+    "title": "02 - Visualisation de données",
+    "section": "Combinaison avec des variables qualitatives",
+    "text": "Combinaison avec des variables qualitatives\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount, \n                  fill = homeownership)) +\n  geom_density(adjust = 2, \n               alpha = 0.5) +\n  labs(\n    x = \"Loan amount ($)\",\n    y = \"Density\",\n    title = \"Amounts of Lending Club loans\", \n    fill = \"Homeownership\"\n  )"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#boîte-à-moustache",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#boîte-à-moustache",
+    "title": "02 - Visualisation de données",
+    "section": "Boîte à moustache",
+    "text": "Boîte à moustache\n\nggplot(loans, aes(x = interest_rate)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#box-plot-et-outliers",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#box-plot-et-outliers",
+    "title": "02 - Visualisation de données",
+    "section": "Box plot et outliers",
+    "text": "Box plot et outliers\n\nggplot(loans, aes(x = annual_income)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives-2",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#combinaison-avec-des-variables-qualitatives-2",
+    "title": "02 - Visualisation de données",
+    "section": "Combinaison avec des variables qualitatives",
+    "text": "Combinaison avec des variables qualitatives\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = interest_rate,\n                  y = grade)) +\n  geom_boxplot() +\n  labs(\n    x = \"Interest rate (%)\",\n    y = \"Grade\",\n    title = \"Interest rates of Lending Club loans\",\n    subtitle = \"by grade of loan\"\n  )"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#histogramme-vs-bar-charts",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#histogramme-vs-bar-charts",
+    "title": "02 - Visualisation de données",
+    "section": "Histogramme vs bar charts",
+    "text": "Histogramme vs bar charts\n\nSource"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#bar-chart",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#bar-chart",
+    "title": "02 - Visualisation de données",
+    "section": "Bar chart",
+    "text": "Bar chart\n\nggplot(loans, aes(x = homeownership)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#bar-chart-segmenté",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#bar-chart-segmenté",
+    "title": "02 - Visualisation de données",
+    "section": "Bar chart segmenté",
+    "text": "Bar chart segmenté\n\nggplot(loans, aes(x = homeownership, \n                  fill = grade)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#bar-chart-segmenté-1",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#bar-chart-segmenté-1",
+    "title": "02 - Visualisation de données",
+    "section": "Bar chart segmenté",
+    "text": "Bar chart segmenté\n\nggplot(loans, aes(x = homeownership, fill = grade)) +\n  geom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#section-9",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#section-9",
+    "title": "02 - Visualisation de données",
+    "section": "",
+    "text": "Lequel des deux graphes est plus adapté pour montrer la relation entre le fait d’être propriétaire et les notes de prêt ?"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#bar-plot-horizontal",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#bar-plot-horizontal",
+    "title": "02 - Visualisation de données",
+    "section": "Bar plot horizontal",
+    "text": "Bar plot horizontal\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(y = homeownership,\n                  fill = grade)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    x = \"Proportion\",\n    y = \"Homeownership\",\n    fill = \"Grade\",\n    title = \"Grades of Lending Club loans\",\n    subtitle = \"and homeownership of lendee\"\n  )"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#violin-plots",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#violin-plots",
+    "title": "02 - Visualisation de données",
+    "section": "Violin plots",
+    "text": "Violin plots\n\nggplot(loans, aes(x = homeownership, y = loan_amount)) +\n  geom_violin()"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#ridge-plots",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#ridge-plots",
+    "title": "02 - Visualisation de données",
+    "section": "Ridge plots",
+    "text": "Ridge plots\n\nlibrary(ggridges)\nggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) + \n  geom_density_ridges(alpha = 0.5)"
+  },
+  {
+    "objectID": "cours/02 - Dataviz/02 - dataviz.html#références",
+    "href": "cours/02 - Dataviz/02 - dataviz.html#références",
+    "title": "02 - Visualisation de données",
+    "section": "Références",
+    "text": "Références\n\n\nWilkinson, L. (2005). The Grammar of Graphics. Springer-Verlag. https://doi.org/10.1007/0-387-28695-0\n\n\n\n\n\n\nPRO1036 - 02 | Tim Bollé"
+  },
+  {
     "objectID": "labs/lab01-pet-names/lab01-pet-names.html",
     "href": "labs/lab01-pet-names/lab01-pet-names.html",
     "title": "Lab 01 - Pet names",
@@ -347,21 +851,28 @@
     "href": "cours/cours.html",
     "title": "Cours",
     "section": "",
-    "text": "Slide: Web PDF"
+    "text": "Slides : Web PDF"
   },
   {
     "objectID": "cours/cours.html#introduction",
     "href": "cours/cours.html#introduction",
     "title": "Cours",
     "section": "",
-    "text": "Slide: Web PDF"
+    "text": "Slides : Web PDF"
   },
   {
     "objectID": "cours/cours.html#r-basics",
     "href": "cours/cours.html#r-basics",
     "title": "Cours",
     "section": "01 - R basics",
-    "text": "01 - R basics\nSlide: Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
+    "text": "01 - R basics\nSlides : Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
+  },
+  {
+    "objectID": "cours/cours.html#visualisation-de-données",
+    "href": "cours/cours.html#visualisation-de-données",
+    "title": "Cours",
+    "section": "02 - Visualisation de données",
+    "text": "02 - Visualisation de données\nSlides : Web PDF\nDemo: Completez l’exercice disposible sur GitHub - https://github.com/PRO1036/star-wars\nLabs: Lab02 - Plastic waster\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab02\nEnvoyer le lab02 sur le repo Github classroom à votre nom\nLire le Chapitre Data Visualisation (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Exploring numerical data (Çetinkaya-Rundel and Hardin, 2024)\nChapitre Exploring categorical data (Çetinkaya-Rundel and Hardin, 2024)\nLivre ggplot2: Elegant Graphics for Data Analysis (Wickham et al., 2024)"
   },
   {
     "objectID": "ressources.html",
@@ -411,5 +922,26 @@
     "title": "UN Votes",
     "section": "Appendix",
     "text": "Appendix\nLa liste des pays présents dans le jeu de données est présentée ci-dessous:"
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "",
+    "text": "La pollution plastique est un problème majeur, avec des impacts négatifs sur les océans et ses habitants Our World in Data possède de nombreux jeux de données à différents niveaux (globaux, par pays et sur le temps). Pour ce laboratoire, nous allons travailler avec les données de 2010.\nNational Geographic a lancé un concours de communication par visualisation de données sur le thème des déchets plastiques : lien."
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Packages",
+    "text": "Packages\nComme d’habitude, nous allons utiliser le tidyverse pour cette analyse.\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Données",
+    "text": "Données\nLe jeu de données pour ce lab peut être trouvé dans le dossier data présent dans le repo. Nous reparlerons du chargement de données locales plus tard mais pour l’instant il suffit de lancer cette ligne:\n\nplastic_waste &lt;- read_csv(\"data/plastic-waste.csv\")\n\nLes variables présentes dans le jeu de données sont:\n\ncode: 3 lettres pour le code pays\nentity: nom du pays\ncontinent: nom du continent\nyear: année\ngdp_per_cap: PID par habitant en $ (2011)\nplastic_waste_per_cap: quantité de déchets plastiques par habitant en kg/jour\nmismanaged_plastic_waste_per_cap: quantité de déchets plastiques non gérés par habitant en kg/jour\nmismanaged_plastic_waste: quantité de déchets plastiques non gérés en tonnes\ncoastal_pop: Nombres de personnes vivant sur des côtes\ntotal_pop: Population totale selon Gapminder"
   }
 ]

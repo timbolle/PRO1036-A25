@@ -37,10 +37,14 @@ website:
         menu:
           - href: demo/unvotes/unvotes.qmd
             text: UN votes
+          - href: https://github.com/PRO1036/star-wars
+            text: Star Wars
       - text: Labs
         menu:
           - href: labs/lab01-pet-names/lab01-pet-names.qmd
             text: Lab 01 - Pet names
+          - href: labs/lab02-plastic-waste/lab02-plastic-waste.qmd
+            text: Lab 02 - Plastic waste
 
       - href: ressources.qmd
         text: Ressources

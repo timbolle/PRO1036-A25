@@ -1,0 +1,1399 @@
+---
+title: "02 - Visualisation de données"
+subtitle: "PRO1036 - Analyse de données scientifiques en R"
+author: "Tim Bollé"
+date: "2025-09-15"
+date-format: long
+footer: "PRO1036 - 02 | Tim Bollé"
+license: "CC BY-SA"
+bibliography: ../../template/references.bib
+csl: ../../template/apa-fr.csl
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+format: 
+  revealjs:
+    theme: [dark, ../../template/slides-uqtr.scss]
+    logo: /template/h-uqtr-r.png
+    slide-number: true
+    width: 1350
+    height: 900
+    #code-block-bg: true
+    #code-block-border-left: true
+    #highlight-style: github
+    #smaller: true
+---
+
+# Qu'est ce qu'un dataset ?
+
+```{r eval=TRUE, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+## Terminologie
+
+En français, on parle de jeu de données. Concrètement, c'est un tableau:
+
+- Chaque ligne correspond à une `observation`
+- Chaque colonne correspond à une `variable`
+
+```{r echo=TRUE}
+starwars
+```
+
+## Obiwan Kenobi
+
+::: columns
+::: {.column .gray-mono width="60%"}
+  - Taille = 182cm
+  - Poids = 77kg
+  - Couleur des cheuveux = brun
+  - Couleur des yeux = gris-bleu
+  - Année de naissance = 57BBY
+  - Planète d'origine = Stewjon
+  ...
+:::
+::: {.column width="40%"}
+![](figs/hello-there.gif)
+:::
+:::
+
+## Jetons un coup d'oeil
+
+Nous pouvons avoir une vue d'ensemble avec `glimpse`:
+
+```{r echo=TRUE}
+#| out-height: 450px
+glimpse(starwars)
+```
+
+## Pour en savoir plus...
+
+Pour avoir le plus d'information possible, l'aide reste la meilleure option
+
+```{r echo=TRUE, eval=FALSE}
+?starwars
+```
+
+![](figs/starwars-help.png)
+
+## Description des données
+
+Une information importante à connaitre est le nombre de ligne et de colonnes dans le jeu de données
+
+```{r}
+nrow(starwars) # nombre de lignes
+```
+
+```{r}
+ncol(starwars) # nombre de colonnes
+```
+
+```{r}
+dim(starwars) # dimensions du tableau: lignes x colonnes
+```
+
+
+# Exploration de données
+
+## Qu'est ce que c'est ?
+
+L'idée de l'exploration de données est de chercher à résumer les principales caractérostiques du jeu de données.
+
+Souvent, cette analyse est visuelle: c'est de la visualisation de données !
+
+Elle s'accompagne aussi d'analyses statistiques élémentaires.
+
+## Masse vs Taille
+
+::: {.question}
+Comment décririez-vous la relation entre la masse et la taille ? Y a-t-il des outliers ?
+:::
+
+```{r echo=FALSE}
+#| fig-align: center
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Masse vs. taille des personnages Starwars",
+       x = "Taille (cm)", y = "Masse (kg)")
+```
+
+::: {.fragment}
+![](figs/jabba.webp){.absolute top=200 right=90 width="330" height="270"}
+:::
+
+
+
+# Data Viz
+
+## Data Visualisation
+
+::: {.quote}
+"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey
+:::
+
+La visualisation de données cherche à étudier comment représenter les données.
+
+Il y a de nombreux outils pour la DataViz
+
+  - R est l'un d'eux
+  - Il y a plusieurs modules pour visualiser les données dans R
+    - Nous allons utiliser `ggplot2`
+
+## ggplot2
+
+::: columns
+::: {.column width="60%"}
+  - `ggplot2` fait partie du Tidyverse et sert à la visualisation de données
+  - [gg]{.gray-mono} veut dire _Grammar of Graphics_
+  - Inspiré du livre *Grammar of Graphics* de Leland Wilkinson
+
+:::
+
+::: {.column width="40%"}
+![[@wilkinsonGrammarGraphics2005]](figs/grammar-of-graphics.webp)
+:::
+:::
+
+## Grammar of Graphics
+
+Permet de décrire toutes les briques d'un graphe
+
+![[source](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html)](figs/gglayers.png)
+
+
+## Masse vs Taille
+
+```{r mass-height, warning=TRUE}
+#| fig-align: center
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Masse vs. taille des personnages Starwars",
+       x = "Taille (cm)", y = "Masse (kg)")
+```
+
+## Kesako
+
+:::{.question}
+  - Quelle fonction s'occupe du plotting ?
+  - Quel jeu de données est visualisé ?
+  - Quelles variables sont projetées sur quels éléments ( _aesthetics_ ) du graphe ?
+  - Que siginifie le warning ?
+  
+:::
+
+<br/>
+
+```{r ref.label="mass-height", warning=TRUE, eval=FALSE}
+
+```
+
+
+## Hello ggplot2 !
+
+`ggplot()` est la fonction principale dans ggplot2. Elle est toujours présente.
+
+Les graphes sont faits en couches. Nous pouvons les résumer de la manière suivante:
+
+```
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+
+# Pourquoi visualiser ?
+
+## Le quartet d'Anscombe {.r-}
+
+```{r quartet-for-show, eval = TRUE, echo = FALSE}
+library(Tmisc)
+```
+
+::: column
+::: {.column width="50%"}
+
+```{r quartet-view1, echo = FALSE}
+quartet[1:11,]
+```
+:::
+
+:::{.column width="50%"}
+
+```{r quartet-view2, echo = FALSE}
+quartet[12:22,]
+```
+:::
+
+:::{.column width="50%"}
+
+```{r quartet-view3, echo = FALSE}
+quartet[23:33,]
+```
+:::
+
+:::{.column width="50%"}
+
+```{r quartet-view4, echo = FALSE}
+quartet[34:44,]
+```
+:::
+:::
+
+## Descrivons chaque jeu de données
+
+```{r}
+quartet %>%
+  group_by(set) %>%
+  summarise(
+    mean_x = mean(x), 
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+```
+
+## Maintenant visualisons !
+
+```{r echo=FALSE}
+ggplot(quartet, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ set, ncol = 4)
+```
+
+# Let's Dive in !
+
+## Dataset: Palmer Penguins
+
+```{r}
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+
+![[source](https://allisonhorst.github.io/palmerpenguins/)](figs/palmer-penguins.png)
+
+
+## 
+
+::: {.panel-tabset}
+
+### Graphe
+
+```{r penguins-scatter, echo=FALSE, fig.align='center'}
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species")
+```
+
+### Code
+
+```{r ref.label="penguins-scatter", eval=FALSE}
+
+```
+
+:::
+
+# En détails
+
+## Détaillons tout ça ! (1)
+
+::: {.red-border}
+
+On commence avec le dataset `penguins`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen1, eval=FALSE}
+#| code-line-numbers: "1"
+ggplot(data = penguins)
+
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen1", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (2)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, `on map l'épaisseur du bec sur l'axe x`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen2, eval=FALSE}
+#| code-line-numbers: "2"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm))
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen2", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (3)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, `et la longueur du bec sur l'axe y`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen3, eval=FALSE}
+#| code-line-numbers: "3"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm))
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen3", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (4)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. `Représente chaque observation par un point`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen4, eval=FALSE}
+#| code-line-numbers: "4"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) +
+  geom_point()
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen4", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (5)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et `map la couleur des points en fonction de l'espèce`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen5, eval=FALSE}
+#| code-line-numbers: "4"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point()
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen5", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (6)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. `Ajoute comme titre "Longueur et épaisseur du bec"`
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen6, eval=FALSE}
+#| code-line-numbers: "6"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec")
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen6", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (7)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. Ajoute comme titre "Longueur et épaisseur du bec", `et comme sous titre "Pour les pingouins Adelie, Chinstrap et Gentoo"`.
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen7, eval=FALSE}
+#| code-line-numbers: "7"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo")
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen7", echo=FALSE}
+
+```
+:::
+:::
+
+
+## Détaillons tout ça ! (8)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. Ajoute comme titre "Longueur et épaisseur du bec", et comme sous titre "Pour les pingouins Adelie, Chinstrap et Gentoo". `Nomme les axes x et y, "Épaisseur du bec (mm)" et "Longueur du bec (mm)"`.
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen8, eval=FALSE}
+#| code-line-numbers: "8"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo",
+       x = "Épaisseur du bec (mm)", y = "Longueur du bec (mm)")
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen8", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (9)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. Ajoute comme titre "Longueur et épaisseur du bec", et comme sous titre "Pour les pingouins Adelie, Chinstrap et Gentoo". Nomme les axes x et y, "Épaisseur du bec (mm)" et "Longueur du bec (mm)", `et la légende "Espèce"`.
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen9, eval=FALSE}
+#| code-line-numbers: "9"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo",
+       x = "Épaisseur du bec (mm)", y = "Longueur du bec (mm)",
+       colour = "Espèce")
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen9", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (10)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. Ajoute comme titre "Longueur et épaisseur du bec", et comme sous titre "Pour les pingouins Adelie, Chinstrap et Gentoo". Nomme les axes x et y, "Épaisseur du bec (mm)" et "Longueur du bec (mm)", et la légende "Espèce". `Ajoute une phrase pour indiquer la source des données`.
+:::
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen10, eval=FALSE}
+#| code-line-numbers: "10"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo",
+       x = "Épaisseur du bec (mm)", y = "Longueur du bec (mm)",
+       colour = "Espèce",
+       caption = "Source: Palmer Station LTER / palmerpenguins package")
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen10", echo=FALSE}
+
+```
+:::
+:::
+
+## Détaillons tout ça ! (11)
+
+::: {.red-border}
+
+On commence avec le dataset [penguins]{.gray-mono}, on map l'épaisseur du bec sur l'axe x, et la longueur du bec sur l'axe y. Représente chaque observation par un point et map la couleur des points en fonction de l'espèce. Ajoute comme titre "Longueur et épaisseur du bec", et comme sous titre "Pour les pingouins Adelie, Chinstrap et Gentoo". Nomme les axes x et y, "Épaisseur du bec (mm)" et "Longueur du bec (mm)", et la légende "Espèce". Ajoute une phrase pour indiquer la source des données. `Pour finir, utilise une échelle de couleur adaptée aux personnes daltoniennes.`
+:::
+
+::: columns
+::: {.column width="50%"}
+
+```{r pen11, eval=FALSE}
+#| code-line-numbers: "11"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo",
+       x = "Épaisseur du bec (mm)", y = "Longueur du bec (mm)",
+       colour = "Espèce",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_colour_viridis_d()
+```
+:::
+::: {.column width="50%"}
+
+```{r ref.label="pen11", echo=FALSE}
+
+```
+:::
+:::
+
+## 
+
+::: {.panel-tabset}
+
+### Graphe
+
+```{r penguins-final, echo=FALSE, fig.align='center'}
+#| fig-width: 12
+#| fig-height: 8
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Longueur et épaisseur du bec",
+       subtitle = "Pour les pingouins Adelie, Chinstrap et Gentoo",
+       x = "Épaisseur du bec (mm)", y = "Longueur du bec (mm)",
+       colour = "Espèce",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_colour_viridis_d()
+```
+
+### Code
+
+```{r ref.label="penguins-final", eval=FALSE}
+
+```
+
+:::
+
+## Arguments
+
+Les deux premiers arguments, `data` et `mapping` peuvent être écrits directement pour alléger la notation
+<br/>
+
+::: columns
+::: {.column}
+
+```{r eval=FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+:::
+
+::: {.column}
+
+```{r eval=FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+:::
+:::
+
+# Aesthetics
+
+## Options
+
+Les caractéristiques principales du graphe peuvent être `envoyées directement sur des variables` dans le jeu de données:
+
+::: {.gray-mono}
+  - colour
+  - shape
+  - size
+  - alpha
+:::
+
+## Colour
+
+```{r p-colour}
+#| code-line-numbers: "4"
+#| fig-width: 12
+#| fig-align: 'center'
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+
+## Shape
+
+```{r p-shape}
+#| code-line-numbers: "5"
+#| fig-width: 12
+#| fig-align: 'center'
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species,
+           shape = island)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+
+
+## Size
+
+```{r p-size}
+#| code-line-numbers: "6"
+#| fig-width: 12
+#| fig-align: 'center'
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species,
+           shape = species,
+           size = body_mass_g)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+
+## Alpha
+
+```{r p-alpha}
+#| code-line-numbers: "7"
+#| fig-width: 12
+#| fig-align: 'center'
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species,
+           shape = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point() +
+  scale_colour_viridis_d()
+```
+
+
+
+## Mapping vs Setting
+
+::: columns
+::: {.column width="50%"}
+
+```{r p-map, eval = FALSE}
+#| code-line-numbers: "5-6"
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point()
+```
+:::
+::: {.column width="50%"}
+
+```{r p-set, eval=FALSE}
+#| code-line-numbers: "5"
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           colour = species)) +
+  geom_point(size = 2, alpha = 0.5)
+```
+:::
+:::
+
+::: columns
+::: column
+
+```{r ref.label="p-map", echo=FALSE}
+
+```
+:::
+::: column
+```{r ref.label="p-set", echo=FALSE}
+
+```
+:::
+:::
+
+## Mapping vs Setting
+
+`Mapping`: Détermine la propriété (taille, alpha, forme, ...) en fonction d'une propriété des données
+
+  - Va dans la fonction `aes()`
+
+`Setting`: Fixer une propriété, qui ne dépend pas d'une variable dans les données
+
+  - Va dans la fonction `geom_*()`
+  
+
+# Faceting
+
+## Faceting
+
+L'idée est de faire des sous graphes qui vont représentés des sous catégories dans les données.
+
+Utile pour explorer des relations conditionnelles dans les données.
+
+::: {.fragment}
+
+::: columns
+::: {.column width="40%"}
+```{r facet, eval=FALSE}
+#| code-line-numbers: "5"
+#| fig-width: 10
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ island)
+```
+:::
+
+::: {.column width="60%"}
+```{r ref.label="facet", echo=FALSE}
+
+```
+:::
+:::
+:::
+
+##
+
+::: {.question}
+Décrivez ce qu'il se passe dans les graphes en fonction du code
+:::
+
+##
+```{r}
+#| code-line-numbers: "3"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ sex)
+```
+
+##
+```{r}
+#| code-line-numbers: "3"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(sex ~ species)
+```
+
+##
+```{r}
+#| code-line-numbers: "3"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species)
+```
+
+##
+```{r}
+#| code-line-numbers: "3"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(. ~ species)
+```
+
+##
+```{r}
+#| code-line-numbers: "3"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species, ncol = 2)
+```
+
+## Pour résumer
+
+`facet_grid()`:
+
+  - Grille en 2D
+  - [lignes ~ colonnes]{.gray-mono}
+  - Utilisez le [.]{.gray-mono} pour faire du 1D
+
+`facet_wrap()`:
+
+  - Ruban 1D
+  - Déroulé selon les arguments spécifiés ou la place à disposition
+  
+## Combinaison avec la couleur
+
+```{r face-color}
+#| code-line-numbers: "9"
+#| fig-align: 'center'
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() +
+  guides(color = "none")
+
+```
+
+# Visualisation des données
+
+## Terminologie
+
+Analyse :
+
+  - `Univariée` - distribution d'une unique variable
+  - `Bivariée` - Relation entre deux variables
+  - `Multivariée` - Relation entre plusieurs variables, souvent en se concentrant sur la relation entre deux, tout en les conditionnant selon les autres.
+
+## Terminologie
+
+Types de variables :
+
+![](figs/data-type.png){width="60%" fig-align="center"}
+
+# Données
+
+## Lending Club
+
+Plateforme pour faire des prêts entre particuliers.
+
+Le jeu de données contient les prêts effectués.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+::: {.small-code}
+
+```{r}
+library(openintro)
+glimpse(loans_full_schema)
+```
+:::
+
+## Sélection de variables
+
+```{r}
+loans <- loans_full_schema %>%
+  select(loan_amount, interest_rate, term, grade, 
+         state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+
+## Variables sélectionnées
+
+Variable        | Description
+----------------|-------------
+`loan_amount`   |	Montant du prêt reçu en US Dollards
+`interest_rate` |	Intérêt sur le prêt, en pourcentage annuel
+`term`	        | Durée du prêt en mois
+`grade`	        | Note du prêt, de A à G, qui représente la qualité du prêt et les changes qu'ils soit remboursé
+`state`         |	État américain dans lequel le prêt a été accordé
+`annual_income` |	Revenu annuel dudébiteur, en US Dollards
+`homeownership`	| Indique si la personne est propriétaire, est propriétaire avec un emprunt ou bien loue sa résidence
+`debt_to_income`| Ratio Dette/Revenu
+
+: {tbl-colwidths="[25,75]"}
+
+## Types des variables
+
+variable        | type
+----------------|-------------
+`loan_amount`   |	Quantitatif, Ratio
+`interest_rate` |	Quantitatif, Ratio
+`term`	        | Quantitatif, Ratio
+`grade`	        | Qualitatif, Ordinal
+`state`         |	Qualitatif, Nominal
+`annual_income` |	Quantitatif, Ratio
+`homeownership`	| Qualitatif, Nominal
+`debt_to_income` | Quantitatif, Ratio
+
+
+# Données quantitatives
+
+# Histogramme
+
+## Histogramme
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram()
+```
+
+## 
+
+::: {.panel-tabset}
+
+### binwidth = 1000
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 1000)
+```
+
+
+### binwidth = 5000
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 5000)
+```
+
+### binwidth = 20000
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 20000)
+```
+
+:::
+
+## Combinaison avec des variables qualitatives
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r hist-cat, echo=FALSE, eval=TRUE}
+#| code-line-numbers: "2,4"
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount, 
+                  fill = homeownership)) +
+  geom_histogram(binwidth = 5000,
+                 alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  )
+
+```
+
+### Code
+
+```{r ref.label="hist-cat", echo=TRUE, eval=FALSE}
+
+```
+
+:::
+
+## Avec des facettes
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r hist-fac, echo=FALSE, eval=TRUE}
+#| code-line-numbers: "8"
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) + 
+  geom_histogram(binwidth = 5000) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  ) +
+  facet_wrap(~ homeownership, nrow = 3)
+
+```
+
+### Code
+
+```{r ref.label="hist-fac", echo=TRUE, eval=FALSE}
+
+```
+
+:::
+
+# Graphe de densité
+
+## Density plot
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density()
+```
+
+## Ajustement de la précision
+
+::: {.panel-tabset}
+
+### adjust = 0.5
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 0.5)
+```
+
+
+### adjust = 1
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 1)
+```
+
+### adjust = 2
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 2)
+```
+
+:::
+
+## Combinaison avec des variables qualitatives
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r dens-cat, echo=FALSE, eval=TRUE}
+#| code-line-numbers: "2,4,9"
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = loan_amount, 
+                  fill = homeownership)) +
+  geom_density(adjust = 2, 
+               alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Density",
+    title = "Amounts of Lending Club loans", 
+    fill = "Homeownership"
+  )
+
+```
+
+### Code
+
+```{r ref.label="dens-cat", echo=TRUE, eval=FALSE}
+
+```
+
+:::
+
+# Box plot
+
+## Boîte à moustache
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot()
+```
+
+## Box plot et outliers
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = annual_income)) +
+  geom_boxplot()
+```
+
+## Combinaison avec des variables qualitatives
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r boxplot, echo=FALSE, eval=TRUE}
+#| code-line-numbers: "2,8"
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = interest_rate,
+                  y = grade)) +
+  geom_boxplot() +
+  labs(
+    x = "Interest rate (%)",
+    y = "Grade",
+    title = "Interest rates of Lending Club loans",
+    subtitle = "by grade of loan"
+  )
+
+```
+
+### Code
+
+```{r ref.label="boxplot", echo=TRUE, eval=FALSE}
+
+```
+
+:::
+
+
+# Données qualitatives
+
+# Graphes en bar
+
+## Histogramme vs bar charts
+
+![[Source](https://www.storytellingwithdata.com/blog/2021/1/28/histograms-and-bar-charts)](figs/hist-vs-bar.jpg)
+
+
+## Bar chart 
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = homeownership)) +
+  geom_bar()
+```
+
+## Bar chart segmenté
+
+```{r bar-s1}
+#| code-line-numbers: "2"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(loans, aes(x = homeownership, 
+                  fill = grade)) +
+  geom_bar()
+```
+
+## Bar chart segmenté
+
+```{r bar-s2}
+#| code-line-numbers: "2"
+#| fig-width: 12
+#| fig-height: 8
+#| fig-align: 'center'
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar(position = "fill")
+```
+
+##
+
+::: {.question}
+Lequel des deux graphes est plus adapté pour montrer la relation entre le fait d'être propriétaire et les notes de prêt ?
+:::
+
+::: columns
+::: column
+
+```{r ref.label="bar-s1", echo=FALSE, eval=TRUE}
+
+```
+
+:::
+::: column
+
+```{r ref.label="bar-s2", echo=FALSE, eval=TRUE}
+
+```
+
+:::
+:::
+
+## Bar plot horizontal
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r barh, echo=FALSE, eval=TRUE}
+#| code-line-numbers: "2,8"
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(y = homeownership,
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Proportion",
+    y = "Homeownership",
+    fill = "Grade",
+    title = "Grades of Lending Club loans",
+    subtitle = "and homeownership of lendee"
+  )
+
+```
+
+### Code
+
+```{r ref.label="barh", echo=TRUE, eval=FALSE}
+
+```
+
+:::
+
+# Qualitative vs Quantitative
+
+## Violin plots
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+ggplot(loans, aes(x = homeownership, y = loan_amount)) +
+  geom_violin()
+```
+
+
+## Ridge plots
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: 'center'
+library(ggridges)
+ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) + 
+  geom_density_ridges(alpha = 0.5)
+```
+
+
+
+## Références
+:::{#refs}
+:::
