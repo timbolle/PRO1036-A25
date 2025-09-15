@@ -11,7 +11,7 @@ csl: ../../template/apa-fr.csl
 format: 
   revealjs:
     theme: [dark, ../../template/slides-uqtr.scss]
-    logo: /template/h-UQTR-r.png
+    logo: /template/h-uqtr-r.png
     slide-number: true
     #highlight-style: github
     code-block-bg: true
