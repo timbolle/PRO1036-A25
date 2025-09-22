@@ -1,0 +1,230 @@
+---
+title: "Lab 03 - Nobel laureates"
+link-citations: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+En janvier 2017, Buzzfeed a publié un article sur pourquoi les lauréats du prix Nobel montrent que l’immigration est si importante pour la science américaine. 
+
+Vous pouvez lire l’article [ici](https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science). Dans l’article, ils montrent que bien que la plupart des lauréats vivants du prix Nobel en sciences soient basés aux États-Unis, beaucoup d’entre eux sont nés dans d’autres pays. C’est une des raisons pour lesquelles le monde scientifique dit que l’immigration est vitale pour le progrès. Dans ce lab, nous travaillerons avec les données de cet article pour recréer certaines de leurs visualisations ainsi qu’explorer de nouvelles questions.
+
+# Objectifs d’apprentissage
+
+  - utiliser GitHub et R
+  - Répliquer des résultats publiés
+  - Manipulation et visualisation de données
+
+# Préparation
+
+Lire l’article de Buzzfeed intitulé [*These Nobel Prize Winners Show Why Immigration Is So Important For American Science*](https://www.buzzfeednews.com/article/peteraldhous/immigration-and-science)*.* Nous répliquerons cette analyse lors de l’atelier, il est donc crucial que vous en soyez familier à l’avance.
+
+
+# Pour commencer
+
+Nous allons utiliser GitHub Classroom pour que vous puissiez rendre vos réponses.
+Sur le portail de cours, vous trouverez un lien vers un assignment.
+
+  - Cliquez sur le lien
+  - Connectez vous avec votre compte Github si ce n'est pas fait
+  - Acceptez l'assignment
+  - Liez votre compte avec votre nom d'étudiant
+  
+Vous devriez maintenant voir un repository appelé `Lab03-[votre-username]` où devrait être votre nom d'utilisateur GitHub.
+
+Sur la page du repository:
+
+  - Cliquez sur le bouton vert: ![](figs/github-bouton.png){.inline-image}
+  - Copiez le lien terminant en `.git`
+    - Quelque chose ressemblant à `https://github.com/PRO1036/lab03-[votre-username].git`
+
+Dans RStudio:
+
+-   Fichier \> Nouveau Projet
+-   Version Control \> Git
+-   Dans *Repository URL* : indiquez l'adresse copiée à l'étape précédente
+-   Choisissez un nom pour le dossier qui sera créé, par exemple "Lab02"
+-   Choisissez où vous voulez créer le projet dans votre ordinateur.
+
+Cela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.
+Dans le *YAML*, le `output` est réglé sur `"github_document"`. Cela permet d'obtenir un format adapté à GitHub. Notamment, votre fichier final sera un fichier Markdown (`.md`).
+
+## Échauffement
+
+Avant d’introduire les données, commençons par quelques exercices simples.
+
+-   Mettez à jour le YAML, en changeant le nom de l’auteur par le vôtre, et **knit** le document.
+-   Committez vos modifications avec un message de commit. Assurez vous que les fichiers .Rmd et .md sont bien ajoutés au commit.
+-   Pushez  vos modifications sur GitHub.
+-   Allez dans votre dépôt sur GitHub et confirmez que vos modifications sont visibles dans vos fichiers Rmd et md.
+
+## Packages
+
+Nous utiliserons le package **tidyverse** pour une grande partie de la manipulation des données.
+Vous pouvez le charger en exécutant ce qui suit dans votre Console :
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+## Données
+
+Le jeu de données pour cet exercice se trouve sous forme de fichier CSV (valeurs séparées par des virgules) dans le dossier data de votre dépôt. Vous pouvez les charger avec :
+
+```{r load-data, message = FALSE}
+nobel <- read_csv("data/nobel.csv")
+```
+
+Les descriptions des variables sont les suivantes :
+
+-   `id`: Numéro d’identification
+-   `firstname`: Prénom du lauréat ou de la lauréate
+-   `surname`: Nom de famille
+-   `year`: Année de remise du prix
+-   `category`: Catégorie du prix
+-   `affiliation`: Affiliation du ou de la lauréat·e
+-   `city`: Ville de résidence de la personne lauréate l’année du prix
+-   `country`: Pays de résidence de la personne lauréate l’année du prix
+-   `born_date`: Date de naissance du ou de la lauréat·e
+-   `died_date`: Date de décès
+-   `gender`: Sexe
+-   `born_city`: Ville de naissance
+-   `born_country`: Pays de naissance de la personne lauréate
+-   `born_country_code`: Code du pays de naissance
+-   `died_city`: Ville de décès
+-   `died_country`: Pays de décès
+-   `died_country_code`: Code du pays de décès
+-   `overall_motivation`: Motivation générale pour la reconnaissance
+-   `share`: Nombre d’autres personnes lauréates avec lesquels le prix est partagé
+-   `motivation`: Motivation pour la reconnaissance
+
+Dans quelques cas, le nom de la ville/pays a changé après la réception du prix par le ou la lauréate (par exemple, en 1975, la Bosnie-Herzégovine s’appelait la République fédérative socialiste de Yougoslavie). Dans ces cas, les variables ci-dessous reflètent un nom différent de leurs homologues sans le suffixe \`\_original\`.
+
+-   `born_country_original`
+-   `born_city_original`
+-   `died_country_original`
+-   `died_city_original`
+-   `city_original`
+-   `country_original`
+
+# Exercices
+
+## Faites connaissance avec les données
+
+### Exercice 1
+Combien d’observations et combien de variables y a-t-il dans le jeu de données ? Que représente chaque ligne ?
+
+Il y a quelques observations dans ce jeu de données que nous exclurons de notre analyse pour correspondre aux résultats de Buzzfeed.
+
+### Exercice 2
+Créez un nouveau dataframe appelé `nobel_living` qui filtre pour
+
+- les lauréates et lauréats pour lesquels `country` est disponible
+- les lauréates et lauréats qui sont des personnes par opposition aux organisations (les organisations sont désignées par `org` dans la variable `gender`)
+- les lauréates et lauréats qui sont encore en vie (leur `died_date` vaut `NA`)
+
+Pour "créer un nouveau dataframe", nous allons modifier le tableau `nobel` existant et attribuer le résultat à un nouvelle variable appelée `nobel_living`. L'attribution se fait avec le symbole `<-`. Le bloc de code suivant montre comment commencer le pipeline avec `nobel` et l'assigner à `nobel_living`. Vous devez compléter le code en ajoutant la fonction `filter()` avec les conditions appropriées.
+
+```{r echo=TRUE, eval=FALSE}
+nobel_living <- nobel %>%
+  filter(
+    # votre code ici
+  )
+```
+
+
+
+```{r echo=FALSE}
+nobel_living <- nobel %>%
+  filter(
+    !is.na(country),
+    gender != "org",
+    is.na(died_date)
+  )
+```
+
+Vérifiez que vous obtenez bien un data frame avec `r nrow(nobel_living)` observations après avoir filtré les données.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## "La plupart des lauréates et lauréats encore vivants étaient basés aux États-Unis lorsqu’ils ont remporté leurs prix"
+
+... dit l’article de Buzzfeed. Voyons si c’est vrai.
+
+Tout d’abord, nous allons créer une nouvelle variable, c'est-à-dire une nouvelle colonne, pour identifier si la personne lauréate vivait aux États-Unis lorsqu'elle a remporté son prix. Pour cela, nous utiliserons la fonction `mutate()`. Le pipeline suivant modifie le data frame `nobel_living` en ajoutant une nouvelle variable appelée `country_us`. Nous utilisons une instruction Si-Sinon pour créer cette variable. Le premier argument dans la fonction `if_else()` est la condition que nous testons. *Si* `country` est égal à `"USA"`, nous définissons `country_us` à `"USA"`. *Sinon*, nous définissons `country_us` à `"Other"`
+
+
+```{r}
+nobel_living <- nobel_living %>%
+  mutate(
+    country_us = if_else(country == "USA", "USA", "Other")
+  )
+```
+
+### Exercice 3
+
+Pour la suite de ce travail, nous limiterons notre analyse aux catégories suivantes : Physique, Médecine, Chimie et Économie. Créez un nouveau dataframe appelé `nobel_living_science` qui filtre pour les catégories suivantes : Physique, Médecine, Chimie et Économie.
+
+Pour cela, vous pouvez tester si la variable `category` est dans le vecteur `c("Physics", "Medicine", "Chemistry", "Economics")`. Pour cela, utilisez l’opérateur `%in%` dans la fonction `filter()`. Une solution alternative serait de utiliser l’opérateur logique **ou** pour tester chaque catégorie séparément, mais l’utilisation de `%in%` est plus concise.
+
+```{r echo=FALSE}
+nobel_living_science <- nobel_living %>%
+  filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics"))
+```
+
+### Exercice 4
+
+Pour le prochain exercice, travaillez avec le data frame `nobel_living_science` que nous avons créé ci-dessus.
+
+Créez un graphique à barres avec des facets visualisant la relation entre la catégorie du prix Nobel et si la personne lauérate était aux États-Unis lorsqu’elle l'a remporté. 
+
+Interprétez votre visualisation et commentez le titre de Buzzfeed en regardant s'il est soutenu par les données.
+
+  - Votre visualisation doit être facettée par catégorie.
+  - Pour chaque facette, vous devez avoir deux barres, une pour les personnes aux États-Unis et une pour les autres.
+  - Inversez les coordonnées pour que les barres soient horizontales et non verticales.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## "Mais parmi ces lauréat·es du prix Nobel basé·es aux États-Unis, beaucoup sont né·es dans d’autres pays"
+
+### Exercice 5
+
+Créez une nouvelle variable appelée `born_country_us` qui a la valeur `"USA"` si la personne lauréate est née aux États-Unis, et `"Other"` sinon. Combien de lauréat·es sont né·es aux États-Unis ?
+
+### Exercice 6
+
+Ajoutez une deuxième variable à votre visualisation de l’exercice 4 basée sur si la personne est née aux États-Unis ou non. D’après votre visualisation, les données semblent-elles soutenir l’affirmation de Buzzfeed ? Expliquez votre raisonnement en 1-2 phrases.
+
+  - Votre visualisation finale doit contenir une facette pour chaque catégorie.
+  - Dans chaque facette, il doit y avoir une barre pour savoir si la personne lauréate a remporté le prix aux États-Unis ou non.
+  - Chaque barre doit avoir des segments pour savoir si le ou la lauréate est née aux États-Unis ou non.
+
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## D'où viennent les lauréats nés à l'étranger qui ont remporté leur prix aux États-Unis ?
+
+:::{.callout-note}
+Notez que votre graphique à barres ne correspondra pas exactement à celui de l'article de Buzzfeed. C'est probablement parce que les données ont été mises à jour depuis la publication de l'article.
+:::
+
+### Exercice 7
+
+Dans un seul pipeline, filtrez pour les lauréat·es qui ont remporté leur prix aux États-Unis, mais qui sont nées en dehors des États-Unis, puis créez un tableau de fréquence (avec la fonction `count()`) pour leur pays de naissance (`born_country`) et arrangez le dataframe résultant par ordre décroissant du nombre d'observations pour chaque pays. Quel pays est le plus commun ?
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+Maintenant, relisez votre rapport pour vous assurer que vous avez répondu à toutes les questions et que tous vos blocs de code R sont correctement étiquetés. Vous pouvez faire un dernier **Knit** pour générer le fichier Markdown final. Committez et poussez vos modifications sur GitHub.
+
+# Intéressé par la façon dont Buzzfeed a réalisé leurs visualisations ?
+
+Les graphiques dans l'article de Buzzfeed sont appelés des graphiques en gaufre (_waffle plots_).
+Vous pouvez trouver le code utilisé pour réaliser ces graphiques dans le dépôt GitHub de Buzzfeed (oui, ils en ont un !) [ici](https://buzzfeednews.github.io/2017-01-immigration-and-science/).
+Vous pouvez essayer de recréer ces graphiques pour le plaisir, mais ce n'est pas une exigence pour ce lab.

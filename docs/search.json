@@ -1,145 +1,5 @@
 [
   {
-    "objectID": "ressources.html",
-    "href": "ressources.html",
-    "title": "ressources",
-    "section": "",
-    "text": "Transformation de données PDF\nVisualisation de données PDF\nRmarkdown PDF\nTidyr PDF"
-  },
-  {
-    "objectID": "ressources.html#cheat-sheets-pour-travailler-avec-tidyverse",
-    "href": "ressources.html#cheat-sheets-pour-travailler-avec-tidyverse",
-    "title": "ressources",
-    "section": "",
-    "text": "Transformation de données PDF\nVisualisation de données PDF\nRmarkdown PDF\nTidyr PDF"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html",
-    "title": "Lab 01 - Pet names",
-    "section": "",
-    "text": "Photo by Atsuko Sato\nLe but de cet exercice est de pratiquer les premiers éléments vus concernant R et Git/Github."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#terminologie",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#terminologie",
-    "title": "Lab 01 - Pet names",
-    "section": "Terminologie",
-    "text": "Terminologie\nNous en avons déjà parler mais répéter ne fait pas de mal:\n\nR: Le language de prorgammation qui sera utilisé dans ce cours.\nRStudio: Un environnement de développement intégré (IDE) pour R. En d’autres termes, une interface pour travailler efficacement avec R.\nGit: Un logiciel de gestion de versions\nGitHub: Une plateforme web pour accueillir des fichiers versionnés et faciliter la collaboration entre utilisateurs.\nRepository: Un repository Git (ou repo) contient tous les fichier du projet ainsi que ces versions."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#github",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#github",
-    "title": "Lab 01 - Pet names",
-    "section": "Github",
-    "text": "Github\nNous allons commencer par récupérer le fichier Rmd dans lequel vous allez enregistrer vos réponses. Git devrait être correctement installé. Si ce n’est pas le cas, voyez avec le prof.\nSur votre portail de cours, acceptez l’invitation à rejoindre le projet GitHub Classroom pour le Lab01.\nCopiez le lien de repo personnel pour le Lab01. Cela devrait ressember à lab01-&lt;votre nom d'utilisateur GitHub&gt;.\nDans RStudio:\n\nFichier &gt; Nouveau Projet\nVersion Control &gt; Git\nDans Repository URL : indiquez l’adresse: https://github.com/PRO1036/lab01-[username].git\nChoisissez un nom pour le dossier qui sera créé, par exemple “Lab01”\nChoisissez où vous voulez créer le projet dans votre ordinateur.\n\nCela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.\nDans RStudio, vous devriez voir le fichier .Rmd listé en bas à droite dans la liste de fichier:\n\nSi vous cliquez maintenant sur le fichier .rmd, il va apparaitre dans la zone en haut à gauche. Vous pourrez l’éditer et le “Render/Knit” pour voir le résultat final.\nVeuillez noter que ce que vous écriver dans le fichier Rmd et ce que vous écrivez dans la console ne communiquent pas (il s’agit de deux environnements différents). Si vous voulez utiliser la console (zone en bas à gauche), il faut retaper les commandes."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-1-mise-à-jour-du-yaml",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-1-mise-à-jour-du-yaml",
-    "title": "Lab 01 - Pet names",
-    "section": "Étape 1: Mise à jour du YAML",
-    "text": "Étape 1: Mise à jour du YAML\nOuvrez le fichier R Markdown (Rmd) dans le projet que vous avez cloné. Changez l’auteur et la date."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-knit",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-knit",
-    "title": "Lab 01 - Pet names",
-    "section": "Étape 2: Knit",
-    "text": "Étape 2: Knit\nCliquez sur Knit (le bouton bleu en haut de l’éditeur). Cela va exécuter le code dans le document, et générer un fichier HTML ou .md selon ce que l’on a choisi dans le YAML. Ici, en indiquant output: github_document, nous allons générer un fichier .md, qui peut facilement être lu dans GitHub. Vous devriez voir apparaitre une nouvelle fenêtre avec le résultat. De nouvaux fichiers devraient être apparus dans le panneau de fichiers."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-commit",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-commit",
-    "title": "Lab 01 - Pet names",
-    "section": "Étape 2: Commit",
-    "text": "Étape 2: Commit\nOuvrez le panneau Git en haut à droite.\nVous devriez voir votre fichier Rmd marqué comme modifié et son output lab01-pet-names.md marqué comme untracked.\n\nEn cliquant sur diff, vous verrez les différence entre le dernier commit et l’état actuel du document. Si cela vous convient, vous pouvez sélectionner les fichiers à commit, ajouter un message dans le Commit message, par exemple “Mise à jour de l’auteur et de la date”. Vérfiez bien que les deux fichiers sont cochés. Cliquez ensuite sur Commit.\nIl n’est pas nécessaire de faire un commit après chaque changement. Faites le plutôt après avoir ajouté une fonctionnalité à votre code. Faite le quand cela vous semble pertinent, afin de pouvoir vérifier, comparer ou restorer."
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-3-push",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-3-push",
-    "title": "Lab 01 - Pet names",
-    "section": "Étape 3: Push",
-    "text": "Étape 3: Push\nMaintenant que vous avez fait vos modifications, vous allez pusher vos changements sur le web, c’est-à-dire sur votre repo sur Github. Cela permettra aux autres (les profs) de voir vos changements. Appuyez simplement sur Push.\nCela devrait faire apparaitre une fenêtre. Entrez vos informations de connexion pour Github.\nGrosse question: Laquelle des étapes précédentes (changement du YAML, committing, et pushing) a besoin de communiquer avec Github?1"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exerice-1",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#exerice-1",
-    "title": "Lab 01 - Pet names",
-    "section": "Exerice 1",
-    "text": "Exerice 1\nSelon l’aide, combien d’animaux sont présents dans le dataset ?\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 1. Knit, et commit avec un message !"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-2",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-2",
-    "title": "Lab 01 - Pet names",
-    "section": "Exercice 2",
-    "text": "Exercice 2\nSelon l’aide, combien d’animaux sont présents dans le dataset ?\n🧶 ✅ Écrivez votre réponse dans le document, sous Exercice 2. Knit, commit avec un message et pushez !"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-3",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-3",
-    "title": "Lab 01 - Pet names",
-    "section": "Exercice 3",
-    "text": "Exercice 3\nQuels sont les trois nom d’animaux les plus commun à Seattle ? Pour répondre à cette question, you devez compter la fréquence d’apparition de chaque nom, et afficher les résultats en ordre décroissant. Utilisez le code suivant.\n\n\n\n\n\n\nTip\n\n\n\nLe code suivant peut être lu comme “Prend le dataset seattlepets, puis compte le nombre de ligne avec le même animal_name, et affiche le résultat en ordre décroissant”. le puis dans la phrase précédente correspond à l’opérateur de pipe %&gt;%, qui prend ce qui se trouve avant et l’envoi comme premier argumet de ce qui vient après.\n\n\n\nseattlepets %&gt;%\n  count(animal_name, sort = TRUE)\n\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 3. Cette fois, votre réponse va également inclure un morceau de code. Utilisez le block de code mis à votre disposition pour ça. Knit et commit avec un message !"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-4",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-4",
-    "title": "Lab 01 - Pet names",
-    "section": "Exercice 4",
-    "text": "Exercice 4\nNous pouvons également voir les noms les plus communs pour chaque espèce. Pour cela, nous devons d’abord group_by() par l’species, puis faire le count.\n\nseattlepets %&gt;% \n  group_by(species) %&gt;%\n  count(animal_name, sort = TRUE)\n\n# A tibble: 16,823 × 3\n# Groups:   species [4]\n   species animal_name     n\n   &lt;chr&gt;   &lt;chr&gt;       &lt;int&gt;\n 1 Cat     &lt;NA&gt;          406\n 2 Dog     Lucy          337\n 3 Dog     Charlie       306\n 4 Dog     Bella         249\n 5 Dog     Luna          244\n 6 Dog     Daisy         221\n 7 Dog     Cooper        189\n 8 Dog     Lola          187\n 9 Dog     Max           186\n10 Dog     Molly         186\n# ℹ 16,813 more rows\n\n\n\n\n\n\n\n\nNote\n\n\n\nOn observe beaucoup de NA pour les chats… pauvres chatons sans noms…\n\n\nCet affichage n’est pas optimal. Nous voulons connaitre le nom le plus commun pour les chats et les chiens mais il n’y a quasiment aucun chat d’affiché ! C’est parce qu’il y a bien plus de chiens que de chats dans le dataset. On peut le vérifier en comptant le nombre d’animaux par espèce.\n\nseattlepets %&gt;%\n  count(species, sort = TRUE)\n\n# A tibble: 4 × 2\n  species     n\n  &lt;chr&gt;   &lt;int&gt;\n1 Dog     35181\n2 Cat     17294\n3 Goat       38\n4 Pig         6\n\n\nCherchons le top 5 de chaque espèce. Pour cela, nous pouvons utiliser la fonction slice_max(). Le premier argument de la fonction est la variable dont nous voulons garder le plus grand nombre, dans notre cas n. Le deuxième argument est le nombre de lignes que nous voulons afficher, dans notre cas n=5. Ici, les deux arguments mentionnent un n. Dans le premier cas, il y a un variable appelé n dans le dataframe résultant du count, alors que dans le deuxième, il s’agit du nom de l’argument, définit dans slice_max().\n\nseattlepets %&gt;% \n  group_by(species) %&gt;%\n  count(animal_name, sort = TRUE) %&gt;% \n  slice_max(n, n = 5)\n\n# A tibble: 53 × 3\n# Groups:   species [4]\n   species animal_name     n\n   &lt;chr&gt;   &lt;chr&gt;       &lt;int&gt;\n 1 Cat     &lt;NA&gt;          406\n 2 Cat     Luna          111\n 3 Cat     Lucy          102\n 4 Cat     Lily           86\n 5 Cat     Max            83\n 6 Dog     Lucy          337\n 7 Dog     Charlie       306\n 8 Dog     Bella         249\n 9 Dog     Luna          244\n10 Dog     Daisy         221\n# ℹ 43 more rows\n\n\nÀ partir de ce résultat, nous pouvons facilement identifier les noms les plus communs pour les chats et les chiens, mais le résutlat est trié selon n (la fréquence) et non par rapport à l’species. En ajoutant une nouvelle ligne au pipe précédent, faite en sorte que les résultats soient triés selon l’espèce d’abord, puis par n. Pour cela, vous pouvez vous servir de la fonction arrange. Vous pourrez indiquer ce par quoi vous voulez tier: arrange(variable 1, variable 2). À vous d’essayer et de voir quel résultat est le bon !\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 4, en incluant les blocks de code nécessaires. Knit et commit avec un message !"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-5",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-5",
-    "title": "Lab 01 - Pet names",
-    "section": "Exercice 5",
-    "text": "Exercice 5\nLa visualisation suivante affiche la proportion de chiens et de chats avec le même nom. Les 20 noms les plus courrants pour chaque espèce sont affichés. La ligne diagonale correspond à la ligne \\(x = y\\); si un nom apparaît sur cette ligne, cela signifie qu’il a le même succès pour les chiens que pour les chats.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\nQuels noms sont plus commun pour des chats que pour des chiens ? Ceux au dessus de la ligne ou bien en dessous ?\nEst ce que la relation entre les deux variables (proportion de chats avec un nom donné et proportion de chiens avec un nom donné) est positive ou bien négative ? Que cela signifie-t-il dans le contexte de notre jeu de données ?\n\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 5, en incluant les blocks de code nécessaires. C’est le dernier donc assurez que tout soit propre ! Knit, commit avec un message !"
-  },
-  {
-    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#footnotes",
-    "href": "labs/lab01-pet-names/lab01-pet-names.html#footnotes",
-    "title": "Lab 01 - Pet names",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nSeulement l’étape du push à besoin de communiquer avec Gihub, c’est pour cela que vos informations sont demandées.↩︎"
-  },
-  {
-    "objectID": "demo/unvotes/unvotes.html",
-    "href": "demo/unvotes/unvotes.html",
-    "title": "UN Votes",
-    "section": "",
-    "text": "Comment les différents pays votent-ils à l’Assemblée Générale des Nations Unies, comment leurs votent ont-ils évolué à travers le temps, et quels sont leurs différences d’opinion sur les différents sujet ? Cette analyse vise à proposer des pistes de réponses.\n\n\nNous allons utiliser les packages tidyverse, lubridate, et scales pour la manipulation de données et la visualisation, le package DT pour l’interactivité des tableaux et le package unvotes pour les données.\n\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\nlibrary(DT)\nlibrary(unvotes)\n\n\n\n\nLes donnnées que nous utilisons proviennent du package unvotes. Dans le block suivant, nous transformons les données pour joindre différents tableaux fournis avec le package et ainsi faciliter l’analyse.\n\nunvotes &lt;- un_votes %&gt;%\n  inner_join(un_roll_calls, by = \"rcid\") %&gt;%\n  inner_join(un_roll_call_issues, by = \"rcid\")\n\nWarning in inner_join(., un_roll_call_issues, by = \"rcid\"): Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 382 of `x` matches multiple rows in `y`.\nℹ Row 3009 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning."
-  },
-  {
-    "objectID": "demo/unvotes/unvotes.html#introduction",
-    "href": "demo/unvotes/unvotes.html#introduction",
-    "title": "UN Votes",
-    "section": "",
-    "text": "Comment les différents pays votent-ils à l’Assemblée Générale des Nations Unies, comment leurs votent ont-ils évolué à travers le temps, et quels sont leurs différences d’opinion sur les différents sujet ? Cette analyse vise à proposer des pistes de réponses.\n\n\nNous allons utiliser les packages tidyverse, lubridate, et scales pour la manipulation de données et la visualisation, le package DT pour l’interactivité des tableaux et le package unvotes pour les données.\n\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\nlibrary(DT)\nlibrary(unvotes)\n\n\n\n\nLes donnnées que nous utilisons proviennent du package unvotes. Dans le block suivant, nous transformons les données pour joindre différents tableaux fournis avec le package et ainsi faciliter l’analyse.\n\nunvotes &lt;- un_votes %&gt;%\n  inner_join(un_roll_calls, by = \"rcid\") %&gt;%\n  inner_join(un_roll_call_issues, by = \"rcid\")\n\nWarning in inner_join(., un_roll_call_issues, by = \"rcid\"): Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 382 of `x` matches multiple rows in `y`.\nℹ Row 3009 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning."
-  },
-  {
-    "objectID": "demo/unvotes/unvotes.html#les-patterns-de-vote-aux-nations-unies",
-    "href": "demo/unvotes/unvotes.html#les-patterns-de-vote-aux-nations-unies",
-    "title": "UN Votes",
-    "section": "Les patterns de vote aux Nations Unies",
-    "text": "Les patterns de vote aux Nations Unies\nNous allons créer une visualisation qui affiche l’évolution des votes pour différents pays sur une certaine période.\nNous pouvons facilement changer les pays qui sont affichés en changeant les noms passés dans la fonction filter. Notez que le nom du pays doit commencer par une majuscule et avoir exactement la même orthographe que dans les données. La liste complète est présentée en Annexe.\n\nunvotes %&gt;%\n  filter(country %in% c(\"Canada\", \"United States\", \"France\")) %&gt;%\n  mutate(year = year(date)) %&gt;%\n  group_by(country, year, issue) %&gt;%\n  summarize(percent_yes = mean(vote == \"yes\")) %&gt;%\n  ggplot(mapping = aes(x = year, y = percent_yes, color = country)) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"loess\", se = FALSE) +\n  facet_wrap(~issue) +\n  scale_y_continuous(labels = percent) +\n  labs(\n    title = \"Percentage of 'Yes' votes in the UN General Assembly\",\n    subtitle = \"1946 to 2019\",\n    y = \"% Yes\",\n    x = \"Year\",\n    color = \"Country\"\n  )"
-  },
-  {
-    "objectID": "demo/unvotes/unvotes.html#références",
-    "href": "demo/unvotes/unvotes.html#références",
-    "title": "UN Votes",
-    "section": "Références",
-    "text": "Références\n\nDavid Robinson (2017). unvotes: United Nations General Assembly Voting Data. R package version 0.2.0.\nErik Voeten “Data and Analyses of Voting in the UN General Assembly” Routledge Handbook of International Organization, edited by Bob Reinalda (published May 27, 2013).\nMuch of the analysis has been modeled on the examples presented in the unvotes package vignette."
-  },
-  {
-    "objectID": "demo/unvotes/unvotes.html#appendix",
-    "href": "demo/unvotes/unvotes.html#appendix",
-    "title": "UN Votes",
-    "section": "Appendix",
-    "text": "Appendix\nLa liste des pays présents dans le jeu de données est présentée ci-dessous:"
-  },
-  {
     "objectID": "cours/02 - Dataviz/02 - dataviz.html#terminologie",
     "href": "cours/02 - Dataviz/02 - dataviz.html#terminologie",
     "title": "02 - Visualisation de données",
@@ -641,91 +501,84 @@
     "href": "cours/02 - Dataviz/02 - dataviz.html#références",
     "title": "02 - Visualisation de données",
     "section": "Références",
-    "text": "Références\n\n\nWilkinson, L. (2005). The Grammar of Graphics. Springer-Verlag. https://doi.org/10.1007/0-387-28695-0"
+    "text": "Références\n\n\nWilkinson, L. (2005). The Grammar of Graphics. Springer-Verlag. https://doi.org/10.1007/0-387-28695-0\n\n\n\n\n\n\nPRO1036 - 02 | Tim Bollé"
   },
   {
-    "objectID": "cours/00 - Intro/00 - intro.html#timothy-bollé",
-    "href": "cours/00 - Intro/00 - intro.html#timothy-bollé",
-    "title": "00 - intro",
-    "section": "Timothy Bollé",
-    "text": "Timothy Bollé\n\n\nOriginaire de France\n\nEn 2011:\n\nDépart pour Lausanne\nÉcole des Sciences criminelles\n\n\n\nBachelor en science forensique\n\n\nMaster en science forensiqie\n\nSpécialisé en traces numérique\n\n\n\n\n\n\nLausanne"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#timothy-bollé-1",
-    "href": "cours/00 - Intro/00 - intro.html#timothy-bollé-1",
-    "title": "00 - intro",
-    "section": "Timothy Bollé",
-    "text": "Timothy Bollé\n\nDoctorat en science forensique:\n\nDétection et analyse de liens non-évidents dans les fraudes en ligne\n\n\n\nÉcole des Sciences Criminelles:\n\nEnseignement dans le domaine du numérique\nExpertises\nFormation professionnelle\n\n\n\nDepuis 2022: Professeur à l’UQTR"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#et-vous",
-    "href": "cours/00 - Intro/00 - intro.html#et-vous",
-    "title": "00 - intro",
-    "section": "Et vous ?",
-    "text": "Et vous ?"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#science-des-données",
-    "href": "cours/00 - Intro/00 - intro.html#science-des-données",
-    "title": "00 - intro",
-    "section": "Science des données",
-    "text": "Science des données\nDomaine qui vise à transformer des données brutes en connaissances ou en décisions\nLe faire de manière scientifique\nCe cours vise à vous donner une méthode pour exploiter des données !"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#faq",
-    "href": "cours/00 - Intro/00 - intro.html#faq",
-    "title": "00 - intro",
-    "section": "FAQ",
-    "text": "FAQ\n\n\nQ - Quelles connaissances préalables ?\n\nA - Aucunes - on part de la base !\n\n\n\nQ - Est-ce que c’est un cours de statistique ?\n\nA - Non mais nous allons beaucoup les utiliser.\n\n\n\nQ - Est-ce que c’est un cours de programmation ?\n\nA - Non… mais nous allons en faire beaucoup !"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#comment",
-    "href": "cours/00 - Intro/00 - intro.html#comment",
-    "title": "00 - intro",
-    "section": "Comment",
-    "text": "Comment\nComment feriez vous pour analyser des données ?\n\n\n\n\nExcel"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#comment-1",
-    "href": "cours/00 - Intro/00 - intro.html#comment-1",
-    "title": "00 - intro",
-    "section": "Comment",
-    "text": "Comment\n\nRStudio"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#méthode",
-    "href": "cours/00 - Intro/00 - intro.html#méthode",
-    "title": "00 - intro",
-    "section": "Méthode",
-    "text": "Méthode\n\n(Wickham et al., 2023)"
-  },
-  {
-    "objectID": "cours/00 - Intro/00 - intro.html#référence",
-    "href": "cours/00 - Intro/00 - intro.html#référence",
-    "title": "00 - intro",
-    "section": "Référence",
-    "text": "Référence\n\n\n\n\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "À propos",
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "title": "Lab 02 - Déchets plastiques",
     "section": "",
-    "text": "L’ensemble de ce site est sous license a Creative Commons Attribution-ShareAlike 4.0 International."
+    "text": "La pollution plastique est un problème majeur, avec des impacts négatifs sur les océans et ses habitants Our World in Data possède de nombreux jeux de données à différents niveaux (globaux, par pays et sur le temps). Pour ce laboratoire, nous allons travailler avec les données de 2010.\nNational Geographic a lancé un concours de communication par visualisation de données sur le thème des déchets plastiques : lien."
   },
   {
-    "objectID": "about.html#license",
-    "href": "about.html#license",
-    "title": "À propos",
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Packages",
+    "text": "Packages\nComme d’habitude, nous allons utiliser le tidyverse pour cette analyse.\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Données",
+    "text": "Données\nLe jeu de données pour ce lab peut être trouvé dans le dossier data présent dans le repo. Nous reparlerons du chargement de données locales plus tard mais pour l’instant il suffit de lancer cette ligne:\n\nplastic_waste &lt;- read_csv(\"data/plastic-waste.csv\")\n\nLes variables présentes dans le jeu de données sont:\n\ncode: 3 lettres pour le code pays\nentity: nom du pays\ncontinent: nom du continent\nyear: année\ngdp_per_cap: PID par habitant en $ (2011)\nplastic_waste_per_cap: quantité de déchets plastiques par habitant en kg/jour\nmismanaged_plastic_waste_per_cap: quantité de déchets plastiques non gérés par habitant en kg/jour\nmismanaged_plastic_waste: quantité de déchets plastiques non gérés en tonnes\ncoastal_pop: Nombres de personnes vivant sur des côtes\ntotal_pop: Population totale selon Gapminder"
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html",
+    "title": "Lab 03 - Nobel laureates",
     "section": "",
-    "text": "L’ensemble de ce site est sous license a Creative Commons Attribution-ShareAlike 4.0 International."
+    "text": "En janvier 2017, Buzzfeed a publié un article sur pourquoi les lauréats du prix Nobel montrent que l’immigration est si importante pour la science américaine.\nVous pouvez lire l’article ici. Dans l’article, ils montrent que bien que la plupart des lauréats vivants du prix Nobel en sciences soient basés aux États-Unis, beaucoup d’entre eux sont nés dans d’autres pays. C’est une des raisons pour lesquelles le monde scientifique dit que l’immigration est vitale pour le progrès. Dans ce lab, nous travaillerons avec les données de cet article pour recréer certaines de leurs visualisations ainsi qu’explorer de nouvelles questions."
   },
   {
-    "objectID": "about.html#acknowledements",
-    "href": "about.html#acknowledements",
-    "title": "À propos",
-    "section": "Acknowledements",
-    "text": "Acknowledements\nUne partie du cours proposé ici est adapté du matériel proposé par Data Science in a Box.\nCe site a été construit avec Quarto !\nL’icone du site a été créé par Bombasticon Studio - Flaticon"
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#échauffement",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#échauffement",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "Échauffement",
+    "text": "Échauffement\nAvant d’introduire les données, commençons par quelques exercices simples.\n\nMettez à jour le YAML, en changeant le nom de l’auteur par le vôtre, et knit le document.\nCommittez vos modifications avec un message de commit. Assurez vous que les fichiers .Rmd et .md sont bien ajoutés au commit.\nPushez vos modifications sur GitHub.\nAllez dans votre dépôt sur GitHub et confirmez que vos modifications sont visibles dans vos fichiers Rmd et md."
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#packages",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#packages",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "Packages",
+    "text": "Packages\nNous utiliserons le package tidyverse pour une grande partie de la manipulation des données. Vous pouvez le charger en exécutant ce qui suit dans votre Console :\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#données",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#données",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "Données",
+    "text": "Données\nLe jeu de données pour cet exercice se trouve sous forme de fichier CSV (valeurs séparées par des virgules) dans le dossier data de votre dépôt. Vous pouvez les charger avec :\n\nnobel &lt;- read_csv(\"data/nobel.csv\")\n\nLes descriptions des variables sont les suivantes :\n\nid: Numéro d’identification\nfirstname: Prénom du lauréat ou de la lauréate\nsurname: Nom de famille\nyear: Année de remise du prix\ncategory: Catégorie du prix\naffiliation: Affiliation du ou de la lauréat·e\ncity: Ville de résidence de la personne lauréate l’année du prix\ncountry: Pays de résidence de la personne lauréate l’année du prix\nborn_date: Date de naissance du ou de la lauréat·e\ndied_date: Date de décès\ngender: Sexe\nborn_city: Ville de naissance\nborn_country: Pays de naissance de la personne lauréate\nborn_country_code: Code du pays de naissance\ndied_city: Ville de décès\ndied_country: Pays de décès\ndied_country_code: Code du pays de décès\noverall_motivation: Motivation générale pour la reconnaissance\nshare: Nombre d’autres personnes lauréates avec lesquels le prix est partagé\nmotivation: Motivation pour la reconnaissance\n\nDans quelques cas, le nom de la ville/pays a changé après la réception du prix par le ou la lauréate (par exemple, en 1975, la Bosnie-Herzégovine s’appelait la République fédérative socialiste de Yougoslavie). Dans ces cas, les variables ci-dessous reflètent un nom différent de leurs homologues sans le suffixe `_original`.\n\nborn_country_original\nborn_city_original\ndied_country_original\ndied_city_original\ncity_original\ncountry_original"
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#faites-connaissance-avec-les-données",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#faites-connaissance-avec-les-données",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "Faites connaissance avec les données",
+    "text": "Faites connaissance avec les données\n\nExercice 1\nCombien d’observations et combien de variables y a-t-il dans le jeu de données ? Que représente chaque ligne ?\nIl y a quelques observations dans ce jeu de données que nous exclurons de notre analyse pour correspondre aux résultats de Buzzfeed.\n\n\nExercice 2\nCréez un nouveau dataframe appelé nobel_living qui filtre pour\n\nles lauréates et lauréats pour lesquels country est disponible\nles lauréates et lauréats qui sont des personnes par opposition aux organisations (les organisations sont désignées par org dans la variable gender)\nles lauréates et lauréats qui sont encore en vie (leur died_date vaut NA)\n\nPour “créer un nouveau dataframe”, nous allons modifier le tableau nobel existant et attribuer le résultat à un nouvelle variable appelée nobel_living. L’attribution se fait avec le symbole &lt;-. Le bloc de code suivant montre comment commencer le pipeline avec nobel et l’assigner à nobel_living. Vous devez compléter le code en ajoutant la fonction filter() avec les conditions appropriées.\n\nnobel_living &lt;- nobel %&gt;%\n  filter(\n    # votre code ici\n  )\n\nVérifiez que vous obtenez bien un data frame avec 228 observations après avoir filtré les données.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#la-plupart-des-lauréates-et-lauréats-encore-vivants-étaient-basés-aux-états-unis-lorsquils-ont-remporté-leurs-prix",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#la-plupart-des-lauréates-et-lauréats-encore-vivants-étaient-basés-aux-états-unis-lorsquils-ont-remporté-leurs-prix",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "“La plupart des lauréates et lauréats encore vivants étaient basés aux États-Unis lorsqu’ils ont remporté leurs prix”",
+    "text": "“La plupart des lauréates et lauréats encore vivants étaient basés aux États-Unis lorsqu’ils ont remporté leurs prix”\n… dit l’article de Buzzfeed. Voyons si c’est vrai.\nTout d’abord, nous allons créer une nouvelle variable, c’est-à-dire une nouvelle colonne, pour identifier si la personne lauréate vivait aux États-Unis lorsqu’elle a remporté son prix. Pour cela, nous utiliserons la fonction mutate(). Le pipeline suivant modifie le data frame nobel_living en ajoutant une nouvelle variable appelée country_us. Nous utilisons une instruction Si-Sinon pour créer cette variable. Le premier argument dans la fonction if_else() est la condition que nous testons. Si country est égal à \"USA\", nous définissons country_us à \"USA\". Sinon, nous définissons country_us à \"Other\"\n\nnobel_living &lt;- nobel_living %&gt;%\n  mutate(\n    country_us = if_else(country == \"USA\", \"USA\", \"Other\")\n  )\n\n\nExercice 3\nPour la suite de ce travail, nous limiterons notre analyse aux catégories suivantes : Physique, Médecine, Chimie et Économie. Créez un nouveau dataframe appelé nobel_living_science qui filtre pour les catégories suivantes : Physique, Médecine, Chimie et Économie.\nPour cela, vous pouvez tester si la variable category est dans le vecteur c(\"Physics\", \"Medicine\", \"Chemistry\", \"Economics\"). Pour cela, utilisez l’opérateur %in% dans la fonction filter(). Une solution alternative serait de utiliser l’opérateur logique ou pour tester chaque catégorie séparément, mais l’utilisation de %in% est plus concise.\n\n\nExercice 4\nPour le prochain exercice, travaillez avec le data frame nobel_living_science que nous avons créé ci-dessus.\nCréez un graphique à barres avec des facets visualisant la relation entre la catégorie du prix Nobel et si la personne lauérate était aux États-Unis lorsqu’elle l’a remporté.\nInterprétez votre visualisation et commentez le titre de Buzzfeed en regardant s’il est soutenu par les données.\n\nVotre visualisation doit être facettée par catégorie.\nPour chaque facette, vous devez avoir deux barres, une pour les personnes aux États-Unis et une pour les autres.\nInversez les coordonnées pour que les barres soient horizontales et non verticales.\n\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#mais-parmi-ces-lauréates-du-prix-nobel-basées-aux-états-unis-beaucoup-sont-nées-dans-dautres-pays",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#mais-parmi-ces-lauréates-du-prix-nobel-basées-aux-états-unis-beaucoup-sont-nées-dans-dautres-pays",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "“Mais parmi ces lauréat·es du prix Nobel basé·es aux États-Unis, beaucoup sont né·es dans d’autres pays”",
+    "text": "“Mais parmi ces lauréat·es du prix Nobel basé·es aux États-Unis, beaucoup sont né·es dans d’autres pays”\n\nExercice 5\nCréez une nouvelle variable appelée born_country_us qui a la valeur \"USA\" si la personne lauréate est née aux États-Unis, et \"Other\" sinon. Combien de lauréat·es sont né·es aux États-Unis ?\n\n\nExercice 6\nAjoutez une deuxième variable à votre visualisation de l’exercice 4 basée sur si la personne est née aux États-Unis ou non. D’après votre visualisation, les données semblent-elles soutenir l’affirmation de Buzzfeed ? Expliquez votre raisonnement en 1-2 phrases.\n\nVotre visualisation finale doit contenir une facette pour chaque catégorie.\nDans chaque facette, il doit y avoir une barre pour savoir si la personne lauréate a remporté le prix aux États-Unis ou non.\nChaque barre doit avoir des segments pour savoir si le ou la lauréate est née aux États-Unis ou non.\n\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#doù-viennent-les-lauréats-nés-à-létranger-qui-ont-remporté-leur-prix-aux-états-unis",
+    "href": "labs/lab03-nobel-laureates/lab03-nobel-laureates.html#doù-viennent-les-lauréats-nés-à-létranger-qui-ont-remporté-leur-prix-aux-états-unis",
+    "title": "Lab 03 - Nobel laureates",
+    "section": "D’où viennent les lauréats nés à l’étranger qui ont remporté leur prix aux États-Unis ?",
+    "text": "D’où viennent les lauréats nés à l’étranger qui ont remporté leur prix aux États-Unis ?\n\n\n\n\n\n\nNote\n\n\n\nNotez que votre graphique à barres ne correspondra pas exactement à celui de l’article de Buzzfeed. C’est probablement parce que les données ont été mises à jour depuis la publication de l’article.\n\n\n\nExercice 7\nDans un seul pipeline, filtrez pour les lauréat·es qui ont remporté leur prix aux États-Unis, mais qui sont nées en dehors des États-Unis, puis créez un tableau de fréquence (avec la fonction count()) pour leur pays de naissance (born_country) et arrangez le dataframe résultant par ordre décroissant du nombre d’observations pour chaque pays. Quel pays est le plus commun ?\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit.\nMaintenant, relisez votre rapport pour vous assurer que vous avez répondu à toutes les questions et que tous vos blocs de code R sont correctement étiquetés. Vous pouvez faire un dernier Knit pour générer le fichier Markdown final. Committez et poussez vos modifications sur GitHub."
   },
   {
     "objectID": "cours/01 - Toolbox/01 - toolbox.html#les-outils",
@@ -858,35 +711,7 @@
     "href": "cours/01 - Toolbox/01 - toolbox.html#références",
     "title": "01 - Boite à outils",
     "section": "Références",
-    "text": "Références\n\n\nWickham, H. and Bryan, J. (2023). R Packages: Organize, Test, Document, and Share Your Code (2nd edition). O’Reilly Media."
-  },
-  {
-    "objectID": "cours/cours.html",
-    "href": "cours/cours.html",
-    "title": "Cours",
-    "section": "",
-    "text": "Slides : Web PDF"
-  },
-  {
-    "objectID": "cours/cours.html#introduction",
-    "href": "cours/cours.html#introduction",
-    "title": "Cours",
-    "section": "",
-    "text": "Slides : Web PDF"
-  },
-  {
-    "objectID": "cours/cours.html#r-basics",
-    "href": "cours/cours.html#r-basics",
-    "title": "Cours",
-    "section": "01 - R basics",
-    "text": "01 - R basics\nSlides : Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
-  },
-  {
-    "objectID": "cours/cours.html#visualisation-de-données",
-    "href": "cours/cours.html#visualisation-de-données",
-    "title": "Cours",
-    "section": "02 - Visualisation de données",
-    "text": "02 - Visualisation de données\nSlides : Web PDF\nDemo: Completez l’exercice disposible sur GitHub - https://github.com/PRO1036/star-wars\nLabs: Lab02 - Plastic waster\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab02\nEnvoyer le lab02 sur le repo Github classroom à votre nom\nLire le Chapitre Data Visualisation (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Exploring numerical data (Çetinkaya-Rundel and Hardin, 2024)\nChapitre Exploring categorical data (Çetinkaya-Rundel and Hardin, 2024)\nLivre ggplot2: Elegant Graphics for Data Analysis (Wickham et al., 2024)"
+    "text": "Références\n\n\nWickham, H. and Bryan, J. (2023). R Packages: Organize, Test, Document, and Share Your Code (2nd edition). O’Reilly Media.\n\n\n\n\n\n\nPRO1036 - 01 | Tim Bollé"
   },
   {
     "objectID": "index.html",
@@ -924,24 +749,472 @@
     "text": "À propos\nLes informations sur la licence et les remerciements se trouvent dans l’onglet À propos."
   },
   {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
-    "title": "Lab 02 - Déchets plastiques",
+    "objectID": "cours/00 - Intro/00 - intro.html#timothy-bollé",
+    "href": "cours/00 - Intro/00 - intro.html#timothy-bollé",
+    "title": "00 - intro",
+    "section": "Timothy Bollé",
+    "text": "Timothy Bollé\n\n\nOriginaire de France\n\nEn 2011:\n\nDépart pour Lausanne\nÉcole des Sciences criminelles\n\n\n\nBachelor en science forensique\n\n\nMaster en science forensiqie\n\nSpécialisé en traces numérique\n\n\n\n\n\n\nLausanne"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#timothy-bollé-1",
+    "href": "cours/00 - Intro/00 - intro.html#timothy-bollé-1",
+    "title": "00 - intro",
+    "section": "Timothy Bollé",
+    "text": "Timothy Bollé\n\nDoctorat en science forensique:\n\nDétection et analyse de liens non-évidents dans les fraudes en ligne\n\n\n\nÉcole des Sciences Criminelles:\n\nEnseignement dans le domaine du numérique\nExpertises\nFormation professionnelle\n\n\n\nDepuis 2022: Professeur à l’UQTR"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#et-vous",
+    "href": "cours/00 - Intro/00 - intro.html#et-vous",
+    "title": "00 - intro",
+    "section": "Et vous ?",
+    "text": "Et vous ?"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#science-des-données",
+    "href": "cours/00 - Intro/00 - intro.html#science-des-données",
+    "title": "00 - intro",
+    "section": "Science des données",
+    "text": "Science des données\nDomaine qui vise à transformer des données brutes en connaissances ou en décisions\nLe faire de manière scientifique\nCe cours vise à vous donner une méthode pour exploiter des données !"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#faq",
+    "href": "cours/00 - Intro/00 - intro.html#faq",
+    "title": "00 - intro",
+    "section": "FAQ",
+    "text": "FAQ\n\n\nQ - Quelles connaissances préalables ?\n\nA - Aucunes - on part de la base !\n\n\n\nQ - Est-ce que c’est un cours de statistique ?\n\nA - Non mais nous allons beaucoup les utiliser.\n\n\n\nQ - Est-ce que c’est un cours de programmation ?\n\nA - Non… mais nous allons en faire beaucoup !"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#comment",
+    "href": "cours/00 - Intro/00 - intro.html#comment",
+    "title": "00 - intro",
+    "section": "Comment",
+    "text": "Comment\nComment feriez vous pour analyser des données ?\n\n\n\n\nExcel"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#comment-1",
+    "href": "cours/00 - Intro/00 - intro.html#comment-1",
+    "title": "00 - intro",
+    "section": "Comment",
+    "text": "Comment\n\nRStudio"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#méthode",
+    "href": "cours/00 - Intro/00 - intro.html#méthode",
+    "title": "00 - intro",
+    "section": "Méthode",
+    "text": "Méthode\n\n(Wickham et al., 2023)"
+  },
+  {
+    "objectID": "cours/00 - Intro/00 - intro.html#référence",
+    "href": "cours/00 - Intro/00 - intro.html#référence",
+    "title": "00 - intro",
+    "section": "Référence",
+    "text": "Référence\n\n\n\n\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc.\n\n\n\n\n\n\n\nPRO1036 - 00 | Tim Bollé"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "À propos",
     "section": "",
-    "text": "La pollution plastique est un problème majeur, avec des impacts négatifs sur les océans et ses habitants Our World in Data possède de nombreux jeux de données à différents niveaux (globaux, par pays et sur le temps). Pour ce laboratoire, nous allons travailler avec les données de 2010.\nNational Geographic a lancé un concours de communication par visualisation de données sur le thème des déchets plastiques : lien."
+    "text": "L’ensemble de ce site est sous license a Creative Commons Attribution-ShareAlike 4.0 International."
   },
   {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
-    "title": "Lab 02 - Déchets plastiques",
-    "section": "Packages",
-    "text": "Packages\nComme d’habitude, nous allons utiliser le tidyverse pour cette analyse.\n\nlibrary(tidyverse)"
+    "objectID": "about.html#license",
+    "href": "about.html#license",
+    "title": "À propos",
+    "section": "",
+    "text": "L’ensemble de ce site est sous license a Creative Commons Attribution-ShareAlike 4.0 International."
   },
   {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
-    "title": "Lab 02 - Déchets plastiques",
-    "section": "Données",
-    "text": "Données\nLe jeu de données pour ce lab peut être trouvé dans le dossier data présent dans le repo. Nous reparlerons du chargement de données locales plus tard mais pour l’instant il suffit de lancer cette ligne:\n\nplastic_waste &lt;- read_csv(\"data/plastic-waste.csv\")\n\nLes variables présentes dans le jeu de données sont:\n\ncode: 3 lettres pour le code pays\nentity: nom du pays\ncontinent: nom du continent\nyear: année\ngdp_per_cap: PID par habitant en $ (2011)\nplastic_waste_per_cap: quantité de déchets plastiques par habitant en kg/jour\nmismanaged_plastic_waste_per_cap: quantité de déchets plastiques non gérés par habitant en kg/jour\nmismanaged_plastic_waste: quantité de déchets plastiques non gérés en tonnes\ncoastal_pop: Nombres de personnes vivant sur des côtes\ntotal_pop: Population totale selon Gapminder"
+    "objectID": "about.html#acknowledements",
+    "href": "about.html#acknowledements",
+    "title": "À propos",
+    "section": "Acknowledements",
+    "text": "Acknowledements\nUne partie du cours proposé ici est adapté du matériel proposé par Data Science in a Box.\nCe site a été construit avec Quarto !\nL’icone du site a été créé par Bombasticon Studio - Flaticon"
+  },
+  {
+    "objectID": "cours/cours.html",
+    "href": "cours/cours.html",
+    "title": "Cours",
+    "section": "",
+    "text": "Slides : Web PDF"
+  },
+  {
+    "objectID": "cours/cours.html#introduction",
+    "href": "cours/cours.html#introduction",
+    "title": "Cours",
+    "section": "",
+    "text": "Slides : Web PDF"
+  },
+  {
+    "objectID": "cours/cours.html#r-basics",
+    "href": "cours/cours.html#r-basics",
+    "title": "Cours",
+    "section": "01 - R basics",
+    "text": "01 - R basics\nSlides : Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
+  },
+  {
+    "objectID": "cours/cours.html#visualisation-de-données",
+    "href": "cours/cours.html#visualisation-de-données",
+    "title": "Cours",
+    "section": "02 - Visualisation de données",
+    "text": "02 - Visualisation de données\nSlides : Web PDF\nDemo: Completez l’exercice disposible sur GitHub - https://github.com/PRO1036/star-wars\nLabs: Lab02 - Plastic waster\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab02\nEnvoyer le lab02 sur le repo Github classroom à votre nom\nLire le Chapitre Data Visualisation (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Exploring numerical data (Çetinkaya-Rundel and Hardin, 2024)\nChapitre Exploring categorical data (Çetinkaya-Rundel and Hardin, 2024)\nLivre ggplot2: Elegant Graphics for Data Analysis (Wickham et al., 2024)"
+  },
+  {
+    "objectID": "cours/cours.html#manipulation-de-données-et-forme-tidy",
+    "href": "cours/cours.html#manipulation-de-données-et-forme-tidy",
+    "title": "Cours",
+    "section": "03 - Manipulation de données et forme Tidy",
+    "text": "03 - Manipulation de données et forme Tidy\nSlides : Web PDF\nDemo : Hotel Bookings\nLabs: Lab03 - Nobel laureates\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab03\nEnvoyer le lab03 sur le repo Github classroom à votre nom\nLire le Chapitre Data Transformation (Wickham et al., 2023)\nLire le Chapitre Data Tidy (Wickham et al., 2023)\n\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
+  },
+  {
+    "objectID": "ressources.html",
+    "href": "ressources.html",
+    "title": "ressources",
+    "section": "",
+    "text": "Transformation de données PDF\nVisualisation de données PDF\nRmarkdown PDF\nTidyr PDF"
+  },
+  {
+    "objectID": "ressources.html#cheat-sheets-pour-travailler-avec-tidyverse",
+    "href": "ressources.html#cheat-sheets-pour-travailler-avec-tidyverse",
+    "title": "ressources",
+    "section": "",
+    "text": "Transformation de données PDF\nVisualisation de données PDF\nRmarkdown PDF\nTidyr PDF"
+  },
+  {
+    "objectID": "demo/unvotes/unvotes.html",
+    "href": "demo/unvotes/unvotes.html",
+    "title": "UN Votes",
+    "section": "",
+    "text": "Comment les différents pays votent-ils à l’Assemblée Générale des Nations Unies, comment leurs votent ont-ils évolué à travers le temps, et quels sont leurs différences d’opinion sur les différents sujet ? Cette analyse vise à proposer des pistes de réponses.\n\n\nNous allons utiliser les packages tidyverse, lubridate, et scales pour la manipulation de données et la visualisation, le package DT pour l’interactivité des tableaux et le package unvotes pour les données.\n\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\nlibrary(DT)\nlibrary(unvotes)\n\n\n\n\nLes donnnées que nous utilisons proviennent du package unvotes. Dans le block suivant, nous transformons les données pour joindre différents tableaux fournis avec le package et ainsi faciliter l’analyse.\n\nunvotes &lt;- un_votes %&gt;%\n  inner_join(un_roll_calls, by = \"rcid\") %&gt;%\n  inner_join(un_roll_call_issues, by = \"rcid\")\n\nWarning in inner_join(., un_roll_call_issues, by = \"rcid\"): Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 382 of `x` matches multiple rows in `y`.\nℹ Row 3009 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning."
+  },
+  {
+    "objectID": "demo/unvotes/unvotes.html#introduction",
+    "href": "demo/unvotes/unvotes.html#introduction",
+    "title": "UN Votes",
+    "section": "",
+    "text": "Comment les différents pays votent-ils à l’Assemblée Générale des Nations Unies, comment leurs votent ont-ils évolué à travers le temps, et quels sont leurs différences d’opinion sur les différents sujet ? Cette analyse vise à proposer des pistes de réponses.\n\n\nNous allons utiliser les packages tidyverse, lubridate, et scales pour la manipulation de données et la visualisation, le package DT pour l’interactivité des tableaux et le package unvotes pour les données.\n\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\nlibrary(DT)\nlibrary(unvotes)\n\n\n\n\nLes donnnées que nous utilisons proviennent du package unvotes. Dans le block suivant, nous transformons les données pour joindre différents tableaux fournis avec le package et ainsi faciliter l’analyse.\n\nunvotes &lt;- un_votes %&gt;%\n  inner_join(un_roll_calls, by = \"rcid\") %&gt;%\n  inner_join(un_roll_call_issues, by = \"rcid\")\n\nWarning in inner_join(., un_roll_call_issues, by = \"rcid\"): Detected an unexpected many-to-many relationship between `x` and `y`.\nℹ Row 382 of `x` matches multiple rows in `y`.\nℹ Row 3009 of `y` matches multiple rows in `x`.\nℹ If a many-to-many relationship is expected, set `relationship =\n  \"many-to-many\"` to silence this warning."
+  },
+  {
+    "objectID": "demo/unvotes/unvotes.html#les-patterns-de-vote-aux-nations-unies",
+    "href": "demo/unvotes/unvotes.html#les-patterns-de-vote-aux-nations-unies",
+    "title": "UN Votes",
+    "section": "Les patterns de vote aux Nations Unies",
+    "text": "Les patterns de vote aux Nations Unies\nNous allons créer une visualisation qui affiche l’évolution des votes pour différents pays sur une certaine période.\nNous pouvons facilement changer les pays qui sont affichés en changeant les noms passés dans la fonction filter. Notez que le nom du pays doit commencer par une majuscule et avoir exactement la même orthographe que dans les données. La liste complète est présentée en Annexe.\n\nunvotes %&gt;%\n  filter(country %in% c(\"Canada\", \"United States\", \"France\")) %&gt;%\n  mutate(year = year(date)) %&gt;%\n  group_by(country, year, issue) %&gt;%\n  summarize(percent_yes = mean(vote == \"yes\")) %&gt;%\n  ggplot(mapping = aes(x = year, y = percent_yes, color = country)) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"loess\", se = FALSE) +\n  facet_wrap(~issue) +\n  scale_y_continuous(labels = percent) +\n  labs(\n    title = \"Percentage of 'Yes' votes in the UN General Assembly\",\n    subtitle = \"1946 to 2019\",\n    y = \"% Yes\",\n    x = \"Year\",\n    color = \"Country\"\n  )"
+  },
+  {
+    "objectID": "demo/unvotes/unvotes.html#références",
+    "href": "demo/unvotes/unvotes.html#références",
+    "title": "UN Votes",
+    "section": "Références",
+    "text": "Références\n\nDavid Robinson (2017). unvotes: United Nations General Assembly Voting Data. R package version 0.2.0.\nErik Voeten “Data and Analyses of Voting in the UN General Assembly” Routledge Handbook of International Organization, edited by Bob Reinalda (published May 27, 2013).\nMuch of the analysis has been modeled on the examples presented in the unvotes package vignette."
+  },
+  {
+    "objectID": "demo/unvotes/unvotes.html#appendix",
+    "href": "demo/unvotes/unvotes.html#appendix",
+    "title": "UN Votes",
+    "section": "Appendix",
+    "text": "Appendix\nLa liste des pays présents dans le jeu de données est présentée ci-dessous:"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html",
+    "title": "Lab 01 - Pet names",
+    "section": "",
+    "text": "Photo by Atsuko Sato\nLe but de cet exercice est de pratiquer les premiers éléments vus concernant R et Git/Github."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#terminologie",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#terminologie",
+    "title": "Lab 01 - Pet names",
+    "section": "Terminologie",
+    "text": "Terminologie\nNous en avons déjà parler mais répéter ne fait pas de mal:\n\nR: Le language de prorgammation qui sera utilisé dans ce cours.\nRStudio: Un environnement de développement intégré (IDE) pour R. En d’autres termes, une interface pour travailler efficacement avec R.\nGit: Un logiciel de gestion de versions\nGitHub: Une plateforme web pour accueillir des fichiers versionnés et faciliter la collaboration entre utilisateurs.\nRepository: Un repository Git (ou repo) contient tous les fichier du projet ainsi que ces versions."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#github",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#github",
+    "title": "Lab 01 - Pet names",
+    "section": "Github",
+    "text": "Github\nNous allons commencer par récupérer le fichier Rmd dans lequel vous allez enregistrer vos réponses. Git devrait être correctement installé. Si ce n’est pas le cas, voyez avec le prof.\nSur votre portail de cours, acceptez l’invitation à rejoindre le projet GitHub Classroom pour le Lab01.\nCopiez le lien de repo personnel pour le Lab01. Cela devrait ressember à lab01-&lt;votre nom d'utilisateur GitHub&gt;.\nDans RStudio:\n\nFichier &gt; Nouveau Projet\nVersion Control &gt; Git\nDans Repository URL : indiquez l’adresse: https://github.com/PRO1036/lab01-[username].git\nChoisissez un nom pour le dossier qui sera créé, par exemple “Lab01”\nChoisissez où vous voulez créer le projet dans votre ordinateur.\n\nCela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.\nDans RStudio, vous devriez voir le fichier .Rmd listé en bas à droite dans la liste de fichier:\n\nSi vous cliquez maintenant sur le fichier .rmd, il va apparaitre dans la zone en haut à gauche. Vous pourrez l’éditer et le “Render/Knit” pour voir le résultat final.\nVeuillez noter que ce que vous écriver dans le fichier Rmd et ce que vous écrivez dans la console ne communiquent pas (il s’agit de deux environnements différents). Si vous voulez utiliser la console (zone en bas à gauche), il faut retaper les commandes."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-1-mise-à-jour-du-yaml",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-1-mise-à-jour-du-yaml",
+    "title": "Lab 01 - Pet names",
+    "section": "Étape 1: Mise à jour du YAML",
+    "text": "Étape 1: Mise à jour du YAML\nOuvrez le fichier R Markdown (Rmd) dans le projet que vous avez cloné. Changez l’auteur et la date."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-knit",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-knit",
+    "title": "Lab 01 - Pet names",
+    "section": "Étape 2: Knit",
+    "text": "Étape 2: Knit\nCliquez sur Knit (le bouton bleu en haut de l’éditeur). Cela va exécuter le code dans le document, et générer un fichier HTML ou .md selon ce que l’on a choisi dans le YAML. Ici, en indiquant output: github_document, nous allons générer un fichier .md, qui peut facilement être lu dans GitHub. Vous devriez voir apparaitre une nouvelle fenêtre avec le résultat. De nouvaux fichiers devraient être apparus dans le panneau de fichiers."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-commit",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-2-commit",
+    "title": "Lab 01 - Pet names",
+    "section": "Étape 2: Commit",
+    "text": "Étape 2: Commit\nOuvrez le panneau Git en haut à droite.\nVous devriez voir votre fichier Rmd marqué comme modifié et son output lab01-pet-names.md marqué comme untracked.\n\nEn cliquant sur diff, vous verrez les différence entre le dernier commit et l’état actuel du document. Si cela vous convient, vous pouvez sélectionner les fichiers à commit, ajouter un message dans le Commit message, par exemple “Mise à jour de l’auteur et de la date”. Vérfiez bien que les deux fichiers sont cochés. Cliquez ensuite sur Commit.\nIl n’est pas nécessaire de faire un commit après chaque changement. Faites le plutôt après avoir ajouté une fonctionnalité à votre code. Faite le quand cela vous semble pertinent, afin de pouvoir vérifier, comparer ou restorer."
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#étape-3-push",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#étape-3-push",
+    "title": "Lab 01 - Pet names",
+    "section": "Étape 3: Push",
+    "text": "Étape 3: Push\nMaintenant que vous avez fait vos modifications, vous allez pusher vos changements sur le web, c’est-à-dire sur votre repo sur Github. Cela permettra aux autres (les profs) de voir vos changements. Appuyez simplement sur Push.\nCela devrait faire apparaitre une fenêtre. Entrez vos informations de connexion pour Github.\nGrosse question: Laquelle des étapes précédentes (changement du YAML, committing, et pushing) a besoin de communiquer avec Github?1"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exerice-1",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#exerice-1",
+    "title": "Lab 01 - Pet names",
+    "section": "Exerice 1",
+    "text": "Exerice 1\nSelon l’aide, combien d’animaux sont présents dans le dataset ?\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 1. Knit, et commit avec un message !"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-2",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-2",
+    "title": "Lab 01 - Pet names",
+    "section": "Exercice 2",
+    "text": "Exercice 2\nSelon l’aide, combien d’animaux sont présents dans le dataset ?\n🧶 ✅ Écrivez votre réponse dans le document, sous Exercice 2. Knit, commit avec un message et pushez !"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-3",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-3",
+    "title": "Lab 01 - Pet names",
+    "section": "Exercice 3",
+    "text": "Exercice 3\nQuels sont les trois nom d’animaux les plus commun à Seattle ? Pour répondre à cette question, you devez compter la fréquence d’apparition de chaque nom, et afficher les résultats en ordre décroissant. Utilisez le code suivant.\n\n\n\n\n\n\nTip\n\n\n\nLe code suivant peut être lu comme “Prend le dataset seattlepets, puis compte le nombre de ligne avec le même animal_name, et affiche le résultat en ordre décroissant”. le puis dans la phrase précédente correspond à l’opérateur de pipe %&gt;%, qui prend ce qui se trouve avant et l’envoi comme premier argumet de ce qui vient après.\n\n\n\nseattlepets %&gt;%\n  count(animal_name, sort = TRUE)\n\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 3. Cette fois, votre réponse va également inclure un morceau de code. Utilisez le block de code mis à votre disposition pour ça. Knit et commit avec un message !"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-4",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-4",
+    "title": "Lab 01 - Pet names",
+    "section": "Exercice 4",
+    "text": "Exercice 4\nNous pouvons également voir les noms les plus communs pour chaque espèce. Pour cela, nous devons d’abord group_by() par l’species, puis faire le count.\n\nseattlepets %&gt;% \n  group_by(species) %&gt;%\n  count(animal_name, sort = TRUE)\n\n# A tibble: 16,823 × 3\n# Groups:   species [4]\n   species animal_name     n\n   &lt;chr&gt;   &lt;chr&gt;       &lt;int&gt;\n 1 Cat     &lt;NA&gt;          406\n 2 Dog     Lucy          337\n 3 Dog     Charlie       306\n 4 Dog     Bella         249\n 5 Dog     Luna          244\n 6 Dog     Daisy         221\n 7 Dog     Cooper        189\n 8 Dog     Lola          187\n 9 Dog     Max           186\n10 Dog     Molly         186\n# ℹ 16,813 more rows\n\n\n\n\n\n\n\n\nNote\n\n\n\nOn observe beaucoup de NA pour les chats… pauvres chatons sans noms…\n\n\nCet affichage n’est pas optimal. Nous voulons connaitre le nom le plus commun pour les chats et les chiens mais il n’y a quasiment aucun chat d’affiché ! C’est parce qu’il y a bien plus de chiens que de chats dans le dataset. On peut le vérifier en comptant le nombre d’animaux par espèce.\n\nseattlepets %&gt;%\n  count(species, sort = TRUE)\n\n# A tibble: 4 × 2\n  species     n\n  &lt;chr&gt;   &lt;int&gt;\n1 Dog     35181\n2 Cat     17294\n3 Goat       38\n4 Pig         6\n\n\nCherchons le top 5 de chaque espèce. Pour cela, nous pouvons utiliser la fonction slice_max(). Le premier argument de la fonction est la variable dont nous voulons garder le plus grand nombre, dans notre cas n. Le deuxième argument est le nombre de lignes que nous voulons afficher, dans notre cas n=5. Ici, les deux arguments mentionnent un n. Dans le premier cas, il y a un variable appelé n dans le dataframe résultant du count, alors que dans le deuxième, il s’agit du nom de l’argument, définit dans slice_max().\n\nseattlepets %&gt;% \n  group_by(species) %&gt;%\n  count(animal_name, sort = TRUE) %&gt;% \n  slice_max(n, n = 5)\n\n# A tibble: 53 × 3\n# Groups:   species [4]\n   species animal_name     n\n   &lt;chr&gt;   &lt;chr&gt;       &lt;int&gt;\n 1 Cat     &lt;NA&gt;          406\n 2 Cat     Luna          111\n 3 Cat     Lucy          102\n 4 Cat     Lily           86\n 5 Cat     Max            83\n 6 Dog     Lucy          337\n 7 Dog     Charlie       306\n 8 Dog     Bella         249\n 9 Dog     Luna          244\n10 Dog     Daisy         221\n# ℹ 43 more rows\n\n\nÀ partir de ce résultat, nous pouvons facilement identifier les noms les plus communs pour les chats et les chiens, mais le résutlat est trié selon n (la fréquence) et non par rapport à l’species. En ajoutant une nouvelle ligne au pipe précédent, faite en sorte que les résultats soient triés selon l’espèce d’abord, puis par n. Pour cela, vous pouvez vous servir de la fonction arrange. Vous pourrez indiquer ce par quoi vous voulez tier: arrange(variable 1, variable 2). À vous d’essayer et de voir quel résultat est le bon !\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 4, en incluant les blocks de code nécessaires. Knit et commit avec un message !"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#exercice-5",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#exercice-5",
+    "title": "Lab 01 - Pet names",
+    "section": "Exercice 5",
+    "text": "Exercice 5\nLa visualisation suivante affiche la proportion de chiens et de chats avec le même nom. Les 20 noms les plus courrants pour chaque espèce sont affichés. La ligne diagonale correspond à la ligne \\(x = y\\); si un nom apparaît sur cette ligne, cela signifie qu’il a le même succès pour les chiens que pour les chats.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\nQuels noms sont plus commun pour des chats que pour des chiens ? Ceux au dessus de la ligne ou bien en dessous ?\nEst ce que la relation entre les deux variables (proportion de chats avec un nom donné et proportion de chiens avec un nom donné) est positive ou bien négative ? Que cela signifie-t-il dans le contexte de notre jeu de données ?\n\n🧶 ✅ Ecrivez votre réponse dans le document, sous Exercice 5, en incluant les blocks de code nécessaires. C’est le dernier donc assurez que tout soit propre ! Knit, commit avec un message !"
+  },
+  {
+    "objectID": "labs/lab01-pet-names/lab01-pet-names.html#footnotes",
+    "href": "labs/lab01-pet-names/lab01-pet-names.html#footnotes",
+    "title": "Lab 01 - Pet names",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSeulement l’étape du push à besoin de communiquer avec Gihub, c’est pour cela que vos informations sont demandées.↩︎"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#la-grammaire-de-la-manipulation-de-données",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#la-grammaire-de-la-manipulation-de-données",
+    "title": "03 - Manipulation de données",
+    "section": "La grammaire de la manipulation de données",
+    "text": "La grammaire de la manipulation de données\nBasé sur des fonctions qui correspondent à des verbes permettant de manipuler des tableaux de données (dataframes)\n\n\n\n\n\nselect: Sélectionner une colonne\narrange: Ordonner les lignes\nslice: Sélectionner des lignes (par les index)\nfilter: Sélectionner des lignes selon des critères\ndistinct: Filtrer les lignes uniques\nmutate: Ajout de nouvelles variables\nsummarise: Réduire variables en valeurs\ngroup_by: Regrouper des observations selon une variable\n…"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#pipe",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#pipe",
+    "title": "03 - Manipulation de données",
+    "section": "Pipe",
+    "text": "Pipe\nÉlément très important dans la syntaxe de la manipulation de données\nEn programmation, un pipe permet de passer de l’information d’un processus à un autre.\nImaginons le processus suivant: Trouver les clés, démarrer la voiture, conduire au travail et se garer.\npark(drive(start_car(find(keys)), to = \"work\"))\n\n\n\nkeys %&gt;%\n  find() %&gt;%\n  start_car() %&gt;%\n  drive(to = \"work\") %&gt;%\n  park()"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#data-réservations-dhôtels",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#data-réservations-dhôtels",
+    "title": "03 - Manipulation de données",
+    "section": "Data: Réservations d’hôtels",
+    "text": "Data: Réservations d’hôtels\nDonnées de deux hôtels, un en ville et un en campagne\nChaque ligne représente une réservation\nDataset créé pour prédire les chances qu’une réservation soit annulée (Antonio et al., 2019) \n\nhotels &lt;- read_csv(\"data/hotels.csv\")\n\n\n\nSource: TidyTuesday"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#les-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#les-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Les variables",
+    "text": "Les variables\n\nnames(hotels)\n\n [1] \"hotel\"                          \"is_canceled\"                   \n [3] \"lead_time\"                      \"arrival_date_year\"             \n [5] \"arrival_date_month\"             \"arrival_date_week_number\"      \n [7] \"arrival_date_day_of_month\"      \"stays_in_weekend_nights\"       \n [9] \"stays_in_week_nights\"           \"adults\"                        \n[11] \"children\"                       \"babies\"                        \n[13] \"meal\"                           \"country\"                       \n[15] \"market_segment\"                 \"distribution_channel\"          \n[17] \"is_repeated_guest\"              \"previous_cancellations\"        \n[19] \"previous_bookings_not_canceled\" \"reserved_room_type\"            \n[21] \"assigned_room_type\"             \"booking_changes\"               \n[23] \"deposit_type\"                   \"agent\"                         \n[25] \"company\"                        \"days_in_waiting_list\"          \n[27] \"customer_type\"                  \"adr\"                           \n[29] \"required_car_parking_spaces\"    \"total_of_special_requests\"     \n[31] \"reservation_status\"             \"reservation_status_date\""
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#glimpse",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#glimpse",
+    "title": "03 - Manipulation de données",
+    "section": "Glimpse",
+    "text": "Glimpse\n\nglimpse(hotels)\n\nRows: 119,390\nColumns: 32\n$ hotel                          &lt;chr&gt; \"Resort Hotel\", \"Resort Hotel\", \"Resort…\n$ is_canceled                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, …\n$ lead_time                      &lt;dbl&gt; 342, 737, 7, 13, 14, 14, 0, 9, 85, 75, …\n$ arrival_date_year              &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 201…\n$ arrival_date_month             &lt;chr&gt; \"July\", \"July\", \"July\", \"July\", \"July\",…\n$ arrival_date_week_number       &lt;dbl&gt; 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,…\n$ arrival_date_day_of_month      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ stays_in_weekend_nights        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ stays_in_week_nights           &lt;dbl&gt; 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, …\n$ adults                         &lt;dbl&gt; 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, …\n$ children                       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ babies                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ meal                           &lt;chr&gt; \"BB\", \"BB\", \"BB\", \"BB\", \"BB\", \"BB\", \"BB…\n$ country                        &lt;chr&gt; \"PRT\", \"PRT\", \"GBR\", \"GBR\", \"GBR\", \"GBR…\n$ market_segment                 &lt;chr&gt; \"Direct\", \"Direct\", \"Direct\", \"Corporat…\n$ distribution_channel           &lt;chr&gt; \"Direct\", \"Direct\", \"Direct\", \"Corporat…\n$ is_repeated_guest              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ previous_cancellations         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ previous_bookings_not_canceled &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ reserved_room_type             &lt;chr&gt; \"C\", \"C\", \"A\", \"A\", \"A\", \"A\", \"C\", \"C\",…\n$ assigned_room_type             &lt;chr&gt; \"C\", \"C\", \"C\", \"A\", \"A\", \"A\", \"C\", \"C\",…\n$ booking_changes                &lt;dbl&gt; 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ deposit_type                   &lt;chr&gt; \"No Deposit\", \"No Deposit\", \"No Deposit…\n$ agent                          &lt;chr&gt; \"NULL\", \"NULL\", \"NULL\", \"304\", \"240\", \"…\n$ company                        &lt;chr&gt; \"NULL\", \"NULL\", \"NULL\", \"NULL\", \"NULL\",…\n$ days_in_waiting_list           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ customer_type                  &lt;chr&gt; \"Transient\", \"Transient\", \"Transient\", …\n$ adr                            &lt;dbl&gt; 0.00, 0.00, 75.00, 75.00, 98.00, 98.00,…\n$ required_car_parking_spaces    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ total_of_special_requests      &lt;dbl&gt; 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 3, …\n$ reservation_status             &lt;chr&gt; \"Check-Out\", \"Check-Out\", \"Check-Out\", …\n$ reservation_status_date        &lt;date&gt; 2015-07-01, 2015-07-01, 2015-07-02, 20…"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-dune-variable",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-dune-variable",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection d’une variable",
+    "text": "Sélection d’une variable\nNous allons sélectionner la variable lead_time, qui représente le temps entre la date de réservation et la date d’arrivée\n\nselect(hotels, lead_time)\n\n# A tibble: 119,390 × 1\n   lead_time\n       &lt;dbl&gt;\n 1       342\n 2       737\n 3         7\n 4        13\n 5        14\n 6        14\n 7         0\n 8         9\n 9        85\n10        75\n# ℹ 119,380 more rows\n\n\nÉquivalent:\n\nhotels %&gt;%\n  select(lead_time)"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-plusieurs-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-plusieurs-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection de plusieurs variables",
+    "text": "Sélection de plusieurs variables\nNous allons maintenant ajouter la variable hotel qui indique s’il s’agit d’un hotel de ville ou un resort\n\nhotels %&gt;%\n  select(hotel, lead_time)\n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   &lt;chr&gt;            &lt;dbl&gt;\n 1 Resort Hotel       342\n 2 Resort Hotel       737\n 3 Resort Hotel         7\n 4 Resort Hotel        13\n 5 Resort Hotel        14\n 6 Resort Hotel        14\n 7 Resort Hotel         0\n 8 Resort Hotel         9\n 9 Resort Hotel        85\n10 Resort Hotel        75\n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#exclusion-de-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#exclusion-de-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Exclusion de variables",
+    "text": "Exclusion de variables\n\nhotels %&gt;%\n  select(hotel, lead_time, agent) %&gt;%\n  select(-agent)\n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   &lt;chr&gt;            &lt;dbl&gt;\n 1 Resort Hotel       342\n 2 Resort Hotel       737\n 3 Resort Hotel         7\n 4 Resort Hotel        13\n 5 Resort Hotel        14\n 6 Resort Hotel        14\n 7 Resort Hotel         0\n 8 Resort Hotel         9\n 9 Resort Hotel        85\n10 Resort Hotel        75\n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-dune-plage-de-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-dune-plage-de-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection d’une plage de variables",
+    "text": "Sélection d’une plage de variables\n\nhotels %&gt;%\n  select(hotel:arrival_date_month)\n\n# A tibble: 119,390 × 5\n   hotel        is_canceled lead_time arrival_date_year arrival_date_month\n   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;             \n 1 Resort Hotel           0       342              2015 July              \n 2 Resort Hotel           0       737              2015 July              \n 3 Resort Hotel           0         7              2015 July              \n 4 Resort Hotel           0        13              2015 July              \n 5 Resort Hotel           0        14              2015 July              \n 6 Resort Hotel           0        14              2015 July              \n 7 Resort Hotel           0         0              2015 July              \n 8 Resort Hotel           0         9              2015 July              \n 9 Resort Hotel           1        85              2015 July              \n10 Resort Hotel           1        75              2015 July              \n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-variables-selon-une-condition",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-variables-selon-une-condition",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection de variables selon une condition",
+    "text": "Sélection de variables selon une condition\n\nhotels %&gt;%\n  select(starts_with(\"arrival\"))\n\n# A tibble: 119,390 × 4\n   arrival_date_year arrival_date_month arrival_date_week_number\n               &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;\n 1              2015 July                                     27\n 2              2015 July                                     27\n 3              2015 July                                     27\n 4              2015 July                                     27\n 5              2015 July                                     27\n 6              2015 July                                     27\n 7              2015 July                                     27\n 8              2015 July                                     27\n 9              2015 July                                     27\n10              2015 July                                     27\n# ℹ 119,380 more rows\n# ℹ 1 more variable: arrival_date_day_of_month &lt;dbl&gt;"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-variables-selon-une-condition-1",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-variables-selon-une-condition-1",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection de variables selon une condition",
+    "text": "Sélection de variables selon une condition\n\nhotels %&gt;%\n  select(ends_with(\"type\"))\n\n# A tibble: 119,390 × 4\n   reserved_room_type assigned_room_type deposit_type customer_type\n   &lt;chr&gt;              &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;        \n 1 C                  C                  No Deposit   Transient    \n 2 C                  C                  No Deposit   Transient    \n 3 A                  C                  No Deposit   Transient    \n 4 A                  A                  No Deposit   Transient    \n 5 A                  A                  No Deposit   Transient    \n 6 A                  A                  No Deposit   Transient    \n 7 C                  C                  No Deposit   Transient    \n 8 C                  C                  No Deposit   Transient    \n 9 A                  A                  No Deposit   Transient    \n10 D                  D                  No Deposit   Transient    \n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#autres-conditions",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#autres-conditions",
+    "title": "03 - Manipulation de données",
+    "section": "Autres conditions",
+    "text": "Autres conditions\n\nstarts_with(): Commence par un préfix\nends_with(): Termine par un suffix\ncontains(): Contient une certaine chaine de caractères\nnum_range(): Match un certain range de nombres\none_of(): Match les variables font parties d’une liste\neverything(): Match les variable qui contiennet tous les éléments de la liste\nlast_col(): Sélectionne la dernière variable (possibilité d’indiquer un offset)\nmatches(): Match une expression régulière\n\n\n\nPour avoir plus d’information sur ces fonctions, utilisez l’aide ?... !"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#ordonner-les-lignes",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#ordonner-les-lignes",
+    "title": "03 - Manipulation de données",
+    "section": "Ordonner les lignes",
+    "text": "Ordonner les lignes\nPar défaut, les lignes sont arrangées en ordre croissant. Il est possible de préciser l’ordre décroissant avec desc()\n\n\n\nhotels %&gt;%\n  select(adults, children, babies) %&gt;%\n  arrange(babies)\n\n# A tibble: 119,390 × 3\n   adults children babies\n    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n 1      2        0      0\n 2      2        0      0\n 3      1        0      0\n 4      1        0      0\n 5      2        0      0\n 6      2        0      0\n 7      2        0      0\n 8      2        0      0\n 9      2        0      0\n10      2        0      0\n# ℹ 119,380 more rows\n\n\n\n\nhotels %&gt;%\n  select(adults, children, babies) %&gt;%\n  arrange(desc(babies))\n\n# A tibble: 119,390 × 3\n   adults children babies\n    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;\n 1      2        0     10\n 2      1        0      9\n 3      2        0      2\n 4      2        0      2\n 5      2        0      2\n 6      2        0      2\n 7      2        0      2\n 8      2        0      2\n 9      2        0      2\n10      2        0      2\n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-lignes",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-lignes",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection de lignes",
+    "text": "Sélection de lignes\nLa sélection se base sur le numéro de ligne\n\n# first five\nhotels %&gt;%\n  slice(1:5)\n\n# A tibble: 5 × 32\n  hotel        is_canceled lead_time arrival_date_year arrival_date_month\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;             \n1 Resort Hotel           0       342              2015 July              \n2 Resort Hotel           0       737              2015 July              \n3 Resort Hotel           0         7              2015 July              \n4 Resort Hotel           0        13              2015 July              \n5 Resort Hotel           0        14              2015 July              \n# ℹ 27 more variables: arrival_date_week_number &lt;dbl&gt;,\n#   arrival_date_day_of_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,\n#   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,\n#   meal &lt;chr&gt;, country &lt;chr&gt;, market_segment &lt;chr&gt;,\n#   distribution_channel &lt;chr&gt;, is_repeated_guest &lt;dbl&gt;,\n#   previous_cancellations &lt;dbl&gt;, previous_bookings_not_canceled &lt;dbl&gt;,\n#   reserved_room_type &lt;chr&gt;, assigned_room_type &lt;chr&gt;, …"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-lignes-1",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#sélection-de-lignes-1",
+    "title": "03 - Manipulation de données",
+    "section": "Sélection de lignes",
+    "text": "Sélection de lignes\nLa sélection se base sur des conditions\n\nhotels %&gt;%\n  filter(hotel == \"City Hotel\")\n\n# A tibble: 79,330 × 32\n   hotel      is_canceled lead_time arrival_date_year arrival_date_month\n   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;             \n 1 City Hotel           0         6              2015 July              \n 2 City Hotel           1        88              2015 July              \n 3 City Hotel           1        65              2015 July              \n 4 City Hotel           1        92              2015 July              \n 5 City Hotel           1       100              2015 July              \n 6 City Hotel           1        79              2015 July              \n 7 City Hotel           0         3              2015 July              \n 8 City Hotel           1        63              2015 July              \n 9 City Hotel           1        62              2015 July              \n10 City Hotel           1        62              2015 July              \n# ℹ 79,320 more rows\n# ℹ 27 more variables: arrival_date_week_number &lt;dbl&gt;,\n#   arrival_date_day_of_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,\n#   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,\n#   meal &lt;chr&gt;, country &lt;chr&gt;, market_segment &lt;chr&gt;,\n#   distribution_channel &lt;chr&gt;, is_repeated_guest &lt;dbl&gt;,\n#   previous_cancellations &lt;dbl&gt;, previous_bookings_not_canceled &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#conditions-multiples",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#conditions-multiples",
+    "title": "03 - Manipulation de données",
+    "section": "Conditions multiples",
+    "text": "Conditions multiples\nOn veut les réservations sans adultes ET plus qu’un enfant.\n\nhotels %&gt;%\n  filter( \n    adults == 0,\n    children &gt;= 1\n    ) %&gt;% \n  select(adults, babies, children)\n\n# A tibble: 223 × 3\n   adults babies children\n    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n 1      0      0        3\n 2      0      0        2\n 3      0      0        2\n 4      0      0        2\n 5      0      0        2\n 6      0      0        3\n 7      0      1        2\n 8      0      0        2\n 9      0      0        2\n10      0      0        2\n# ℹ 213 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#conditions-multiples-1",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#conditions-multiples-1",
+    "title": "03 - Manipulation de données",
+    "section": "Conditions multiples",
+    "text": "Conditions multiples\nOn veut les réservations sans adultes ET, plus qu’un enfant OU plus qu’un bébé.\n\nhotels %&gt;%\n  filter( \n    adults == 0,\n    children &gt;= 1 | babies &gt;= 1 # le | veut dire \"ou\"\n    ) %&gt;% \n  select(adults, babies, children)\n\n# A tibble: 223 × 3\n   adults babies children\n    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;\n 1      0      0        3\n 2      0      0        2\n 3      0      0        2\n 4      0      0        2\n 5      0      0        2\n 6      0      0        3\n 7      0      1        2\n 8      0      0        2\n 9      0      0        2\n10      0      0        2\n# ℹ 213 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#les-opérations-logiques",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#les-opérations-logiques",
+    "title": "03 - Manipulation de données",
+    "section": "Les opérations logiques",
+    "text": "Les opérations logiques\n\n\n\n\n\n\n\n\n\nOpérateur\nDéfinition\nOpérateur\nDéfinition\n\n\n\n\n&lt;\nplus petit que\nx | y\nx OU y\n\n\n&lt;=\nplus petit ou égal\nis.na(x)\ntest si x est NA\n\n\n&gt;\nplus grand que\n!is.na(x)\ntest si x est différent de NA\n\n\n&gt;=\nplus grand ou égal\nx %in% y\ntest si x est dans y\n\n\n==\négal à\n!(x %in% y)\ntest si x n’est pas dans y\n\n\n!=\ndifférent de\n!x\nnon x\n\n\nx & y\nx ET y"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#ne-garder-que-les-lignes-uniques",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#ne-garder-que-les-lignes-uniques",
+    "title": "03 - Manipulation de données",
+    "section": "Ne garder que les lignes uniques",
+    "text": "Ne garder que les lignes uniques\n\n\n\nhotels %&gt;% \n  distinct(market_segment) %&gt;%\n  arrange(market_segment)\n\n# A tibble: 8 × 1\n  market_segment\n  &lt;chr&gt;         \n1 Aviation      \n2 Complementary \n3 Corporate     \n4 Direct        \n5 Groups        \n6 Offline TA/TO \n7 Online TA     \n8 Undefined     \n\n\n\n\nhotels %&gt;% \n  distinct(hotel, market_segment) %&gt;%\n  arrange(hotel, market_segment)\n\n# A tibble: 14 × 2\n   hotel        market_segment\n   &lt;chr&gt;        &lt;chr&gt;         \n 1 City Hotel   Aviation      \n 2 City Hotel   Complementary \n 3 City Hotel   Corporate     \n 4 City Hotel   Direct        \n 5 City Hotel   Groups        \n 6 City Hotel   Offline TA/TO \n 7 City Hotel   Online TA     \n 8 City Hotel   Undefined     \n 9 Resort Hotel Complementary \n10 Resort Hotel Corporate     \n11 Resort Hotel Direct        \n12 Resort Hotel Groups        \n13 Resort Hotel Offline TA/TO \n14 Resort Hotel Online TA"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#compter-le-nombre-de-lignes",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#compter-le-nombre-de-lignes",
+    "title": "03 - Manipulation de données",
+    "section": "Compter le nombre de lignes",
+    "text": "Compter le nombre de lignes\n\n\nPar défaut, le résultat est trié par ordre alphabétique :\n\nEn triant par fréquence d’apparition :\n\n\n\n\nhotels %&gt;%\n  count(market_segment)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Aviation         237\n2 Complementary    743\n3 Corporate       5295\n4 Direct         12606\n5 Groups         19811\n6 Offline TA/TO  24219\n7 Online TA      56477\n8 Undefined          2\n\n\n\n\nhotels %&gt;%\n  count(market_segment, sort=TRUE)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#count-puis-arrange",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#count-puis-arrange",
+    "title": "03 - Manipulation de données",
+    "section": "count puis arrange",
+    "text": "count puis arrange\n\n\n\nhotels %&gt;%\n  count(market_segment) %&gt;%\n  arrange(n)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Undefined          2\n2 Aviation         237\n3 Complementary    743\n4 Corporate       5295\n5 Direct         12606\n6 Groups         19811\n7 Offline TA/TO  24219\n8 Online TA      56477\n\n\n\n\n# Même chose que sort=TRUE\nhotels %&gt;%\n  count(market_segment) %&gt;%\n  arrange(desc(n))\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#compter-sur-plusieurs-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#compter-sur-plusieurs-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Compter sur plusieurs variables",
+    "text": "Compter sur plusieurs variables\nAttention à l’ordre…\n\n\n\nhotels %&gt;%\n  count(hotel, market_segment)\n\n# A tibble: 14 × 3\n   hotel        market_segment     n\n   &lt;chr&gt;        &lt;chr&gt;          &lt;int&gt;\n 1 City Hotel   Aviation         237\n 2 City Hotel   Complementary    542\n 3 City Hotel   Corporate       2986\n 4 City Hotel   Direct          6093\n 5 City Hotel   Groups         13975\n 6 City Hotel   Offline TA/TO  16747\n 7 City Hotel   Online TA      38748\n 8 City Hotel   Undefined          2\n 9 Resort Hotel Complementary    201\n10 Resort Hotel Corporate       2309\n11 Resort Hotel Direct          6513\n12 Resort Hotel Groups          5836\n13 Resort Hotel Offline TA/TO   7472\n14 Resort Hotel Online TA      17729\n\n\n\n\nhotels %&gt;%\n  count(market_segment, hotel)\n\n# A tibble: 14 × 3\n   market_segment hotel            n\n   &lt;chr&gt;          &lt;chr&gt;        &lt;int&gt;\n 1 Aviation       City Hotel     237\n 2 Complementary  City Hotel     542\n 3 Complementary  Resort Hotel   201\n 4 Corporate      City Hotel    2986\n 5 Corporate      Resort Hotel  2309\n 6 Direct         City Hotel    6093\n 7 Direct         Resort Hotel  6513\n 8 Groups         City Hotel   13975\n 9 Groups         Resort Hotel  5836\n10 Offline TA/TO  City Hotel   16747\n11 Offline TA/TO  Resort Hotel  7472\n12 Online TA      City Hotel   38748\n13 Online TA      Resort Hotel 17729\n14 Undefined      City Hotel       2"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#ajout-de-nouvelles-variables",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#ajout-de-nouvelles-variables",
+    "title": "03 - Manipulation de données",
+    "section": "Ajout de nouvelles variables",
+    "text": "Ajout de nouvelles variables\n\nhotels %&gt;%\n  mutate(little_ones = children + babies) %&gt;%\n  select(children, babies, little_ones) %&gt;%\n  arrange(desc(little_ones))\n\n# A tibble: 119,390 × 3\n   children babies little_ones\n      &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;\n 1       10      0          10\n 2        0     10          10\n 3        0      9           9\n 4        2      1           3\n 5        2      1           3\n 6        2      1           3\n 7        3      0           3\n 8        2      1           3\n 9        2      1           3\n10        3      0           3\n# ℹ 119,380 more rows"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#combinaison-des-verbes",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#combinaison-des-verbes",
+    "title": "03 - Manipulation de données",
+    "section": "Combinaison des verbes",
+    "text": "Combinaison des verbes\n\n\n\nhotels %&gt;%\n  mutate(\n    little_ones = children + babies) %&gt;%\n  count(hotel, little_ones)\n\n# A tibble: 12 × 3\n   hotel        little_ones     n\n   &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;\n 1 City Hotel             0 73923\n 2 City Hotel             1  3263\n 3 City Hotel             2  2056\n 4 City Hotel             3    82\n 5 City Hotel             9     1\n 6 City Hotel            10     1\n 7 City Hotel            NA     4\n 8 Resort Hotel           0 36131\n 9 Resort Hotel           1  2183\n10 Resort Hotel           2  1716\n11 Resort Hotel           3    29\n12 Resort Hotel          10     1\n\n\n\n\nhotels %&gt;%\n  mutate(\n    little_ones = children + babies) %&gt;%\n  count(hotel, little_ones) %&gt;%\n  mutate(prop = n / sum(n))\n\n# A tibble: 12 × 4\n   hotel        little_ones     n       prop\n   &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt;\n 1 City Hotel             0 73923 0.619     \n 2 City Hotel             1  3263 0.0273    \n 3 City Hotel             2  2056 0.0172    \n 4 City Hotel             3    82 0.000687  \n 5 City Hotel             9     1 0.00000838\n 6 City Hotel            10     1 0.00000838\n 7 City Hotel            NA     4 0.0000335 \n 8 Resort Hotel           0 36131 0.303     \n 9 Resort Hotel           1  2183 0.0183    \n10 Resort Hotel           2  1716 0.0144    \n11 Resort Hotel           3    29 0.000243  \n12 Resort Hotel          10     1 0.00000838"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#summarize",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#summarize",
+    "title": "03 - Manipulation de données",
+    "section": "summarize",
+    "text": "summarize\nPermet de faire des calculs sur des variables\n\n# Moyenne du taux de réservation journalier\nhotels %&gt;%\n  summarise(mean_adr = mean(adr))\n\n# A tibble: 1 × 1\n  mean_adr\n     &lt;dbl&gt;\n1     102.\n\n\n\nsummarize() change complètement le dataframe, transforme les lignes en une unique statistique et enlève les colonnes inutiles"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#attention-à-la-notation",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#attention-à-la-notation",
+    "title": "03 - Manipulation de données",
+    "section": "Attention à la notation",
+    "text": "Attention à la notation\nNous pouvons être fainéant et laisser summarize() créer le nom des colonnes mais ce n’est pas très propre.\n\n\n❌\n\nhotels %&gt;%\n  summarise(mean(adr))\n\n# A tibble: 1 × 1\n  `mean(adr)`\n        &lt;dbl&gt;\n1        102.\n\n\n\n✅\n\nhotels %&gt;%\n  summarise(mean_adr = mean(adr))\n\n# A tibble: 1 × 1\n  mean_adr\n     &lt;dbl&gt;\n1     102."
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#group_by",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#group_by",
+    "title": "03 - Manipulation de données",
+    "section": "group_by",
+    "text": "group_by\nPermet de regrouper des lignes selon une variable et de faire des opérations sur chaque groupe \n\nhotels %&gt;%\n  group_by(hotel) %&gt;%\n  summarise(mean_adr = mean(adr))\n\n# A tibble: 2 × 2\n  hotel        mean_adr\n  &lt;chr&gt;           &lt;dbl&gt;\n1 City Hotel      105. \n2 Resort Hotel     95.0"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#exemple-calcul-de-fréquences",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#exemple-calcul-de-fréquences",
+    "title": "03 - Manipulation de données",
+    "section": "Exemple: calcul de fréquences",
+    "text": "Exemple: calcul de fréquences\nLes deux blocs de code suivants donnent le même résultat ! count() est en faite un group_by() suivi d’un summarize(). \n\n\n\nhotels %&gt;%\n  group_by(hotel) %&gt;%\n  summarise(n = n())\n\n# A tibble: 2 × 2\n  hotel            n\n  &lt;chr&gt;        &lt;int&gt;\n1 City Hotel   79330\n2 Resort Hotel 40060\n\n\n\n\nhotels %&gt;%\n  count(hotel)\n\n# A tibble: 2 × 2\n  hotel            n\n  &lt;chr&gt;        &lt;int&gt;\n1 City Hotel   79330\n2 Resort Hotel 40060"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#statistiques-multiples",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#statistiques-multiples",
+    "title": "03 - Manipulation de données",
+    "section": "Statistiques multiples",
+    "text": "Statistiques multiples\nIl est possible de calculer plusieurs statistiques d’un coup. \n\nhotels %&gt;%\n  summarise(\n    min_adr = min(adr),\n    mean_adr = mean(adr),\n    median_adr = median(adr),\n    max_adr = max(adr)\n    )\n\n# A tibble: 1 × 4\n  min_adr mean_adr median_adr max_adr\n    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;\n1   -6.38     102.       94.6    5400"
+  },
+  {
+    "objectID": "cours/03 - Data manipulation/03 - data-manip.html#références",
+    "href": "cours/03 - Data manipulation/03 - data-manip.html#références",
+    "title": "03 - Manipulation de données",
+    "section": "Références",
+    "text": "Références\n\n\nAntonio, N., de Almeida, A. and Nunes, L. (2019). Hotel booking demand datasets. Data in Brief, 22, 41–49. https://doi.org/10.1016/j.dib.2018.11.126\n\n\n\n\n\n\nPRO1036 - 03 | Tim Bollé"
   }
 ]

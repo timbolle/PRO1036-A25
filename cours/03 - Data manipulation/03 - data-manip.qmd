@@ -1,0 +1,519 @@
+---
+title: "03 - Manipulation de données"
+subtitle: "PRO1036 - Analyse de données scientifiques en R"
+author: "Tim Bollé"
+date: "2025-09-22"
+date-format: long
+footer: "PRO1036 - 03 | Tim Bollé"
+license: "CC BY-SA"
+bibliography: ../../template/references.bib
+csl: ../../template/apa-fr.csl
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+format: 
+  revealjs:
+    theme: [dark, ../../template/slides-uqtr.scss]
+    logo: /template/h-uqtr-r.png
+    slide-number: true
+    width: 1350
+    height: 900
+---
+
+```{r eval=TRUE, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+
+# Grammaire
+
+## La grammaire de la manipulation de données
+
+Basé sur des fonctions qui correspondent à des verbes permettant de manipuler des tableaux de données (dataframes)
+
+:::columns
+:::{.column width="35%"}
+
+![](figs/dplyr-part-of-tidyverse.png){height="60%"}
+:::
+::: {.column width="65%"}
+
+  - [select]{.gray-mono}: Sélectionner une colonne
+  - [arrange]{.gray-mono}: Ordonner les lignes
+  - [slice]{.gray-mono}: Sélectionner des lignes (par les index)
+  - [filter]{.gray-mono}: Sélectionner des lignes selon des critères
+  - [distinct]{.gray-mono}: Filtrer les lignes uniques
+  - [mutate]{.gray-mono}: Ajout de nouvelles variables
+  - [summarise]{.gray-mono}: Réduire variables en valeurs
+  - [group_by]{.gray-mono}: Regrouper des observations selon une variable
+  - ...
+:::
+:::
+
+# Pipes
+
+## Pipe
+Élément très important dans la syntaxe de la manipulation de données
+
+En programmation, un `pipe` permet de passer de l'information d'un processus à un autre.
+
+Imaginons le processus suivant: Trouver les clés, démarrer la voiture, conduire au travail et se garer.
+
+```
+park(drive(start_car(find(keys)), to = "work"))
+```
+
+
+:::columns
+:::{.column width="60%"}
+<br/>
+```
+keys %>%
+  find() %>%
+  start_car() %>%
+  drive(to = "work") %>%
+  park()
+```
+:::
+
+:::{.column width="40%"}
+
+![](figs/magrittr.png){fig-align="center"}
+
+:::
+:::
+
+# Dataset
+
+## Data: Réservations d'hôtels
+
+Données de deux hôtels, un en ville et un en campagne
+
+Chaque ligne représente une réservation
+
+Dataset créé pour prédire les chances qu'une réservation soit annulée [@antonioHotelBookingDemand2019]
+<br/>
+
+```{r}
+hotels <- read_csv("data/hotels.csv")
+```
+
+::: aside
+Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md)
+:::
+
+## Les variables
+
+```{r}
+names(hotels)
+```
+
+## Glimpse
+
+```{r}
+glimpse(hotels)
+```
+
+
+# `Select`
+
+## Sélection d'une variable
+
+Nous allons sélectionner la variable [lead_time]{.gray-mono}, qui représente le temps entre la date de réservation et la date d'arrivée
+
+```{r}
+select(hotels, lead_time)
+```
+
+Équivalent:
+```{r eval=FALSE}
+hotels %>%
+  select(lead_time)
+```
+
+## Sélection de plusieurs variables
+
+Nous allons maintenant ajouter la variable [hotel]{.gray-mono} qui indique s'il s'agit d'un hotel de ville ou un resort
+
+```{r}
+hotels %>%
+  select(hotel, lead_time)
+```
+
+## Exclusion de variables
+
+```{r}
+#| code-line-numbers: "3"
+hotels %>%
+  select(hotel, lead_time, agent) %>%
+  select(-agent)
+```
+
+## Sélection d'une plage de variables
+
+```{r}
+hotels %>%
+  select(hotel:arrival_date_month)
+```
+
+## Sélection de variables selon une condition
+
+```{r}
+hotels %>%
+  select(starts_with("arrival"))
+```
+
+## Sélection de variables selon une condition
+```{r}
+hotels %>%
+  select(ends_with("type"))
+```
+
+
+## Autres conditions
+
+  - [starts_with()]{.gray-mono}: Commence par un préfix
+  - [ends_with()]{.gray-mono}: Termine par un suffix
+  - [contains()]{.gray-mono}: Contient une certaine chaine de caractères
+  - [num_range()]{.gray-mono}: Match un certain range de nombres
+  - [one_of()]{.gray-mono}: Match les variables font parties d'une liste
+  - [everything()]{.gray-mono}: Match les variable qui contiennet tous les éléments de la liste
+  - [last_col()]{.gray-mono}: Sélectionne la dernière variable (possibilité d'indiquer un offset)
+  - [matches()]{.gray-mono}: Match une expression régulière
+  
+::: aside
+Pour avoir plus d'information sur ces fonctions, utilisez l'aide `?...` !
+:::
+
+
+# `Arrange`
+
+## Ordonner les lignes
+
+Par défaut, les lignes sont arrangées en ordre croissant. Il est possible de préciser l'ordre décroissant avec `desc()`
+
+::: columns
+::: column
+
+```{r}
+#| code-line-numbers: "3"
+hotels %>%
+  select(adults, children, babies) %>%
+  arrange(babies)
+```
+:::
+
+:::column
+
+```{r}
+#| code-line-numbers: "3"
+hotels %>%
+  select(adults, children, babies) %>%
+  arrange(desc(babies))
+```
+:::
+:::
+
+# `Slice`
+
+## Sélection de lignes
+
+La sélection se base sur le numéro de ligne
+
+```{r}
+#| code-line-numbers: "2"
+# first five
+hotels %>%
+  slice(1:5)
+```
+
+# `filter`
+
+## Sélection de lignes
+
+La sélection se base sur des conditions
+
+```{r}
+#| code-line-numbers: "2"
+
+hotels %>%
+  filter(hotel == "City Hotel")
+```
+
+## Conditions multiples
+
+On veut les réservations sans adultes [ET]{.heavy-red} plus qu'un enfant.
+
+```{r}
+#| code-line-numbers: "3,4"
+hotels %>%
+  filter( 
+    adults == 0,
+    children >= 1
+    ) %>% 
+  select(adults, babies, children)
+```
+
+## Conditions multiples
+
+On veut les réservations sans adultes [ET]{.heavy-red}, plus qu'un enfant [OU]{.heavy-red} plus qu'un bébé.
+
+```{r}
+#| code-line-numbers: "3,4"
+hotels %>%
+  filter( 
+    adults == 0,
+    children >= 1 | babies >= 1 # le | veut dire "ou"
+    ) %>% 
+  select(adults, babies, children)
+```
+
+## Les opérations logiques
+
+Opérateur   | Définition          | Opérateur    | Définition
+------------|---------------------|--------------|----------------
+`<`         | plus petit que      |`x`&nbsp;&#124;&nbsp;`y`   | `x` OU `y` 
+`<=`        |	plus petit ou égal  |`is.na(x)`    | test si `x` est `NA`
+`>`         | plus grand que      |`!is.na(x)`   | test si `x` est différent de `NA`
+`>=`        |	plus grand ou égal  |`x %in% y`    | test si `x` est dans `y`
+`==`        |	égal à              |`!(x %in% y)` | test si `x` n'est pas dans `y`
+`!=`        |	différent de        |`!x`          | non `x`
+`x & y`     | `x` ET `y`          |              |
+
+
+
+# `distinct` et `count`
+
+## Ne garder que les lignes uniques
+
+:::columns
+:::column
+
+```{r}
+#| code-line-numbers: "2"
+hotels %>% 
+  distinct(market_segment) %>%
+  arrange(market_segment)
+```
+:::
+
+:::column
+```{r}
+#| code-line-numbers: "2"
+hotels %>% 
+  distinct(hotel, market_segment) %>%
+  arrange(hotel, market_segment)
+```
+:::
+:::
+
+## Compter le nombre de lignes
+
+::: columns
+::: column
+Par défaut, le résultat est trié par ordre alphabétique :
+:::
+
+::: column
+En triant par fréquence d'apparition :
+:::
+:::
+
+::: columns
+:::column
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  count(market_segment)
+```
+:::
+
+::: column
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  count(market_segment, sort=TRUE)
+```
+:::
+:::
+
+## `count` puis `arrange`
+
+::: columns
+::: column
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  count(market_segment) %>%
+  arrange(n)
+```
+:::
+
+::: column
+```{r}
+#| code-line-numbers: "2"
+# Même chose que sort=TRUE
+hotels %>%
+  count(market_segment) %>%
+  arrange(desc(n))
+```
+:::
+:::
+
+## Compter sur plusieurs variables
+
+Attention à l'ordre...
+
+::: columns
+::: column
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  count(hotel, market_segment)
+```
+:::
+
+::: column
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  count(market_segment, hotel)
+```
+:::
+:::
+
+# `mutate`
+
+## Ajout de nouvelles variables
+
+```{r}
+#| code-line-numbers: "2"
+hotels %>%
+  mutate(little_ones = children + babies) %>%
+  select(children, babies, little_ones) %>%
+  arrange(desc(little_ones))
+```
+
+## Combinaison des verbes
+
+::: columns
+::: column
+```{r}
+#| code-line-numbers: "2,3"
+hotels %>%
+  mutate(
+    little_ones = children + babies) %>%
+  count(hotel, little_ones)
+```
+:::
+
+::: column
+```{r}
+#| code-line-numbers: "5"
+hotels %>%
+  mutate(
+    little_ones = children + babies) %>%
+  count(hotel, little_ones) %>%
+  mutate(prop = n / sum(n))
+```
+:::
+:::
+
+
+# `summarize` et `group by`
+
+## `summarize`
+Permet de faire des calculs sur des variables
+
+```{r}
+#| code-line-numbers: "3"
+# Moyenne du taux de réservation journalier
+hotels %>%
+  summarise(mean_adr = mean(adr))
+```
+
+:::{.red-border}
+`summarize()` change complètement le dataframe, transforme les lignes en une unique statistique et enlève les colonnes inutiles
+:::
+
+## Attention à la notation
+
+Nous pouvons être fainéant et laisser `summarize()` créer le nom des colonnes mais ce n'est pas très _propre_.
+
+::: columns
+::: column
+❌
+
+```{r}
+hotels %>%
+  summarise(mean(adr))
+```
+:::
+
+::: column
+✅
+```{r}
+hotels %>%
+  summarise(mean_adr = mean(adr))
+```
+:::
+:::
+
+## `group_by`
+
+Permet de regrouper des lignes selon une variable et de faire des opérations sur chaque groupe
+<br/>
+
+```{r}
+#| code-line-numbers: "3"
+hotels %>%
+  group_by(hotel) %>%
+  summarise(mean_adr = mean(adr))
+```
+
+## Exemple: calcul de fréquences
+
+Les deux blocs de code suivants donnent le même résultat ! `count()` est en faite un `group_by()` suivi d'un `summarize()`.
+<br/>
+
+::: columns
+::: column
+```{r}
+hotels %>%
+  group_by(hotel) %>%
+  summarise(n = n())
+```
+:::
+
+::: column
+```{r}
+hotels %>%
+  count(hotel)
+```
+:::
+:::
+
+## Statistiques multiples
+
+Il est possible de calculer plusieurs statistiques d'un coup.
+<br/>
+```{r}
+hotels %>%
+  summarise(
+    min_adr = min(adr),
+    mean_adr = mean(adr),
+    median_adr = median(adr),
+    max_adr = max(adr)
+    )
+```
+
+
+
+## Références
+:::{#refs}
+:::
+
+
+

@@ -26,6 +26,8 @@ Lectures complémentaires:
 
 -   [ ] Chapitre [*Welcome to the Tidyverse*](../papers/Wickham2019_Welcome-to-the-Tidyverse.pdf) [@wickhamWelcomeTidyverse2019]
 
+
+
 ## 02 - Visualisation de données
 
 Slides : [Web](02 - Dataviz/02 - dataviz.qmd){target="_blank"} [PDF](02 - Dataviz/PRO1036_02_dataviz.pdf)
@@ -33,7 +35,7 @@ Slides : [Web](02 - Dataviz/02 - dataviz.qmd){target="_blank"} [PDF](02 - Datavi
 
 Demo: Completez l'exercice disposible sur GitHub - <https://github.com/PRO1036/star-wars>
 
-Labs: [Lab02 - Plastic waster](../labs/lab02-plastic-waste/lab02-plastic-waste.qmd)
+Labs: [Lab02 - Plastic waster](/labs/lab02-plastic-waste/lab02-plastic-waste.qmd)
 
 #### À faire pour la semaine prochaine:
 
@@ -46,6 +48,27 @@ Lectures complémentaires:
 -   [ ] Chapitre [*Exploring numerical data*](https://openintro-ims.netlify.app/explore-numerical) [@cetinkaya-rundelIntroductionModernStatistics2024]
 -   [ ] Chapitre [*Exploring categorical data*](https://openintro-ims.netlify.app/explore-categorical) [@cetinkaya-rundelIntroductionModernStatistics2024]
 -   [ ] Livre [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) [@wickhamGgplot2ElegantGraphics2024]
+
+
+## 03 - Manipulation de données et forme Tidy
+
+Slides : [Web](03 - Data manipulation/03 - data-manip.qmd){target="_blank"} [PDF](03 - Data manipulation/PRO1036_03_data-manip.pdf)
+
+Demo : [Hotel Bookings](https://github.com/PRO1036/hotel-bookings)
+
+Labs: [Lab03 - Nobel laureates](/labs/lab03-nobel-laureates/lab03-nobel-laureates.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab03
+-   [ ] Envoyer le lab03 sur le repo Github classroom à votre nom
+-   [ ] Lire le Chapitre [*Data Transformation*](https://r4ds.hadley.nz/data-transform) [@wickhamDataScience2023]
+-   [ ] Lire le Chapitre [*Data Tidy*](https://r4ds.hadley.nz/data-tidy) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Article [*Tidy Data*](../papers/Wickham2014_Tidy-Data.pdf) [@wickhamTidyData2014]
+
 
 
 # Références
