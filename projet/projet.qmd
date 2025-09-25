@@ -1,0 +1,61 @@
+---
+title: "projet"
+---
+
+## Introduction
+
+Le projet pour ce cours consistera en une analyse d'un ensemble de données de votre choix. De nombreux jeux de données en accès libre sont à disposition sur Internet. La section [Données](#data) contient des liens vers des sites qui proposent des jeux de données. Vous pouvez choisir des données en fonction de vos intérêts. Le but de ce projet est de démontrer votre maîtrise des techniques que nous avons abordées dans ce cours (et au-delà, si vous le souhaitez) et de les appliquer de manière significative à un ensemble de données original.
+
+Le but n'est pas de faire une analyse exhaustive des données, c'est-à-dire de ne pas calculer chaque statistique et procédure que vous avez apprises pour chaque variable, mais plutôt de me montrer que vous êtes compétent pour poser des questions significatives et y répondre avec les résultats de l'analyse des données, que vous êtes compétent pour utiliser R, et que vous êtes compétent pour interpréter et présenter les résultats. Concentrez-vous sur les méthodes qui vous aident à commencer à répondre à vos questions de recherche. Vous n'êtes pas obligé d'appliquer toutes les procédures statistiques que nous avons apprises (et vous pouvez utiliser des techniques que nous n'avons pas officiellement abordées en classe, si vous êtes aventureux). Critiquez également vos propres méthodes et fournissez des suggestions pour améliorer votre analyse.
+
+Le projet est très ouvert. Vous devriez créer une sorte de visualisation(s) convaincante(s) de ces données en R. Il n'y a pas de limite sur les outils ou les packages que vous pouvez utiliser, mais il est nécessaire d'utiliser les packages que nous avons appris en classe (tidyverse). Vous n'avez pas besoin de visualiser toutes les données en une seule fois. Une seule visualisation de haute qualité recevra une meilleure note qu'un grand nombre de visualisations de mauvaise qualité. Faites également attention à votre présentation. La netteté, la cohérence et la clarté compteront. Toutes les analyses doivent être effectuées dans RStudio, en utilisant R.
+
+
+## Données {#data}
+
+Pour que vous ayez la meilleure chance de réussir ce projet, il est important que vous choisissiez un ensemble de données adapté. Cela signifie que les données doivent être facilement accessibles et suffisamment grandes pour que plusieurs relations puissent être explorées. Ainsi, votre ensemble de données doit comporter au moins 50 observations et entre 10 et 20 variables (des exceptions peuvent être faites, mais vous devez d'abord le valider avec nous). Les variables de l'ensemble de données doivent inclure des variables catégorielles, des variables numériques discrètes et des variables numériques continues.
+
+Si le format des données n'a pas été vu en classe, c'est ok mais attendez vous à devoir fournir un léger effort pour les charger dans R. Si vous avez des difficultés, demandez de l'aide avant qu'il ne soit trop tard.
+
+**Il est interdit d'utiliser des données utilisées pendant le cours, dans des exemples, des examens ou des laboratoires.**
+
+Ci-dessous, vous trouverez une liste de références de jeux de données qui pourraient vous intéresser. Vous n'êtes pas limité à ces ressources, et en fait, vous êtes encouragé à aller au-delà. Mais vous pourriez y trouver quelque chose d'intéressant :
+
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+- [Kaggle datasets](https://www.kaggle.com/datasets)
+- [Harvard Dataverse](https://dataverse.harvard.edu/)
+- [Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
+- [ICPSR Data Archive Project](https://www.icpsr.umich.edu/web/pages/)
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+
+Plusieurs villes, pays et instituions ont également des portails de données ouvertes. Voici quelques exemples :
+
+- [Canada Open Data](https://open.canada.ca/en)
+- [Données Québec](https://www.donneesquebec.ca/)
+- [Ville de Montreal](https://donnees.montreal.ca/)
+- [CDC Datasets](https://chronicdata.cdc.gov/)
+- [NHS Scotland Open Data](https://www.opendata.nhs.scot/dataset)
+- [Edinburgh Open Data](https://opendata.scot/organizations/city_of_edinburgh_council/)
+- [UK Gov Data](https://www.data.gov.uk/)
+- ...
+
+N'oubliez pas que vous pouvez combiner plusieurs sources de données également.
+
+
+## Consignes
+
+### Proposal (10 pts)
+
+Pour commencez, vous devez soumettre un proposal de projet. Il s'agit d'un court document de maximum 1 page indiquant :
+
+- **Introduction**: L'introduction doit présenter brièvement votre question de recherche et de l'ensemble de données que vous avez choisi.
+- **Données**: Une présentation plus détaillées des données choisies. Quelles sont les variables que vous allez utiliser? Combien d'observations y a-t-il? Quel est le format des données? Quand les données ont-elles été collectées? etc.
+- **Analyse de données**: Quelles sont les questions que vous souhaitez explorer? Quelles sont les hypothèses que vous souhaitez tester? Quelles sont les méthodes que vous envisagez d'utiliser pour répondre à ces questions?
+
+#### Critères d'évaluation
+
+| Critère                 | Points | 
+|-------------------------|-------:|
+| Choix des données       | 4      |
+| Questions de recherche  | 4      |
+| Présentation, Qualité   | 2      |
