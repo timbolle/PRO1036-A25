@@ -47,11 +47,13 @@ website:
             text: Lab 01 - Pet names
           - href: labs/lab02-plastic-waste/lab02-plastic-waste.qmd
             text: Lab 02 - Plastic waste
-          -href: labs/lab03-nobel-laureates/lab03-nobel-laureates.qmd
+          - href: labs/lab03-nobel-laureates/lab03-nobel-laureates.qmd
             text: Lab 03 - Nobel laureates
 
       - href: ressources.qmd
         text: Ressources
+      - href: projet/projet.qmd
+        text: Projet
       - about.qmd
   
 

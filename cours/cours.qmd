@@ -69,7 +69,9 @@ Lectures complémentaires:
 
 -   [ ] Article [*Tidy Data*](../papers/Wickham2014_Tidy-Data.pdf) [@wickhamTidyData2014]
 
+## 03 - Manipulation de données et forme Tidy
 
+Slides : [Web](04 - Data types/04 - data-types.qmd){target="_blank"} [PDF](04 - Data types/PRO1036_04_data-types.pdf)
 
 # Références
 
