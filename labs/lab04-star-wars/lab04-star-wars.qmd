@@ -1,0 +1,121 @@
+---
+title: "Lab 04 - Star Wars"
+link-citations: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+```{r photo, fig.margin = TRUE, echo = FALSE, fig.width = 3, fig.cap = "Crédit : Lucas Film", eval = TRUE}
+knitr::include_graphics("figs/star-wars.jpg")
+```
+
+Le but de ce lab est de traiter des données brutes de telle sorte qu'elles soient prêtes à être analysées. Nous allons pour cela utiliser les fonctions du `tidyverse`.
+
+# Pour commencer
+
+Nous allons utiliser GitHub Classroom pour que vous puissiez rendre vos réponses.
+Sur le portail de cours, vous trouverez un lien vers un assignment.
+
+  - Cliquez sur le lien
+  - Connectez vous avec votre compte Github si ce n'est pas fait
+  - Acceptez l'assignment
+  - Liez votre compte avec votre nom d'étudiant
+  
+Vous devriez maintenant voir un repository appelé `Lab04-[votre-username]` où devrait être votre nom d'utilisateur GitHub.
+
+Sur la page du repository:
+
+  - Cliquez sur le bouton vert: ![](figs/github-bouton.png){.inline-image}
+  - Copiez le lien terminant en `.git`
+    - Quelque chose ressemblant à `https://github.com/PRO1036/lab04-[votre-username].git`
+
+Dans RStudio:
+
+-   Fichier \> Nouveau Projet
+-   Version Control \> Git
+-   Dans *Repository URL* : indiquez l'adresse copiée à l'étape précédente
+-   Choisissez un nom pour le dossier qui sera créé, par exemple "Lab02"
+-   Choisissez où vous voulez créer le projet dans votre ordinateur.
+
+Cela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.
+Dans le *YAML*, le `output` est réglé sur `"github_document"`. Cela permet d'obtenir un format adapté à GitHub. Notamment, votre fichier final sera un fichier Markdown (`.md`).
+
+## Packages
+
+Nous utiliserons le package **tidyverse** pour une grande partie de la manipulation des données.
+Vous pouvez le charger en exécutant ce qui suit dans votre Console :
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+## Données
+
+Le jeu de données pour cet exercice se trouve sous forme de fichier CSV (valeurs séparées par des virgules) dans le dossier data de votre dépôt. Vous pouvez les charger avec :
+
+```{r load-data, message = FALSE}
+sw <- read_csv("data/starwars_characters.csv")
+```
+
+Les descriptions des variables sont les suivantes :
+
+- `name` : nom du personnage
+- `height` : taille (en cm)
+- `mass` : masse (en kg)
+- `hair_color` : couleur des cheveux
+- `skin_color` : couleur de la peau
+- `eye_color` : couleur des yeux
+- `birth_year` : année de naissance (BBY = Before the Battle of Yavin, ABY = After the Battle of Yavin)
+- `gender` : genre
+- `homeworld` : planète d'origine
+- `species` : espèce
+
+Pour préparer les données et corriger les éventuelles erreurs, il est parfois nécessaire de faire des vérifications manuelles. Vous pouvez utiliser le site [Wookieepedia](https://starwars.fandom.com) pour vérifier les informations sur les personnages.
+
+# Exercices
+
+## Exercice 1
+
+En jetant un coup d'oeil aux données, essayez de dresser une liste des changements à apporter pour que les données soient prêtes à être analysées. Nous voulons des données uniformes et dont le type est adapté à l'analyse.
+
+Pour la suite des exercices, vous allez modifier l'objet `sw`, notamment en utilisant le verbe `mutate`. Faites particulièrement attention aux warnings qui peuvent apparaître lors de la modification des colonnes. Ceux-ci peuvent vous aider à trouver des erreurs. Pour faciliter le travail, stockez vos colonnes modifiées dans de nouvelles colonnnes, par exemple `mass_clean`, `height_clean`, etc. À la fin, vous pourrez supprimer les anciennes colonnes.
+
+## Exercice 2
+
+Corrigez la colonne `mass` de sorte à obtenir des nombres. Assurez-vous de modifier les valeurs mal renseignées (regardez par exemple les masses de Chewbacca et de Jabba) avant de faire une conversion de type.
+
+## Exercice 3
+
+Pour la colonne `gender`, quelles sont les valeurs possibles ? Comment sont désignées les valeurs inconnues ?
+
+En particulier, de quelle espèce sont les personnages avec des genre inconnus ?
+
+Modifiez les valeurs du genre pour ces personnages de telle manière à les uniformiser. Vous pouvez choisir un genre adapté, en utilisant le nom de l'espèce par exemple.
+
+## Exercice 4
+
+Transformez la colonne `homeworld` en facteur et attribuez la valeur `Unknown` aux valeurs manquantes
+
+## Exercice 5
+
+Modifiez la colonne `birth_year` pour qu'elle soit de type numérique en enlevant le "BBY". Pour cela, vous pouvez utiliser la fonction `str_replace` du package `stringr` (déjà chargé avec le `tidyverse`)
+
+## Exercice 6
+
+Créez un boxplot de la variable `height` en fonction de la variable `species`. Difficile à lire...
+
+Regroupez les espèces qui possèdent moins de 2 individus dans une catégorie `Other` et refaites le boxplot. C'est mieux...
+
+Ordonnez les catégories selon la hauteur moyenne des espèces et refaite le boxplot !
+
+
+## Exercice 7
+
+Créez une nouvelle variable `bmi` (Body Mass Index) en utilisant les colonnes `mass` et `height`. Assurez-vous que les valeurs soient correctes et que les valeurs manquantes soient traitées correctement.
+
+Refaite le boxplot de la question précédente en utilisant le BMI à la place de la masse.
+
+
+

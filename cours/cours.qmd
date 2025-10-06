@@ -50,7 +50,7 @@ Lectures complémentaires:
 -   [ ] Livre [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) [@wickhamGgplot2ElegantGraphics2024]
 
 
-## 03 - Manipulation de données et forme Tidy
+## 03 - Manipulation de données
 
 Slides : [Web](03 - Data manipulation/03 - data-manip.qmd){target="_blank"} [PDF](03 - Data manipulation/PRO1036_03_data-manip.pdf)
 
@@ -69,9 +69,11 @@ Lectures complémentaires:
 
 -   [ ] Article [*Tidy Data*](../papers/Wickham2014_Tidy-Data.pdf) [@wickhamTidyData2014]
 
-## 03 - Manipulation de données et forme Tidy
+## 04 - Types de données et transformations
 
 Slides : [Web](04 - Data types/04 - data-types.qmd){target="_blank"} [PDF](04 - Data types/PRO1036_04_data-types.pdf)
+
+
 
 # Références
 

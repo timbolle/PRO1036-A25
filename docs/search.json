@@ -1622,5 +1622,19 @@
     "title": "Projet",
     "section": "Consignes",
     "text": "Consignes\n\nProposal (10 pts)\nPour commencez, vous devez soumettre un proposal de projet. Il s’agit d’un court document de maximum 1 page indiquant :\n\nIntroduction et contexte: Dans cette partie, vous présenterez brièvement le contexte dans lequel s’inscrit votre mini-article. Quelle est la question principale ? Pourquoi est-ce intéressant de se la poser.\nPrésentation des Données: Une présentation plus détaillée des données choisies. D’où viennent les données ? Quand les données ont-elles été collectées ? Combien y a-t-il d’observations ? De variable ? Quel est le format des données? Quelles sont les variables que vous allez utiliser ? En quoi sont-elles utiles ? etc.\n\nUne copie des données doit être transmise dans le dossier data.\n\nAnalyse exploratoire: Quelles sont les questions que vous souhaitez explorer? Quelles sont les hypothèses que vous souhaitez tester? Quelles sont les méthodes que vous envisagez d’utiliser pour répondre à ces questions?\n\nVous pouvez également produire des premières analyses exploratoires de vos données.\n\nCritères d’évaluation\n\n\n\nCritère\nPoints\n\n\n\n\nQuestions de recherche\n4\n\n\nChoix des données et exploration\n4\n\n\nPrésentation, Qualité\n2"
+  },
+  {
+    "objectID": "cours/cours.html#manipulation-de-données",
+    "href": "cours/cours.html#manipulation-de-données",
+    "title": "Cours",
+    "section": "03 - Manipulation de données",
+    "text": "03 - Manipulation de données\nSlides : Web PDF\nDemo : Hotel Bookings\nLabs: Lab03 - Nobel laureates\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab03\nEnvoyer le lab03 sur le repo Github classroom à votre nom\nLire le Chapitre Data Transformation (Wickham et al., 2023)\nLire le Chapitre Data Tidy (Wickham et al., 2023)\n\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
+  },
+  {
+    "objectID": "cours/cours.html#types-de-données-et-transformations",
+    "href": "cours/cours.html#types-de-données-et-transformations",
+    "title": "Cours",
+    "section": "04 - Types de données et transformations",
+    "text": "04 - Types de données et transformations\nSlides : Web PDF"
   }
 ]
