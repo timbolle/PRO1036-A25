@@ -78,13 +78,16 @@ Pour préparer les données et corriger les éventuelles erreurs, il est parfois
 
 ## Exercice 1
 
-En jetant un coup d'oeil aux données, essayez de dresser une liste des changements à apporter pour que les données soient prêtes à être analysées. Nous voulons des données uniformes et dont le type est adapté à l'analyse.
+Combien d'observations et de variables y a-t-il dans le jeu de données ? Quel est le type attendu de chaque variable ? En jetant un coup d'oeil aux données, essayez de dresser une liste des changements à apporter pour que les données soient prêtes à être analysées. Nous voulons des données uniformes et dont le type est adapté à l'analyse.
 
 Pour la suite des exercices, vous allez modifier l'objet `sw`, notamment en utilisant le verbe `mutate`. Faites particulièrement attention aux warnings qui peuvent apparaître lors de la modification des colonnes. Ceux-ci peuvent vous aider à trouver des erreurs. Pour faciliter le travail, stockez vos colonnes modifiées dans de nouvelles colonnnes, par exemple `mass_clean`, `height_clean`, etc. À la fin, vous pourrez supprimer les anciennes colonnes.
 
 ## Exercice 2
 
 Corrigez la colonne `mass` de sorte à obtenir des nombres. Assurez-vous de modifier les valeurs mal renseignées (regardez par exemple les masses de Chewbacca et de Jabba) avant de faire une conversion de type.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
 
 ## Exercice 3
 
@@ -94,21 +97,33 @@ En particulier, de quelle espèce sont les personnages avec des genre inconnus ?
 
 Modifiez les valeurs du genre pour ces personnages de telle manière à les uniformiser. Vous pouvez choisir un genre adapté, en utilisant le nom de l'espèce par exemple.
 
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
 ## Exercice 4
 
-Transformez la colonne `homeworld` en facteur et attribuez la valeur `Unknown` aux valeurs manquantes
+Transformez la colonne `homeworld` en facteur et attribuez la valeur `Unknown` aux valeurs manquantes.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
 
 ## Exercice 5
 
-Modifiez la colonne `birth_year` pour qu'elle soit de type numérique en enlevant le "BBY". Pour cela, vous pouvez utiliser la fonction `str_replace` du package `stringr` (déjà chargé avec le `tidyverse`)
+Modifiez la colonne `birth_year` pour qu'elle soit de type numérique en enlevant le "BBY". Pour cela, vous pouvez utiliser la fonction `str_replace` du package `stringr` (déjà chargé avec le `tidyverse`).
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
 
 ## Exercice 6
 
-Créez un boxplot de la variable `height` en fonction de la variable `species`. Difficile à lire...
+Créez un boxplot de la variable `mass` en fonction de la variable `species`. Cela est difficile à lire...
 
 Regroupez les espèces qui possèdent moins de 2 individus dans une catégorie `Other` et refaites le boxplot. C'est mieux...
 
 Ordonnez les catégories selon la hauteur moyenne des espèces et refaite le boxplot !
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
 
 
 ## Exercice 7
@@ -116,6 +131,26 @@ Ordonnez les catégories selon la hauteur moyenne des espèces et refaite le box
 Créez une nouvelle variable `bmi` (Body Mass Index) en utilisant les colonnes `mass` et `height`. Assurez-vous que les valeurs soient correctes et que les valeurs manquantes soient traitées correctement.
 
 Refaite le boxplot de la question précédente en utilisant le BMI à la place de la masse.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## Exercice 8
+
+Terminez pas passer en revue les autres variables et corrigez les erreurs que vous pourriez trouver. Assurez-vous que les valeurs manquantes soient codées de manière uniforme.
+
+## Conclusion
+
+Vous devriez maintenant avoir un jeu de données propre et prêt à être analysé. Pour l'ensemble des colonnes, vous devriez avoir :
+
+- Vérifier que les valeurs manquantes sont toutes représentées de la même manière.
+- Vérifier que les valeurs sont uniformes (pas de dédoublement de valeurs)
+- Les types sont correctement entrés (numérique, facteur, etc.)
+
+Si c'est correct, vous pouvez supprimer les anciennes colonnes et renommer les nouvelles.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
 
 
 

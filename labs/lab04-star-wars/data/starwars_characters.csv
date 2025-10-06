@@ -9,7 +9,7 @@ Beru Whitesun lars,165,75,brown,light,blue,47BBY,female,Tatooine,Human
 R5-D4,97,32,NA,"white, red",red,NA,NA,Tatooine,Droid
 Biggs Darklighter,183,84,black,light,brown,24BBY,male,Tatooine,Human
 Obi-Wan Kenobi,182,77,"auburn, white",fair,blue-gray,57BBY,male,Stewjon,Human
-Anakin Skywalker,188,84,blond,fair,blue,41.9BBY,male,Tatooine,Human
+Anakin Skywalker,188,84,blond,fair,bleu,41.9BBY,male,Tatooine,Human
 Wilhuff Tarkin,180,NA,"auburn, grey",fair,blue,64BBY,male,Eriadu,Human
 Chewbacca,228,112kg,brown,NA,blue,200BBY,male,Kashyyyk,Wookiee
 Han Solo,180,80,brown,fair,brown,29BBY,male,Corellia,Human
@@ -42,7 +42,7 @@ Quarsh Panaka,183,NA,black,dark,brown,62BBY,male,Naboo,NA
 Shmi Skywalker,163,NA,black,fair,brown,72BBY,female,Tatooine,Human
 Darth Maul,175,80,none,red,yellow,54BBY,male,Dathomir,Zabrak
 Bib Fortuna,180,NA,none,pale,pink,NA,male,Ryloth,Twi'lek
-Ayla Secura,178,55,none,blue,hazel,48BBY,female,Ryloth,Twi'lek
+Ayla Secura,770,55,none,blue,hazel,48BBY,female,Ryloth,Twi'lek
 Dud Bolt,94,45,none,"blue, grey",yellow,NA,male,Vulpter,Vulptereen
 Gasgano,122,NA,none,"white, blue",black,NA,male,Troiken,Xexto
 Ben Quadinaros,163,65,none,"grey, green, yellow",orange,NA,male,Tund,Toong
@@ -57,7 +57,7 @@ Plo Koon,188,80,none,orange,black,22BBY,male,Dorin,Kel Dor
 Mas Amedda,196,NA,none,blue,blue,NA,male,Champala,Chagrian
 Gregar Typho,185,85,black,dark,brown,NA,male,Naboo,Human
 Cordé,157,NA,brown,light,brown,NA,female,Naboo,Human
-Cliegg Lars,183,NA,brown,fair,blue,82BBY,male,Tatooine,Human
+Cliegg Lars,183,NA,brown,fair,blue,82BBY,male,Tatooin,Human
 Poggle the Lesser,183,80,none,green,yellow,NA,male,Geonosis,Geonosian
 Luminara Unduli,170,56.2,black,yellow,blue,58BBY,female,Mirial,Mirialan
 Barriss Offee,166,50,black,yellow,blue,40BBY,female,Mirial,Mirialan

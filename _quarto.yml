@@ -49,6 +49,8 @@ website:
             text: Lab 02 - Plastic waste
           - href: labs/lab03-nobel-laureates/lab03-nobel-laureates.qmd
             text: Lab 03 - Nobel laureates
+          - href: labs/lab04-star-wars/lab04-star-wars.qmd
+            text: Lab 04 - Star Wars
 
       - href: ressources.qmd
         text: Ressources

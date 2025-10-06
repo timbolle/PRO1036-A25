@@ -73,6 +73,23 @@ Lectures complémentaires:
 
 Slides : [Web](04 - Data types/04 - data-types.qmd){target="_blank"} [PDF](04 - Data types/PRO1036_04_data-types.pdf)
 
+Labs: [Lab04 - Star Wars](/labs/lab04-star-wars/lab04-star-wars.qmd)
+
+Projet : [Projet](/projet/projet.qmd)
+
+#### À faire pour la semaine prochaine:
+
+-   [ ] Terminer le lab04
+-   [ ] Faire le proposal du projet en équipe de 2 personnes
+-   [ ] Lire le Chapitre [*Factors*](https://r4ds.hadley.nz/factors) [@wickhamDataScience2023]
+
+Lectures complémentaires:
+
+-   [ ] Chapitre [*Numbers*](https://r4ds.hadley.nz/numbers) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Strings*](https://r4ds.hadley.nz/strings) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Dates and Time*](https://r4ds.hadley.nz/datetimes) [@wickhamDataScience2023]
+-   [ ] Chapitre [*Missing Values*](https://r4ds.hadley.nz/missing-values) [@wickhamDataScience2023]
+
 
 
 # Références
