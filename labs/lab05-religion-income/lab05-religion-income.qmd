@@ -1,0 +1,214 @@
+---
+title: "Lab 05 - Religion Income"
+link-citations: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+
+Le but de ce laboratoire est de pratiquer l'importation, le nettoyage et la préparation des données pour l'analyse.
+
+# Pour commencer
+
+Nous allons utiliser GitHub Classroom pour que vous puissiez rendre vos réponses.
+Sur le portail de cours, vous trouverez un lien vers un assignment.
+
+  - Cliquez sur le lien
+  - Connectez vous avec votre compte Github si ce n'est pas fait
+  - Acceptez l'assignment
+  - Liez votre compte avec votre nom d'étudiant
+  
+Vous devriez maintenant voir un repository appelé `Lab05-[votre-username]` où devrait être votre nom d'utilisateur GitHub.
+
+Sur la page du repository:
+
+  - Cliquez sur le bouton vert: ![](figs/github-bouton.png){.inline-image}
+  - Copiez le lien terminant en `.git`
+    - Quelque chose ressemblant à `https://github.com/PRO1036/lab05-[votre-username].git`
+
+Dans RStudio:
+
+-   Fichier \> Nouveau Projet
+-   Version Control \> Git
+-   Dans *Repository URL* : indiquez l'adresse copiée à l'étape précédente
+-   Choisissez un nom pour le dossier qui sera créé, par exemple "Lab02"
+-   Choisissez où vous voulez créer le projet dans votre ordinateur.
+
+Cela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.
+Dans le *YAML*, le `output` est réglé sur `"github_document"`. Cela permet d'obtenir un format adapté à GitHub. Notamment, votre fichier final sera un fichier Markdown (`.md`).
+
+## Packages
+
+Nous utiliserons le package **tidyverse** pour une grande partie de la manipulation des données. Pour l'importation, nous aurons besoin de **readxl** et pour certaines fonctions utilitaires, nous utiliserons **janitor**.
+Vous pouvez le charger en exécutant ce qui suit dans votre Console :
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(readxl)      # lecture de fichiers Excel
+library(janitor)     # utilitaire (facultatif), p. ex. clean_names()
+```
+
+## Données
+
+Les données utilisées dans ce laboratoire proviennent de l'étude [Religious Landscape Study](https://www.pewforum.org/religious-landscape-study/income-distribution/)
+
+```{r photo, fig.margin = TRUE, echo = FALSE, fig.width = 3, fig.cap = "Source : [Religious Landscape Study](https://www.pewforum.org/religious-landscape-study/income-distribution/)", eval = TRUE}
+knitr::include_graphics("figs/religion-income.png")
+```
+
+Les données sont disponibles dans le dossier `data/`
+
+# Exercices
+
+## Exercice 1 - Importation des données
+
+Quel est le type de fichier des données ? (CSV, Excel, autre ?)
+
+Importez les données dans R en utilisant la fonction appropriée.
+
+```{r echo=FALSE, message=FALSE}
+rel_inc <- read_excel("data/relig-income.xlsx")
+```
+
+## Exercice 2 - Qualité de l'importation
+
+Observez les données importées. Combien y a-t-il de lignes et de colonnes ? Quels sont les types des différentes colonnes ? Si vous pensez q'une colonne n'a pas le bon type, modifiez-le.
+
+Observez le nom des colonnes importées. Renommez `Religion tradition` en `religion` et `Sample Size` en `n`.
+
+Vous devriez avoir un tableau 12x6 à cette étape.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## Exercice 3 - Forme Tidy
+
+Les données importées sont-elles Tidy ?
+
+Sont-elles en format cours ou en format long ?
+
+Pivotez les données de telle sorte à avoir un colonne `income`, indiquant la tranche de revenue, et une colonne `proportion`, indiquant la proportion de personne dans cette tranche de revenue. Les autres colonnes (`religion` et `n`) ne doivent pas être pivotées.
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## Exercice 4 - Calcul des fréquences
+
+En combinant les colonnes `proportion` et `n`, créez une nouvelle colonne `frequency` indiquant le nombre de personnes dans chaque tranche de revenu pour chaque religion.
+
+Asssurez-vous "d'engristrer" votre nouveau tableau dans une variable.
+
+```{r echo=FALSE, message=FALSE}
+#| code-line-numbers: "1"
+rel_inc_long <- rel_inc %>% 
+  rename(
+    religion = `Religious tradition`,
+    n = `Sample Size`
+  ) %>%
+  pivot_longer(
+    cols = -c(religion, n), 
+    names_to = "income", 
+    values_to = "proportion"
+  ) %>%
+  mutate(frequency = round(proportion * n))
+```
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## Exercice 5 - Visualisation - 1ère étape
+
+Faite un diagrame en barres horizotales (`geom_col`), représentant pour chaque religion la fréquence de personnes.
+
+Modifiez votre graphe de telle sorte à nettoyer les titres des différentes religion, et à les trier par ordre alphabétique.
+
+Vous devriez obtenir cela :
+
+
+```{r echo=FALSE, message=FALSE}
+rel_inc_long <- rel_inc_long %>%
+  mutate(religion = case_when(
+    religion == "Evangelical Protestant"           ~ "Ev. Protestant",
+    religion == "Historically Black Protestant"    ~ "Hist. Black Protestant",
+    religion == 'Unaffiliated (religious "nones")' ~ "Unaffiliated",
+    TRUE                                           ~ religion
+  )) %>%
+  mutate(religion = fct_rev(religion))
+```
+
+```{r echo=FALSE}
+ggplot(rel_inc_long, aes(y = religion, x = frequency)) + 
+  geom_col()
+```
+
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+## Exercice 6 - Visualisation - 2ème étape
+
+Nous allons maintenant vouloir colorer les barres en fonction des tranches de revenu. Pour cela vous pouvez utiliser l'argument `position = "fill"` de `geom_col()` pour avoir que les barres représentent la proportion.
+
+Vous devriez obtenir quelque chose de similaire (les couleurs et la disposition peuvent différer) :
+
+```{r echo=FALSE}
+ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) + 
+  geom_col(position = "fill") +                         # On veut des barres pleines pour les proportions
+  scale_fill_viridis_d() +                              # On change les couleurs
+  theme_minimal() +                                     # On change le thème
+  theme(legend.position = "bottom") +                   # On met la légende en bas
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) + # On met la légende sur 2 lignes
+  labs(                                                 # On met à jour les labels
+    x = "Proportion", y = "", 
+    title = "Income distribution by religious group", 
+    subtitle = "Source: Pew Research Center, Religious Landscape Study", 
+    fill = "Income" 
+    )
+```
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+
+## Exercice 7 - Visualisation finale
+
+Il reste un dernier problème à notre figure !! Vous le voyez ?
+
+Corrigez-le de telle sorte à obtenir une figure propre et lisible.
+
+```{r echo=FALSE, message=FALSE}
+rel_inc_long <- rel_inc_long %>%
+  mutate(income = fct_relevel(income, "$100,000 or more", "$50,000-$99,999", "$30,000-$49,999", "Less than $30,000"))
+```
+
+```{r fig-final-final, echo=FALSE}
+ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) + 
+  geom_col(position = "fill") +                         # On veut des barres pleines pour les proportions
+  scale_fill_viridis_d() +                              # On change les couleurs
+  theme_minimal() +                                     # On change le thème
+  theme(legend.position = "bottom") +                   # On met la légende en bas
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) + # On met la légende sur 2 lignes
+  labs(                                                 # On met à jour les labels
+    x = "Proportion", y = "", 
+    title = "Income distribution by religious group", 
+    subtitle = "Source: Pew Research Center, Religious Landscape Study", 
+    fill = "Income"
+    )
+```
+
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+
+## Conclusion
+
+Vérifiez que tout est correcte !  
+
+🧶 ✅ ⬆️ 
+*Knit, commit, and push ! N'oubliez pas le message de commit.*
+
+
+

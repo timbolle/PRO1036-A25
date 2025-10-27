@@ -51,6 +51,8 @@ website:
             text: Lab 03 - Nobel laureates
           - href: labs/lab04-star-wars/lab04-star-wars.qmd
             text: Lab 04 - Star Wars
+          - href: labs/lab05-religion-income/lab05-religion-income.qmd
+            text: Lab 05 - Religion Income
 
       - href: ressources.qmd
         text: Ressources

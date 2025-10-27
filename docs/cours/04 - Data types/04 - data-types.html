@@ -9,11 +9,11 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.4.552">
 
   <meta name="author" content="Tim Bollé">
   <meta name="dcterms.date" content="2025-10-06">
-  <title>PRO1036 – 04 - Types de données et transformations</title>
+  <title>PRO1036 - 04 - Types de données et transformations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -44,7 +44,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -535,8 +535,8 @@ Caused by warning:
 <div class="small">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4724970a0a7a88297237" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4724970a0a7a88297237">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","1","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"number_of_cats","targets":2},{"name":"handedness","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e43566e2136fb17dd80d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e43566e2136fb17dd80d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","1","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"number_of_cats","targets":2},{"name":"handedness","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -693,7 +693,8 @@ Caused by warning:
 <pre><code>[1] "character"</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <p><br></p>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
@@ -720,7 +721,8 @@ Caused by warning:
 <pre><code>[1] "double"</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="conversion-1" class="slide level2">
 <h2>Conversion</h2>
@@ -749,7 +751,8 @@ Caused by warning:
 <pre><code>[1] "2"   "two"</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="conversion-2" class="slide level2">
 <h2>Conversion</h2>
@@ -794,7 +797,8 @@ Caused by warning:
 <pre><code>[1] -Inf</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <p><br></p>
 <div class="fragment">
 <div class="cell">
@@ -854,7 +858,8 @@ Caused by warning:
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="classes-de-données" class="title-slide slide level1 center">
@@ -903,7 +908,8 @@ Levels: BS MS PhD</code></pre>
 <pre><code>[1] "factor"</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="factor-1" class="slide level2">
 <h2><code>factor</code></h2>
@@ -983,7 +989,8 @@ Levels: BS MS PhD</code></pre>
 <pre><code>[1] "data.frame"</code></pre>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
 <section id="listes" class="slide level2">
 <h2>Listes</h2>
@@ -1049,7 +1056,8 @@ $z
 <li>Il est possible d’accéder à une colonne à l’aide des double crochets (<code>df[["x"]]</code>) en plus du <code>$</code> (<code>df$x</code>). Il est ainsi possible d’utiliser le numéro de colonne au lieu du nom (<code>df[[1]]</code>)</li>
 <li>Les tibbles fournissent également plus d’indications lorsque quelque chose ne va pas (messages de <em>warnings</em>).</li>
 </ul>
-</div></div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="travailler-avec-des-facteurs" class="title-slide slide level1 center">
@@ -1102,7 +1110,8 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <li>Les facteurs sont utiles lorsque vous avez des données catégorielles et que vous voulez remplacer l’ordre des vecteurs de caractères pour améliorer l’affichage</li>
 <li>Le package <strong>forcats</strong> fournit une suite d’outils utiles qui résolvent des problèmes courants avec les facteurs</li>
 </ul>
-</div></div>
+</div>
+</div>
 </section>
 <section id="les-fonctions-de-forcats" class="slide level2">
 <h2>Les fonctions de <code>forcats</code></h2>
@@ -1274,7 +1283,8 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <li>…</li>
 </ul></li>
 </ul>
-</div></div>
+</div>
+</div>
 </section>
 <section id="exemple-des-hotels" class="slide level2">
 <h2>Exemple des hotels</h2>
@@ -1283,8 +1293,8 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <div class="small">
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-35c237600836629db6df" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-35c237600836629db6df">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Resort Hotel","Resort Hotel","Resort Hotel"],[0,0,0],[342,737,7],[2015,2015,2015],["July","July","July"],[27,27,27],[1,1,1],[0,0,0],[0,0,1],[2,2,1],[0,0,0],[0,0,0],["BB","BB","BB"],["PRT","PRT","GBR"],["Direct","Direct","Direct"],["Direct","Direct","Direct"],[0,0,0],[0,0,0],[0,0,0],["C","C","A"],["C","C","C"],[3,4,0],["No Deposit","No Deposit","No Deposit"],["NULL","NULL","NULL"],["NULL","NULL","NULL"],[0,0,0],["Transient","Transient","Transient"],[0,0,75],[0,0,0],[0,0,0],["Check-Out","Check-Out","Check-Out"],["2015-07-01","2015-07-01","2015-07-02"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>hotel<\/th>\n      <th>is_canceled<\/th>\n      <th>lead_time<\/th>\n      <th>arrival_date_year<\/th>\n      <th>arrival_date_month<\/th>\n      <th>arrival_date_week_number<\/th>\n      <th>arrival_date_day_of_month<\/th>\n      <th>stays_in_weekend_nights<\/th>\n      <th>stays_in_week_nights<\/th>\n      <th>adults<\/th>\n      <th>children<\/th>\n      <th>babies<\/th>\n      <th>meal<\/th>\n      <th>country<\/th>\n      <th>market_segment<\/th>\n      <th>distribution_channel<\/th>\n      <th>is_repeated_guest<\/th>\n      <th>previous_cancellations<\/th>\n      <th>previous_bookings_not_canceled<\/th>\n      <th>reserved_room_type<\/th>\n      <th>assigned_room_type<\/th>\n      <th>booking_changes<\/th>\n      <th>deposit_type<\/th>\n      <th>agent<\/th>\n      <th>company<\/th>\n      <th>days_in_waiting_list<\/th>\n      <th>customer_type<\/th>\n      <th>adr<\/th>\n      <th>required_car_parking_spaces<\/th>\n      <th>total_of_special_requests<\/th>\n      <th>reservation_status<\/th>\n      <th>reservation_status_date<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,6,7,8,9,10,11,12,17,18,19,22,26,28,29,30]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"hotel","targets":1},{"name":"is_canceled","targets":2},{"name":"lead_time","targets":3},{"name":"arrival_date_year","targets":4},{"name":"arrival_date_month","targets":5},{"name":"arrival_date_week_number","targets":6},{"name":"arrival_date_day_of_month","targets":7},{"name":"stays_in_weekend_nights","targets":8},{"name":"stays_in_week_nights","targets":9},{"name":"adults","targets":10},{"name":"children","targets":11},{"name":"babies","targets":12},{"name":"meal","targets":13},{"name":"country","targets":14},{"name":"market_segment","targets":15},{"name":"distribution_channel","targets":16},{"name":"is_repeated_guest","targets":17},{"name":"previous_cancellations","targets":18},{"name":"previous_bookings_not_canceled","targets":19},{"name":"reserved_room_type","targets":20},{"name":"assigned_room_type","targets":21},{"name":"booking_changes","targets":22},{"name":"deposit_type","targets":23},{"name":"agent","targets":24},{"name":"company","targets":25},{"name":"days_in_waiting_list","targets":26},{"name":"customer_type","targets":27},{"name":"adr","targets":28},{"name":"required_car_parking_spaces","targets":29},{"name":"total_of_special_requests","targets":30},{"name":"reservation_status","targets":31},{"name":"reservation_status_date","targets":32}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-80798eea877e71f37d92" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-80798eea877e71f37d92">{"x":{"filter":"none","vertical":false,"data":[["1","2","3"],["Resort Hotel","Resort Hotel","Resort Hotel"],[0,0,0],[342,737,7],[2015,2015,2015],["July","July","July"],[27,27,27],[1,1,1],[0,0,0],[0,0,1],[2,2,1],[0,0,0],[0,0,0],["BB","BB","BB"],["PRT","PRT","GBR"],["Direct","Direct","Direct"],["Direct","Direct","Direct"],[0,0,0],[0,0,0],[0,0,0],["C","C","A"],["C","C","C"],[3,4,0],["No Deposit","No Deposit","No Deposit"],["NULL","NULL","NULL"],["NULL","NULL","NULL"],[0,0,0],["Transient","Transient","Transient"],[0,0,75],[0,0,0],[0,0,0],["Check-Out","Check-Out","Check-Out"],["2015-07-01","2015-07-01","2015-07-02"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>hotel<\/th>\n      <th>is_canceled<\/th>\n      <th>lead_time<\/th>\n      <th>arrival_date_year<\/th>\n      <th>arrival_date_month<\/th>\n      <th>arrival_date_week_number<\/th>\n      <th>arrival_date_day_of_month<\/th>\n      <th>stays_in_weekend_nights<\/th>\n      <th>stays_in_week_nights<\/th>\n      <th>adults<\/th>\n      <th>children<\/th>\n      <th>babies<\/th>\n      <th>meal<\/th>\n      <th>country<\/th>\n      <th>market_segment<\/th>\n      <th>distribution_channel<\/th>\n      <th>is_repeated_guest<\/th>\n      <th>previous_cancellations<\/th>\n      <th>previous_bookings_not_canceled<\/th>\n      <th>reserved_room_type<\/th>\n      <th>assigned_room_type<\/th>\n      <th>booking_changes<\/th>\n      <th>deposit_type<\/th>\n      <th>agent<\/th>\n      <th>company<\/th>\n      <th>days_in_waiting_list<\/th>\n      <th>customer_type<\/th>\n      <th>adr<\/th>\n      <th>required_car_parking_spaces<\/th>\n      <th>total_of_special_requests<\/th>\n      <th>reservation_status<\/th>\n      <th>reservation_status_date<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,6,7,8,9,10,11,12,17,18,19,22,26,28,29,30]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"hotel","targets":1},{"name":"is_canceled","targets":2},{"name":"lead_time","targets":3},{"name":"arrival_date_year","targets":4},{"name":"arrival_date_month","targets":5},{"name":"arrival_date_week_number","targets":6},{"name":"arrival_date_day_of_month","targets":7},{"name":"stays_in_weekend_nights","targets":8},{"name":"stays_in_week_nights","targets":9},{"name":"adults","targets":10},{"name":"children","targets":11},{"name":"babies","targets":12},{"name":"meal","targets":13},{"name":"country","targets":14},{"name":"market_segment","targets":15},{"name":"distribution_channel","targets":16},{"name":"is_repeated_guest","targets":17},{"name":"previous_cancellations","targets":18},{"name":"previous_bookings_not_canceled","targets":19},{"name":"reserved_room_type","targets":20},{"name":"assigned_room_type","targets":21},{"name":"booking_changes","targets":22},{"name":"deposit_type","targets":23},{"name":"agent","targets":24},{"name":"company","targets":25},{"name":"days_in_waiting_list","targets":26},{"name":"customer_type","targets":27},{"name":"adr","targets":28},{"name":"required_car_parking_spaces","targets":29},{"name":"total_of_special_requests","targets":30},{"name":"reservation_status","targets":31},{"name":"reservation_status_date","targets":32}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1770,7 +1780,18 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1802,29 +1823,7 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1832,7 +1831,7 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
