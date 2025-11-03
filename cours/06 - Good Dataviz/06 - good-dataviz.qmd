@@ -54,6 +54,8 @@ format:
 
 :::{.quote}
 "La représentation graphique fait partie des systèmes de signes que l’homme a construits pour retenir, comprendre et communiquer les observations qui lui sont nécessaires." - Bertin 1967
+:::
+
 
 :::.aside
 [@bertinSemiologieGraphiqueDiagrammes2005]
@@ -226,32 +228,45 @@ On utilise une visualisation lorsque c’est nécessaire
 
 - Souvent pour travailler avec des données présentant un certain degré de complexité
 
-:::{.as}
+```{r echo=FALSE}
+library(ggplot2)
+# Données simples
+data <- data.frame(
+  Sexe = c("Homme", "Femme"),
+  Nombre = c(1, 29)
+)
+
+# Graphique en barres
+ggplot(data, aes(x = Sexe, y = Nombre, fill = Sexe)) +
+  geom_col() +
+  labs(
+    title = "Répartition Homme/Femme dans le cours SFC1030",
+    x = "Sexe",
+    y = "Nombre d'étudiant.es"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+:::{.aside}
 Une image vaut mieux de 10 000 mots
+:::
 
 ## Principe de dimensionnalité
-- Le choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante
-- Tim Bollé | SFC1018 - Méthode d'analyse - Exploiter
-- Temporelle
-- Quand,
-- sur quelles périodes, à -- quelle fréquence, selon     - quelle régularité -- ----- temporelle, etc. --   -------
-- Quantitative
-- Combien, selon quelle proportion, quel ordre, etc.
-- Relationnelle
-- Qui, quoi, avec qui, avec quoi, etc.
-- Où, dans quelle région, selon quel parcours, quelle étendue, etc.
-- Spatiale
-- Rossy et al. (2019)
 
-![](figs/slide18_img1.png)
+Le choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante
+
+![](figs/dimensions.png) 
 
 
-## Exemples
-- Tim Bollé | SFC1018 - Méthode d'analyse - Exploiter
+:::{.aside}
+[@rossyTraitementLinformationDans2019]
+:::
 
-## Nature des données
-- Tim Bollé | SFC1018 - Méthode d'analyse - Exploiter
-- Stevens SS (1946)
+
+## Exemple
+
+[](figs/napoleon.png)
 
 ## Principe d’expressivité
 - Un ensemble de faits est bien exprimé dans un langage visuel si les phrases (les éléments de représentation) du langage expriment
