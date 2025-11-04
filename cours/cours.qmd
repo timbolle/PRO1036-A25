@@ -90,7 +90,7 @@ Lectures complémentaires:
 -   [ ] Chapitre [*Dates and Time*](https://r4ds.hadley.nz/datetimes) [@wickhamDataScience2023]
 -   [ ] Chapitre [*Missing Values*](https://r4ds.hadley.nz/missing-values) [@wickhamDataScience2023]
 
-## 04 - Importation de données et forme Tidy
+## 05 - Importation de données et forme Tidy
 
 Slides : [Web](05 - Data import and tidy form/05 - import-join-tidy.qmd){target="_blank"} [PDF](05 - Data import and tidy form/PRO1036_05_import-join-tidy.pdf)
 
@@ -99,6 +99,10 @@ Labs: [Lab05 - Religion Income](/labs/lab05-religion-income/lab05-religion-incom
 Lectures complémentaires:
 
 -   [ ] Article [*Tidy Data*](../papers/Wickham2014_Tidy-Data.pdf) [@wickhamTidyData2014]
+
+## 06 - Better Viz !
+
+Slides : [PDF](06 - Good Dataviz/PRO1036_06_good-dataviz.pdf)
 
 # Références
 
