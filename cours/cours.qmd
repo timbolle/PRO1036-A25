@@ -104,6 +104,8 @@ Lectures complémentaires:
 
 Slides : [PDF](06 - Good Dataviz/PRO1036_06_good-dataviz.pdf)
 
+Labs: [Lab05 - Better Viz](/labs/lab06-better-viz/lab06-better-viz.qmd)
+
 # Références
 
 ::: {#refs}

@@ -53,7 +53,9 @@ website:
             text: Lab 04 - Star Wars
           - href: labs/lab05-religion-income/lab05-religion-income.qmd
             text: Lab 05 - Religion Income
-
+          - href: labs/lab06-better-viz/lab06-better-viz.qmd
+            text: Lab 06 - Better Viz
+            
       - href: ressources.qmd
         text: Ressources
       - href: projet/projet.qmd
