@@ -97,7 +97,7 @@ ggplot(brexit, aes(x = region)) +
 
 ### Exercise 1
 
-Pour améliorer cette visualisation nous allons commencer par changer l'ordre des catégories. Ici, elles sont ordonnées alphabétiquement. Nous allons les ordonner de la plus grande à la plus petite.
+Pour améliorer cette visualisation nous allons commencer par changer l'ordre des catégories. Ici, elles sont ordonnées alphabétiquement. 
 
 Utilisez la fonction appropriée pour réordonner les catégories de la variable `region` dans l'ordre suivant : `london`, `rest_of_south`, `midlands_wales`, `north`, `scot`. Assurez-vous d'avoir des étiquettes lisibles pour les axes et les catégories.
 
@@ -106,6 +106,10 @@ Vous devez obtenir quelque chose comme ceci:
 ```{r echo= FALSE}
 brexit <- brexit %>%
   mutate(
+    region = fct_relevel(
+      region,
+      "london", "rest_of_south", "midlands_wales", "north", "scot"
+    ),
     region = fct_recode(
       region,
       London = "london",
