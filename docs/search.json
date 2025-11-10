@@ -2511,5 +2511,89 @@
     "title": "Lab 06 - Better Viz!",
     "section": "Pêcheries",
     "text": "Pêcheries\nLe département des pêcheries et de l’aquaculture de l’Organisation des Nations Unies pour l’alimentation et l’agriculture collecte des données sur la production halieutique des pays. Cette page Wikipedia répertorie la production halieutique des pays pour 2016. Pour chaque pays, le tonnage de la capture et de l’aquaculture est indiqué. Notez que les pays dont la récolte totale était inférieure à 100 000 tonnes ne sont pas inclus dans la visualisation.\nUn chercheur vous a partagé la visualisation suivante qu’il a créée à partir de ces données. 😳\n\n\n\n\n\n\n\n\n\n\nExercise 5\nPouvez-vous l’aider à améliorer cette visualisation ? Quelles sont les principales lacunes de cette visualisation ?\n\n\nExercise 6\nVous pouvez charger les données avec le code suivant :\n\nfisheries &lt;- read_csv(\"data/fisheries.csv\")\n\nEssayez de répondre aux problèmes que vous avez identifiés dans l’exercice précédent en créant une nouvelle visualisation des données.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
+    "href": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
+    "title": "07 - Modélisation - Régression",
+    "section": "Les cinqs activités principales",
+    "text": "Les cinqs activités principales\n\nFormuler et préciser la question\nExplorer les données\nConstruire des modèles statistiques\nInterpréter les résultats\nCommuniquer les résultats\n\n\n\n(pengArtDataScience2016?)"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
+    "href": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
+    "title": "07 - Modélisation - Régression",
+    "section": "Types de questions/problèmes",
+    "text": "Types de questions/problèmes\n\nDescription: résumer des caractéristiques d’un jeu de données.\nExploration: découvrir des relations, des patterns entre variables (formuler des hypothèses).\nInférence: analyser des relations, des patterns entre variables pour en tirer des conclusions générales, en utilisant des données représentatives (échantillon) d’une population générale (tester des hypothèses)\nPrédiction: prédire la valeur d’une variable future/inconnue à partir de données passées/connues (machine learning)\nCausalité: comprendre l’effet d’une variable sur une autre variable (relation de cause à effet).\nMécanismes: comprendre les processus sous-jacents qui génèrent les données observées."
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#modélisation",
+    "href": "cours/07 - regression/07 - regression.html#modélisation",
+    "title": "07 - Modélisation - Régression",
+    "section": "Modélisation",
+    "text": "Modélisation\nLes modèles sont utilisés pour expiquer des relations entre variables et pour faire des prédictions."
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "href": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "title": "07 - Modélisation - Régression",
+    "section": "Les données du jour : Paris painting",
+    "text": "Les données du jour : Paris painting\nDonnées issues des catalogues de 28 ventes aux enchères de tableaux de Paris entre 1764 et 1780.\n\n\n\n\n\n\n\nDataset crée par Sandra van Ginhoven et Hilary Coe Cronheim, du Duke Art, Law and Markets Initiative"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#paris-painting",
+    "href": "cours/07 - regression/07 - regression.html#paris-painting",
+    "title": "07 - Modélisation - Régression",
+    "section": "Paris painting",
+    "text": "Paris painting\n\npp &lt;- read_csv(\"data/paris-paintings.csv\", na = c(\"n/a\", \"\", \"NA\"))\n\n\npp %&gt;%\n  glimpse()\n\nRows: 3,393\nColumns: 61\n$ name              &lt;chr&gt; \"L1764-2\", \"L1764-3\", \"L1764-4\", \"L1764-5a\", \"L1764-…\n$ sale              &lt;chr&gt; \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\"…\n$ lot               &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"5\", \"6\", \"7\", \"7\", \"8\", \"9\", \"9…\n$ position          &lt;dbl&gt; 0.03278689, 0.04918033, 0.06557377, 0.08196721, 0.08…\n$ dealer            &lt;chr&gt; \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L…\n$ year              &lt;dbl&gt; 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764…\n$ origin_author     &lt;chr&gt; \"F\", \"I\", \"X\", \"F\", \"F\", \"X\", \"F\", \"F\", \"X\", \"D/FL\",…\n$ origin_cat        &lt;chr&gt; \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O…\n$ school_pntg       &lt;chr&gt; \"F\", \"I\", \"D/FL\", \"F\", \"F\", \"I\", \"F\", \"F\", \"I\", \"D/F…\n$ diff_origin       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ logprice          &lt;dbl&gt; 5.8861040, 1.7917595, 2.4849067, 1.7917595, 1.791759…\n$ price             &lt;dbl&gt; 360.0, 6.0, 12.0, 6.0, 6.0, 9.0, 12.0, 12.0, 24.0, 6…\n$ count             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject           &lt;chr&gt; \"L'enfant Jesus\", \"Homme portant un panier\", \"L'enfa…\n$ authorstandard    &lt;chr&gt; \"Grimou, Alexis\", \"Fetti, Domenico\", \"copy after Dyc…\n$ artistliving      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ authorstyle       &lt;chr&gt; NA, NA, \"copy after\", NA, NA, \"copy after\", NA, NA, …\n$ author            &lt;chr&gt; \"Grimou\", \"F\\x8ety\", \"copi\\x8e d'apr\\x8fs Wandeik\", …\n$ winningbidder     &lt;chr&gt; \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown…\n$ winningbiddertype &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ endbuyer          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Interm            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ type_intermed     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Height_in         &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 16, 16, 2…\n$ Width_in          &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13.0, 15.0…\n$ Surface_Rect      &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ Diam_in           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Surface_Rnd       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Shape             &lt;chr&gt; \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ…\n$ Surface           &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ material          &lt;chr&gt; \"tableau\", \"toile\", \"bois\", \"toile\", \"toile\", \"cuivr…\n$ mat               &lt;chr&gt; \"ta\", \"t\", \"b\", \"t\", \"t\", \"c\", \"t\", \"t\", \"c\", \"b\", \"…\n$ materialCat       &lt;chr&gt; NA, \"canvas\", \"wood\", \"canvas\", \"canvas\", \"copper\", …\n$ quantity          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ nfigures          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ engraved          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ original          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ prevcoll          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othartist         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ paired            &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1…\n$ figures           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ finished          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ lrgfont           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ relig             &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ landsALL          &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1…\n$ lands_sc          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0…\n$ lands_elem        &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_figs        &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_ment        &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ arch              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ mytho             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ peasant           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othgenre          &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ singlefig         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0…\n$ portrait          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n$ still_life        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ discauth          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ history           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ allegory          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ pastorale         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ other             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur vs Largeur",
+    "text": "Hauteur vs Largeur\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Hauteur, en pouces\", y = NULL)\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Largeur, en pouces\", y = NULL)"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur et largeur",
+    "text": "Hauteur et largeur\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#personnalisé",
+    "href": "cours/07 - regression/07 - regression.html#personnalisé",
+    "title": "07 - Modélisation - Régression",
+    "section": "… Personnalisé",
+    "text": "… Personnalisé\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se=FALSE, linetype = \"dashed\", color=\"#b22222\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#modélisation-1",
+    "href": "cours/07 - regression/07 - regression.html#modélisation-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Modélisation",
+    "text": "Modélisation\n\nVariable dépendante (expliquée): Variable dont on cherche à comprendre le comportement ou la variation, sur l’axe des y\nVariables indépendantes (explicatives): Autres variables que l’on utilise pour expliquer la variation de la variable dépendante, sur l’axe des x\nValeur prédite: Résultat de la fonction modèle\n\nLa fonction modèle donne la valeur typique (attendue) de la variable dépendante\n\nRésidus: Mesure de la distance entre chaque observation et sa valeur prédite (basée sur un modèle particulier)\n\nRésidu = Valeur observée - Valeur prédite\nIndique à quel point chaque observation est au-dessus/en-dessous de la valeur attendue"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
+    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
+    "title": "07 - Modélisation - Régression",
+    "section": "Variables explicatives multiples",
+    "text": "Variables explicatives multiples\n\nPensez vous que la hauteur d’une peinture peut être expliquée uniquement par sa largeur ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point(alpha = 0.2) +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
+    "href": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
+    "title": "07 - Modélisation - Régression",
+    "section": "Portraits vs Paysages",
+    "text": "Portraits vs Paysages"
+  },
+  {
+    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
+    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Variables explicatives multiples",
+    "text": "Variables explicatives multiples\n\nEst-ce que la relation entre hauteur et largeur dépend de la présence d’éléments paysages ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE,\n              fullrange = TRUE) + #&lt;&lt;\n  labs(\n    title = \"Hauteur vs. Largeur des peintures, selon la présence d'éléments paysages\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  ) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))\n\n\n\n\n\n\n\n\nPRO1036 - 04 | Tim Bollé"
   }
 ]

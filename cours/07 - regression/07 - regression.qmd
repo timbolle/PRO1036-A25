@@ -1,0 +1,458 @@
+---
+title: "07 - Modélisation - Régression"
+subtitle: "PRO1036 - Analyse de données scientifiques en R"
+author: "Tim Bollé"
+date: "2025-11-10"
+date-format: long
+footer: "PRO1036 - 04 | Tim Bollé"
+license: "CC BY-SA"
+bibliography: ../../template/references.bib
+csl: ../../template/apa-fr.csl
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+format: 
+  revealjs:
+    theme: [dark, ../../template/slides-uqtr.scss]
+    logo: /template/h-uqtr-r.png
+    slide-number: true
+    width: 1350
+    height: 900
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+set.seed(1234)
+```
+
+
+# L'analyse de données - Kesako ?
+
+## Les cinqs activités principales
+
+1. Formuler et préciser la question
+2. Explorer les données
+3. Construire des modèles statistiques
+4. Interpréter les résultats
+5. Communiquer les résultats
+
+:::{.aside}
+[@pengArtDataScience2016]
+:::
+
+# Formuler et préciser la question
+
+## Types de questions/problèmes
+
+- [Description]{.heavy-red}: résumer des caractéristiques d'un jeu de données.
+- [Exploration]{.heavy-red}: découvrir des relations, des patterns entre variables (formuler des hypothèses).
+- [Inférence]{.heavy-red}: analyser des relations, des patterns entre variables pour en tirer des conclusions générales, en utilisant des données représentatives (échantillon) d'une population générale (tester des hypothèses)
+- [Prédiction]{.heavy-red}: prédire la valeur d’une variable future/inconnue à partir de données passées/connues (*machine learning*)
+- [Causalité]{.heavy-red}: comprendre l’effet d’une variable sur une autre variable (relation de cause à effet).
+- [Mécanismes]{.heavy-red}: comprendre les processus sous-jacents qui génèrent les données observées.
+
+# Explorer les données
+
+# Construire des modèles statistiques
+
+## Modélisation
+
+Les modèles sont utilisés pour expiquer des relations entre variables et pour faire des prédictions.
+
+:::columns
+:::{.column width="50%" .fragment}
+
+```{r echo = FALSE, out.width = "100%"}
+df1 <- tibble(x = 1:100, y = x + rnorm(100, mean = 0, sd = 5))
+ggplot(df1, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
+  labs(title = "Linéaire", x = NULL, y = NULL) +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank()
+    )
+```
+:::
+:::{.column width="50%" .fragment}
+```{r echo = FALSE, out.width = "100%"}
+df2 <- tibble(x = seq(-6, 5.9, 0.1), y = (1 / (1+exp(-2*x))) + rnorm(120, mean = 0, sd = 0.1))
+ggplot(df2, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "loess", color = "#8E2C90", se = FALSE) +
+  labs(title = "Non linéaire", x = NULL, y = NULL) +
+  theme(
+    axis.text  = element_blank(),
+    axis.ticks = element_blank()
+    )
+```
+:::
+:::
+
+## Les données du jour : Paris painting
+
+Données issues des catalogues de 28 ventes aux enchères de tableaux de Paris entre 1764 et 1780.
+
+![](figs/old-auction.png){fig-align="center" width="60%"}
+
+:::{.aside}
+Dataset crée par Sandra van Ginhoven et Hilary Coe Cronheim, du Duke Art, Law and Markets Initiative
+:::
+
+## Paris painting
+
+```{r message=FALSE}
+pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
+```
+
+```{r}
+pp %>%
+  glimpse()
+```
+# Relation Largeur/Hauteur
+
+## Hauteur vs Largeur
+
+:::columns
+:::{.column width="50%"}
+
+```{r height-dist, out.width="100%", warning=FALSE}
+ggplot(data = pp, aes(x = Height_in)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Hauteur, en pouces", y = NULL)
+```
+
+:::
+:::{.column width="50%"}
+
+```{r width-dist, out.width="100%", warning=FALSE}
+ggplot(data = pp, aes(x = Width_in)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Largeur, en pouces", y = NULL)
+```
+
+:::
+:::
+
+## Hauteur et largeur
+
+::: {.panel-tabset}
+
+### Graphe
+
+```{r ref.label = "height-width-plot", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code
+
+```{r height-width-plot, fig.show="hide"}
+ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Hauteur vs. Largeur des peintures",
+    subtitle = "Ventes aux enchères à Paris, 1764 - 1780",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+  )
+```
+
+:::
+
+## ... Personnalisé
+
+::: {.panel-tabset}
+
+### Graphe
+
+```{r ref.label = "height-width-plot-perso", echo = FALSE, warning = FALSE, out.width = "90%"}
+```
+
+### Code
+
+```{r height-width-plot-perso, fig.show="hide"}
+ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
+  geom_point() +
+  geom_smooth(method = "lm", se=FALSE, linetype = "dashed", color="#b22222") +
+  labs(
+    title = "Hauteur vs. Largeur des peintures",
+    subtitle = "Ventes aux enchères à Paris, 1764 - 1780",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+  )
+```
+
+:::
+
+# Vocabulaire
+
+## Modélisation
+
+- [Variable dépendante (expliquée)]{.heavy-red}: Variable dont on cherche à comprendre le comportement ou la variation, sur l'axe des y
+
+- [Variables indépendantes (explicatives)]{.heavy-red}: Autres variables que l'on utilise pour expliquer la variation de la variable dépendante, sur l'axe des x
+
+- [Valeur prédite]{.heavy-red}: Résultat de la **fonction modèle**
+  - La fonction modèle donne la valeur typique (attendue) de la variable dépendante
+
+- [Résidus]{.heavy-red}: Mesure de la distance entre chaque observation et sa valeur prédite (basée sur un modèle particulier)
+  - Résidu = Valeur observée - Valeur prédite
+  - Indique à quel point chaque observation est au-dessus/en-dessous de la valeur attendue
+  
+  
+  
+## Variables explicatives multiples
+
+:::.question
+Pensez vous que la hauteur d'une peinture peut être expliquée uniquement par sa largeur ?
+:::
+
+::: {.panel-tabset}
+
+### Graphe
+
+```{r ref.label = "height-width-plot-alpha", echo = FALSE, warning = FALSE, out.width = "90%"}
+```
+
+### Code
+
+```{r height-width-plot-alpha, warning = FALSE, fig.show="hide"}
+ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
+  geom_point(alpha = 0.2) +
+  labs(
+    title = "Hauteur vs. Largeur des peintures",
+    subtitle = "Ventes aux enchères à Paris, 1764 - 1780",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+  )
+```
+
+:::
+
+## Portraits vs Paysages
+
+::: columns
+:::{.column width="60%" .fragment}
+
+![](figs/Van-goth-starry-night-Rhone.jpg)
+
+:::
+:::{.column width="40%" .fragment}
+![](figs/Van-goth-self-portrait.jpg)
+
+:::
+:::
+
+
+## Variables explicatives multiples
+
+:::{.question}
+Est-ce que la relation entre hauteur et largeur dépend de la présence d'éléments paysages ?
+:::
+
+::: {.panel-tabset}
+
+### Graphe
+```{r ref.label = "extrapolation", echo = FALSE, warning = FALSE, out.width = "85%"}
+```
+
+### Code
+
+
+```{r extrapolation, fig.show="hide", warning=FALSE}
+ggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE,
+              fullrange = TRUE) + #<<
+  labs(
+    title = "Hauteur vs. Largeur des peintures, selon la présence d'éléments paysages",
+    subtitle = "Ventes aux enchères à Paris, 1764 - 1780",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+  ) +
+  scale_color_manual(values = c("#E48957", "#071381"))
+```
+
+:::
+
+# Fitter et interpréter un modèle de régression
+
+## Objectif: Prédire la hauteur d'une peinture en fonction de sa largeur
+
+$$\widehat{hauteur}_{i} = \beta_0 + \beta_1 \times largeur_{i}$$
+
+```{r height-width-plot, echo=FALSE, warning=FALSE, out.width="80%"}
+ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "#b22222") + 
+  labs(
+    title = "Hauteur vs. Largeur des peintures",
+    subtitle = "Ventes aux enchères à Paris, 1764 - 1780",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+  )
+```
+
+## Comment ?
+
+![](figs/tidymodels.png){fig-align="center" width="60%"}
+
+## Étape 1: Spécifier le modèle
+
+```{r model-specification}
+linear_reg()
+```
+
+## Étape 2: Choisir le *engine*
+```{r model-engine}
+linear_reg() %>%
+  set_engine("lm") # lm = linear model - modèle linéaire
+```
+
+## Étape 3: Fitter le modèle
+
+Ici il faut indique la **formule** et les données
+
+```{r model-fitting}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+```
+
+## Résultat du modèle
+```{r ref.label = "model-fitting", warning=FALSE, echo=FALSE}
+```
+
+$$\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}$$
+
+## Affichage Tidy
+
+```{r tidy-model}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+
+$$\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}$$
+
+## Interprétation des coefficients
+
+$$\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}$$
+
+- [Ordonnée à l'origine]{.heavy-red} ($\beta_0 = 3.62$): Hauteur prédite lorsque la largeur est de 0 pouces.
+
+- [Pente]{.heavy-red} ($\beta_1 = 0.781$): Pour chaque augmentation de 1 pouce de la largeur, la hauteur prédite augmente en moyenne de 0.781 pouces.
+
+## [Attention]{.heavy-red} aux extrapolations !
+
+Correlation n'est pas causalité !
+
+![](figs/cell_phones.png){fig-align="center" width="60%"}
+
+:::{.aside}
+Source: XKCD, [Cell phones](https://xkcd.com/925/)
+:::
+
+
+## Valeurs prédites et résidus
+
+::: fragments
+We're interested in $\beta_0$ (population parameter for the intercept) and $\beta_1$ (population parameter for the slope) in the following model:
+Nous voudrions connaître les paramètres de population $\beta_0$ (ordonnée à l'origine) et $\beta_1$ (pente) dans le modèle suivant :
+
+$$Y_{i} = \beta_0 + \beta_1~x_{i}$$
+:::
+::: fragments
+Mais nous n'avons qu'un échantillon de données...
+:::
+::: fragments
+Nous pouvons estimer ces paramètres à partir de notre échantillon, en utilisant les estimateurs $b_0$ et $b_1$ :
+
+$$\hat{y}_{i} = b_0 + b_1~x_{i}$$
+:::
+::: fragments
+Les paramètres sont estimés en minimisant la somme des carrés des résidus :
+
+$$\text{SSE} = \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^2$$
+:::
+
+## Visuellement...
+
+```{r vis-res-1, echo=FALSE, out.width="70%"}
+ht_wt_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+
+ht_wt_fit_tidy <- tidy(ht_wt_fit$fit) 
+ht_wt_fit_aug  <- augment(ht_wt_fit$fit) %>%
+  mutate(res_cat = ifelse(.resid > 0, TRUE, FALSE))
+
+p <- ggplot(data = ht_wt_fit_aug, 
+            aes(x = Width_in, y = Height_in)) +
+  geom_point(alpha = 0.2) + 
+  labs(
+    title = "Hauteur vs Largeur des peintures",
+    subtitle = "Juste les données",
+    x = "Largeur (inches)",
+    y = "Hauteur (inches)"
+    ) +
+  coord_cartesian(xlim = c(0, 250), ylim = c(0, 200)) +
+  theme(plot.subtitle = element_text(colour = "#E48957", face = "bold", size = rel(1.5)))
+p
+```
+
+## Visuellement...
+
+```{r vis-res-2, echo=FALSE, out.width="70%"}
+p <- p + 
+  geom_smooth(method = "lm", color = "#8E2C90", se = FALSE) +
+  geom_point(mapping = aes(y = .fitted), color = "#E48957") +
+  labs(subtitle = "Données + valeurs prédites")
+p
+```
+
+### Visuellement...
+
+```{r vis-res-3, echo = FALSE, out.width="70%"}
+p + 
+  geom_segment(mapping = aes(xend = Width_in, yend = .fitted), color = "#E48957", alpha = 0.4) +
+  labs(subtitle = "Données + valeurs prédites + résidus")
+```
+
+# Valeurs explicatives catégorielles
+
+## Variable indépendante catégorielle avec 2 niveaux
+
+:::columns
+:::{.column width="60%"}
+```{r echo=FALSE}
+pp %>% 
+  select(name, Height_in, landsALL) %>%
+  print(n = 20)
+```
+:::
+:::{.column width="40%"}
+- `landsALL = 0`: Pas d'éléments de paysages
+- `landsALL = 1`: Éléments de paysages présents
+:::
+
+:::
+
+## Hauteur et éléments de paysages
+
+```{r ht-lands-fit}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ factor(landsALL), data = pp) %>%
+  tidy()
+```
+
+$$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$
+
+- [Ordonnée à l'origine]{.heavy-red} ($\beta_0 = 22.7$): Hauteur prédite pour les peintures sans éléments paysages (`landsALL = 0`).
+
+- [Coefficient]{.heavy-red} ($\beta_1 = -5.645$): Différence moyenne de hauteur entre les peintures avec éléments paysages et celles sans. Les peintures avec éléments paysages sont en moyenne 5.645 pouces plus courtes que celles sans.
