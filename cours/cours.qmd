@@ -104,7 +104,13 @@ Lectures complémentaires:
 
 Slides : [PDF](06 - Good Dataviz/PRO1036_06_good-dataviz.pdf)
 
-Labs: [Lab05 - Better Viz](/labs/lab06-better-viz/lab06-better-viz.qmd)
+Labs: [Lab06 - Better Viz](/labs/lab06-better-viz/lab06-better-viz.qmd)
+
+## 07 - Modélisation : Régression linéaire
+
+Slides : [Web](07 - Regression/07 - regession.qmd){target="_blank"} [PDF](07 - Regression/PRO1036_07_Regression.pdf)
+
+Labs: [Lab07 - Grading the Professor](/labs/lab07-prof-grading/lab07-prof-grading.qmd)
 
 # Références
 

@@ -25,11 +25,12 @@ format:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidymodels)
+library(kableExtra)
 set.seed(1234)
 ```
 
 
-# L'analyse de données - Kesako ?
+# L'analyse de données - Kesako?
 
 ## Les cinqs activités principales
 
@@ -284,7 +285,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
 
 $$\widehat{hauteur}_{i} = \beta_0 + \beta_1 \times largeur_{i}$$
 
-```{r height-width-plot, echo=FALSE, warning=FALSE, out.width="80%"}
+```{r height-width-plot-2, echo=FALSE, warning=FALSE, out.width="80%"}
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "#b22222") + 
@@ -360,25 +361,27 @@ Source: XKCD, [Cell phones](https://xkcd.com/925/)
 
 ## Valeurs prédites et résidus
 
-::: fragments
+::: {.fragments}
 We're interested in $\beta_0$ (population parameter for the intercept) and $\beta_1$ (population parameter for the slope) in the following model:
 Nous voudrions connaître les paramètres de population $\beta_0$ (ordonnée à l'origine) et $\beta_1$ (pente) dans le modèle suivant :
 
 $$Y_{i} = \beta_0 + \beta_1~x_{i}$$
 :::
-::: fragments
+::: {.fragments}
 Mais nous n'avons qu'un échantillon de données...
 :::
-::: fragments
+::: {.fragments}
 Nous pouvons estimer ces paramètres à partir de notre échantillon, en utilisant les estimateurs $b_0$ et $b_1$ :
 
 $$\hat{y}_{i} = b_0 + b_1~x_{i}$$
 :::
-::: fragments
+
+## Estimation des paramètres
+
 Les paramètres sont estimés en minimisant la somme des carrés des résidus :
 
 $$\text{SSE} = \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^2$$
-:::
+
 
 ## Visuellement...
 
@@ -415,7 +418,7 @@ p <- p +
 p
 ```
 
-### Visuellement...
+## Visuellement...
 
 ```{r vis-res-3, echo = FALSE, out.width="70%"}
 p + 
@@ -453,6 +456,112 @@ linear_reg() %>%
 
 $$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$
 
-- [Ordonnée à l'origine]{.heavy-red} ($\beta_0 = 22.7$): Hauteur prédite pour les peintures sans éléments paysages (`landsALL = 0`).
+- [Ordonnée à l'origine]{.heavy-red} ($\beta_0 = 22.7$): Hauteur prédite pour les peintures sans éléments de paysages (`landsALL = 0`).
 
-- [Coefficient]{.heavy-red} ($\beta_1 = -5.645$): Différence moyenne de hauteur entre les peintures avec éléments paysages et celles sans. Les peintures avec éléments paysages sont en moyenne 5.645 pouces plus courtes que celles sans.
+- [Coefficient]{.heavy-red} ($\beta_1 = -5.645$): Différence moyenne de hauteur entre les peintures avec éléments de paysages et celles sans. Les peintures avec éléments de paysages sont en moyenne 5.645 pouces plus courtes que celles sans.
+
+## Hauteur et école de peinture
+
+```{r ht-school}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ school_pntg, data = pp) %>%
+  tidy()
+```
+
+## [Dummy]{.heavy-red} variable
+
+```{r ref.label="ht-school", echo = FALSE}
+```
+
+- Quand une variable catégorielle a plus de deux niveaux, on crée des variables indicatrices ([**dummy variables**]{.heavy-red}) pour chaque niveau, sauf un (le niveau de référence).
+- Chaque coefficient représente la différence moyenne entre ce niveau et le niveau de référence.
+
+## [Dummy]{.heavy-red} variable
+
+::: columns
+:::{.column width="70%"}
+
+```{r echo=FALSE}
+dummy_df <- pp %>% 
+  select(school_pntg) %>% 
+  group_by(school_pntg) %>% 
+  sample_n(1) %>%
+  mutate(
+    D_FL = as.integer(ifelse(school_pntg == "D/FL", 1L, 0)),
+    F    = as.integer(ifelse(school_pntg == "F", 1L, 0)),
+    G    = as.integer(ifelse(school_pntg == "G", 1L, 0)),
+    I    = as.integer(ifelse(school_pntg == "I", 1L, 0)),
+    S    = as.integer(ifelse(school_pntg == "S", 1L, 0)),
+    X    = as.integer(ifelse(school_pntg == "X", 1L, 0))
+  )
+
+dummy_df %>%
+  kable(align = "lcccccc") %>%
+  kable_styling() %>%
+  column_spec(2, width = "10em", background = spec_color(dummy_df$D_FL[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white") %>%
+  column_spec(3, width = "10em", background = spec_color(dummy_df$F[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white") %>%
+  column_spec(4, width = "10em", background = spec_color(dummy_df$G[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white") %>%
+  column_spec(5, width = "10em", background = spec_color(dummy_df$I[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white") %>%
+  column_spec(6, width = "10em", background = spec_color(dummy_df$S[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white") %>%
+  column_spec(7, width = "10em", background = spec_color(dummy_df$X[1:7], end = 0.8, palette = c("#998ec3", "#fc8d59")), color = "white")
+```
+
+:::
+:::{.column width="30%"}
+```{r echo=FALSE}
+pp %>% 
+  select(name, Height_in, school_pntg) %>%
+  print(n = 20)
+```
+:::
+:::
+
+## Interprétation
+
+```{r ref.label="ht-school", echo = FALSE}
+```
+
+:::{.small}
+- [École autichienne]{.heavy-red} (A) est le niveau de référence. En moyenne, les peintures de cette école mesurent 14 pouces de haut.
+- [École néerlandaise/flamande]{.heavy-red} (D/FL) : En moyenne, les peintures de cette école sont 2.33 pouces plus hautes que celles de l'école autrichienne.
+- [École française]{.heavy-red} (F) : En moyenne, les peintures de cette école sont 10.2 pouces plus hautes que celles de l'école autrichienne.
+- [École allemande]{.heavy-red} (G) : En moyenne, les peintures de cette école sont 1.65 pouces plus hautes que celles de l'école autrichienne.
+- [École italienne]{.heavy-red} (I) : En moyenne, les peintures de cette école sont 10.3 pouces plus hautes que celles de l'école autrichienne.
+- [École espagnole]{.heavy-red} (S) : En moyenne, les peintures de cette école sont 30.4 pouces plus hautes que celles de l'école autrichienne.
+- [École inconnue]{.heavy-red} (X) : En moyenne, les peintures de cette catégorie sont 2.87 pouces plus hautes que celles de l'école autrichienne.
+:::
+
+# $R^{2}$ et $R^{2}$ ajusté
+
+## Mesurer la qualité d'ajustement
+
+- [Coefficient de détermination]{.heavy-red} ($R^{2}$): Proportion de la variance totale de la variable dépendante expliquée par le modèle.
+  - Varie entre 0 et 1
+  - Plus $R^{2}$ est proche de 1, meilleur est l'ajustement du modèle aux données.
+  
+```{r r2}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  glance()
+```
+  
+  
+
+## $R^{2}$ ajusté
+
+- [Coefficient de détermination ajusté]{.heavy-red} ($R^{2}_{adj}$): Version ajustée de $R^{2}$ qui prend en compte le nombre de variables explicatives dans le modèle.
+  - Utile pour comparer des modèles avec différents nombres de variables explicatives.
+  
+```{r r2-ajuste}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in + landsALL + school_pntg, data = pp) %>%
+  glance()
+``` 
+
+## Références
+
+::: {#refs}
+:::

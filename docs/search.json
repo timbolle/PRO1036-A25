@@ -14,6 +14,55 @@
     "text": "Transformation de données PDF\nVisualisation de données PDF\nRmarkdown PDF\nTidyr PDF"
   },
   {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "",
+    "text": "Le but de ce laboratoire est de pratiquer la modélisation de données."
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#packages",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#packages",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Packages",
+    "text": "Packages\nNous utiliserons le package tidyverse pour la manipulation des données et le package tidymodels pour la modélisation. Vous pouvez le charger en exécutant ce qui suit dans votre Console :\n\nlibrary(tidyverse)\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#données",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#données",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Données",
+    "text": "Données\nDe nombreuses universités utilisent les évaluations des étudiants pour évaluer la performance des professeurs. Cependant, l’utilisation de ces évaluations comme indicateur de la qualité des cours et de l’efficacité de l’enseignement est souvent critiquée car ces mesures peuvent refléter l’influence de caractéristiques non liées à l’enseignement, telles que l’apparence physique de l’instructeur. L’article intitulé “Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity” (Hamermesh et Parker, 2005) (Hamermesh and Parker, 2005) a révélé que les instructeurs considérés comme plus beaux reçoivent des évaluations pédagogiques plus élevées.\nDans ce lab, vous analyserez les données de cette étude afin de savoir ce qui contribue à une évaluation positive des professeurs.\nLes données ont été recueillies à partir des évaluations des étudiants à la fin du semestre pour un large échantillon de professeurs de l’Université du Texas à Austin. De plus, six étudiants ont évalué l’apparence physique des professeurs. (Il s’agit d’une version légèrement modifiée de l’ensemble de données original qui a été publié dans le cadre des données de réplication pour “Data Analysis Using Regression and Multilevel/Hierarchical Models” (Gelman et Hill, 2007).) Le résultat est un datafrane où chaque ligne contient un cours différent et les colonnes représentent des variables sur les cours et les professeurs.\nLes données que nous utiliserons pour les différents exercices sont fournies dans le dossier data/."
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#importation-des-données",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#importation-des-données",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Importation des données",
+    "text": "Importation des données\nCommencez par importer les données dans une variable evals.\nVous pouvez examiner les données avec la fonction glimpse() ou head(). Vous devrierz obtenir un dataframe avec 463 observations et 21 variables."
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#analyse-exploratoire",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#analyse-exploratoire",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Analyse Exploratoire",
+    "text": "Analyse Exploratoire\n\nExercice 1\n1.1 Visualisez la distribution des scores. La distribution est-elle asymétrique ? Qu’est-ce que cela vous dit sur la façon dont les étudiants évaluent les cours ? Est-ce ce à quoi vous vous attendiez ? Pourquoi ou pourquoi pas ? Incluez toutes les statistiques sommaires et visualisations que vous utilisez dans votre réponse.\n1.2 Visualisez et décrivez la relation entre le score et bty_avg.\n\n\n\n\n\n\n\n\n\n1.3 Recréez le nuage de points de l’exercice 2, mais cette fois en utilisant geom_jitter() ? Que signifie “jitter” ? Qu’est-ce qui était trompeur dans le nuage de points initial ?\n\n\n\n\n\n\n\n\n\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#régression-linéaire-simple",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#régression-linéaire-simple",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Régression linéaire simple",
+    "text": "Régression linéaire simple\n\nExercice 2 - Variable numérique\nDans cette partie, le modèle linéaire sera de la forme \\(\\hat{y} = b_0 + b_1 x\\).\nLet’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called score_bty_fit to predict average professor evaluation score by average beauty rating (bty_avg). Based on the regression output, write the linear model.\n2.1 Voyons si la tendance apparente dans le graphique est autre chose que la variation naturelle. Ajustez un modèle linéaire appelé score_bty_fit pour prédire le score moyen d’évaluation des professeurs par la note moyenne de beauté (bty_avg). Sur la base des résultats de la régression, écrivez le modèle linéaire.\nRecreate the scatterplot from Exercise 2, and add the regression line to this plot in orange colour, with shading for the uncertainty of the line turned off.\n2.2 Reproduisez le nuage de points de l’exercice 2 et ajoutez la ligne de régression à ce graphique en orange, sans incertitude.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n2.3 Interprétez la pente du modèle linéaire dans le contexte des données. Commenter si la pente a du sens dans ce contexte.\n2.4 Déternminez le \\(R^2\\) du modèle et interprétez-le dans le contexte des données.\n🧶 ✅ ⬆️ I Knit, commit, and push ! N’oubliez pas le message de commit.\n\n\nExercice 3 - Variable catégorielle\n3.1 Fittez un nouveau modèle linéaire appelé score_gender_fit pour prédire le score moyen d’évaluation des professeurs en fonction du gender du professeur. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez la pente et l’ordonnée à l’origine dans le contexte des données.\n3.2 Quelle est l’équation de la ligne correspondant aux professeurs masculins ? Et pour les professeures féminins ?\n3.3 Fittez un nouveau modèle linéaire appelé score_rank_fit pour prédire le score moyen d’évaluation des professeurs en fonction du rank du professeur. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données.\n3.4 Créez une nouvelle variable appelée rank_relevel où \"tenure track\" est le niveau de référence.\n3.5 Fittez un nouveau modèle linéaire appelé `score_rank_relevel_firt pour prédire le score moyen d’évaluation des professeurs en fonction de rank_relevel du professeur. Il s’agit de la nouvelle variable créée dans l’exercice 3.4. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données. Déterminez également le \\(R^2\\) du modèle et interprétez-le.\n3.6 Créez une autre nouvelle variable appelée tenure_eligible qui étiquette le personnel enseignant \"teaching\" comme \"no\" et étiquette le personnel enseignant \"tenure track\" et \"tenured\" comme \"yes\".\n3.7 Fittez un nouveau modèle linéaire appelé score_tenure_eligible_fit pour prédire le score moyen d’évaluation des professeurs en fonction de l’éligibilité à la titularisation (tenure_eligible) du professeur. Il s’agit de la nouvelle variable créée dans l’exercice 3.6. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données. Déterminez également le \\(R^2\\) du modèle et interprétez-le.\n🧶 ✅ ⬆️ I Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab07-prof-grading/lab07-prof-grading.html#régression-linéaire-multiple",
+    "href": "labs/lab07-prof-grading/lab07-prof-grading.html#régression-linéaire-multiple",
+    "title": "Lab 07 - Grading the Professor!",
+    "section": "Régression linéaire multiple",
+    "text": "Régression linéaire multiple\n\nExercice 4\n4.1 Fittez un modèle linéaire score_bty_gen_fit, prédisant le score moyen d’évaluation des professeurs en fonction de la note moyenne de beauté (bty_avg) et du genre (gender). Écrivez le modèle linéaire et notez le \\(R^2\\) et le \\(R^2\\) ajusté.\n4.2 Interprétez les pentes et l’ordonnée à l’origine de score_bty_gen_fit dans le contexte des données.\n4.3 Quel pourcentage de la variabilité de score est expliqué par le modèle score_bty_gen_fit.\n4.4 Quelle est l’équation de la ligne correspondant seulement aux professeurs masculins ? Et pour les professeures féminins ?\n4.5 Pour deux professeurs qui ont reçu la même note de beauté, quel genre a tendance à avoir le score d’évaluation de cours le plus élevé ?\n4.6 Comment la relation entre la beauté et le score d’évaluation varie-t-elle entre les professeurs masculins et féminins ?\n4.7 Comparez les valeurs de \\(R^2\\) ajusté de score_bty_gen_fit et score_bty_fit. Que nous dit cela sur l’utilité de gender pour expliquer la variabilité des scores d’évaluation lorsque nous avons déjà des informations sur la note de beauté du professeur.\n4.8 Comparez les pentes de bty_avg sous les deux modèles (score_bty_fit et score_bty_gen_fit). L’ajout de gender au modèle a-t-il modifié l’estimation du paramètre (pente) pour bty_avg ?\n\nCreate a new model called score_bty_rank_fit with gender removed and rank added in. Write the equation of the linear model and interpret the slopes and intercept in context of the data.\n\n4.9 Créez un nouveau modèle appelé score_bty_rank_fit sans gender mais en ajoutant rank. Écrivez l’équation du modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données.\n🧶 ✅ ⬆️ I Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
     "objectID": "labs/lab05-religion-income/lab05-religion-income.html",
     "href": "labs/lab05-religion-income/lab05-religion-income.html",
     "title": "Lab 05 - Religion Income",
@@ -273,6 +322,251 @@
     "text": "Appendix\nLa liste des pays présents dans le jeu de données est présentée ci-dessous:"
   },
   {
+    "objectID": "cours/07 - Regression/07 - regression.html#les-cinqs-activités-principales",
+    "href": "cours/07 - Regression/07 - regression.html#les-cinqs-activités-principales",
+    "title": "07 - Modélisation - Régression",
+    "section": "Les cinqs activités principales",
+    "text": "Les cinqs activités principales\n\nFormuler et préciser la question\nExplorer les données\nConstruire des modèles statistiques\nInterpréter les résultats\nCommuniquer les résultats\n\n\n\n(Peng and Matsui, 2016)"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#types-de-questionsproblèmes",
+    "href": "cours/07 - Regression/07 - regression.html#types-de-questionsproblèmes",
+    "title": "07 - Modélisation - Régression",
+    "section": "Types de questions/problèmes",
+    "text": "Types de questions/problèmes\n\nDescription: résumer des caractéristiques d’un jeu de données.\nExploration: découvrir des relations, des patterns entre variables (formuler des hypothèses).\nInférence: analyser des relations, des patterns entre variables pour en tirer des conclusions générales, en utilisant des données représentatives (échantillon) d’une population générale (tester des hypothèses)\nPrédiction: prédire la valeur d’une variable future/inconnue à partir de données passées/connues (machine learning)\nCausalité: comprendre l’effet d’une variable sur une autre variable (relation de cause à effet).\nMécanismes: comprendre les processus sous-jacents qui génèrent les données observées."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#modélisation",
+    "href": "cours/07 - Regression/07 - regression.html#modélisation",
+    "title": "07 - Modélisation - Régression",
+    "section": "Modélisation",
+    "text": "Modélisation\nLes modèles sont utilisés pour expiquer des relations entre variables et pour faire des prédictions."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "href": "cours/07 - Regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "title": "07 - Modélisation - Régression",
+    "section": "Les données du jour : Paris painting",
+    "text": "Les données du jour : Paris painting\nDonnées issues des catalogues de 28 ventes aux enchères de tableaux de Paris entre 1764 et 1780.\n\n\n\n\n\n\n\nDataset crée par Sandra van Ginhoven et Hilary Coe Cronheim, du Duke Art, Law and Markets Initiative"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#paris-painting",
+    "href": "cours/07 - Regression/07 - regression.html#paris-painting",
+    "title": "07 - Modélisation - Régression",
+    "section": "Paris painting",
+    "text": "Paris painting\n\npp &lt;- read_csv(\"data/paris-paintings.csv\", na = c(\"n/a\", \"\", \"NA\"))\n\n\npp %&gt;%\n  glimpse()\n\nRows: 3,393\nColumns: 61\n$ name              &lt;chr&gt; \"L1764-2\", \"L1764-3\", \"L1764-4\", \"L1764-5a\", \"L1764-…\n$ sale              &lt;chr&gt; \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\"…\n$ lot               &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"5\", \"6\", \"7\", \"7\", \"8\", \"9\", \"9…\n$ position          &lt;dbl&gt; 0.03278689, 0.04918033, 0.06557377, 0.08196721, 0.08…\n$ dealer            &lt;chr&gt; \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L…\n$ year              &lt;dbl&gt; 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764…\n$ origin_author     &lt;chr&gt; \"F\", \"I\", \"X\", \"F\", \"F\", \"X\", \"F\", \"F\", \"X\", \"D/FL\",…\n$ origin_cat        &lt;chr&gt; \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O…\n$ school_pntg       &lt;chr&gt; \"F\", \"I\", \"D/FL\", \"F\", \"F\", \"I\", \"F\", \"F\", \"I\", \"D/F…\n$ diff_origin       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ logprice          &lt;dbl&gt; 5.8861040, 1.7917595, 2.4849067, 1.7917595, 1.791759…\n$ price             &lt;dbl&gt; 360.0, 6.0, 12.0, 6.0, 6.0, 9.0, 12.0, 12.0, 24.0, 6…\n$ count             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject           &lt;chr&gt; \"L'enfant Jesus\", \"Homme portant un panier\", \"L'enfa…\n$ authorstandard    &lt;chr&gt; \"Grimou, Alexis\", \"Fetti, Domenico\", \"copy after Dyc…\n$ artistliving      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ authorstyle       &lt;chr&gt; NA, NA, \"copy after\", NA, NA, \"copy after\", NA, NA, …\n$ author            &lt;chr&gt; \"Grimou\", \"F\\x8ety\", \"copi\\x8e d'apr\\x8fs Wandeik\", …\n$ winningbidder     &lt;chr&gt; \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown…\n$ winningbiddertype &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ endbuyer          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Interm            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ type_intermed     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Height_in         &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 16, 16, 2…\n$ Width_in          &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13.0, 15.0…\n$ Surface_Rect      &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ Diam_in           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Surface_Rnd       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Shape             &lt;chr&gt; \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ…\n$ Surface           &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ material          &lt;chr&gt; \"tableau\", \"toile\", \"bois\", \"toile\", \"toile\", \"cuivr…\n$ mat               &lt;chr&gt; \"ta\", \"t\", \"b\", \"t\", \"t\", \"c\", \"t\", \"t\", \"c\", \"b\", \"…\n$ materialCat       &lt;chr&gt; NA, \"canvas\", \"wood\", \"canvas\", \"canvas\", \"copper\", …\n$ quantity          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ nfigures          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ engraved          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ original          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ prevcoll          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othartist         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ paired            &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1…\n$ figures           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ finished          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ lrgfont           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ relig             &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ landsALL          &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1…\n$ lands_sc          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0…\n$ lands_elem        &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_figs        &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_ment        &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ arch              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ mytho             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ peasant           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othgenre          &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ singlefig         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0…\n$ portrait          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n$ still_life        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ discauth          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ history           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ allegory          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ pastorale         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ other             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-vs-largeur",
+    "href": "cours/07 - Regression/07 - regression.html#hauteur-vs-largeur",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur vs Largeur",
+    "text": "Hauteur vs Largeur\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Hauteur, en pouces\", y = NULL)\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Largeur, en pouces\", y = NULL)"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-largeur",
+    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-largeur",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur et largeur",
+    "text": "Hauteur et largeur\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#personnalisé",
+    "href": "cours/07 - Regression/07 - regression.html#personnalisé",
+    "title": "07 - Modélisation - Régression",
+    "section": "… Personnalisé",
+    "text": "… Personnalisé\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se=FALSE, linetype = \"dashed\", color=\"#b22222\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#modélisation-1",
+    "href": "cours/07 - Regression/07 - regression.html#modélisation-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Modélisation",
+    "text": "Modélisation\n\nVariable dépendante (expliquée): Variable dont on cherche à comprendre le comportement ou la variation, sur l’axe des y\nVariables indépendantes (explicatives): Autres variables que l’on utilise pour expliquer la variation de la variable dépendante, sur l’axe des x\nValeur prédite: Résultat de la fonction modèle\n\nLa fonction modèle donne la valeur typique (attendue) de la variable dépendante\n\nRésidus: Mesure de la distance entre chaque observation et sa valeur prédite (basée sur un modèle particulier)\n\nRésidu = Valeur observée - Valeur prédite\nIndique à quel point chaque observation est au-dessus/en-dessous de la valeur attendue"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples",
+    "href": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples",
+    "title": "07 - Modélisation - Régression",
+    "section": "Variables explicatives multiples",
+    "text": "Variables explicatives multiples\n\nPensez vous que la hauteur d’une peinture peut être expliquée uniquement par sa largeur ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point(alpha = 0.2) +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#portraits-vs-paysages",
+    "href": "cours/07 - Regression/07 - regression.html#portraits-vs-paysages",
+    "title": "07 - Modélisation - Régression",
+    "section": "Portraits vs Paysages",
+    "text": "Portraits vs Paysages"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples-1",
+    "href": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Variables explicatives multiples",
+    "text": "Variables explicatives multiples\n\nEst-ce que la relation entre hauteur et largeur dépend de la présence d’éléments paysages ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE,\n              fullrange = TRUE) + #&lt;&lt;\n  labs(\n    title = \"Hauteur vs. Largeur des peintures, selon la présence d'éléments paysages\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  ) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
+    "href": "cours/07 - Regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
+    "title": "07 - Modélisation - Régression",
+    "section": "Objectif: Prédire la hauteur d’une peinture en fonction de sa largeur",
+    "text": "Objectif: Prédire la hauteur d’une peinture en fonction de sa largeur\n\\[\\widehat{hauteur}_{i} = \\beta_0 + \\beta_1 \\times largeur_{i}\\]"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#comment",
+    "href": "cours/07 - Regression/07 - regression.html#comment",
+    "title": "07 - Modélisation - Régression",
+    "section": "Comment ?",
+    "text": "Comment ?"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#étape-1-spécifier-le-modèle",
+    "href": "cours/07 - Regression/07 - regression.html#étape-1-spécifier-le-modèle",
+    "title": "07 - Modélisation - Régression",
+    "section": "Étape 1: Spécifier le modèle",
+    "text": "Étape 1: Spécifier le modèle\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#étape-2-choisir-le-engine",
+    "href": "cours/07 - Regression/07 - regression.html#étape-2-choisir-le-engine",
+    "title": "07 - Modélisation - Régression",
+    "section": "Étape 2: Choisir le engine",
+    "text": "Étape 2: Choisir le engine\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") # lm = linear model - modèle linéaire\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#étape-3-fitter-le-modèle",
+    "href": "cours/07 - Regression/07 - regression.html#étape-3-fitter-le-modèle",
+    "title": "07 - Modélisation - Régression",
+    "section": "Étape 3: Fitter le modèle",
+    "text": "Étape 3: Fitter le modèle\nIci il faut indique la formule et les données\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp)\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#résultat-du-modèle",
+    "href": "cours/07 - Regression/07 - regression.html#résultat-du-modèle",
+    "title": "07 - Modélisation - Régression",
+    "section": "Résultat du modèle",
+    "text": "Résultat du modèle\n\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808  \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#affichage-tidy",
+    "href": "cours/07 - Regression/07 - regression.html#affichage-tidy",
+    "title": "07 - Modélisation - Régression",
+    "section": "Affichage Tidy",
+    "text": "Affichage Tidy\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp) %&gt;%\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    3.62    0.254        14.3 8.82e-45\n2 Width_in       0.781   0.00950      82.1 0       \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#interprétation-des-coefficients",
+    "href": "cours/07 - Regression/07 - regression.html#interprétation-des-coefficients",
+    "title": "07 - Modélisation - Régression",
+    "section": "Interprétation des coefficients",
+    "text": "Interprétation des coefficients\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]\n\nOrdonnée à l’origine (\\(\\beta_0 = 3.62\\)): Hauteur prédite lorsque la largeur est de 0 pouces.\nPente (\\(\\beta_1 = 0.781\\)): Pour chaque augmentation de 1 pouce de la largeur, la hauteur prédite augmente en moyenne de 0.781 pouces."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#attention-aux-extrapolations",
+    "href": "cours/07 - Regression/07 - regression.html#attention-aux-extrapolations",
+    "title": "07 - Modélisation - Régression",
+    "section": "Attention aux extrapolations !",
+    "text": "Attention aux extrapolations !\nCorrelation n’est pas causalité !\n\n\n\n\n\n\n\nSource: XKCD, Cell phones"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#valeurs-prédites-et-résidus",
+    "href": "cours/07 - Regression/07 - regression.html#valeurs-prédites-et-résidus",
+    "title": "07 - Modélisation - Régression",
+    "section": "Valeurs prédites et résidus",
+    "text": "Valeurs prédites et résidus\n\nWe’re interested in \\(\\beta_0\\) (population parameter for the intercept) and \\(\\beta_1\\) (population parameter for the slope) in the following model: Nous voudrions connaître les paramètres de population \\(\\beta_0\\) (ordonnée à l’origine) et \\(\\beta_1\\) (pente) dans le modèle suivant :\n\\[Y_{i} = \\beta_0 + \\beta_1~x_{i}\\]\n\n\nMais nous n’avons qu’un échantillon de données…\n\n\nNous pouvons estimer ces paramètres à partir de notre échantillon, en utilisant les estimateurs \\(b_0\\) et \\(b_1\\) :\n\\[\\hat{y}_{i} = b_0 + b_1~x_{i}\\]"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#estimation-des-paramètres",
+    "href": "cours/07 - Regression/07 - regression.html#estimation-des-paramètres",
+    "title": "07 - Modélisation - Régression",
+    "section": "Estimation des paramètres",
+    "text": "Estimation des paramètres\nLes paramètres sont estimés en minimisant la somme des carrés des résidus :\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_{i} - \\hat{y}_{i})^2\\]"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#visuellement",
+    "href": "cours/07 - Regression/07 - regression.html#visuellement",
+    "title": "07 - Modélisation - Régression",
+    "section": "Visuellement…",
+    "text": "Visuellement…"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#visuellement-1",
+    "href": "cours/07 - Regression/07 - regression.html#visuellement-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Visuellement…",
+    "text": "Visuellement…"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#visuellement-2",
+    "href": "cours/07 - Regression/07 - regression.html#visuellement-2",
+    "title": "07 - Modélisation - Régression",
+    "section": "Visuellement…",
+    "text": "Visuellement…"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
+    "href": "cours/07 - Regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
+    "title": "07 - Modélisation - Régression",
+    "section": "Variable indépendante catégorielle avec 2 niveaux",
+    "text": "Variable indépendante catégorielle avec 2 niveaux\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in landsALL\n   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n 1 L1764-2          37        0\n 2 L1764-3          18        0\n 3 L1764-4          13        1\n 4 L1764-5a         14        1\n 5 L1764-5b         14        1\n 6 L1764-6           7        0\n 7 L1764-7a          6        0\n 8 L1764-7b          6        0\n 9 L1764-8          15        0\n10 L1764-9a          9        0\n11 L1764-9b          9        0\n12 L1764-10a        16        1\n13 L1764-10b        16        1\n14 L1764-10c        16        1\n15 L1764-11         20        0\n16 L1764-12a        14        1\n17 L1764-12b        14        1\n18 L1764-13a        15        1\n19 L1764-13b        15        1\n20 L1764-14         37        0\n# ℹ 3,373 more rows\n\n\n\n\nlandsALL = 0: Pas d’éléments de paysages\nlandsALL = 1: Éléments de paysages présents"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-éléments-de-paysages",
+    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-éléments-de-paysages",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur et éléments de paysages",
+    "text": "Hauteur et éléments de paysages\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ factor(landsALL), data = pp) %&gt;%\n  tidy()\n\n# A tibble: 2 × 5\n  term              estimate std.error statistic  p.value\n  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)          22.7      0.328      69.1 0       \n2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26\n\n\n\\[\\widehat{Height_{in}} = 22.7 - 5.645~landsALL\\]\n\nOrdonnée à l’origine (\\(\\beta_0 = 22.7\\)): Hauteur prédite pour les peintures sans éléments de paysages (landsALL = 0).\nCoefficient (\\(\\beta_1 = -5.645\\)): Différence moyenne de hauteur entre les peintures avec éléments de paysages et celles sans. Les peintures avec éléments de paysages sont en moyenne 5.645 pouces plus courtes que celles sans."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-école-de-peinture",
+    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-école-de-peinture",
+    "title": "07 - Modélisation - Régression",
+    "section": "Hauteur et école de peinture",
+    "text": "Hauteur et école de peinture\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ school_pntg, data = pp) %&gt;%\n  tidy()\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#dummy-variable",
+    "href": "cours/07 - Regression/07 - regression.html#dummy-variable",
+    "title": "07 - Modélisation - Régression",
+    "section": "Dummy variable",
+    "text": "Dummy variable\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nQuand une variable catégorielle a plus de deux niveaux, on crée des variables indicatrices (dummy variables) pour chaque niveau, sauf un (le niveau de référence).\nChaque coefficient représente la différence moyenne entre ce niveau et le niveau de référence."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#dummy-variable-1",
+    "href": "cours/07 - Regression/07 - regression.html#dummy-variable-1",
+    "title": "07 - Modélisation - Régression",
+    "section": "Dummy variable",
+    "text": "Dummy variable\n\n\n\n\n\n\n\nschool_pntg\nD_FL\nF\nG\nI\nS\nX\n\n\n\n\nA\n0\n0\n0\n0\n0\n0\n\n\nD/FL\n1\n0\n0\n0\n0\n0\n\n\nF\n0\n1\n0\n0\n0\n0\n\n\nG\n0\n0\n1\n0\n0\n0\n\n\nI\n0\n0\n0\n1\n0\n0\n\n\nS\n0\n0\n0\n0\n1\n0\n\n\nX\n0\n0\n0\n0\n0\n1\n\n\n\n\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#interprétation",
+    "href": "cours/07 - Regression/07 - regression.html#interprétation",
+    "title": "07 - Modélisation - Régression",
+    "section": "Interprétation",
+    "text": "Interprétation\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\n\nÉcole autichienne (A) est le niveau de référence. En moyenne, les peintures de cette école mesurent 14 pouces de haut.\nÉcole néerlandaise/flamande (D/FL) : En moyenne, les peintures de cette école sont 2.33 pouces plus hautes que celles de l’école autrichienne.\nÉcole française (F) : En moyenne, les peintures de cette école sont 10.2 pouces plus hautes que celles de l’école autrichienne.\nÉcole allemande (G) : En moyenne, les peintures de cette école sont 1.65 pouces plus hautes que celles de l’école autrichienne.\nÉcole italienne (I) : En moyenne, les peintures de cette école sont 10.3 pouces plus hautes que celles de l’école autrichienne.\nÉcole espagnole (S) : En moyenne, les peintures de cette école sont 30.4 pouces plus hautes que celles de l’école autrichienne.\nÉcole inconnue (X) : En moyenne, les peintures de cette catégorie sont 2.87 pouces plus hautes que celles de l’école autrichienne."
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#mesurer-la-qualité-dajustement",
+    "href": "cours/07 - Regression/07 - regression.html#mesurer-la-qualité-dajustement",
+    "title": "07 - Modélisation - Régression",
+    "section": "Mesurer la qualité d’ajustement",
+    "text": "Mesurer la qualité d’ajustement\n\nCoefficient de détermination (\\(R^{2}\\)): Proportion de la variance totale de la variable dépendante expliquée par le modèle.\n\nVarie entre 0 et 1\nPlus \\(R^{2}\\) est proche de 1, meilleur est l’ajustement du modèle aux données.\n\n\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp) %&gt;%\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     0.683         0.683  8.30     6749.       0     1 -11083. 22173. 22191.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#r2-ajusté",
+    "href": "cours/07 - Regression/07 - regression.html#r2-ajusté",
+    "title": "07 - Modélisation - Régression",
+    "section": "\\(R^{2}\\) ajusté",
+    "text": "\\(R^{2}\\) ajusté\n\nCoefficient de détermination ajusté (\\(R^{2}_{adj}\\)): Version ajustée de \\(R^{2}\\) qui prend en compte le nombre de variables explicatives dans le modèle.\n\nUtile pour comparer des modèles avec différents nombres de variables explicatives.\n\n\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in + landsALL + school_pntg, data = pp) %&gt;%\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     0.716         0.715  7.87      986.       0     8 -10910. 21840. 21901.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "cours/07 - Regression/07 - regression.html#références",
+    "href": "cours/07 - Regression/07 - regression.html#références",
+    "title": "07 - Modélisation - Régression",
+    "section": "Références",
+    "text": "Références\n\n\nPeng, R. and Matsui, E. (2016). The Art of Data Science. Lulu.com."
+  },
+  {
     "objectID": "cours/05 - Data import and tidy form/05 - import-join-tidy.html#présentations",
     "href": "cours/05 - Data import and tidy form/05 - import-join-tidy.html#présentations",
     "title": "05 - Importation et jointure de données",
@@ -529,7 +823,7 @@
     "href": "cours/05 - Data import and tidy form/05 - import-join-tidy.html#wide-vs-long",
     "title": "05 - Importation et jointure de données",
     "section": "Wide vs Long",
-    "text": "Wide vs Long\n\n\nForme large :\n\n\nForme longue :\n\n\n\n\nSource: (Wickham et al., 2023, chap. 5)"
+    "text": "Wide vs Long\n\n\nForme large :\n\n\nForme longue :\n\n\n\nSource: (Wickham et al., 2023, chap. 5)"
   },
   {
     "objectID": "cours/05 - Data import and tidy form/05 - import-join-tidy.html#wide-vs-long-1",
@@ -564,7 +858,7 @@
     "href": "cours/05 - Data import and tidy form/05 - import-join-tidy.html#références",
     "title": "05 - Importation et jointure de données",
     "section": "Références",
-    "text": "Références\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc.\n\n\n\n\n\n\nPRO1036 - 04 | Tim Bollé"
+    "text": "Références\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc. https://r4ds.hadley.nz/"
   },
   {
     "objectID": "cours/03 - Data manipulation/03 - data-manip.html#la-grammaire-de-la-manipulation-de-données",
@@ -704,7 +998,7 @@
     "href": "cours/03 - Data manipulation/03 - data-manip.html#compter-le-nombre-de-lignes",
     "title": "03 - Manipulation de données",
     "section": "Compter le nombre de lignes",
-    "text": "Compter le nombre de lignes\n\n\nPar défaut, le résultat est trié par ordre alphabétique :\n\nEn triant par fréquence d’apparition :\n\n\n\n\n\nhotels %&gt;%\n  count(market_segment)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Aviation         237\n2 Complementary    743\n3 Corporate       5295\n4 Direct         12606\n5 Groups         19811\n6 Offline TA/TO  24219\n7 Online TA      56477\n8 Undefined          2\n\n\n\n\nhotels %&gt;%\n  count(market_segment, sort=TRUE)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
+    "text": "Compter le nombre de lignes\n\n\nPar défaut, le résultat est trié par ordre alphabétique :\n\nEn triant par fréquence d’apparition :\n\n\n\n\nhotels %&gt;%\n  count(market_segment)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Aviation         237\n2 Complementary    743\n3 Corporate       5295\n4 Direct         12606\n5 Groups         19811\n6 Offline TA/TO  24219\n7 Online TA      56477\n8 Undefined          2\n\n\n\n\nhotels %&gt;%\n  count(market_segment, sort=TRUE)\n\n# A tibble: 8 × 2\n  market_segment     n\n  &lt;chr&gt;          &lt;int&gt;\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
   },
   {
     "objectID": "cours/03 - Data manipulation/03 - data-manip.html#count-puis-arrange",
@@ -774,7 +1068,7 @@
     "href": "cours/03 - Data manipulation/03 - data-manip.html#références",
     "title": "03 - Manipulation de données",
     "section": "Références",
-    "text": "Références\n\n\nAntonio, N., de Almeida, A. and Nunes, L. (2019). Hotel booking demand datasets. Data in Brief, 22, 41–49. https://doi.org/10.1016/j.dib.2018.11.126\n\n\n\n\n\n\nPRO1036 - 03 | Tim Bollé"
+    "text": "Références\n\n\nAntonio, N., de Almeida, A. and Nunes, L. (2019). Hotel booking demand datasets. Data in Brief, 22, 41–49. https://doi.org/10.1016/j.dib.2018.11.126"
   },
   {
     "objectID": "cours/01 - Toolbox/01 - toolbox.html#les-outils",
@@ -788,7 +1082,7 @@
     "href": "cours/01 - Toolbox/01 - toolbox.html#objectif-du-cours",
     "title": "01 - Boite à outils",
     "section": "Objectif du cours",
-    "text": "Objectif du cours\nÀ la fin de ce cours, vous pourrez:\n\n\nAnalyser des données\nAnalyser des données de manière répétable\nAnalyser des données de manière répétable, avec des outils de programmation modernes\nAnalyser des données de manière répétable et collaborative, avec des outils de programmation modernes"
+    "text": "Objectif du cours\nÀ la fin de ce cours, vous pourrez:\n\nAnalyser des données\nAnalyser des données de manière répétable\nAnalyser des données de manière répétable, avec des outils de programmation modernes\nAnalyser des données de manière répétable et collaborative, avec des outils de programmation modernes"
   },
   {
     "objectID": "cours/01 - Toolbox/01 - toolbox.html#répétabilité",
@@ -844,7 +1138,7 @@
     "href": "cours/01 - Toolbox/01 - toolbox.html#r-markdown",
     "title": "01 - Boite à outils",
     "section": "R Markdown",
-    "text": "R Markdown\n\n\nrmarkdown.rstudio.com\nR Markdown permet d’écrire des documents avec du code intégré (extension en .Rmd).\nVa permettre de documenter et de communiquer directement nos analyses de données !\n\n\nReproductible: À chaque fois qu’on génère le document, tout est exécuté depuis le début\nSyntaxe simple pour avoir des documents de qualité\nLe document se découpe en zones de texte et blocks de code"
+    "text": "R Markdown\n\n\nrmarkdown.rstudio.com\nR Markdown permet d’écrire des documents avec du code intégré (extension en .Rmd).\nVa permettre de documenter et de communiquer directement nos analyses de données !\n\nReproductible: À chaque fois qu’on génère le document, tout est exécuté depuis le début\nSyntaxe simple pour avoir des documents de qualité\nLe document se découpe en zones de texte et blocks de code"
   },
   {
     "objectID": "cours/01 - Toolbox/01 - toolbox.html#r-markdown-1",
@@ -907,7 +1201,7 @@
     "href": "cours/01 - Toolbox/01 - toolbox.html#références",
     "title": "01 - Boite à outils",
     "section": "Références",
-    "text": "Références\n\n\nWickham, H. and Bryan, J. (2023). R Packages: Organize, Test, Document, and Share Your Code (2nd edition). O’Reilly Media.\n\n\n\n\n\n\nPRO1036 - 01 | Tim Bollé"
+    "text": "Références\n\n\nWickham, H. and Bryan, J. (2023). R Packages: Organize, Test, Document, and Share Your Code (2nd edition). O’Reilly Media."
   },
   {
     "objectID": "about.html",
@@ -991,7 +1285,7 @@
     "href": "cours/00 - Intro/00 - intro.html#référence",
     "title": "00 - intro",
     "section": "Référence",
-    "text": "Référence\n\n\n\n\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc.\n\n\n\n\n\n\n\n\nPRO1036 - 00 | Tim Bollé"
+    "text": "Référence\n\n\n\n\n\n\nWickham, H., Çetinkaya-Rundel, M. and Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media, Inc. https://r4ds.hadley.nz/"
   },
   {
     "objectID": "cours/02 - Dataviz/02 - dataviz.html#terminologie",
@@ -1089,7 +1383,7 @@
     "href": "cours/02 - Dataviz/02 - dataviz.html#le-quartet-danscombe",
     "title": "02 - Visualisation de données",
     "section": "Le quartet d’Anscombe",
-    "text": "Le quartet d’Anscombe\n\n\n\n\n   set  x     y\n1    I 10  8.04\n2    I  8  6.95\n3    I 13  7.58\n4    I  9  8.81\n5    I 11  8.33\n6    I 14  9.96\n7    I  6  7.24\n8    I  4  4.26\n9    I 12 10.84\n10   I  7  4.82\n11   I  5  5.68\n\n\n\n\n\n\n   set  x    y\n12  II 10 9.14\n13  II  8 8.14\n14  II 13 8.74\n15  II  9 8.77\n16  II 11 9.26\n17  II 14 8.10\n18  II  6 6.13\n19  II  4 3.10\n20  II 12 9.13\n21  II  7 7.26\n22  II  5 4.74\n\n\n\n\n\n\n   set  x     y\n23 III 10  7.46\n24 III  8  6.77\n25 III 13 12.74\n26 III  9  7.11\n27 III 11  7.81\n28 III 14  8.84\n29 III  6  6.08\n30 III  4  5.39\n31 III 12  8.15\n32 III  7  6.42\n33 III  5  5.73\n\n\n\n\n\n\n   set  x     y\n34  IV  8  6.58\n35  IV  8  5.76\n36  IV  8  7.71\n37  IV  8  8.84\n38  IV  8  8.47\n39  IV  8  7.04\n40  IV  8  5.25\n41  IV 19 12.50\n42  IV  8  5.56\n43  IV  8  7.91\n44  IV  8  6.89"
+    "text": "Le quartet d’Anscombe\n\n\n\n\n   set  x     y\n1    I 10  8.04\n2    I  8  6.95\n3    I 13  7.58\n4    I  9  8.81\n5    I 11  8.33\n6    I 14  9.96\n7    I  6  7.24\n8    I  4  4.26\n9    I 12 10.84\n10   I  7  4.82\n11   I  5  5.68\n\n\n\n\n\n   set  x    y\n12  II 10 9.14\n13  II  8 8.14\n14  II 13 8.74\n15  II  9 8.77\n16  II 11 9.26\n17  II 14 8.10\n18  II  6 6.13\n19  II  4 3.10\n20  II 12 9.13\n21  II  7 7.26\n22  II  5 4.74\n\n\n\n\n\n   set  x     y\n23 III 10  7.46\n24 III  8  6.77\n25 III 13 12.74\n26 III  9  7.11\n27 III 11  7.81\n28 III 14  8.84\n29 III  6  6.08\n30 III  4  5.39\n31 III 12  8.15\n32 III  7  6.42\n33 III  5  5.73\n\n\n\n\n\n   set  x     y\n34  IV  8  6.58\n35  IV  8  5.76\n36  IV  8  7.71\n37  IV  8  8.84\n38  IV  8  8.47\n39  IV  8  7.04\n40  IV  8  5.25\n41  IV 19 12.50\n42  IV  8  5.56\n43  IV  8  7.91\n44  IV  8  6.89"
   },
   {
     "objectID": "cours/02 - Dataviz/02 - dataviz.html#descrivons-chaque-jeu-de-données",
@@ -1495,7 +1789,7 @@
     "href": "cours/02 - Dataviz/02 - dataviz.html#références",
     "title": "02 - Visualisation de données",
     "section": "Références",
-    "text": "Références\n\n\nWilkinson, L. (2005). The Grammar of Graphics. Springer-Verlag. https://doi.org/10.1007/0-387-28695-0\n\n\n\n\n\n\nPRO1036 - 02 | Tim Bollé"
+    "text": "Références\n\n\nWilkinson, L. (2005). The Grammar of Graphics. Springer-Verlag. https://doi.org/10.1007/0-387-28695-0"
   },
   {
     "objectID": "cours/04 - Data types/04 - data-types.html#exemple-cat-lovers",
@@ -1600,7 +1894,7 @@
     "href": "cours/04 - Data types/04 - data-types.html#conversion",
     "title": "04 - Types de données et transformations",
     "section": "Conversion",
-    "text": "Conversion\n… intentionnelle\n\n\n\nx &lt;- 1:3\nx\n\n[1] 1 2 3\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n\ny &lt;- as.character(x)\ny\n\n[1] \"1\" \"2\" \"3\"\n\ntypeof(y)\n\n[1] \"character\"\n\n\n\n\n\n\n\n\nx &lt;- c(TRUE, FALSE)\nx\n\n[1]  TRUE FALSE\n\ntypeof(x)\n\n[1] \"logical\"\n\n\n\n\ny &lt;- as.numeric(x)\ny\n\n[1] 1 0\n\ntypeof(y)\n\n[1] \"double\""
+    "text": "Conversion\n… intentionnelle\n\n\n\nx &lt;- 1:3\nx\n\n[1] 1 2 3\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n\ny &lt;- as.character(x)\ny\n\n[1] \"1\" \"2\" \"3\"\n\ntypeof(y)\n\n[1] \"character\"\n\n\n\n\n\n\n\nx &lt;- c(TRUE, FALSE)\nx\n\n[1]  TRUE FALSE\n\ntypeof(x)\n\n[1] \"logical\"\n\n\n\n\ny &lt;- as.numeric(x)\ny\n\n[1] 1 0\n\ntypeof(y)\n\n[1] \"double\""
   },
   {
     "objectID": "cours/04 - Data types/04 - data-types.html#conversion-1",
@@ -1621,7 +1915,7 @@
     "href": "cours/04 - Data types/04 - data-types.html#cas-spéciaux-1",
     "title": "04 - Types de données et transformations",
     "section": "Cas spéciaux",
-    "text": "Cas spéciaux\n\nNA - Valeur manquante\nInf - Infini\nNaN - Not a Number\n\n\n\n\n\n# division par zéro -&gt; Inf\n7/0\n\n[1] Inf\n\n\n\n\n-1/0\n\n[1] -Inf\n\n\n\n\n\n\n\nInf - Inf\n\n[1] NaN"
+    "text": "Cas spéciaux\n\nNA - Valeur manquante\nInf - Infini\nNaN - Not a Number\n\n\n\n\n\n# division par zéro -&gt; Inf\n7/0\n\n[1] Inf\n\n\n\n\n-1/0\n\n[1] -Inf\n\n\n\n\n\n\nInf - Inf\n\n[1] NaN"
   },
   {
     "objectID": "cours/04 - Data types/04 - data-types.html#na",
@@ -1866,364 +2160,126 @@
     "href": "cours/04 - Data types/04 - data-types.html#étape-3b---visualiser-avec-une-courbe",
     "title": "04 - Types de données et transformations",
     "section": "Étape 3b - Visualiser avec une courbe",
-    "text": "Étape 3b - Visualiser avec une courbe\n\nhotels %&gt;%\n  mutate(arrival_date = ymd(glue(\"{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}\"))) %&gt;% \n  count(arrival_date) %&gt;%\n  ggplot(aes(x = arrival_date, y = n, group = 1)) +\n  geom_smooth() #&lt;&lt;\n\n\n\n\n\n\n\n\n\n\n\n\nPRO1036 - 04 | Tim Bollé"
-  },
-  {
-    "objectID": "cours/cours.html",
-    "href": "cours/cours.html",
-    "title": "Cours",
-    "section": "",
-    "text": "Slides : Web PDF"
-  },
-  {
-    "objectID": "cours/cours.html#introduction",
-    "href": "cours/cours.html#introduction",
-    "title": "Cours",
-    "section": "",
-    "text": "Slides : Web PDF"
-  },
-  {
-    "objectID": "cours/cours.html#r-basics",
-    "href": "cours/cours.html#r-basics",
-    "title": "Cours",
-    "section": "01 - R basics",
-    "text": "01 - R basics\nSlides : Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
-  },
-  {
-    "objectID": "cours/cours.html#visualisation-de-données",
-    "href": "cours/cours.html#visualisation-de-données",
-    "title": "Cours",
-    "section": "02 - Visualisation de données",
-    "text": "02 - Visualisation de données\nSlides : Web PDF\nDemo: Completez l’exercice disposible sur GitHub - https://github.com/PRO1036/star-wars\nLabs: Lab02 - Plastic waster\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab02\nEnvoyer le lab02 sur le repo Github classroom à votre nom\nLire le Chapitre Data Visualisation (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Exploring numerical data (Çetinkaya-Rundel and Hardin, 2024)\nChapitre Exploring categorical data (Çetinkaya-Rundel and Hardin, 2024)\nLivre ggplot2: Elegant Graphics for Data Analysis (Wickham et al., 2024)"
-  },
-  {
-    "objectID": "cours/cours.html#manipulation-de-données",
-    "href": "cours/cours.html#manipulation-de-données",
-    "title": "Cours",
-    "section": "03 - Manipulation de données",
-    "text": "03 - Manipulation de données\nSlides : Web PDF\nDemo : Hotel Bookings\nLabs: Lab03 - Nobel laureates\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab03\nEnvoyer le lab03 sur le repo Github classroom à votre nom\nLire le Chapitre Data Transformation (Wickham et al., 2023)\nLire le Chapitre Data Tidy (Wickham et al., 2023)\n\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
-  },
-  {
-    "objectID": "cours/cours.html#types-de-données-et-transformations",
-    "href": "cours/cours.html#types-de-données-et-transformations",
-    "title": "Cours",
-    "section": "04 - Types de données et transformations",
-    "text": "04 - Types de données et transformations\nSlides : Web PDF\nLabs: Lab04 - Star Wars\nProjet : Projet\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab04\nFaire le proposal du projet en équipe de 2 personnes\nLire le Chapitre Factors (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Numbers (Wickham et al., 2023)\nChapitre Strings (Wickham et al., 2023)\nChapitre Dates and Time (Wickham et al., 2023)\nChapitre Missing Values (Wickham et al., 2023)"
-  },
-  {
-    "objectID": "cours/cours.html#importation-de-données-et-forme-tidy",
-    "href": "cours/cours.html#importation-de-données-et-forme-tidy",
-    "title": "Cours",
-    "section": "05 - Importation de données et forme Tidy",
-    "text": "05 - Importation de données et forme Tidy\nSlides : Web PDF\nLabs: Lab05 - Religion Income\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Bienvenue !",
-    "section": "",
-    "text": "Bienvenue au cours PRO1036 - Analyse de données scientifiques en R !\nL’ensemble des ressources pour les cours se trouvent sur ce site web."
-  },
-  {
-    "objectID": "index.html#cours",
-    "href": "index.html#cours",
-    "title": "Bienvenue !",
-    "section": "Cours",
-    "text": "Cours\nL’ensemble du matériel de cours se trouve dans l’onglet Cours."
-  },
-  {
-    "objectID": "index.html#exercices",
-    "href": "index.html#exercices",
-    "title": "Bienvenue !",
-    "section": "Exercices",
-    "text": "Exercices\nLes exercices se trouvent dans l’onglet Exercices Les liens pour avoir accès aux repos Github sont sur le portail de cours."
-  },
-  {
-    "objectID": "index.html#ressources",
-    "href": "index.html#ressources",
-    "title": "Bienvenue !",
-    "section": "Ressources",
-    "text": "Ressources\nVous pourrez trouver différentes ressources dans l’onglet Ressources."
-  },
-  {
-    "objectID": "index.html#à-propos",
-    "href": "index.html#à-propos",
-    "title": "Bienvenue !",
-    "section": "À propos",
-    "text": "À propos\nLes informations sur la licence et les remerciements se trouvent dans l’onglet À propos."
-  },
-  {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
-    "title": "Lab 02 - Déchets plastiques",
-    "section": "",
-    "text": "La pollution plastique est un problème majeur, avec des impacts négatifs sur les océans et ses habitants Our World in Data possède de nombreux jeux de données à différents niveaux (globaux, par pays et sur le temps). Pour ce laboratoire, nous allons travailler avec les données de 2010.\nNational Geographic a lancé un concours de communication par visualisation de données sur le thème des déchets plastiques : lien."
-  },
-  {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
-    "title": "Lab 02 - Déchets plastiques",
-    "section": "Packages",
-    "text": "Packages\nComme d’habitude, nous allons utiliser le tidyverse pour cette analyse.\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
-    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
-    "title": "Lab 02 - Déchets plastiques",
-    "section": "Données",
-    "text": "Données\nLe jeu de données pour ce lab peut être trouvé dans le dossier data présent dans le repo. Nous reparlerons du chargement de données locales plus tard mais pour l’instant il suffit de lancer cette ligne:\n\nplastic_waste &lt;- read_csv(\"data/plastic-waste.csv\")\n\nLes variables présentes dans le jeu de données sont:\n\ncode: 3 lettres pour le code pays\nentity: nom du pays\ncontinent: nom du continent\nyear: année\ngdp_per_cap: PID par habitant en $ (2011)\nplastic_waste_per_cap: quantité de déchets plastiques par habitant en kg/jour\nmismanaged_plastic_waste_per_cap: quantité de déchets plastiques non gérés par habitant en kg/jour\nmismanaged_plastic_waste: quantité de déchets plastiques non gérés en tonnes\ncoastal_pop: Nombres de personnes vivant sur des côtes\ntotal_pop: Population totale selon Gapminder"
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html",
-    "title": "Lab 04 - Star Wars",
-    "section": "",
-    "text": "Crédit : Lucas Film\nLe but de ce lab est de traiter des données brutes de telle sorte qu’elles soient prêtes à être analysées. Nous allons pour cela utiliser les fonctions du tidyverse."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#packages",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#packages",
-    "title": "Lab 04 - Star Wars",
-    "section": "Packages",
-    "text": "Packages\nNous utiliserons le package tidyverse pour une grande partie de la manipulation des données. Vous pouvez le charger en exécutant ce qui suit dans votre Console :\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#données",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#données",
-    "title": "Lab 04 - Star Wars",
-    "section": "Données",
-    "text": "Données\nLe jeu de données pour cet exercice se trouve sous forme de fichier CSV (valeurs séparées par des virgules) dans le dossier data de votre dépôt. Vous pouvez les charger avec :\n\nsw &lt;- read_csv(\"data/starwars_characters.csv\")\n\nLes descriptions des variables sont les suivantes :\n\nname : nom du personnage\nheight : taille (en cm)\nmass : masse (en kg)\nhair_color : couleur des cheveux\nskin_color : couleur de la peau\neye_color : couleur des yeux\nbirth_year : année de naissance (BBY = Before the Battle of Yavin, ABY = After the Battle of Yavin)\ngender : genre\nhomeworld : planète d’origine\nspecies : espèce\n\nPour préparer les données et corriger les éventuelles erreurs, il est parfois nécessaire de faire des vérifications manuelles. Vous pouvez utiliser le site Wookieepedia pour vérifier les informations sur les personnages."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-1",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-1",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 1",
-    "text": "Exercice 1\nCombien d’observations et de variables y a-t-il dans le jeu de données ? Quel est le type attendu de chaque variable ? En jetant un coup d’oeil aux données, essayez de dresser une liste des changements à apporter pour que les données soient prêtes à être analysées. Nous voulons des données uniformes et dont le type est adapté à l’analyse.\nPour la suite des exercices, vous allez modifier l’objet sw, notamment en utilisant le verbe mutate. Faites particulièrement attention aux warnings qui peuvent apparaître lors de la modification des colonnes. Ceux-ci peuvent vous aider à trouver des erreurs. Pour faciliter le travail, stockez vos colonnes modifiées dans de nouvelles colonnnes, par exemple mass_clean, height_clean, etc. À la fin, vous pourrez supprimer les anciennes colonnes."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-2",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-2",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 2",
-    "text": "Exercice 2\nCorrigez la colonne mass de sorte à obtenir des nombres. Assurez-vous de modifier les valeurs mal renseignées (regardez par exemple les masses de Chewbacca et de Jabba) avant de faire une conversion de type.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-3",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-3",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 3",
-    "text": "Exercice 3\nPour la colonne gender, quelles sont les valeurs possibles ? Comment sont désignées les valeurs inconnues ?\nEn particulier, de quelle espèce sont les personnages avec des genre inconnus ?\nModifiez les valeurs du genre pour ces personnages de telle manière à les uniformiser. Vous pouvez choisir un genre adapté, en utilisant le nom de l’espèce par exemple.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-4",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-4",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 4",
-    "text": "Exercice 4\nTransformez la colonne homeworld en facteur et attribuez la valeur Unknown aux valeurs manquantes.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-5",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-5",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 5",
-    "text": "Exercice 5\nModifiez la colonne birth_year pour qu’elle soit de type numérique en enlevant le “BBY”. Pour cela, vous pouvez utiliser la fonction str_replace du package stringr (déjà chargé avec le tidyverse).\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-6",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-6",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 6",
-    "text": "Exercice 6\nCréez un boxplot de la variable mass en fonction de la variable species. Cela est difficile à lire…\nRegroupez les espèces qui possèdent moins de 2 individus dans une catégorie Other et refaites le boxplot. C’est mieux…\nOrdonnez les catégories selon la hauteur moyenne des espèces et refaite le boxplot !\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-7",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-7",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 7",
-    "text": "Exercice 7\nCréez une nouvelle variable bmi (Body Mass Index) en utilisant les colonnes mass et height. Assurez-vous que les valeurs soient correctes et que les valeurs manquantes soient traitées correctement.\nRefaite le boxplot de la question précédente en utilisant le BMI à la place de la masse.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-8",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-8",
-    "title": "Lab 04 - Star Wars",
-    "section": "Exercice 8",
-    "text": "Exercice 8\nTerminez pas passer en revue les autres variables et corrigez les erreurs que vous pourriez trouver. Assurez-vous que les valeurs manquantes soient codées de manière uniforme."
-  },
-  {
-    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#conclusion",
-    "href": "labs/lab04-star-wars/lab04-star-wars.html#conclusion",
-    "title": "Lab 04 - Star Wars",
-    "section": "Conclusion",
-    "text": "Conclusion\nVous devriez maintenant avoir un jeu de données propre et prêt à être analysé. Pour l’ensemble des colonnes, vous devriez avoir :\n\nVérifier que les valeurs manquantes sont toutes représentées de la même manière.\nVérifier que les valeurs sont uniformes (pas de dédoublement de valeurs)\nLes types sont correctement entrés (numérique, facteur, etc.)\n\nSi c’est correct, vous pouvez supprimer les anciennes colonnes et renommer les nouvelles.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
-  },
-  {
-    "objectID": "projet/projet.html",
-    "href": "projet/projet.html",
-    "title": "Projet",
-    "section": "",
-    "text": "Le projet pour ce cours consistera en une analyse d’un ensemble de données de votre choix. De nombreux jeux de données en accès libre sont à disposition sur Internet. La section Données contient des liens vers des sites qui proposent des jeux de données. Vous pouvez choisir des données en fonction de vos intérêts. Le but de ce projet est de démontrer votre maîtrise des techniques que nous avons abordées dans ce cours (et au-delà, si vous le souhaitez) et de les appliquer de manière significative à un ensemble de données original.\nLe but n’est pas de faire une analyse exhaustive des données, c’est-à-dire de ne pas calculer chaque statistique et procédure que vous avez apprise pour chaque variable, mais plutôt de me montrer que vous êtes compétent pour poser des questions significatives et y répondre avec les résultats de l’analyse des données, que vous êtes compétent pour utiliser R, et que vous êtes compétent pour interpréter et présenter les résultats. Concentrez-vous sur les méthodes qui vous aident à commencer à répondre à vos questions de recherche. Vous n’êtes pas obligé d’appliquer toutes les procédures statistiques que nous avons apprises (et vous pouvez utiliser des techniques que nous n’avons pas officiellement abordées en classe, si vous êtes aventureux). Critiquez également vos propres méthodes et fournissez des suggestions pour améliorer votre analyse.\nLe projet est très ouvert. Vous devriez créer une sorte de visualisation(s) convaincante(s) de ces données en R. Il n’y a pas de limite sur les outils ou les packages que vous pouvez utiliser, mais il est nécessaire d’utiliser les packages que nous avons appris en classe (tidyverse). Vous n’avez pas besoin de visualiser toutes les données en une seule fois. Une seule visualisation de haute qualité recevra une meilleure note qu’un grand nombre de visualisations de mauvaise qualité. Faites également attention à votre présentation. La netteté, la cohérence et la clarté compteront. Toutes les analyses doivent être effectuées dans RStudio, en utilisant R."
-  },
-  {
-    "objectID": "projet/projet.html#introduction",
-    "href": "projet/projet.html#introduction",
-    "title": "Projet",
-    "section": "",
-    "text": "Le projet pour ce cours consistera en une analyse d’un ensemble de données de votre choix. De nombreux jeux de données en accès libre sont à disposition sur Internet. La section Données contient des liens vers des sites qui proposent des jeux de données. Vous pouvez choisir des données en fonction de vos intérêts. Le but de ce projet est de démontrer votre maîtrise des techniques que nous avons abordées dans ce cours (et au-delà, si vous le souhaitez) et de les appliquer de manière significative à un ensemble de données original.\nLe but n’est pas de faire une analyse exhaustive des données, c’est-à-dire de ne pas calculer chaque statistique et procédure que vous avez apprise pour chaque variable, mais plutôt de me montrer que vous êtes compétent pour poser des questions significatives et y répondre avec les résultats de l’analyse des données, que vous êtes compétent pour utiliser R, et que vous êtes compétent pour interpréter et présenter les résultats. Concentrez-vous sur les méthodes qui vous aident à commencer à répondre à vos questions de recherche. Vous n’êtes pas obligé d’appliquer toutes les procédures statistiques que nous avons apprises (et vous pouvez utiliser des techniques que nous n’avons pas officiellement abordées en classe, si vous êtes aventureux). Critiquez également vos propres méthodes et fournissez des suggestions pour améliorer votre analyse.\nLe projet est très ouvert. Vous devriez créer une sorte de visualisation(s) convaincante(s) de ces données en R. Il n’y a pas de limite sur les outils ou les packages que vous pouvez utiliser, mais il est nécessaire d’utiliser les packages que nous avons appris en classe (tidyverse). Vous n’avez pas besoin de visualiser toutes les données en une seule fois. Une seule visualisation de haute qualité recevra une meilleure note qu’un grand nombre de visualisations de mauvaise qualité. Faites également attention à votre présentation. La netteté, la cohérence et la clarté compteront. Toutes les analyses doivent être effectuées dans RStudio, en utilisant R."
-  },
-  {
-    "objectID": "projet/projet.html#data",
-    "href": "projet/projet.html#data",
-    "title": "Projet",
-    "section": "Données",
-    "text": "Données\nPour que vous ayez la meilleure chance de réussir ce projet, il est important que vous choisissiez un ensemble de données adapté. Cela signifie que les données doivent être facilement accessibles et suffisamment grandes pour que plusieurs relations puissent être explorées. Ainsi, votre ensemble de données doit comporter au moins 50 observations et entre 10 et 20 variables (des exceptions peuvent être faites, mais vous devez d’abord le valider avec nous). Les variables de l’ensemble de données doivent inclure des variables catégorielles, des variables numériques discrètes et des variables numériques continues.\nSi le format des données n’a pas été vu en classe, c’est ok mais attendez-vous à devoir fournir un léger effort pour les charger dans R. Si vous avez des difficultés, demandez de l’aide avant qu’il ne soit trop tard.\nIl est interdit d’utiliser des données utilisées pendant le cours, dans des exemples, des examens ou des laboratoires.\nCi-dessous, vous trouverez une liste de références de jeux de données qui pourraient vous intéresser. Vous n’êtes pas limité à ces ressources, et en fait, vous êtes encouragé à aller au-delà. Mais vous pourriez y trouver quelque chose d’intéressant :\n\nTidyTuesday\nKaggle datasets\nHarvard Dataverse\nAwesome public datasets\nICPSR Data Archive Project\nGoogle Dataset Search\n\nPlusieurs villes, pays et institutions ont également des portails de données ouvertes. Voici quelques exemples :\n\nCanada Open Data\nDonnées Québec\nVille de Montreal\nCDC Datasets\nNHS Scotland Open Data\nEdinburgh Open Data\nUK Gov Data\n…\n\nN’oubliez pas que vous pouvez combiner plusieurs sources de données également."
-  },
-  {
-    "objectID": "projet/projet.html#consignes",
-    "href": "projet/projet.html#consignes",
-    "title": "Projet",
-    "section": "Consignes",
-    "text": "Consignes\n\nProposal (10 pts)\nPour commencez, vous devez soumettre un proposal de projet. Il s’agit d’un court document de maximum 1 page indiquant :\n\nIntroduction et contexte: Dans cette partie, vous présenterez brièvement le contexte dans lequel s’inscrit votre mini-article. Quelle est la question principale ? Pourquoi est-ce intéressant de se la poser.\nPrésentation des Données: Une présentation plus détaillée des données choisies. D’où viennent les données ? Quand les données ont-elles été collectées ? Combien y a-t-il d’observations ? De variable ? Quel est le format des données? Quelles sont les variables que vous allez utiliser ? En quoi sont-elles utiles ? etc.\n\nUne copie des données doit être transmise dans le dossier data.\n\nAnalyse exploratoire: Quelles sont les questions que vous souhaitez explorer? Quelles sont les hypothèses que vous souhaitez tester? Quelles sont les méthodes que vous envisagez d’utiliser pour répondre à ces questions?\n\nVous pouvez également produire des premières analyses exploratoires de vos données.\n\nCritères d’évaluation\n\n\n\nCritère\nPoints\n\n\n\n\nQuestions de recherche\n4\n\n\nChoix des données et exploration\n4\n\n\nPrésentation, Qualité\n2"
-  },
-  {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#visualisation-des-données",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#visualisation-des-données",
-    "title": "Visualisation des données",
-    "section": "Visualisation des données",
-    "text": "Visualisation des données\n\n« The purpose of visualization is insight, not pictures »\nBen Shneiderman"
+    "text": "Étape 3b - Visualiser avec une courbe\n\nhotels %&gt;%\n  mutate(arrival_date = ymd(glue(\"{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}\"))) %&gt;% \n  count(arrival_date) %&gt;%\n  ggplot(aes(x = arrival_date, y = n, group = 1)) +\n  geom_smooth() #&lt;&lt;"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#dataviz",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#dataviz",
     "title": "Visualisation des données",
     "section": "DataViz",
-    "text": "DataViz\n\nCommuniquer\nTransmettre de l’information aux autres\nExplorer\nDétecter des régularités, relations ou anomalies\nRaisonner\nComprendre et réfléchir sur les données\nTester des hypothèses par une mise en perspectives des observations/faits pertinents\nMémoriser\nRegrouper des informations non homogènes sur un support visuel\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nRossy et al. (2019)"
+    "text": "DataViz\nCommuniquer\n\nTransmettre de l’information aux autres\n\nExplorer\n\nDétecter des régularités, relations ou anomalies\n\nRaisonner\n\nComprendre et réfléchir sur les données\nTester des hypothèses par une mise en perspectives des observations/faits pertinents\n\nMémoriser - Regrouper des informations non homogènes sur un support visuel"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#définition",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#définition",
     "title": "Visualisation des données",
     "section": "Définition",
-    "text": "Définition\n\n« La représentation graphique fait partie des systèmes de signes que l’homme a construits pour retenir, comprendre et communiquer les observations qui lui sont nécessaires. »\nBertin 1967\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin, J (1967/2005)"
+    "text": "Définition\n\n“La représentation graphique fait partie des systèmes de signes que l’homme a construits pour retenir, comprendre et communiquer les observations qui lui sont nécessaires.” - Bertin 1967\n\n\n(bertinSemiologieGraphiqueDiagrammes2005?)"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#infographies",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#infographies",
     "title": "Visualisation des données",
     "section": "Infographies",
-    "text": "Infographies\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nu/archertob\nhttps://www.reddit.com/r/dataisbeautiful/comments/113yf0i/oc_visualization_of_all_rocket_launches_into_space/"
+    "text": "Infographies\n :::.aside Source: Visualization of all rocket launches into space by u/archertob :::"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#imagerie-médicale",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#imagerie-médicale",
     "title": "Visualisation des données",
     "section": "Imagerie médicale",
-    "text": "Imagerie médicale\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nGrabherr, Silke & Egger, Coraline & Vilarino, Raquel & Campana, Lorenzo & Jotterand, Melissa & Dedouit, Fabrice. (2017). Modern post-mortem imaging: an update on recent developments. Forensic sciences research. 2. 52-64. 10.1080/20961790.2017.1330738."
+    "text": "Imagerie médicale\n\n\nSource: Grabherr, Silke & Egger, Coraline & Vilarino, Raquel & Campana, Lorenzo & Jotterand, Melissa & Dedouit, Fabrice. (2017). Modern post-mortem imaging: an update on recent developments. Forensic sciences research. 2. 52-64. 10.1080/20961790.2017.1330738."
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception",
     "title": "Visualisation des données",
     "section": "Perception",
-    "text": "Perception\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Perception"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-vs-cognition",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-vs-cognition",
     "title": "Visualisation des données",
     "section": "Perception vs cognition",
-    "text": "Perception vs cognition\n\nPerception\nSuite à un stimulus sensoriel\nVue, ouïe, odorat, touché et gout\nDépend de l’expérience et de ce que l’on attend\nCognition\nSouvenir, savoir, penser, juger, résoudre des problèmes\nPeuvent être en conflit:\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nRouge Vert Bleu Orange Violet Rose Vert Rouge Bleu"
+    "text": "Perception vs cognition\n\nPerception\n\nSuite à un stimulus sensoriel\nVue, ouïe, odorat, touché et gout\nDépend de l’expérience et de ce que l’on attend\n\n\n\nCognition\n\nSouvenir, savoir, penser, juger, résoudre des problèmes\n\n\n\nPeuvent être en conflit:\nRouge Vert Bleu Orange Violet Rose Rouge Vert Bleu\n\nPerception\n\n\n\nPerception\n\n\n\nPerception\n\n\n\nLa vision est sélective:\n\nL’œil s’attache à certains endroits\nPerception pré-attentive\n\n\n\n\n\n\n\n\nLa perception de la couleur n’est pas uniforme\n{.width=“80%”}\n\n{.width=“80%”}\n\n\n\nPrincipes de Gestalt : Nous avons tendance à grouper des éléments\n\nPerception pré-attentive\n\nOù est le point rouge ?\n\n\n\n\n\n\n\n\n\n\n\nPerception pré-attentive\n\n\nAussi appelé « Visual popout »\n\nPropriétés détectées par le système visuel «primaire»\nRapide et précis\n\n\n{.width=“80%”}\n\nPerception pré-attentive\n\nComment les éléments sont-ils regroupés ?\n\n\n\n\n\n\n\n\n\nPrincipes de Gestalt\nNotre vision tend à regrouper certaines informations selon certains paramètres\n\n\n\nChoix de représentations\n\n\n\nPrincipes\nLa création d’une visualisation est guidée par différents principes:\n\nPrincipe d’utilité\nPrincipe de dimensionnalité\nPrincipe d’expressivité\nPrincipe d’intégrité\nPrincipe d’efficacité\n\n\n\nPrincipe d’utilité\nOn utilise une visualisation lorsque c’est nécessaire\n\nSouvent pour travailler avec des données présentant un certain degré de complexité\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrincipe de dimensionnalité\nLe choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante\n\n\n\n\nExemple\n\n\n\nPrincipe d’expressivité\n\nUn ensemble de faits est bien exprimé dans un langage visuel si les phrases (les éléments de représentation) du langage expriment\nla totalité des faits\nuniquement les faits contenus dans les données\nUne communication est basée sur le fait que tous les participants partagent des conventions qui déterminent\nComment construire le message\nComment interpréter le message\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMackinlay J (1986)\nRossy et al. (2019)\n\n\n\nMonosémie\n\n« Un système est monosémique quand la connaissance de la signification de chaque signe précède l’observation de l’assemblage des signes »\nBesoin de lever les ambiguïtés\nDocumentation des sources\nFiabilité: Auteur, version, date/lieu de création/modification\nValidité: Sources des données\nSur la représentation\nTitre: simple et informatif\nLégende: données, sources, définir les conventions\nÉchelles\nRepères: conventions visuelles\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nQuentin Rossy – Cours ADSR – UNIL/ESC\n\n\n\nVariables visuelles\n\nMarques – Les briques de base de la visualisation\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nChannels – Organisation et apparence des marques\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFekete J-D (2011)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFarooq A (2012)\n\n\n\nChoix des couleurs\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\nOn utilise des color maps\nChoix de la plage de couleur va dépendre de ce que l’on souhaite représenter\nAttention avec les couleurs…\nCertaines personnes sont daltoniennes\n8% des hommes – 1% des femmes\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nPrincipe d’efficacité\n\n« Si, pour obtenir une réponse correcte et complète à une question donnée et toutes choses égales, une construction requiert un temps de perception plus court qu’une autre construction, on dira qu’elle est plus efficace pour cette question. »\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nRossy et al. (2019)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nChartjunk – intérêt\n\nRésultats de l’étude de Bateman et al. (2010)\nNe semble pas y avoir de problème d’interprétation\nPermet de se souvenir plus longtemps de la visualisation (sujet et détails)\nPros\nAgréable, attire l’œil, plus d’impact\nCons\nLisibilité, sérieux\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nPrincipe d’intégrité\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\nRossy et al. (2019)\n\n\n\nExemples - Distorsions\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\n\n\n\nExemples - Décontextualisation\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBetter pie charts:https://blog.datawrapper.de/pie-charts/\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\nBonnes pratiques\nAxe à 0\nPas plus de 4 lignes\nTrait plein\nMettre les labels directement sur les lignes\n\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nRéférences\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nQuelques galeries:\nhttp://euclid.psych.yorku.ca/SCS/Gallery/noframes.html\nhttps://www.visual-literacy.org/periodic_table/periodic_table.html\nhttps://r-graph-gallery.com/\nhttps://d3js.org/\nhttps://d3-graph-gallery.com/\n\n\n\n\nRéférences\n\nMunzner T (2014) Visualization Analysis and Design. New York: A K Peters/CRC Press. DOI : 10.1201/b17511.\nBertin J (2005) Sémiologie graphique: les diagrammes - les réseaux - les cartes. 4e éd. Ré-impression. Paris: École des Hautes Études en Sciences Sociales (1967 – 1ère éd).\nTufte ER (2001) The Visual Display of Quantitative Information. 2e édition. Cheshire, Conn: Graphics Press.\nHealey CG (s. d.) Perception in Visualization. Disponible à l’adresse : https://www.csc2.ncsu.edu/faculty/healey/PP/ [Consulté le 20 février 2023].\nStevens SS (1946) On the Theory of Scales of Measurement. Science 103(2684). American Association for the Advancement of Science: 677‑680. DOI : 10.1126/science.103.2684.677.\nMackinlay J (1986) Automating the design of graphical presentations of relational information. ACM Transactions on Graphics 5(2): 110‑141. DOI : 10.1145/22949.22950.\nFekete J-D (2011) La visualisation analytique, pour comprendre des données complexes. Disponible à l’adresse : https://interstices.info/la-visualisation-analytique-pour-comprendre-des-donnees-complexes/ [Consulté le 21 février 2023].\nFarooq A (2012) A Thousand Words. Disponible à l’adresse : http://www.softviscollection.org/intro/a-thousand-words/ [Consulté le 21 février 2023].\nRossy Q, Ribaux O, Boivin R et Fortin F (2019) Le traitement de l’information dans l’enquête criminelle. In: Cusson M, Ribaux O, Blais É, et al. (éds) Nouveau traité de sécurité: sécurité intérieure et sécurité urbaine. Nouvelle édition. Montréal: Hurtubise, p. 428‑447.\nBateman S, Mandryk RL, Gutwin C, Genest A, McDine D et Brooks C (2010) Useful junk? the effects of visual embellishment on comprehension and memorability of charts. In: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, New York, NY, USA, 10 avril 2010, p. 2573‑2582. CHI ’10. Association for Computing Machinery. DOI : 10.1145/1753326.1753716.\nBerry C (2021) When Data Visualization Really Isn’t Useful (and When It Is) - Old Street Solutions. Disponible à l’adresse : https://www.oldstreetsolutions.com/good-and-bad-data-visualization [Consulté le 22 février 2023].\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\n\n\n\n\n\n\n\nUne image vaut mieux de 10 000 mots\n\n(rossyTraitementLinformationDans2019?)"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-1",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-1",
     "title": "Visualisation des données",
     "section": "Perception",
-    "text": "Perception\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Perception"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-2",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-2",
     "title": "Visualisation des données",
     "section": "Perception",
-    "text": "Perception\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Perception"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-3",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-3",
     "title": "Visualisation des données",
     "section": "Perception",
-    "text": "Perception\n\nLa vision est sélective\nL’œil s’attache à certains endroits\nPerception préattentive\nLa perception de la couleur n’est pas uniforme\nNous avons tendance à grouper des éléments\nPrincipes de Gestalt\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
-  },
-  {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#couleur",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#couleur",
-    "title": "Visualisation des données",
-    "section": "Couleur",
-    "text": "Couleur\n\nAttributs\nHue (teinte)\nCouleur pure\nSaturation\nPureté de la couleur\nValue\nLuminosité\nClarté d’une couleur\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Perception\n\n\n\nLa vision est sélective:\n\nL’œil s’attache à certains endroits\nPerception pré-attentive\n\n\n\n\n\n\n\n\nLa perception de la couleur n’est pas uniforme\n{.width=“80%”}\n\n{.width=“80%”}\n\n\n\nPrincipes de Gestalt : Nous avons tendance à grouper des éléments\n\nPerception pré-attentive\n\nOù est le point rouge ?\n\n\n\n\n\n\n\n\n\n\n\nPerception pré-attentive\n\n\nAussi appelé « Visual popout »\n\nPropriétés détectées par le système visuel «primaire»\nRapide et précis\n\n\n{.width=“80%”}\n\nPerception pré-attentive\n\nComment les éléments sont-ils regroupés ?\n\n\n\n\n\n\n\n\n\nPrincipes de Gestalt\nNotre vision tend à regrouper certaines informations selon certains paramètres\n\n\n\nChoix de représentations\n\n\n\nPrincipes\nLa création d’une visualisation est guidée par différents principes:\n\nPrincipe d’utilité\nPrincipe de dimensionnalité\nPrincipe d’expressivité\nPrincipe d’intégrité\nPrincipe d’efficacité\n\n\n\nPrincipe d’utilité\nOn utilise une visualisation lorsque c’est nécessaire\n\nSouvent pour travailler avec des données présentant un certain degré de complexité\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrincipe de dimensionnalité\nLe choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante\n\n\n\n\nExemple\n\n\n\nPrincipe d’expressivité\n\nUn ensemble de faits est bien exprimé dans un langage visuel si les phrases (les éléments de représentation) du langage expriment\nla totalité des faits\nuniquement les faits contenus dans les données\nUne communication est basée sur le fait que tous les participants partagent des conventions qui déterminent\nComment construire le message\nComment interpréter le message\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMackinlay J (1986)\nRossy et al. (2019)\n\n\n\nMonosémie\n\n« Un système est monosémique quand la connaissance de la signification de chaque signe précède l’observation de l’assemblage des signes »\nBesoin de lever les ambiguïtés\nDocumentation des sources\nFiabilité: Auteur, version, date/lieu de création/modification\nValidité: Sources des données\nSur la représentation\nTitre: simple et informatif\nLégende: données, sources, définir les conventions\nÉchelles\nRepères: conventions visuelles\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nQuentin Rossy – Cours ADSR – UNIL/ESC\n\n\n\nVariables visuelles\n\nMarques – Les briques de base de la visualisation\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nChannels – Organisation et apparence des marques\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFekete J-D (2011)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFarooq A (2012)\n\n\n\nChoix des couleurs\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\nOn utilise des color maps\nChoix de la plage de couleur va dépendre de ce que l’on souhaite représenter\nAttention avec les couleurs…\nCertaines personnes sont daltoniennes\n8% des hommes – 1% des femmes\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nPrincipe d’efficacité\n\n« Si, pour obtenir une réponse correcte et complète à une question donnée et toutes choses égales, une construction requiert un temps de perception plus court qu’une autre construction, on dira qu’elle est plus efficace pour cette question. »\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nRossy et al. (2019)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nChartjunk – intérêt\n\nRésultats de l’étude de Bateman et al. (2010)\nNe semble pas y avoir de problème d’interprétation\nPermet de se souvenir plus longtemps de la visualisation (sujet et détails)\nPros\nAgréable, attire l’œil, plus d’impact\nCons\nLisibilité, sérieux\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nPrincipe d’intégrité\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\nRossy et al. (2019)\n\n\n\nExemples - Distorsions\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\n\n\n\nExemples - Décontextualisation\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBetter pie charts:https://blog.datawrapper.de/pie-charts/\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\nBonnes pratiques\nAxe à 0\nPas plus de 4 lignes\nTrait plein\nMettre les labels directement sur les lignes\n\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nRéférences\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nQuelques galeries:\nhttp://euclid.psych.yorku.ca/SCS/Gallery/noframes.html\nhttps://www.visual-literacy.org/periodic_table/periodic_table.html\nhttps://r-graph-gallery.com/\nhttps://d3js.org/\nhttps://d3-graph-gallery.com/\n\n\n\n\nRéférences\n\nMunzner T (2014) Visualization Analysis and Design. New York: A K Peters/CRC Press. DOI : 10.1201/b17511.\nBertin J (2005) Sémiologie graphique: les diagrammes - les réseaux - les cartes. 4e éd. Ré-impression. Paris: École des Hautes Études en Sciences Sociales (1967 – 1ère éd).\nTufte ER (2001) The Visual Display of Quantitative Information. 2e édition. Cheshire, Conn: Graphics Press.\nHealey CG (s. d.) Perception in Visualization. Disponible à l’adresse : https://www.csc2.ncsu.edu/faculty/healey/PP/ [Consulté le 20 février 2023].\nStevens SS (1946) On the Theory of Scales of Measurement. Science 103(2684). American Association for the Advancement of Science: 677‑680. DOI : 10.1126/science.103.2684.677.\nMackinlay J (1986) Automating the design of graphical presentations of relational information. ACM Transactions on Graphics 5(2): 110‑141. DOI : 10.1145/22949.22950.\nFekete J-D (2011) La visualisation analytique, pour comprendre des données complexes. Disponible à l’adresse : https://interstices.info/la-visualisation-analytique-pour-comprendre-des-donnees-complexes/ [Consulté le 21 février 2023].\nFarooq A (2012) A Thousand Words. Disponible à l’adresse : http://www.softviscollection.org/intro/a-thousand-words/ [Consulté le 21 février 2023].\nRossy Q, Ribaux O, Boivin R et Fortin F (2019) Le traitement de l’information dans l’enquête criminelle. In: Cusson M, Ribaux O, Blais É, et al. (éds) Nouveau traité de sécurité: sécurité intérieure et sécurité urbaine. Nouvelle édition. Montréal: Hurtubise, p. 428‑447.\nBateman S, Mandryk RL, Gutwin C, Genest A, McDine D et Brooks C (2010) Useful junk? the effects of visual embellishment on comprehension and memorability of charts. In: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, New York, NY, USA, 10 avril 2010, p. 2573‑2582. CHI ’10. Association for Computing Machinery. DOI : 10.1145/1753326.1753716.\nBerry C (2021) When Data Visualization Really Isn’t Useful (and When It Is) - Old Street Solutions. Disponible à l’adresse : https://www.oldstreetsolutions.com/good-and-bad-data-visualization [Consulté le 22 février 2023].\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive",
     "title": "Visualisation des données",
     "section": "Perception pré-attentive",
-    "text": "Perception pré-attentive\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nAussi appelé « Visual popout »\nPropriétés détectées par le système visuel «primaire»\nRapide et précis\nDétection d’un élément\nHealey CG (s. d.) Perception in Visualization"
+    "text": "Perception pré-attentive\n\nOù est le point rouge ?"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive-1",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive-1",
     "title": "Visualisation des données",
     "section": "Perception pré-attentive",
-    "text": "Perception pré-attentive\n\nSéparation de zones\nRegroupement d’éléments\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Perception pré-attentive\n\n\nAussi appelé « Visual popout »\n\nPropriétés détectées par le système visuel «primaire»\nRapide et précis\n\n\n{.width=“80%”}\n\nPerception pré-attentive\n\nComment les éléments sont-ils regroupés ?\n\n\n\n\n\n\n\n\n\nPrincipes de Gestalt\nNotre vision tend à regrouper certaines informations selon certains paramètres\n\n\n\nChoix de représentations\n\n\n\nPrincipes\nLa création d’une visualisation est guidée par différents principes:\n\nPrincipe d’utilité\nPrincipe de dimensionnalité\nPrincipe d’expressivité\nPrincipe d’intégrité\nPrincipe d’efficacité\n\n\n\nPrincipe d’utilité\nOn utilise une visualisation lorsque c’est nécessaire\n\nSouvent pour travailler avec des données présentant un certain degré de complexité\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrincipe de dimensionnalité\nLe choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante\n\n\n\n\nExemple\n\n\n\nPrincipe d’expressivité\n\nUn ensemble de faits est bien exprimé dans un langage visuel si les phrases (les éléments de représentation) du langage expriment\nla totalité des faits\nuniquement les faits contenus dans les données\nUne communication est basée sur le fait que tous les participants partagent des conventions qui déterminent\nComment construire le message\nComment interpréter le message\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMackinlay J (1986)\nRossy et al. (2019)\n\n\n\nMonosémie\n\n« Un système est monosémique quand la connaissance de la signification de chaque signe précède l’observation de l’assemblage des signes »\nBesoin de lever les ambiguïtés\nDocumentation des sources\nFiabilité: Auteur, version, date/lieu de création/modification\nValidité: Sources des données\nSur la représentation\nTitre: simple et informatif\nLégende: données, sources, définir les conventions\nÉchelles\nRepères: conventions visuelles\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nQuentin Rossy – Cours ADSR – UNIL/ESC\n\n\n\nVariables visuelles\n\nMarques – Les briques de base de la visualisation\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nChannels – Organisation et apparence des marques\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\n\nVariables visuelles\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFekete J-D (2011)\n\n\n\nChoix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFarooq A (2012)\n\n\n\nChoix des couleurs\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\nOn utilise des color maps\nChoix de la plage de couleur va dépendre de ce que l’on souhaite représenter\nAttention avec les couleurs…\nCertaines personnes sont daltoniennes\n8% des hommes – 1% des femmes\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nPrincipe d’efficacité\n\n« Si, pour obtenir une réponse correcte et complète à une question donnée et toutes choses égales, une construction requiert un temps de perception plus court qu’une autre construction, on dira qu’elle est plus efficace pour cette question. »\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nRossy et al. (2019)\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nExemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)\n\n\n\n\nChartjunk – intérêt\n\nRésultats de l’étude de Bateman et al. (2010)\nNe semble pas y avoir de problème d’interprétation\nPermet de se souvenir plus longtemps de la visualisation (sujet et détails)\nPros\nAgréable, attire l’œil, plus d’impact\nCons\nLisibilité, sérieux\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nPrincipe d’intégrité\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\nRossy et al. (2019)\n\n\n\nExemples - Distorsions\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTufte ER (2001)\n\n\n\nExemples - Décontextualisation\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\nExemples – Changement d’échelle\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)\n\n\n\nExemple – 3D\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nhttps://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts\n\n\n\nExemple – Pie Chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBetter pie charts:https://blog.datawrapper.de/pie-charts/\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\n\n\n\nExemple – Line chart\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nExemple tiré du cours Data Visualization – Kirell Benzi - EPFL\nBonnes pratiques\nAxe à 0\nPas plus de 4 lignes\nTrait plein\nMettre les labels directement sur les lignes\n\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nExercice\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\nRéférences\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nQuelques galeries:\nhttp://euclid.psych.yorku.ca/SCS/Gallery/noframes.html\nhttps://www.visual-literacy.org/periodic_table/periodic_table.html\nhttps://r-graph-gallery.com/\nhttps://d3js.org/\nhttps://d3-graph-gallery.com/\n\n\n\n\nRéférences\n\nMunzner T (2014) Visualization Analysis and Design. New York: A K Peters/CRC Press. DOI : 10.1201/b17511.\nBertin J (2005) Sémiologie graphique: les diagrammes - les réseaux - les cartes. 4e éd. Ré-impression. Paris: École des Hautes Études en Sciences Sociales (1967 – 1ère éd).\nTufte ER (2001) The Visual Display of Quantitative Information. 2e édition. Cheshire, Conn: Graphics Press.\nHealey CG (s. d.) Perception in Visualization. Disponible à l’adresse : https://www.csc2.ncsu.edu/faculty/healey/PP/ [Consulté le 20 février 2023].\nStevens SS (1946) On the Theory of Scales of Measurement. Science 103(2684). American Association for the Advancement of Science: 677‑680. DOI : 10.1126/science.103.2684.677.\nMackinlay J (1986) Automating the design of graphical presentations of relational information. ACM Transactions on Graphics 5(2): 110‑141. DOI : 10.1145/22949.22950.\nFekete J-D (2011) La visualisation analytique, pour comprendre des données complexes. Disponible à l’adresse : https://interstices.info/la-visualisation-analytique-pour-comprendre-des-donnees-complexes/ [Consulté le 21 février 2023].\nFarooq A (2012) A Thousand Words. Disponible à l’adresse : http://www.softviscollection.org/intro/a-thousand-words/ [Consulté le 21 février 2023].\nRossy Q, Ribaux O, Boivin R et Fortin F (2019) Le traitement de l’information dans l’enquête criminelle. In: Cusson M, Ribaux O, Blais É, et al. (éds) Nouveau traité de sécurité: sécurité intérieure et sécurité urbaine. Nouvelle édition. Montréal: Hurtubise, p. 428‑447.\nBateman S, Mandryk RL, Gutwin C, Genest A, McDine D et Brooks C (2010) Useful junk? the effects of visual embellishment on comprehension and memorability of charts. In: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, New York, NY, USA, 10 avril 2010, p. 2573‑2582. CHI ’10. Association for Computing Machinery. DOI : 10.1145/1753326.1753716.\nBerry C (2021) When Data Visualization Really Isn’t Useful (and When It Is) - Old Street Solutions. Disponible à l’adresse : https://www.oldstreetsolutions.com/good-and-bad-data-visualization [Consulté le 22 février 2023].\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+  },
+  {
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive-2",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#perception-pré-attentive-2",
+    "title": "Visualisation des données",
+    "section": "Perception pré-attentive",
+    "text": "Perception pré-attentive\n\nComment les éléments sont-ils regroupés ?"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#principes-de-gestalt",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#principes-de-gestalt",
     "title": "Visualisation des données",
     "section": "Principes de Gestalt",
-    "text": "Principes de Gestalt\n\nNotre vision tend à regrouper certaines informations selon certains paramètres\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
-  },
-  {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#choix-de-représentations",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#choix-de-représentations",
-    "title": "Visualisation des données",
-    "section": "Choix de représentations",
-    "text": "Choix de représentations"
+    "text": "Principes de Gestalt\nNotre vision tend à regrouper certaines informations selon certains paramètres"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#principes",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#principes",
     "title": "Visualisation des données",
     "section": "Principes",
-    "text": "Principes\n\nLa création d’une visualisation est guidée par différents principes:\nPrincipe d’utilité\nPrincipe de dimensionnalité\nPrincipe d’expressivité\nPrincipe d’intégrité\nPrincipe d’efficacité\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+    "text": "Principes\nLa création d’une visualisation est guidée par différents principes:\n\nPrincipe d’utilité\nPrincipe de dimensionnalité\nPrincipe d’expressivité\nPrincipe d’intégrité\nPrincipe d’efficacité"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#principe-dutilité",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#principe-dutilité",
     "title": "Visualisation des données",
     "section": "Principe d’utilité",
-    "text": "Principe d’utilité\n\nOn utilise une visualisation lorsque c’est nécessaire\nSouvent pour travailler avec des données présentant un certain degré de complexité\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nUne image vaut mieux de 10 000 mots"
+    "text": "Principe d’utilité\nOn utilise une visualisation lorsque c’est nécessaire\n\nSouvent pour travailler avec des données présentant un certain degré de complexité"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#principe-de-dimensionnalité",
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#principe-de-dimensionnalité",
     "title": "Visualisation des données",
     "section": "Principe de dimensionnalité",
-    "text": "Principe de dimensionnalité\n\nLe choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nTemporelle\nQuand,\nsur quelles périodes, à – quelle fréquence, selon - quelle régularité – —– temporelle, etc. – ——-\nQuantitative\nCombien, selon quelle proportion, quel ordre, etc.\nRelationnelle\nQui, quoi, avec qui, avec quoi, etc.\nOù, dans quelle région, selon quel parcours, quelle étendue, etc.\nSpatiale\nRossy et al. (2019)"
+    "text": "Principe de dimensionnalité\nLe choix d’une représentation doit être fait en fonction de la dimension d’analyse dominante"
   },
   {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemples",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemples",
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple",
     "title": "Visualisation des données",
-    "section": "Exemples",
-    "text": "Exemples\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
-  },
-  {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#nature-des-données",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#nature-des-données",
-    "title": "Visualisation des données",
-    "section": "Nature des données",
-    "text": "Nature des données\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nStevens SS (1946)"
+    "section": "Exemple",
+    "text": "Exemple"
   },
   {
     "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#principe-dexpressivité",
@@ -2282,8 +2338,8 @@
     "text": "Choix des variables\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)"
   },
   {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple",
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-1",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-1",
     "title": "Visualisation des données",
     "section": "Exemple",
     "text": "Exemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nFarooq A (2012)"
@@ -2296,8 +2352,8 @@
     "text": "Choix des couleurs\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nMunzner T (2014)\nOn utilise des color maps\nChoix de la plage de couleur va dépendre de ce que l’on souhaite représenter\nAttention avec les couleurs…\nCertaines personnes sont daltoniennes\n8% des hommes – 1% des femmes"
   },
   {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-1",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-1",
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-2",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-2",
     "title": "Visualisation des données",
     "section": "Exemple",
     "text": "Exemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBerry C (2021)"
@@ -2310,15 +2366,15 @@
     "text": "Principe d’efficacité\n\n« Si, pour obtenir une réponse correcte et complète à une question donnée et toutes choses égales, une construction requiert un temps de perception plus court qu’une autre construction, on dira qu’elle est plus efficace pour cette question. »\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBertin J (2005)\nRossy et al. (2019)"
   },
   {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-2",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-2",
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-3",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-3",
     "title": "Visualisation des données",
     "section": "Exemple",
     "text": "Exemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)"
   },
   {
-    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-3",
-    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-3",
+    "objectID": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-4",
+    "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#exemple-4",
     "title": "Visualisation des données",
     "section": "Exemple",
     "text": "Exemple\n\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\nBateman S et al. (2010)\nTufte ER (2001)"
@@ -2461,14 +2517,210 @@
     "href": "cours/06 - Good Dataviz/06 - good-dataviz.html#références-1",
     "title": "Visualisation des données",
     "section": "Références",
-    "text": "Références\n\nMunzner T (2014) Visualization Analysis and Design. New York: A K Peters/CRC Press. DOI : 10.1201/b17511.\nBertin J (2005) Sémiologie graphique: les diagrammes - les réseaux - les cartes. 4e éd. Ré-impression. Paris: École des Hautes Études en Sciences Sociales (1967 – 1ère éd).\nTufte ER (2001) The Visual Display of Quantitative Information. 2e édition. Cheshire, Conn: Graphics Press.\nHealey CG (s. d.) Perception in Visualization. Disponible à l’adresse : https://www.csc2.ncsu.edu/faculty/healey/PP/ [Consulté le 20 février 2023].\nStevens SS (1946) On the Theory of Scales of Measurement. Science 103(2684). American Association for the Advancement of Science: 677‑680. DOI : 10.1126/science.103.2684.677.\nMackinlay J (1986) Automating the design of graphical presentations of relational information. ACM Transactions on Graphics 5(2): 110‑141. DOI : 10.1145/22949.22950.\nFekete J-D (2011) La visualisation analytique, pour comprendre des données complexes. Disponible à l’adresse : https://interstices.info/la-visualisation-analytique-pour-comprendre-des-donnees-complexes/ [Consulté le 21 février 2023].\nFarooq A (2012) A Thousand Words. Disponible à l’adresse : http://www.softviscollection.org/intro/a-thousand-words/ [Consulté le 21 février 2023].\nRossy Q, Ribaux O, Boivin R et Fortin F (2019) Le traitement de l’information dans l’enquête criminelle. In: Cusson M, Ribaux O, Blais É, et al. (éds) Nouveau traité de sécurité: sécurité intérieure et sécurité urbaine. Nouvelle édition. Montréal: Hurtubise, p. 428‑447.\nBateman S, Mandryk RL, Gutwin C, Genest A, McDine D et Brooks C (2010) Useful junk? the effects of visual embellishment on comprehension and memorability of charts. In: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, New York, NY, USA, 10 avril 2010, p. 2573‑2582. CHI ’10. Association for Computing Machinery. DOI : 10.1145/1753326.1753716.\nBerry C (2021) When Data Visualization Really Isn’t Useful (and When It Is) - Old Street Solutions. Disponible à l’adresse : https://www.oldstreetsolutions.com/good-and-bad-data-visualization [Consulté le 22 février 2023].\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter\n\n\n\n\n\nPRO1036 - 04 | Tim Bollé"
+    "text": "Références\n\nMunzner T (2014) Visualization Analysis and Design. New York: A K Peters/CRC Press. DOI : 10.1201/b17511.\nBertin J (2005) Sémiologie graphique: les diagrammes - les réseaux - les cartes. 4e éd. Ré-impression. Paris: École des Hautes Études en Sciences Sociales (1967 – 1ère éd).\nTufte ER (2001) The Visual Display of Quantitative Information. 2e édition. Cheshire, Conn: Graphics Press.\nHealey CG (s. d.) Perception in Visualization. Disponible à l’adresse : https://www.csc2.ncsu.edu/faculty/healey/PP/ [Consulté le 20 février 2023].\nStevens SS (1946) On the Theory of Scales of Measurement. Science 103(2684). American Association for the Advancement of Science: 677‑680. DOI : 10.1126/science.103.2684.677.\nMackinlay J (1986) Automating the design of graphical presentations of relational information. ACM Transactions on Graphics 5(2): 110‑141. DOI : 10.1145/22949.22950.\nFekete J-D (2011) La visualisation analytique, pour comprendre des données complexes. Disponible à l’adresse : https://interstices.info/la-visualisation-analytique-pour-comprendre-des-donnees-complexes/ [Consulté le 21 février 2023].\nFarooq A (2012) A Thousand Words. Disponible à l’adresse : http://www.softviscollection.org/intro/a-thousand-words/ [Consulté le 21 février 2023].\nRossy Q, Ribaux O, Boivin R et Fortin F (2019) Le traitement de l’information dans l’enquête criminelle. In: Cusson M, Ribaux O, Blais É, et al. (éds) Nouveau traité de sécurité: sécurité intérieure et sécurité urbaine. Nouvelle édition. Montréal: Hurtubise, p. 428‑447.\nBateman S, Mandryk RL, Gutwin C, Genest A, McDine D et Brooks C (2010) Useful junk? the effects of visual embellishment on comprehension and memorability of charts. In: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, New York, NY, USA, 10 avril 2010, p. 2573‑2582. CHI ’10. Association for Computing Machinery. DOI : 10.1145/1753326.1753716.\nBerry C (2021) When Data Visualization Really Isn’t Useful (and When It Is) - Old Street Solutions. Disponible à l’adresse : https://www.oldstreetsolutions.com/good-and-bad-data-visualization [Consulté le 22 février 2023].\nTim Bollé | SFC1018 - Méthode d’analyse - Exploiter"
+  },
+  {
+    "objectID": "cours/cours.html",
+    "href": "cours/cours.html",
+    "title": "Cours",
+    "section": "",
+    "text": "Slides : Web PDF"
+  },
+  {
+    "objectID": "cours/cours.html#introduction",
+    "href": "cours/cours.html#introduction",
+    "title": "Cours",
+    "section": "",
+    "text": "Slides : Web PDF"
+  },
+  {
+    "objectID": "cours/cours.html#r-basics",
+    "href": "cours/cours.html#r-basics",
+    "title": "Cours",
+    "section": "01 - R basics",
+    "text": "01 - R basics\nSlides : Web PDF\n\nÀ faire pour la semaine prochaine:\n\nInstaller R (R project)\nInstaller Rstudio\nInstaller Git\nCréer un compte sur GitHub\nLire le Chapitre Introduction (Wickham et al., 2023)\nFaire le Lab01 - Pet names\n\nLectures complémentaires:\n\nChapitre Welcome to the Tidyverse (Wickham et al., 2019)"
+  },
+  {
+    "objectID": "cours/cours.html#visualisation-de-données",
+    "href": "cours/cours.html#visualisation-de-données",
+    "title": "Cours",
+    "section": "02 - Visualisation de données",
+    "text": "02 - Visualisation de données\nSlides : Web PDF\nDemo: Completez l’exercice disposible sur GitHub - https://github.com/PRO1036/star-wars\nLabs: Lab02 - Plastic waster\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab02\nEnvoyer le lab02 sur le repo Github classroom à votre nom\nLire le Chapitre Data Visualisation (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Exploring numerical data (Çetinkaya-Rundel and Hardin, 2024)\nChapitre Exploring categorical data (Çetinkaya-Rundel and Hardin, 2024)\nLivre ggplot2: Elegant Graphics for Data Analysis (Wickham et al., 2024)"
+  },
+  {
+    "objectID": "cours/cours.html#manipulation-de-données",
+    "href": "cours/cours.html#manipulation-de-données",
+    "title": "Cours",
+    "section": "03 - Manipulation de données",
+    "text": "03 - Manipulation de données\nSlides : Web PDF\nDemo : Hotel Bookings\nLabs: Lab03 - Nobel laureates\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab03\nEnvoyer le lab03 sur le repo Github classroom à votre nom\nLire le Chapitre Data Transformation (Wickham et al., 2023)\nLire le Chapitre Data Tidy (Wickham et al., 2023)\n\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
+  },
+  {
+    "objectID": "cours/cours.html#types-de-données-et-transformations",
+    "href": "cours/cours.html#types-de-données-et-transformations",
+    "title": "Cours",
+    "section": "04 - Types de données et transformations",
+    "text": "04 - Types de données et transformations\nSlides : Web PDF\nLabs: Lab04 - Star Wars\nProjet : Projet\n\nÀ faire pour la semaine prochaine:\n\nTerminer le lab04\nFaire le proposal du projet en équipe de 2 personnes\nLire le Chapitre Factors (Wickham et al., 2023)\n\nLectures complémentaires:\n\nChapitre Numbers (Wickham et al., 2023)\nChapitre Strings (Wickham et al., 2023)\nChapitre Dates and Time (Wickham et al., 2023)\nChapitre Missing Values (Wickham et al., 2023)"
+  },
+  {
+    "objectID": "cours/cours.html#importation-de-données-et-forme-tidy",
+    "href": "cours/cours.html#importation-de-données-et-forme-tidy",
+    "title": "Cours",
+    "section": "05 - Importation de données et forme Tidy",
+    "text": "05 - Importation de données et forme Tidy\nSlides : Web PDF\nLabs: Lab05 - Religion Income\nLectures complémentaires:\n\nArticle Tidy Data (Wickham, 2014)"
   },
   {
     "objectID": "cours/cours.html#better-viz",
     "href": "cours/cours.html#better-viz",
     "title": "Cours",
     "section": "06 - Better Viz !",
-    "text": "06 - Better Viz !\nSlides : PDF\nLabs: Lab05 - Better Viz"
+    "text": "06 - Better Viz !\nSlides : PDF\nLabs: Lab06 - Better Viz"
+  },
+  {
+    "objectID": "cours/cours.html#modélisation-régression-linéaire",
+    "href": "cours/cours.html#modélisation-régression-linéaire",
+    "title": "Cours",
+    "section": "07 - Modélisation : Régression linéaire",
+    "text": "07 - Modélisation : Régression linéaire\nSlides : Web PDF\nLabs: Lab07 - Grading the Professor"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bienvenue !",
+    "section": "",
+    "text": "Bienvenue au cours PRO1036 - Analyse de données scientifiques en R !\nL’ensemble des ressources pour les cours se trouvent sur ce site web."
+  },
+  {
+    "objectID": "index.html#cours",
+    "href": "index.html#cours",
+    "title": "Bienvenue !",
+    "section": "Cours",
+    "text": "Cours\nL’ensemble du matériel de cours se trouve dans l’onglet Cours."
+  },
+  {
+    "objectID": "index.html#exercices",
+    "href": "index.html#exercices",
+    "title": "Bienvenue !",
+    "section": "Exercices",
+    "text": "Exercices\nLes exercices se trouvent dans l’onglet Exercices Les liens pour avoir accès aux repos Github sont sur le portail de cours."
+  },
+  {
+    "objectID": "index.html#ressources",
+    "href": "index.html#ressources",
+    "title": "Bienvenue !",
+    "section": "Ressources",
+    "text": "Ressources\nVous pourrez trouver différentes ressources dans l’onglet Ressources."
+  },
+  {
+    "objectID": "index.html#à-propos",
+    "href": "index.html#à-propos",
+    "title": "Bienvenue !",
+    "section": "À propos",
+    "text": "À propos\nLes informations sur la licence et les remerciements se trouvent dans l’onglet À propos."
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "",
+    "text": "La pollution plastique est un problème majeur, avec des impacts négatifs sur les océans et ses habitants Our World in Data possède de nombreux jeux de données à différents niveaux (globaux, par pays et sur le temps). Pour ce laboratoire, nous allons travailler avec les données de 2010.\nNational Geographic a lancé un concours de communication par visualisation de données sur le thème des déchets plastiques : lien."
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#packages",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Packages",
+    "text": "Packages\nComme d’habitude, nous allons utiliser le tidyverse pour cette analyse.\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "href": "labs/lab02-plastic-waste/lab02-plastic-waste.html#données",
+    "title": "Lab 02 - Déchets plastiques",
+    "section": "Données",
+    "text": "Données\nLe jeu de données pour ce lab peut être trouvé dans le dossier data présent dans le repo. Nous reparlerons du chargement de données locales plus tard mais pour l’instant il suffit de lancer cette ligne:\n\nplastic_waste &lt;- read_csv(\"data/plastic-waste.csv\")\n\nLes variables présentes dans le jeu de données sont:\n\ncode: 3 lettres pour le code pays\nentity: nom du pays\ncontinent: nom du continent\nyear: année\ngdp_per_cap: PID par habitant en $ (2011)\nplastic_waste_per_cap: quantité de déchets plastiques par habitant en kg/jour\nmismanaged_plastic_waste_per_cap: quantité de déchets plastiques non gérés par habitant en kg/jour\nmismanaged_plastic_waste: quantité de déchets plastiques non gérés en tonnes\ncoastal_pop: Nombres de personnes vivant sur des côtes\ntotal_pop: Population totale selon Gapminder"
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html",
+    "title": "Lab 04 - Star Wars",
+    "section": "",
+    "text": "Crédit : Lucas Film\nLe but de ce lab est de traiter des données brutes de telle sorte qu’elles soient prêtes à être analysées. Nous allons pour cela utiliser les fonctions du tidyverse."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#packages",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#packages",
+    "title": "Lab 04 - Star Wars",
+    "section": "Packages",
+    "text": "Packages\nNous utiliserons le package tidyverse pour une grande partie de la manipulation des données. Vous pouvez le charger en exécutant ce qui suit dans votre Console :\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#données",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#données",
+    "title": "Lab 04 - Star Wars",
+    "section": "Données",
+    "text": "Données\nLe jeu de données pour cet exercice se trouve sous forme de fichier CSV (valeurs séparées par des virgules) dans le dossier data de votre dépôt. Vous pouvez les charger avec :\n\nsw &lt;- read_csv(\"data/starwars_characters.csv\")\n\nLes descriptions des variables sont les suivantes :\n\nname : nom du personnage\nheight : taille (en cm)\nmass : masse (en kg)\nhair_color : couleur des cheveux\nskin_color : couleur de la peau\neye_color : couleur des yeux\nbirth_year : année de naissance (BBY = Before the Battle of Yavin, ABY = After the Battle of Yavin)\ngender : genre\nhomeworld : planète d’origine\nspecies : espèce\n\nPour préparer les données et corriger les éventuelles erreurs, il est parfois nécessaire de faire des vérifications manuelles. Vous pouvez utiliser le site Wookieepedia pour vérifier les informations sur les personnages."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-1",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-1",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 1",
+    "text": "Exercice 1\nCombien d’observations et de variables y a-t-il dans le jeu de données ? Quel est le type attendu de chaque variable ? En jetant un coup d’oeil aux données, essayez de dresser une liste des changements à apporter pour que les données soient prêtes à être analysées. Nous voulons des données uniformes et dont le type est adapté à l’analyse.\nPour la suite des exercices, vous allez modifier l’objet sw, notamment en utilisant le verbe mutate. Faites particulièrement attention aux warnings qui peuvent apparaître lors de la modification des colonnes. Ceux-ci peuvent vous aider à trouver des erreurs. Pour faciliter le travail, stockez vos colonnes modifiées dans de nouvelles colonnnes, par exemple mass_clean, height_clean, etc. À la fin, vous pourrez supprimer les anciennes colonnes."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-2",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-2",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 2",
+    "text": "Exercice 2\nCorrigez la colonne mass de sorte à obtenir des nombres. Assurez-vous de modifier les valeurs mal renseignées (regardez par exemple les masses de Chewbacca et de Jabba) avant de faire une conversion de type.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-3",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-3",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 3",
+    "text": "Exercice 3\nPour la colonne gender, quelles sont les valeurs possibles ? Comment sont désignées les valeurs inconnues ?\nEn particulier, de quelle espèce sont les personnages avec des genre inconnus ?\nModifiez les valeurs du genre pour ces personnages de telle manière à les uniformiser. Vous pouvez choisir un genre adapté, en utilisant le nom de l’espèce par exemple.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-4",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-4",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 4",
+    "text": "Exercice 4\nTransformez la colonne homeworld en facteur et attribuez la valeur Unknown aux valeurs manquantes.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-5",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-5",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 5",
+    "text": "Exercice 5\nModifiez la colonne birth_year pour qu’elle soit de type numérique en enlevant le “BBY”. Pour cela, vous pouvez utiliser la fonction str_replace du package stringr (déjà chargé avec le tidyverse).\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-6",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-6",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 6",
+    "text": "Exercice 6\nCréez un boxplot de la variable mass en fonction de la variable species. Cela est difficile à lire…\nRegroupez les espèces qui possèdent moins de 2 individus dans une catégorie Other et refaites le boxplot. C’est mieux…\nOrdonnez les catégories selon la hauteur moyenne des espèces et refaite le boxplot !\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-7",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-7",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 7",
+    "text": "Exercice 7\nCréez une nouvelle variable bmi (Body Mass Index) en utilisant les colonnes mass et height. Assurez-vous que les valeurs soient correctes et que les valeurs manquantes soient traitées correctement.\nRefaite le boxplot de la question précédente en utilisant le BMI à la place de la masse.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#exercice-8",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#exercice-8",
+    "title": "Lab 04 - Star Wars",
+    "section": "Exercice 8",
+    "text": "Exercice 8\nTerminez pas passer en revue les autres variables et corrigez les erreurs que vous pourriez trouver. Assurez-vous que les valeurs manquantes soient codées de manière uniforme."
+  },
+  {
+    "objectID": "labs/lab04-star-wars/lab04-star-wars.html#conclusion",
+    "href": "labs/lab04-star-wars/lab04-star-wars.html#conclusion",
+    "title": "Lab 04 - Star Wars",
+    "section": "Conclusion",
+    "text": "Conclusion\nVous devriez maintenant avoir un jeu de données propre et prêt à être analysé. Pour l’ensemble des colonnes, vous devriez avoir :\n\nVérifier que les valeurs manquantes sont toutes représentées de la même manière.\nVérifier que les valeurs sont uniformes (pas de dédoublement de valeurs)\nLes types sont correctement entrés (numérique, facteur, etc.)\n\nSi c’est correct, vous pouvez supprimer les anciennes colonnes et renommer les nouvelles.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
   },
   {
     "objectID": "labs/lab06-better-viz/lab06-better-viz.html",
@@ -2513,87 +2765,31 @@
     "text": "Pêcheries\nLe département des pêcheries et de l’aquaculture de l’Organisation des Nations Unies pour l’alimentation et l’agriculture collecte des données sur la production halieutique des pays. Cette page Wikipedia répertorie la production halieutique des pays pour 2016. Pour chaque pays, le tonnage de la capture et de l’aquaculture est indiqué. Notez que les pays dont la récolte totale était inférieure à 100 000 tonnes ne sont pas inclus dans la visualisation.\nUn chercheur vous a partagé la visualisation suivante qu’il a créée à partir de ces données. 😳\n\n\n\n\n\n\n\n\n\n\nExercise 5\nPouvez-vous l’aider à améliorer cette visualisation ? Quelles sont les principales lacunes de cette visualisation ?\n\n\nExercise 6\nVous pouvez charger les données avec le code suivant :\n\nfisheries &lt;- read_csv(\"data/fisheries.csv\")\n\nEssayez de répondre aux problèmes que vous avez identifiés dans l’exercice précédent en créant une nouvelle visualisation des données.\n🧶 ✅ ⬆️ Knit, commit, and push ! N’oubliez pas le message de commit."
   },
   {
-    "objectID": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
-    "href": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
-    "title": "07 - Modélisation - Régression",
-    "section": "Les cinqs activités principales",
-    "text": "Les cinqs activités principales\n\nFormuler et préciser la question\nExplorer les données\nConstruire des modèles statistiques\nInterpréter les résultats\nCommuniquer les résultats\n\n\n\n(pengArtDataScience2016?)"
+    "objectID": "projet/projet.html",
+    "href": "projet/projet.html",
+    "title": "Projet",
+    "section": "",
+    "text": "Le projet pour ce cours consistera en une analyse d’un ensemble de données de votre choix. De nombreux jeux de données en accès libre sont à disposition sur Internet. La section Données contient des liens vers des sites qui proposent des jeux de données. Vous pouvez choisir des données en fonction de vos intérêts. Le but de ce projet est de démontrer votre maîtrise des techniques que nous avons abordées dans ce cours (et au-delà, si vous le souhaitez) et de les appliquer de manière significative à un ensemble de données original.\nLe but n’est pas de faire une analyse exhaustive des données, c’est-à-dire de ne pas calculer chaque statistique et procédure que vous avez apprise pour chaque variable, mais plutôt de me montrer que vous êtes compétent pour poser des questions significatives et y répondre avec les résultats de l’analyse des données, que vous êtes compétent pour utiliser R, et que vous êtes compétent pour interpréter et présenter les résultats. Concentrez-vous sur les méthodes qui vous aident à commencer à répondre à vos questions de recherche. Vous n’êtes pas obligé d’appliquer toutes les procédures statistiques que nous avons apprises (et vous pouvez utiliser des techniques que nous n’avons pas officiellement abordées en classe, si vous êtes aventureux). Critiquez également vos propres méthodes et fournissez des suggestions pour améliorer votre analyse.\nLe projet est très ouvert. Vous devriez créer une sorte de visualisation(s) convaincante(s) de ces données en R. Il n’y a pas de limite sur les outils ou les packages que vous pouvez utiliser, mais il est nécessaire d’utiliser les packages que nous avons appris en classe (tidyverse). Vous n’avez pas besoin de visualiser toutes les données en une seule fois. Une seule visualisation de haute qualité recevra une meilleure note qu’un grand nombre de visualisations de mauvaise qualité. Faites également attention à votre présentation. La netteté, la cohérence et la clarté compteront. Toutes les analyses doivent être effectuées dans RStudio, en utilisant R."
   },
   {
-    "objectID": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
-    "href": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
-    "title": "07 - Modélisation - Régression",
-    "section": "Types de questions/problèmes",
-    "text": "Types de questions/problèmes\n\nDescription: résumer des caractéristiques d’un jeu de données.\nExploration: découvrir des relations, des patterns entre variables (formuler des hypothèses).\nInférence: analyser des relations, des patterns entre variables pour en tirer des conclusions générales, en utilisant des données représentatives (échantillon) d’une population générale (tester des hypothèses)\nPrédiction: prédire la valeur d’une variable future/inconnue à partir de données passées/connues (machine learning)\nCausalité: comprendre l’effet d’une variable sur une autre variable (relation de cause à effet).\nMécanismes: comprendre les processus sous-jacents qui génèrent les données observées."
+    "objectID": "projet/projet.html#introduction",
+    "href": "projet/projet.html#introduction",
+    "title": "Projet",
+    "section": "",
+    "text": "Le projet pour ce cours consistera en une analyse d’un ensemble de données de votre choix. De nombreux jeux de données en accès libre sont à disposition sur Internet. La section Données contient des liens vers des sites qui proposent des jeux de données. Vous pouvez choisir des données en fonction de vos intérêts. Le but de ce projet est de démontrer votre maîtrise des techniques que nous avons abordées dans ce cours (et au-delà, si vous le souhaitez) et de les appliquer de manière significative à un ensemble de données original.\nLe but n’est pas de faire une analyse exhaustive des données, c’est-à-dire de ne pas calculer chaque statistique et procédure que vous avez apprise pour chaque variable, mais plutôt de me montrer que vous êtes compétent pour poser des questions significatives et y répondre avec les résultats de l’analyse des données, que vous êtes compétent pour utiliser R, et que vous êtes compétent pour interpréter et présenter les résultats. Concentrez-vous sur les méthodes qui vous aident à commencer à répondre à vos questions de recherche. Vous n’êtes pas obligé d’appliquer toutes les procédures statistiques que nous avons apprises (et vous pouvez utiliser des techniques que nous n’avons pas officiellement abordées en classe, si vous êtes aventureux). Critiquez également vos propres méthodes et fournissez des suggestions pour améliorer votre analyse.\nLe projet est très ouvert. Vous devriez créer une sorte de visualisation(s) convaincante(s) de ces données en R. Il n’y a pas de limite sur les outils ou les packages que vous pouvez utiliser, mais il est nécessaire d’utiliser les packages que nous avons appris en classe (tidyverse). Vous n’avez pas besoin de visualiser toutes les données en une seule fois. Une seule visualisation de haute qualité recevra une meilleure note qu’un grand nombre de visualisations de mauvaise qualité. Faites également attention à votre présentation. La netteté, la cohérence et la clarté compteront. Toutes les analyses doivent être effectuées dans RStudio, en utilisant R."
   },
   {
-    "objectID": "cours/07 - regression/07 - regression.html#modélisation",
-    "href": "cours/07 - regression/07 - regression.html#modélisation",
-    "title": "07 - Modélisation - Régression",
-    "section": "Modélisation",
-    "text": "Modélisation\nLes modèles sont utilisés pour expiquer des relations entre variables et pour faire des prédictions."
+    "objectID": "projet/projet.html#data",
+    "href": "projet/projet.html#data",
+    "title": "Projet",
+    "section": "Données",
+    "text": "Données\nPour que vous ayez la meilleure chance de réussir ce projet, il est important que vous choisissiez un ensemble de données adapté. Cela signifie que les données doivent être facilement accessibles et suffisamment grandes pour que plusieurs relations puissent être explorées. Ainsi, votre ensemble de données doit comporter au moins 50 observations et entre 10 et 20 variables (des exceptions peuvent être faites, mais vous devez d’abord le valider avec nous). Les variables de l’ensemble de données doivent inclure des variables catégorielles, des variables numériques discrètes et des variables numériques continues.\nSi le format des données n’a pas été vu en classe, c’est ok mais attendez-vous à devoir fournir un léger effort pour les charger dans R. Si vous avez des difficultés, demandez de l’aide avant qu’il ne soit trop tard.\nIl est interdit d’utiliser des données utilisées pendant le cours, dans des exemples, des examens ou des laboratoires.\nCi-dessous, vous trouverez une liste de références de jeux de données qui pourraient vous intéresser. Vous n’êtes pas limité à ces ressources, et en fait, vous êtes encouragé à aller au-delà. Mais vous pourriez y trouver quelque chose d’intéressant :\n\nTidyTuesday\nKaggle datasets\nHarvard Dataverse\nAwesome public datasets\nICPSR Data Archive Project\nGoogle Dataset Search\n\nPlusieurs villes, pays et institutions ont également des portails de données ouvertes. Voici quelques exemples :\n\nCanada Open Data\nDonnées Québec\nVille de Montreal\nCDC Datasets\nNHS Scotland Open Data\nEdinburgh Open Data\nUK Gov Data\n…\n\nN’oubliez pas que vous pouvez combiner plusieurs sources de données également."
   },
   {
-    "objectID": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
-    "href": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
-    "title": "07 - Modélisation - Régression",
-    "section": "Les données du jour : Paris painting",
-    "text": "Les données du jour : Paris painting\nDonnées issues des catalogues de 28 ventes aux enchères de tableaux de Paris entre 1764 et 1780.\n\n\n\n\n\n\n\nDataset crée par Sandra van Ginhoven et Hilary Coe Cronheim, du Duke Art, Law and Markets Initiative"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#paris-painting",
-    "href": "cours/07 - regression/07 - regression.html#paris-painting",
-    "title": "07 - Modélisation - Régression",
-    "section": "Paris painting",
-    "text": "Paris painting\n\npp &lt;- read_csv(\"data/paris-paintings.csv\", na = c(\"n/a\", \"\", \"NA\"))\n\n\npp %&gt;%\n  glimpse()\n\nRows: 3,393\nColumns: 61\n$ name              &lt;chr&gt; \"L1764-2\", \"L1764-3\", \"L1764-4\", \"L1764-5a\", \"L1764-…\n$ sale              &lt;chr&gt; \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\"…\n$ lot               &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"5\", \"6\", \"7\", \"7\", \"8\", \"9\", \"9…\n$ position          &lt;dbl&gt; 0.03278689, 0.04918033, 0.06557377, 0.08196721, 0.08…\n$ dealer            &lt;chr&gt; \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L…\n$ year              &lt;dbl&gt; 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764…\n$ origin_author     &lt;chr&gt; \"F\", \"I\", \"X\", \"F\", \"F\", \"X\", \"F\", \"F\", \"X\", \"D/FL\",…\n$ origin_cat        &lt;chr&gt; \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O…\n$ school_pntg       &lt;chr&gt; \"F\", \"I\", \"D/FL\", \"F\", \"F\", \"I\", \"F\", \"F\", \"I\", \"D/F…\n$ diff_origin       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ logprice          &lt;dbl&gt; 5.8861040, 1.7917595, 2.4849067, 1.7917595, 1.791759…\n$ price             &lt;dbl&gt; 360.0, 6.0, 12.0, 6.0, 6.0, 9.0, 12.0, 12.0, 24.0, 6…\n$ count             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject           &lt;chr&gt; \"L'enfant Jesus\", \"Homme portant un panier\", \"L'enfa…\n$ authorstandard    &lt;chr&gt; \"Grimou, Alexis\", \"Fetti, Domenico\", \"copy after Dyc…\n$ artistliving      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ authorstyle       &lt;chr&gt; NA, NA, \"copy after\", NA, NA, \"copy after\", NA, NA, …\n$ author            &lt;chr&gt; \"Grimou\", \"F\\x8ety\", \"copi\\x8e d'apr\\x8fs Wandeik\", …\n$ winningbidder     &lt;chr&gt; \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown…\n$ winningbiddertype &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ endbuyer          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Interm            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ type_intermed     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Height_in         &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 16, 16, 2…\n$ Width_in          &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13.0, 15.0…\n$ Surface_Rect      &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ Diam_in           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Surface_Rnd       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Shape             &lt;chr&gt; \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ…\n$ Surface           &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ material          &lt;chr&gt; \"tableau\", \"toile\", \"bois\", \"toile\", \"toile\", \"cuivr…\n$ mat               &lt;chr&gt; \"ta\", \"t\", \"b\", \"t\", \"t\", \"c\", \"t\", \"t\", \"c\", \"b\", \"…\n$ materialCat       &lt;chr&gt; NA, \"canvas\", \"wood\", \"canvas\", \"canvas\", \"copper\", …\n$ quantity          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ nfigures          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ engraved          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ original          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ prevcoll          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othartist         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ paired            &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1…\n$ figures           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ finished          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ lrgfont           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ relig             &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ landsALL          &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1…\n$ lands_sc          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0…\n$ lands_elem        &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_figs        &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_ment        &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ arch              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ mytho             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ peasant           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othgenre          &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ singlefig         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0…\n$ portrait          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n$ still_life        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ discauth          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ history           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ allegory          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ pastorale         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ other             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
-    "href": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
-    "title": "07 - Modélisation - Régression",
-    "section": "Hauteur vs Largeur",
-    "text": "Hauteur vs Largeur\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Hauteur, en pouces\", y = NULL)\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Largeur, en pouces\", y = NULL)"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
-    "href": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
-    "title": "07 - Modélisation - Régression",
-    "section": "Hauteur et largeur",
-    "text": "Hauteur et largeur\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#personnalisé",
-    "href": "cours/07 - regression/07 - regression.html#personnalisé",
-    "title": "07 - Modélisation - Régression",
-    "section": "… Personnalisé",
-    "text": "… Personnalisé\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se=FALSE, linetype = \"dashed\", color=\"#b22222\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#modélisation-1",
-    "href": "cours/07 - regression/07 - regression.html#modélisation-1",
-    "title": "07 - Modélisation - Régression",
-    "section": "Modélisation",
-    "text": "Modélisation\n\nVariable dépendante (expliquée): Variable dont on cherche à comprendre le comportement ou la variation, sur l’axe des y\nVariables indépendantes (explicatives): Autres variables que l’on utilise pour expliquer la variation de la variable dépendante, sur l’axe des x\nValeur prédite: Résultat de la fonction modèle\n\nLa fonction modèle donne la valeur typique (attendue) de la variable dépendante\n\nRésidus: Mesure de la distance entre chaque observation et sa valeur prédite (basée sur un modèle particulier)\n\nRésidu = Valeur observée - Valeur prédite\nIndique à quel point chaque observation est au-dessus/en-dessous de la valeur attendue"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
-    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
-    "title": "07 - Modélisation - Régression",
-    "section": "Variables explicatives multiples",
-    "text": "Variables explicatives multiples\n\nPensez vous que la hauteur d’une peinture peut être expliquée uniquement par sa largeur ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point(alpha = 0.2) +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
-    "href": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
-    "title": "07 - Modélisation - Régression",
-    "section": "Portraits vs Paysages",
-    "text": "Portraits vs Paysages"
-  },
-  {
-    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
-    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
-    "title": "07 - Modélisation - Régression",
-    "section": "Variables explicatives multiples",
-    "text": "Variables explicatives multiples\n\nEst-ce que la relation entre hauteur et largeur dépend de la présence d’éléments paysages ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE,\n              fullrange = TRUE) + #&lt;&lt;\n  labs(\n    title = \"Hauteur vs. Largeur des peintures, selon la présence d'éléments paysages\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  ) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))\n\n\n\n\n\n\n\n\nPRO1036 - 04 | Tim Bollé"
+    "objectID": "projet/projet.html#consignes",
+    "href": "projet/projet.html#consignes",
+    "title": "Projet",
+    "section": "Consignes",
+    "text": "Consignes\n\nProposal (10 pts)\nPour commencez, vous devez soumettre un proposal de projet. Il s’agit d’un court document de maximum 1 page indiquant :\n\nIntroduction et contexte: Dans cette partie, vous présenterez brièvement le contexte dans lequel s’inscrit votre mini-article. Quelle est la question principale ? Pourquoi est-ce intéressant de se la poser.\nPrésentation des Données: Une présentation plus détaillée des données choisies. D’où viennent les données ? Quand les données ont-elles été collectées ? Combien y a-t-il d’observations ? De variable ? Quel est le format des données? Quelles sont les variables que vous allez utiliser ? En quoi sont-elles utiles ? etc.\n\nUne copie des données doit être transmise dans le dossier data.\n\nAnalyse exploratoire: Quelles sont les questions que vous souhaitez explorer? Quelles sont les hypothèses que vous souhaitez tester? Quelles sont les méthodes que vous envisagez d’utiliser pour répondre à ces questions?\n\nVous pouvez également produire des premières analyses exploratoires de vos données.\n\nCritères d’évaluation\n\n\n\nCritère\nPoints\n\n\n\n\nQuestions de recherche\n4\n\n\nChoix des données et exploration\n4\n\n\nPrésentation, Qualité\n2"
   }
 ]
