@@ -322,246 +322,246 @@
     "text": "Appendix\nLa liste des pays présents dans le jeu de données est présentée ci-dessous:"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#les-cinqs-activités-principales",
-    "href": "cours/07 - Regression/07 - regression.html#les-cinqs-activités-principales",
+    "objectID": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
+    "href": "cours/07 - regression/07 - regression.html#les-cinqs-activités-principales",
     "title": "07 - Modélisation - Régression",
     "section": "Les cinqs activités principales",
     "text": "Les cinqs activités principales\n\nFormuler et préciser la question\nExplorer les données\nConstruire des modèles statistiques\nInterpréter les résultats\nCommuniquer les résultats\n\n\n\n(Peng and Matsui, 2016)"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#types-de-questionsproblèmes",
-    "href": "cours/07 - Regression/07 - regression.html#types-de-questionsproblèmes",
+    "objectID": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
+    "href": "cours/07 - regression/07 - regression.html#types-de-questionsproblèmes",
     "title": "07 - Modélisation - Régression",
     "section": "Types de questions/problèmes",
     "text": "Types de questions/problèmes\n\nDescription: résumer des caractéristiques d’un jeu de données.\nExploration: découvrir des relations, des patterns entre variables (formuler des hypothèses).\nInférence: analyser des relations, des patterns entre variables pour en tirer des conclusions générales, en utilisant des données représentatives (échantillon) d’une population générale (tester des hypothèses)\nPrédiction: prédire la valeur d’une variable future/inconnue à partir de données passées/connues (machine learning)\nCausalité: comprendre l’effet d’une variable sur une autre variable (relation de cause à effet).\nMécanismes: comprendre les processus sous-jacents qui génèrent les données observées."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#modélisation",
-    "href": "cours/07 - Regression/07 - regression.html#modélisation",
+    "objectID": "cours/07 - regression/07 - regression.html#modélisation",
+    "href": "cours/07 - regression/07 - regression.html#modélisation",
     "title": "07 - Modélisation - Régression",
     "section": "Modélisation",
     "text": "Modélisation\nLes modèles sont utilisés pour expiquer des relations entre variables et pour faire des prédictions."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#les-données-du-jour-paris-painting",
-    "href": "cours/07 - Regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "objectID": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
+    "href": "cours/07 - regression/07 - regression.html#les-données-du-jour-paris-painting",
     "title": "07 - Modélisation - Régression",
     "section": "Les données du jour : Paris painting",
     "text": "Les données du jour : Paris painting\nDonnées issues des catalogues de 28 ventes aux enchères de tableaux de Paris entre 1764 et 1780.\n\n\n\n\n\n\n\nDataset crée par Sandra van Ginhoven et Hilary Coe Cronheim, du Duke Art, Law and Markets Initiative"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#paris-painting",
-    "href": "cours/07 - Regression/07 - regression.html#paris-painting",
+    "objectID": "cours/07 - regression/07 - regression.html#paris-painting",
+    "href": "cours/07 - regression/07 - regression.html#paris-painting",
     "title": "07 - Modélisation - Régression",
     "section": "Paris painting",
     "text": "Paris painting\n\npp &lt;- read_csv(\"data/paris-paintings.csv\", na = c(\"n/a\", \"\", \"NA\"))\n\n\npp %&gt;%\n  glimpse()\n\nRows: 3,393\nColumns: 61\n$ name              &lt;chr&gt; \"L1764-2\", \"L1764-3\", \"L1764-4\", \"L1764-5a\", \"L1764-…\n$ sale              &lt;chr&gt; \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\", \"L1764\"…\n$ lot               &lt;chr&gt; \"2\", \"3\", \"4\", \"5\", \"5\", \"6\", \"7\", \"7\", \"8\", \"9\", \"9…\n$ position          &lt;dbl&gt; 0.03278689, 0.04918033, 0.06557377, 0.08196721, 0.08…\n$ dealer            &lt;chr&gt; \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L\", \"L…\n$ year              &lt;dbl&gt; 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764, 1764…\n$ origin_author     &lt;chr&gt; \"F\", \"I\", \"X\", \"F\", \"F\", \"X\", \"F\", \"F\", \"X\", \"D/FL\",…\n$ origin_cat        &lt;chr&gt; \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O\", \"O…\n$ school_pntg       &lt;chr&gt; \"F\", \"I\", \"D/FL\", \"F\", \"F\", \"I\", \"F\", \"F\", \"I\", \"D/F…\n$ diff_origin       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ logprice          &lt;dbl&gt; 5.8861040, 1.7917595, 2.4849067, 1.7917595, 1.791759…\n$ price             &lt;dbl&gt; 360.0, 6.0, 12.0, 6.0, 6.0, 9.0, 12.0, 12.0, 24.0, 6…\n$ count             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject           &lt;chr&gt; \"L'enfant Jesus\", \"Homme portant un panier\", \"L'enfa…\n$ authorstandard    &lt;chr&gt; \"Grimou, Alexis\", \"Fetti, Domenico\", \"copy after Dyc…\n$ artistliving      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ authorstyle       &lt;chr&gt; NA, NA, \"copy after\", NA, NA, \"copy after\", NA, NA, …\n$ author            &lt;chr&gt; \"Grimou\", \"F\\x8ety\", \"copi\\x8e d'apr\\x8fs Wandeik\", …\n$ winningbidder     &lt;chr&gt; \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown\", \"Unknown…\n$ winningbiddertype &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ endbuyer          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Interm            &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ type_intermed     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Height_in         &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 16, 16, 2…\n$ Width_in          &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13.0, 15.0…\n$ Surface_Rect      &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ Diam_in           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Surface_Rnd       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ Shape             &lt;chr&gt; \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ_rect\", \"squ…\n$ Surface           &lt;dbl&gt; 1091.5, 252.0, 208.0, 252.0, 252.0, 70.0, 78.0, 78.0…\n$ material          &lt;chr&gt; \"tableau\", \"toile\", \"bois\", \"toile\", \"toile\", \"cuivr…\n$ mat               &lt;chr&gt; \"ta\", \"t\", \"b\", \"t\", \"t\", \"c\", \"t\", \"t\", \"c\", \"b\", \"…\n$ materialCat       &lt;chr&gt; NA, \"canvas\", \"wood\", \"canvas\", \"canvas\", \"copper\", …\n$ quantity          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ nfigures          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ engraved          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ original          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ prevcoll          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othartist         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ paired            &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1…\n$ figures           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ finished          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ lrgfont           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ relig             &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ landsALL          &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1…\n$ lands_sc          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0…\n$ lands_elem        &lt;dbl&gt; 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_figs        &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1…\n$ lands_ment        &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ arch              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ mytho             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ peasant           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ othgenre          &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ singlefig         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0…\n$ portrait          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…\n$ still_life        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ discauth          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ history           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ allegory          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ pastorale         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ other             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-vs-largeur",
-    "href": "cours/07 - Regression/07 - regression.html#hauteur-vs-largeur",
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-vs-largeur",
     "title": "07 - Modélisation - Régression",
     "section": "Hauteur vs Largeur",
     "text": "Hauteur vs Largeur\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Hauteur, en pouces\", y = NULL)\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Largeur, en pouces\", y = NULL)"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-largeur",
-    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-largeur",
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-et-largeur",
     "title": "07 - Modélisation - Régression",
     "section": "Hauteur et largeur",
     "text": "Hauteur et largeur\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#personnalisé",
-    "href": "cours/07 - Regression/07 - regression.html#personnalisé",
+    "objectID": "cours/07 - regression/07 - regression.html#personnalisé",
+    "href": "cours/07 - regression/07 - regression.html#personnalisé",
     "title": "07 - Modélisation - Régression",
     "section": "… Personnalisé",
     "text": "… Personnalisé\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se=FALSE, linetype = \"dashed\", color=\"#b22222\") +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#modélisation-1",
-    "href": "cours/07 - Regression/07 - regression.html#modélisation-1",
+    "objectID": "cours/07 - regression/07 - regression.html#modélisation-1",
+    "href": "cours/07 - regression/07 - regression.html#modélisation-1",
     "title": "07 - Modélisation - Régression",
     "section": "Modélisation",
     "text": "Modélisation\n\nVariable dépendante (expliquée): Variable dont on cherche à comprendre le comportement ou la variation, sur l’axe des y\nVariables indépendantes (explicatives): Autres variables que l’on utilise pour expliquer la variation de la variable dépendante, sur l’axe des x\nValeur prédite: Résultat de la fonction modèle\n\nLa fonction modèle donne la valeur typique (attendue) de la variable dépendante\n\nRésidus: Mesure de la distance entre chaque observation et sa valeur prédite (basée sur un modèle particulier)\n\nRésidu = Valeur observée - Valeur prédite\nIndique à quel point chaque observation est au-dessus/en-dessous de la valeur attendue"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples",
-    "href": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples",
+    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
+    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples",
     "title": "07 - Modélisation - Régression",
     "section": "Variables explicatives multiples",
     "text": "Variables explicatives multiples\n\nPensez vous que la hauteur d’une peinture peut être expliquée uniquement par sa largeur ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point(alpha = 0.2) +\n  labs(\n    title = \"Hauteur vs. Largeur des peintures\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  )"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#portraits-vs-paysages",
-    "href": "cours/07 - Regression/07 - regression.html#portraits-vs-paysages",
+    "objectID": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
+    "href": "cours/07 - regression/07 - regression.html#portraits-vs-paysages",
     "title": "07 - Modélisation - Régression",
     "section": "Portraits vs Paysages",
     "text": "Portraits vs Paysages"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples-1",
-    "href": "cours/07 - Regression/07 - regression.html#variables-explicatives-multiples-1",
+    "objectID": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
+    "href": "cours/07 - regression/07 - regression.html#variables-explicatives-multiples-1",
     "title": "07 - Modélisation - Régression",
     "section": "Variables explicatives multiples",
     "text": "Variables explicatives multiples\n\nEst-ce que la relation entre hauteur et largeur dépend de la présence d’éléments paysages ?\n\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE,\n              fullrange = TRUE) + #&lt;&lt;\n  labs(\n    title = \"Hauteur vs. Largeur des peintures, selon la présence d'éléments paysages\",\n    subtitle = \"Ventes aux enchères à Paris, 1764 - 1780\",\n    x = \"Largeur (inches)\",\n    y = \"Hauteur (inches)\"\n  ) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
-    "href": "cours/07 - Regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
+    "objectID": "cours/07 - regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
+    "href": "cours/07 - regression/07 - regression.html#objectif-prédire-la-hauteur-dune-peinture-en-fonction-de-sa-largeur",
     "title": "07 - Modélisation - Régression",
     "section": "Objectif: Prédire la hauteur d’une peinture en fonction de sa largeur",
     "text": "Objectif: Prédire la hauteur d’une peinture en fonction de sa largeur\n\\[\\widehat{hauteur}_{i} = \\beta_0 + \\beta_1 \\times largeur_{i}\\]"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#comment",
-    "href": "cours/07 - Regression/07 - regression.html#comment",
+    "objectID": "cours/07 - regression/07 - regression.html#comment",
+    "href": "cours/07 - regression/07 - regression.html#comment",
     "title": "07 - Modélisation - Régression",
     "section": "Comment ?",
     "text": "Comment ?"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#étape-1-spécifier-le-modèle",
-    "href": "cours/07 - Regression/07 - regression.html#étape-1-spécifier-le-modèle",
+    "objectID": "cours/07 - regression/07 - regression.html#étape-1-spécifier-le-modèle",
+    "href": "cours/07 - regression/07 - regression.html#étape-1-spécifier-le-modèle",
     "title": "07 - Modélisation - Régression",
     "section": "Étape 1: Spécifier le modèle",
     "text": "Étape 1: Spécifier le modèle\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#étape-2-choisir-le-engine",
-    "href": "cours/07 - Regression/07 - regression.html#étape-2-choisir-le-engine",
+    "objectID": "cours/07 - regression/07 - regression.html#étape-2-choisir-le-engine",
+    "href": "cours/07 - regression/07 - regression.html#étape-2-choisir-le-engine",
     "title": "07 - Modélisation - Régression",
     "section": "Étape 2: Choisir le engine",
     "text": "Étape 2: Choisir le engine\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") # lm = linear model - modèle linéaire\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#étape-3-fitter-le-modèle",
-    "href": "cours/07 - Regression/07 - regression.html#étape-3-fitter-le-modèle",
+    "objectID": "cours/07 - regression/07 - regression.html#étape-3-fitter-le-modèle",
+    "href": "cours/07 - regression/07 - regression.html#étape-3-fitter-le-modèle",
     "title": "07 - Modélisation - Régression",
     "section": "Étape 3: Fitter le modèle",
     "text": "Étape 3: Fitter le modèle\nIci il faut indique la formule et les données\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp)\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#résultat-du-modèle",
-    "href": "cours/07 - Regression/07 - regression.html#résultat-du-modèle",
+    "objectID": "cours/07 - regression/07 - regression.html#résultat-du-modèle",
+    "href": "cours/07 - regression/07 - regression.html#résultat-du-modèle",
     "title": "07 - Modélisation - Régression",
     "section": "Résultat du modèle",
     "text": "Résultat du modèle\n\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808  \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#affichage-tidy",
-    "href": "cours/07 - Regression/07 - regression.html#affichage-tidy",
+    "objectID": "cours/07 - regression/07 - regression.html#affichage-tidy",
+    "href": "cours/07 - regression/07 - regression.html#affichage-tidy",
     "title": "07 - Modélisation - Régression",
     "section": "Affichage Tidy",
     "text": "Affichage Tidy\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp) %&gt;%\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    3.62    0.254        14.3 8.82e-45\n2 Width_in       0.781   0.00950      82.1 0       \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#interprétation-des-coefficients",
-    "href": "cours/07 - Regression/07 - regression.html#interprétation-des-coefficients",
+    "objectID": "cours/07 - regression/07 - regression.html#interprétation-des-coefficients",
+    "href": "cours/07 - regression/07 - regression.html#interprétation-des-coefficients",
     "title": "07 - Modélisation - Régression",
     "section": "Interprétation des coefficients",
     "text": "Interprétation des coefficients\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]\n\nOrdonnée à l’origine (\\(\\beta_0 = 3.62\\)): Hauteur prédite lorsque la largeur est de 0 pouces.\nPente (\\(\\beta_1 = 0.781\\)): Pour chaque augmentation de 1 pouce de la largeur, la hauteur prédite augmente en moyenne de 0.781 pouces."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#attention-aux-extrapolations",
-    "href": "cours/07 - Regression/07 - regression.html#attention-aux-extrapolations",
+    "objectID": "cours/07 - regression/07 - regression.html#attention-aux-extrapolations",
+    "href": "cours/07 - regression/07 - regression.html#attention-aux-extrapolations",
     "title": "07 - Modélisation - Régression",
     "section": "Attention aux extrapolations !",
     "text": "Attention aux extrapolations !\nCorrelation n’est pas causalité !\n\n\n\n\n\n\n\nSource: XKCD, Cell phones"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#valeurs-prédites-et-résidus",
-    "href": "cours/07 - Regression/07 - regression.html#valeurs-prédites-et-résidus",
+    "objectID": "cours/07 - regression/07 - regression.html#valeurs-prédites-et-résidus",
+    "href": "cours/07 - regression/07 - regression.html#valeurs-prédites-et-résidus",
     "title": "07 - Modélisation - Régression",
     "section": "Valeurs prédites et résidus",
     "text": "Valeurs prédites et résidus\n\nWe’re interested in \\(\\beta_0\\) (population parameter for the intercept) and \\(\\beta_1\\) (population parameter for the slope) in the following model: Nous voudrions connaître les paramètres de population \\(\\beta_0\\) (ordonnée à l’origine) et \\(\\beta_1\\) (pente) dans le modèle suivant :\n\\[Y_{i} = \\beta_0 + \\beta_1~x_{i}\\]\n\n\nMais nous n’avons qu’un échantillon de données…\n\n\nNous pouvons estimer ces paramètres à partir de notre échantillon, en utilisant les estimateurs \\(b_0\\) et \\(b_1\\) :\n\\[\\hat{y}_{i} = b_0 + b_1~x_{i}\\]"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#estimation-des-paramètres",
-    "href": "cours/07 - Regression/07 - regression.html#estimation-des-paramètres",
+    "objectID": "cours/07 - regression/07 - regression.html#estimation-des-paramètres",
+    "href": "cours/07 - regression/07 - regression.html#estimation-des-paramètres",
     "title": "07 - Modélisation - Régression",
     "section": "Estimation des paramètres",
     "text": "Estimation des paramètres\nLes paramètres sont estimés en minimisant la somme des carrés des résidus :\n\\[\\text{SSE} = \\sum_{i=1}^{n} (y_{i} - \\hat{y}_{i})^2\\]"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#visuellement",
-    "href": "cours/07 - Regression/07 - regression.html#visuellement",
+    "objectID": "cours/07 - regression/07 - regression.html#visuellement",
+    "href": "cours/07 - regression/07 - regression.html#visuellement",
     "title": "07 - Modélisation - Régression",
     "section": "Visuellement…",
     "text": "Visuellement…"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#visuellement-1",
-    "href": "cours/07 - Regression/07 - regression.html#visuellement-1",
+    "objectID": "cours/07 - regression/07 - regression.html#visuellement-1",
+    "href": "cours/07 - regression/07 - regression.html#visuellement-1",
     "title": "07 - Modélisation - Régression",
     "section": "Visuellement…",
     "text": "Visuellement…"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#visuellement-2",
-    "href": "cours/07 - Regression/07 - regression.html#visuellement-2",
+    "objectID": "cours/07 - regression/07 - regression.html#visuellement-2",
+    "href": "cours/07 - regression/07 - regression.html#visuellement-2",
     "title": "07 - Modélisation - Régression",
     "section": "Visuellement…",
     "text": "Visuellement…"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
-    "href": "cours/07 - Regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
+    "objectID": "cours/07 - regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
+    "href": "cours/07 - regression/07 - regression.html#variable-indépendante-catégorielle-avec-2-niveaux",
     "title": "07 - Modélisation - Régression",
     "section": "Variable indépendante catégorielle avec 2 niveaux",
     "text": "Variable indépendante catégorielle avec 2 niveaux\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in landsALL\n   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n 1 L1764-2          37        0\n 2 L1764-3          18        0\n 3 L1764-4          13        1\n 4 L1764-5a         14        1\n 5 L1764-5b         14        1\n 6 L1764-6           7        0\n 7 L1764-7a          6        0\n 8 L1764-7b          6        0\n 9 L1764-8          15        0\n10 L1764-9a          9        0\n11 L1764-9b          9        0\n12 L1764-10a        16        1\n13 L1764-10b        16        1\n14 L1764-10c        16        1\n15 L1764-11         20        0\n16 L1764-12a        14        1\n17 L1764-12b        14        1\n18 L1764-13a        15        1\n19 L1764-13b        15        1\n20 L1764-14         37        0\n# ℹ 3,373 more rows\n\n\n\n\nlandsALL = 0: Pas d’éléments de paysages\nlandsALL = 1: Éléments de paysages présents"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-éléments-de-paysages",
-    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-éléments-de-paysages",
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-et-éléments-de-paysages",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-et-éléments-de-paysages",
     "title": "07 - Modélisation - Régression",
     "section": "Hauteur et éléments de paysages",
     "text": "Hauteur et éléments de paysages\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ factor(landsALL), data = pp) %&gt;%\n  tidy()\n\n# A tibble: 2 × 5\n  term              estimate std.error statistic  p.value\n  &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)          22.7      0.328      69.1 0       \n2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26\n\n\n\\[\\widehat{Height_{in}} = 22.7 - 5.645~landsALL\\]\n\nOrdonnée à l’origine (\\(\\beta_0 = 22.7\\)): Hauteur prédite pour les peintures sans éléments de paysages (landsALL = 0).\nCoefficient (\\(\\beta_1 = -5.645\\)): Différence moyenne de hauteur entre les peintures avec éléments de paysages et celles sans. Les peintures avec éléments de paysages sont en moyenne 5.645 pouces plus courtes que celles sans."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#hauteur-et-école-de-peinture",
-    "href": "cours/07 - Regression/07 - regression.html#hauteur-et-école-de-peinture",
+    "objectID": "cours/07 - regression/07 - regression.html#hauteur-et-école-de-peinture",
+    "href": "cours/07 - regression/07 - regression.html#hauteur-et-école-de-peinture",
     "title": "07 - Modélisation - Régression",
     "section": "Hauteur et école de peinture",
     "text": "Hauteur et école de peinture\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ school_pntg, data = pp) %&gt;%\n  tidy()\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#dummy-variable",
-    "href": "cours/07 - Regression/07 - regression.html#dummy-variable",
+    "objectID": "cours/07 - regression/07 - regression.html#dummy-variable",
+    "href": "cours/07 - regression/07 - regression.html#dummy-variable",
     "title": "07 - Modélisation - Régression",
     "section": "Dummy variable",
     "text": "Dummy variable\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nQuand une variable catégorielle a plus de deux niveaux, on crée des variables indicatrices (dummy variables) pour chaque niveau, sauf un (le niveau de référence).\nChaque coefficient représente la différence moyenne entre ce niveau et le niveau de référence."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#dummy-variable-1",
-    "href": "cours/07 - Regression/07 - regression.html#dummy-variable-1",
+    "objectID": "cours/07 - regression/07 - regression.html#dummy-variable-1",
+    "href": "cours/07 - regression/07 - regression.html#dummy-variable-1",
     "title": "07 - Modélisation - Régression",
     "section": "Dummy variable",
     "text": "Dummy variable\n\n\n\n\n\n\n\nschool_pntg\nD_FL\nF\nG\nI\nS\nX\n\n\n\n\nA\n0\n0\n0\n0\n0\n0\n\n\nD/FL\n1\n0\n0\n0\n0\n0\n\n\nF\n0\n1\n0\n0\n0\n0\n\n\nG\n0\n0\n1\n0\n0\n0\n\n\nI\n0\n0\n0\n1\n0\n0\n\n\nS\n0\n0\n0\n0\n1\n0\n\n\nX\n0\n0\n0\n0\n0\n1\n\n\n\n\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#interprétation",
-    "href": "cours/07 - Regression/07 - regression.html#interprétation",
+    "objectID": "cours/07 - regression/07 - regression.html#interprétation",
+    "href": "cours/07 - regression/07 - regression.html#interprétation",
     "title": "07 - Modélisation - Régression",
     "section": "Interprétation",
     "text": "Interprétation\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\n\nÉcole autichienne (A) est le niveau de référence. En moyenne, les peintures de cette école mesurent 14 pouces de haut.\nÉcole néerlandaise/flamande (D/FL) : En moyenne, les peintures de cette école sont 2.33 pouces plus hautes que celles de l’école autrichienne.\nÉcole française (F) : En moyenne, les peintures de cette école sont 10.2 pouces plus hautes que celles de l’école autrichienne.\nÉcole allemande (G) : En moyenne, les peintures de cette école sont 1.65 pouces plus hautes que celles de l’école autrichienne.\nÉcole italienne (I) : En moyenne, les peintures de cette école sont 10.3 pouces plus hautes que celles de l’école autrichienne.\nÉcole espagnole (S) : En moyenne, les peintures de cette école sont 30.4 pouces plus hautes que celles de l’école autrichienne.\nÉcole inconnue (X) : En moyenne, les peintures de cette catégorie sont 2.87 pouces plus hautes que celles de l’école autrichienne."
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#mesurer-la-qualité-dajustement",
-    "href": "cours/07 - Regression/07 - regression.html#mesurer-la-qualité-dajustement",
+    "objectID": "cours/07 - regression/07 - regression.html#mesurer-la-qualité-dajustement",
+    "href": "cours/07 - regression/07 - regression.html#mesurer-la-qualité-dajustement",
     "title": "07 - Modélisation - Régression",
     "section": "Mesurer la qualité d’ajustement",
     "text": "Mesurer la qualité d’ajustement\n\nCoefficient de détermination (\\(R^{2}\\)): Proportion de la variance totale de la variable dépendante expliquée par le modèle.\n\nVarie entre 0 et 1\nPlus \\(R^{2}\\) est proche de 1, meilleur est l’ajustement du modèle aux données.\n\n\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in, data = pp) %&gt;%\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     0.683         0.683  8.30     6749.       0     1 -11083. 22173. 22191.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#r2-ajusté",
-    "href": "cours/07 - Regression/07 - regression.html#r2-ajusté",
+    "objectID": "cours/07 - regression/07 - regression.html#r2-ajusté",
+    "href": "cours/07 - regression/07 - regression.html#r2-ajusté",
     "title": "07 - Modélisation - Régression",
     "section": "\\(R^{2}\\) ajusté",
     "text": "\\(R^{2}\\) ajusté\n\nCoefficient de détermination ajusté (\\(R^{2}_{adj}\\)): Version ajustée de \\(R^{2}\\) qui prend en compte le nombre de variables explicatives dans le modèle.\n\nUtile pour comparer des modèles avec différents nombres de variables explicatives.\n\n\n\nlinear_reg() %&gt;%\n  set_engine(\"lm\") %&gt;%\n  fit(Height_in ~ Width_in + landsALL + school_pntg, data = pp) %&gt;%\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     0.716         0.715  7.87      986.       0     8 -10910. 21840. 21901.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
-    "objectID": "cours/07 - Regression/07 - regression.html#références",
-    "href": "cours/07 - Regression/07 - regression.html#références",
+    "objectID": "cours/07 - regression/07 - regression.html#références",
+    "href": "cours/07 - regression/07 - regression.html#références",
     "title": "07 - Modélisation - Régression",
     "section": "Références",
     "text": "Références\n\n\nPeng, R. and Matsui, E. (2016). The Art of Data Science. Lulu.com."
