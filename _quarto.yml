@@ -55,7 +55,7 @@ website:
             text: Lab 05 - Religion Income
           - href: labs/lab06-better-viz/lab06-better-viz.qmd
             text: Lab 06 - Better Viz
-          - href: /labs/lab07-prof-grading/lab07-prof-grading.qmd
+          - href: labs/lab07-prof-grading/lab07-prof-grading.qmd
             text: Lab 07 - Grading the Professor !
             
       - href: ressources.qmd
