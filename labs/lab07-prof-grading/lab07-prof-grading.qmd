@@ -50,6 +50,8 @@ Vous pouvez le charger en exécutant ce qui suit dans votre Console :
 ```{r eval = TRUE, message = FALSE}
 library(tidyverse)
 library(tidymodels)
+
+set.seed(1036)  # pour la reproductibilité
 ```
 
 ## Données
@@ -109,12 +111,8 @@ ggplot(aes(x = bty_avg, y=score)) +
 
 Dans cette partie, le modèle linéaire sera de la forme $\hat{y} = b_0 + b_1 x$.
 
-Let’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called score_bty_fit to predict average professor evaluation score by average beauty rating (bty_avg). Based on the regression output, write the linear model.
-
 2.1 Voyons si la tendance apparente dans le graphique est autre chose que la variation naturelle. Ajustez un modèle linéaire appelé `score_bty_fit` pour prédire le score moyen d'évaluation des professeurs par la note moyenne de beauté (`bty_avg`). Sur la base des résultats de la régression, écrivez le modèle linéaire.
 
-
-Recreate the scatterplot from Exercise 2, and add the regression line to this plot in orange colour, with shading for the uncertainty of the line turned off.
 
 2.2 Reproduisez le nuage de points de l'exercice 2 et ajoutez la ligne de régression à ce graphique en orange, sans incertitude.
 
@@ -147,12 +145,32 @@ Sur la base des résultats de la régression, écrivez le modèle linéaire et i
 
 3.4 Créez une nouvelle variable appelée `rank_relevel` où `"tenure track"` est le niveau de référence.
 
-3.5 Fittez un nouveau modèle linéaire appelé ``score_rank_relevel_firt` pour prédire le score moyen d'évaluation des professeurs en fonction de `rank_relevel` du professeur.
+```{r echo= FALSE}
+evals <- evals %>%
+  mutate(
+    rank_relevel = fct_relevel(rank, "tenure track")
+  )
+```
+
+
+3.5 Fittez un nouveau modèle linéaire appelé `score_rank_relevel_firt` pour prédire le score moyen d'évaluation des professeurs en fonction de `rank_relevel` du professeur.
     Il s'agit de la nouvelle variable créée dans l'exercice 3.4.
     Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l'ordonnée à l'origine dans le contexte des données.
     Déterminez également le $R^2$ du modèle et interprétez-le.
 
 3.6 Créez une autre nouvelle variable appelée `tenure_eligible` qui étiquette le personnel enseignant `"teaching"` comme `"no"` et étiquette le personnel enseignant `"tenure track"` et `"tenured"` comme `"yes"`.
+
+```{r echo= FALSE}
+evals <- evals %>%
+  mutate(
+    tenure_eligible = case_when(
+      rank == "teaching"      ~ "no",
+      rank %in% c("tenure track", "tenured") ~ "yes"
+    ) %>%
+    as.factor()
+  )
+```
+
 
 3.7 Fittez un nouveau modèle linéaire appelé `score_tenure_eligible_fit` pour prédire le score moyen d'évaluation des professeurs en fonction de l'éligibilité à la titularisation (`tenure_eligible`) du professeur.
     Il s'agit de la nouvelle variable créée dans l'exercice 3.6.
@@ -184,9 +202,6 @@ Sur la base des résultats de la régression, écrivez le modèle linéaire et i
 
 4.8 Comparez les pentes de `bty_avg` sous les deux modèles (`score_bty_fit` et `score_bty_gen_fit`).
     L'ajout de `gender` au modèle a-t-il modifié l'estimation du paramètre (pente) pour `bty_avg` ?
-
-11. Create a new model called `score_bty_rank_fit` with `gender` removed and `rank` added in.
-    Write the equation of the linear model and interpret the slopes and intercept in context of the data.
   
 4.9 Créez un nouveau modèle appelé `score_bty_rank_fit` sans `gender` mais en ajoutant `rank`.
     Écrivez l'équation du modèle linéaire et interprétez les pentes et l'ordonnée à l'origine dans le contexte des données.
