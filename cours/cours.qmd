@@ -112,6 +112,12 @@ Slides : [Web](07 - regression/07 - regression.qmd){target="_blank"} [PDF](07 - 
 
 Labs: [Lab07 - Grading the Professor](/labs/lab07-prof-grading/lab07-prof-grading.qmd)
 
+## 08 - Modélisation : Classification
+
+Slides : [Web](08 - Classification/08 - classification.qmd){target="_blank"} [PDF](08 - Classification/PRO1036_08_Classification.pdf)
+
+Labs: [Lab07 - Grading the Professor](/labs/lab08-hotel-bookings/lab08-hotel-bookings.qmd)
+
 # Références
 
 ::: {#refs}

@@ -65,4 +65,42 @@ Vous pouvez également produire des premières analyses exploratoires de vos don
 | Choix des données et exploration   | 4      |
 | Présentation, Qualité              | 2      |
 
+### Rapport final (30 pts)
 
+Votre rapport sera à rendre sous forme d'un petit article en format Markdown (`.md`). Votre article doit répondre à l'intérrogation que vous avez exprimée dans le proposal. Votre article doit plus ressembler à un post de blog : Essayez d'intéresser votre lecteur !
+
+L'ensemble des fichiers que vous avez utilisé pour générer votre rapport (fichier .Rmd, .md, données, images, ...) devra être inclus dans votre soumission. Le tout sera rendu sur Github au plus tard le **05 décembre 2025 à 23h00**.
+
+Votre rapport devra présenter les résultats de votre analyse. Il devra contenir les éléments suivants :
+
+  - **Introduction**: Présentez brièvement le contexte de votre analyse et les questions de recherche que vous souhaitez explorer.
+  - **Données**: Présentez les données qui vont être utilisez et notamment d'où elles proviennent, combien d'observations et de variables elles contiennent, etc.
+  - **Analyse des données**: Présentez les résultats de votre analyse. Vous devez inclure des visualisations et des statistiques descriptives pour les variables que vous avez choisies, ainsi que toutes les autres analyses que vous avez effectuées (selon ce qui y applicable: test d'hypothèse, regression, classification, ....)
+  - **Discussion**: Discutez des résultats de votre analyse. Quelles sont les conclusions que vous pouvez tirer de vos résultats? Quelles sont les limites de votre analyse? Quelles sont les implications de vos résultats?
+  
+  
+Notez que l'analyse et la discussion peuvent être faites de manière alternées, par question par exemple. Les questions de recherche doivent être clairement identifiées et les réponses doivent être clairement présentées. Pour résumer: assurez vous que votre rapport est clair et bien structuré. S'y retrouver devrait être facile et la lecture devrait être fluide.
+
+Il n'a y pas de longueur minimum ou maximum pour le rapport, mais il doit être suffisamment détaillé pour que nous puissions comprendre votre analyse et vos résultats. Votre rendu devrai comprendre au moins:
+
+  - **Deux visualisations** différentes, dont une impliquant au moins trois variables
+  - **Une statistique prédictive (régression, classification, ...)** ou **un test d'hypothèse**
+  - **Des analyses descriptives**
+
+L'objectif est de montrer que vous êtes capable de manipuler des données, de les analyser et de les interpréter. Vous devez également montrer que vous êtes capable de communiquer vos résultats de manière claire et concise.
+
+Votre rapport doit le plus proposer une histoire à partir des données. Votre rapport doit attiser la curiosité du lecteur et le guider à travers les résultats de votre analyse.
+
+Le resultat final doit ressembler à un article donc les blocs de code ne devraient pas apparaitre et les résultats des blocs devraient être propres et facile à lire. Jouez avec les options de bloc pour régler l'affichage et utilisez des visualisations !
+
+
+#### Critères d'évaluation
+
+
+| Critères                            | Points | 
+|-------------------------------------|-------:|
+| Structure claire                    | 5      |
+| Qualité des analyses                | 20     |
+| Présentation (format article)       | 20     |
+| Reproductibilité et organisation    | 5      |
+| **Total**                           | **30** |

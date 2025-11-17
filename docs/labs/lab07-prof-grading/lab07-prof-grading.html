@@ -234,6 +234,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../../labs/lab07-prof-grading/lab07-prof-grading.html">
  <span class="dropdown-text">Lab 07 - Grading the Professor !</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab08-hotel-bookings/lab08-hotel-bookings.html">
+ <span class="dropdown-text">Lab 08 - Hotel Bookings</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -345,7 +349,9 @@ window.Quarto = {
 <p>Nous utiliserons le package <strong>tidyverse</strong> pour la manipulation des données et le package <strong>tidymodels</strong> pour la modélisation. Vous pouvez le charger en exécutant ce qui suit dans votre Console :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1036</span>)  <span class="co"># pour la reproductibilité</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="données" class="level2">
@@ -396,9 +402,7 @@ window.Quarto = {
 <section id="exercice-2---variable-numérique" class="level3">
 <h3 class="anchored" data-anchor-id="exercice-2---variable-numérique">Exercice 2 - Variable numérique</h3>
 <p>Dans cette partie, le modèle linéaire sera de la forme <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span>.</p>
-<p>Let’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called score_bty_fit to predict average professor evaluation score by average beauty rating (bty_avg). Based on the regression output, write the linear model.</p>
 <p>2.1 Voyons si la tendance apparente dans le graphique est autre chose que la variation naturelle. Ajustez un modèle linéaire appelé <code>score_bty_fit</code> pour prédire le score moyen d’évaluation des professeurs par la note moyenne de beauté (<code>bty_avg</code>). Sur la base des résultats de la régression, écrivez le modèle linéaire.</p>
-<p>Recreate the scatterplot from Exercise 2, and add the regression line to this plot in orange colour, with shading for the uncertainty of the line turned off.</p>
 <p>2.2 Reproduisez le nuage de points de l’exercice 2 et ajoutez la ligne de régression à ce graphique en orange, sans incertitude.</p>
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output cell-output-stderr">
@@ -422,7 +426,7 @@ window.Quarto = {
 <p>3.2 Quelle est l’équation de la ligne correspondant aux professeurs masculins ? Et pour les professeures féminins ?</p>
 <p>3.3 Fittez un nouveau modèle linéaire appelé <code>score_rank_fit</code> pour prédire le score moyen d’évaluation des professeurs en fonction du <code>rank</code> du professeur. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données.</p>
 <p>3.4 Créez une nouvelle variable appelée <code>rank_relevel</code> où <code>"tenure track"</code> est le niveau de référence.</p>
-<p>3.5 Fittez un nouveau modèle linéaire appelé `<code>score_rank_relevel_firt</code> pour prédire le score moyen d’évaluation des professeurs en fonction de <code>rank_relevel</code> du professeur. Il s’agit de la nouvelle variable créée dans l’exercice 3.4. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données. Déterminez également le <span class="math inline">\(R^2\)</span> du modèle et interprétez-le.</p>
+<p>3.5 Fittez un nouveau modèle linéaire appelé <code>score_rank_relevel_firt</code> pour prédire le score moyen d’évaluation des professeurs en fonction de <code>rank_relevel</code> du professeur. Il s’agit de la nouvelle variable créée dans l’exercice 3.4. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données. Déterminez également le <span class="math inline">\(R^2\)</span> du modèle et interprétez-le.</p>
 <p>3.6 Créez une autre nouvelle variable appelée <code>tenure_eligible</code> qui étiquette le personnel enseignant <code>"teaching"</code> comme <code>"no"</code> et étiquette le personnel enseignant <code>"tenure track"</code> et <code>"tenured"</code> comme <code>"yes"</code>.</p>
 <p>3.7 Fittez un nouveau modèle linéaire appelé <code>score_tenure_eligible_fit</code> pour prédire le score moyen d’évaluation des professeurs en fonction de l’éligibilité à la titularisation (<code>tenure_eligible</code>) du professeur. Il s’agit de la nouvelle variable créée dans l’exercice 3.6. Sur la base des résultats de la régression, écrivez le modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données. Déterminez également le <span class="math inline">\(R^2\)</span> du modèle et interprétez-le.</p>
 <p>🧶 ✅ ⬆️ I <em>Knit, commit, and push ! N’oubliez pas le message de commit.</em></p>
@@ -440,9 +444,6 @@ window.Quarto = {
 <p>4.6 Comment la relation entre la beauté et le score d’évaluation varie-t-elle entre les professeurs masculins et féminins ?</p>
 <p>4.7 Comparez les valeurs de <span class="math inline">\(R^2\)</span> ajusté de <code>score_bty_gen_fit</code> et <code>score_bty_fit</code>. Que nous dit cela sur l’utilité de <code>gender</code> pour expliquer la variabilité des scores d’évaluation lorsque nous avons déjà des informations sur la note de beauté du professeur.</p>
 <p>4.8 Comparez les pentes de <code>bty_avg</code> sous les deux modèles (<code>score_bty_fit</code> et <code>score_bty_gen_fit</code>). L’ajout de <code>gender</code> au modèle a-t-il modifié l’estimation du paramètre (pente) pour <code>bty_avg</code> ?</p>
-<ol start="11" type="1">
-<li>Create a new model called <code>score_bty_rank_fit</code> with <code>gender</code> removed and <code>rank</code> added in. Write the equation of the linear model and interpret the slopes and intercept in context of the data.</li>
-</ol>
 <p>4.9 Créez un nouveau modèle appelé <code>score_bty_rank_fit</code> sans <code>gender</code> mais en ajoutant <code>rank</code>. Écrivez l’équation du modèle linéaire et interprétez les pentes et l’ordonnée à l’origine dans le contexte des données.</p>
 <p>🧶 ✅ ⬆️ I <em>Knit, commit, and push ! N’oubliez pas le message de commit.</em></p>
 </section>

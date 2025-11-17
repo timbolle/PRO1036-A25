@@ -1,0 +1,211 @@
+---
+title: "Lab 08 - Hotel Bookings"
+link-citations: true
+format:
+  html:
+    include-after-body: ../../template/graph_fold.html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+```{r photo, fig.margin = TRUE, echo = FALSE, fig.width = 3, fig.cap = "Crédit : [Shangri-La Hotel](https://www.shangri-la.com/en/landing/family-themed-suites/)", eval = TRUE}
+knitr::include_graphics("figs/Hotel-Kid.jpg")
+```
+
+Le but de ce laboratoire est de pratiquer la modélisation de données.
+
+# Pour commencer
+
+Nous allons utiliser GitHub Classroom pour que vous puissiez rendre vos réponses.
+Sur le portail de cours, vous trouverez un lien vers un assignment.
+
+  - Cliquez sur le lien
+  - Connectez vous avec votre compte Github si ce n'est pas fait
+  - Acceptez l'assignment
+  - Liez votre compte avec votre nom d'étudiant
+  
+Vous devriez maintenant voir un repository appelé `Lab08-[votre-username]` où devrait être votre nom d'utilisateur GitHub.
+
+Sur la page du repository:
+
+  - Cliquez sur le bouton vert: ![](figs/github-bouton.png){.inline-image}
+  - Copiez le lien terminant en `.git`
+    - Quelque chose ressemblant à `https://github.com/PRO1036/lab08-[votre-username].git`
+
+Dans RStudio:
+
+-   Fichier \> Nouveau Projet
+-   Version Control \> Git
+-   Dans *Repository URL* : indiquez l'adresse copiée à l'étape précédente
+-   Choisissez un nom pour le dossier qui sera créé, par exemple "Lab02"
+-   Choisissez où vous voulez créer le projet dans votre ordinateur.
+
+Cela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.
+Dans le *YAML*, le `output` est réglé sur `"github_document"`. Cela permet d'obtenir un format adapté à GitHub. Notamment, votre fichier final sera un fichier Markdown (`.md`).
+
+## Packages
+
+Nous utiliserons le package **tidyverse** pour la manipulation des données et le package **tidymodels** pour la modélisation.
+Vous pouvez le charger en exécutant ce qui suit dans votre Console :
+
+```{r eval = TRUE, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(lubridate)
+```
+
+# Données
+
+Dans ce laboratoire, nous allons utiliser un ensemble de données sur les réservations d'hôtels, issue de l'article de [@antonioHotelBookingDemand2019]. L'objectif est de prédire le type d'hôtel et si une réservation inclut des enfants ou non. Les données contiennent des informations sur les réservations, telles que le type d'hôtel, la durée du séjour, le nombre de personnes, etc.Vous pouvez en apprendre plus [ici](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-02-11)
+
+Le jeu de données étant un peu volumineux, nous allons le charger directement depuis Internet.
+
+# Exercices
+
+## Importation des données
+
+Commencez par importer les données dans une variable `hotels`.
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: TRUE
+#| echo: TRUE
+hotels <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/hotels.csv")
+```
+
+## Analyse Exploratoire
+
+### Exercice 1
+
+*1.1* Combien le jeu de données contient-il d'observation et de variables ?
+
+*1.2* Quels sont les types d'hôtels présents dans le jeu de données ? Combien y a-t-il de réservations pour chaque type d'hôtel ?
+
+*1.3* Créez une nouvelle colonne `Kids` qui vaudra `"Yes"` si la réservation compte au moins un enfant ou un bébé. Transformez-la en facteur.
+
+```{r echo= FALSE}
+hotels <- hotels %>%
+  mutate(
+    Kids = case_when(
+      children + babies > 0 ~ "Yes",
+      TRUE ~ "No"),
+    Kids = as.factor(Kids)
+  )
+```
+
+*1.4* Quel est le pourcentage de réservations avec des enfants ?
+
+*1.5* Nous allons terminer par quelques transformations de données. Créez un nouveau tableau `hotels_clean` qui :
+
+- Conservez uniquement les réservations non annulées.
+- Créez une nouvelle colonne `total_stay` qui correspond au nombre total de nuits passées à l'hôtel (somme des nuits en semaine et des nuits en week-end).
+- Créez une nouvelle colonne `parking` qui vaut "`Yes`" si le nombre de places de parking réservées est supérieur à 0, et "`No`" sinon. Transformez la en facteur.
+- Créez une nouvelle colonne `arrival_date` qui est composées des colonnes `arrival_date_year`, `arrival_date_month` et `arrival_date_day_of_month`. Vous pouvez utiliser les fonctiones `paste` pour regrouper les trois colonnes dans une chaine de texte, puis `ymd()` du package `lubridate`.
+- Retirez les colonnes inutiles `is_canceled`, `reservation_status`,`children`, `babies`, `country`, `arrival_date_year`, `arrival_date_month`, `arrival_date_day_of_month`, `arrival_date_week_number`, `reservation_status_date`, `agent` et `company`.
+- Transformez les colonnes de type caractère en facteurs.
+
+```{r echo= FALSE}
+hotels_clean <- hotels %>%
+  filter(is_canceled == 0) %>%
+  mutate(
+    total_stay = stays_in_weekend_nights + stays_in_week_nights,
+    parking = case_when(
+      required_car_parking_spaces > 0 ~ "Yes",
+      TRUE ~ "No"),
+    parking = as.factor(parking),
+    arrival_date = ymd(paste(arrival_date_year, arrival_date_month, arrival_date_day_of_month, sep = "-"))
+  ) %>%
+  select(-is_canceled, -reservation_status,-children, -babies, -country, -starts_with("arrival_date_"),
+         -reservation_status_date, -agent, -company) %>%
+  mutate_if(is.character, as.factor)
+```
+
+Vous devriez obtenir un tableau de 75166 observation et 26 variables.
+
+## Modélisation
+
+### Exercice 2 - Séparation des données
+
+Cette section consiste à préparer les données pour la modélisation. Il y aura une partie aléatoire, donc pour que vos résultats soient reproductibles, nous allons fixer la graine aléatoire avec `set.seed(1036)`.
+
+```{r}
+set.seed(1036)  # pour la reproductibilité
+```
+*2.1* Pour éviter de rallonger les temps de traitement, nous allons travailler avec un sous-ensemble des données. Créez un sous-ensemble `hotels_small` qui contient 10 000 observations aléatoires du jeu de données initial. Utilisez la fonction `sample_n`.
+
+```{r echo=FALSE}
+hotels_small <- hotels_clean %>%
+  sample_n(10000)
+
+```
+
+
+*2.2* Séparez vos données en un ensemble d'entraînement et un ensemble de test en utilisant 80% pour l'entrainement. Utilisez le paramètre `strata` pour indiquez que vous souhaitez conserver la même proportion de la variable `Kids` dans les deux jeux.
+
+```{r echo=FALSE}
+
+hotel_splits <- initial_split(hotels_small, prop = 0.8, strata = hotel)
+hotel_train <- training(hotel_splits)
+hotel_test  <- testing(hotel_splits)
+
+```
+
+
+*2.3* Calculez la proportion de réservations avec des enfants dans chaque ensemble de données. Les proportions doivent être similaires. Elles peuvent varier de celle obtenu dans l'exercice 1.
+
+### Exercice 3 - Entrainement et évaluation du modèle
+
+*3.1* Fittez un modèle de régression logistique appelé `hotel_fit` sur l'ensemble d'entrainement. Utilisez la variable `Kids` comme variable à prédire, et toutes les autres variables comme prédicteurs. Utilisez une recette pour préparer les données avant l'entrainement du modèle:
+
+```{r warning=FALSE, echo=FALSE}
+logistic_spec <- 
+  logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(hotel ~ ., data = hotel_train)
+```
+
+*3.2* Utilisez le modèle pour faire des prédictions sur l'ensemble de test. Créez `hotel_pred_class` et `hotel_pred_prob` pour avoir deux tableaux, l'un avec la classe prédite et l'autre avec la probabilité associée. Observez la différence entre les deux tableaux (colonnes différentes).
+
+```{r echo=FALSE}
+hotel_pred_class <- logistic_spec %>% predict(hotel_test)
+
+hotel_pred_proba <- logistic_spec %>% predict(hotel_test, type="prob")
+
+```
+
+*3.3* Calculez la matrice de confusion pour évaluer la performance du modèle sur l'ensemble de test. Utilisez la fonction `conf_mat()`
+
+```{r echo=FALSE}
+logistic_spec %>%
+    predict(hotel_test) %>%
+    bind_cols(hotel_test %>% select(hotel)) %>%
+    conf_mat(truth = hotel, estimate = .pred_class)
+
+```
+
+*3.4* Identifiez les faux positifs et les faux négatifs à partir de la matrice de confusion. Quel est le taux de faux positifs et de faux négatifs ? Calculez la sensibilité et la spécificité. Commentez ces valeurs.
+
+*3.5* Affichez une courbe ROC pour évaluer la performance du modèle. Commentez la courbe obtenue.
+
+```{r echo=FALSE}
+logistic_spec %>%
+  predict(hotel_test, type = "prob") %>%
+  bind_cols(hotel_test %>% select(hotel)) %>%
+  roc_curve(truth = hotel, `.pred_Resort Hotel`) %>%
+  autoplot()
+```
+
+
+*3.6* En jouant sur les variables utilisées pour faire la prédiction, essayez d'améliorer la performance du modèle. Par exemple, vous pouvez essayer de supprimer certaines variables.
+
+
+### Exercice 4 - Prédiction de la présence d'enfants
+
+*4.1* Pour terminer, reproduisez les étapes précédentes, *2.1* à *3.6* pour prédire si une réservation inclut des enfants ou non (variable `Kids`).
+
+  - Séparez les données en un ensemble d'entrainement et un ensemble de test.
+  - Fittez un modèle de régression logistique.
+  - Évaluez la performance du modèle avec une matrice de confusion et une courbe ROC.

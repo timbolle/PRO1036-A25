@@ -57,6 +57,8 @@ website:
             text: Lab 06 - Better Viz
           - href: labs/lab07-prof-grading/lab07-prof-grading.qmd
             text: Lab 07 - Grading the Professor !
+          - href: labs/lab08-hotel-bookings/lab08-hotel-bookings.qmd
+            text: Lab 08 - Hotel Bookings
             
       - href: ressources.qmd
         text: Ressources
