@@ -2791,5 +2791,236 @@
     "title": "Projet",
     "section": "Consignes",
     "text": "Consignes\n\nProposal (10 pts)\nPour commencez, vous devez soumettre un proposal de projet. Il s’agit d’un court document de maximum 1 page indiquant :\n\nIntroduction et contexte: Dans cette partie, vous présenterez brièvement le contexte dans lequel s’inscrit votre mini-article. Quelle est la question principale ? Pourquoi est-ce intéressant de se la poser.\nPrésentation des Données: Une présentation plus détaillée des données choisies. D’où viennent les données ? Quand les données ont-elles été collectées ? Combien y a-t-il d’observations ? De variable ? Quel est le format des données? Quelles sont les variables que vous allez utiliser ? En quoi sont-elles utiles ? etc.\n\nUne copie des données doit être transmise dans le dossier data.\n\nAnalyse exploratoire: Quelles sont les questions que vous souhaitez explorer? Quelles sont les hypothèses que vous souhaitez tester? Quelles sont les méthodes que vous envisagez d’utiliser pour répondre à ces questions?\n\nVous pouvez également produire des premières analyses exploratoires de vos données.\n\nCritères d’évaluation\n\n\n\nCritère\nPoints\n\n\n\n\nQuestions de recherche\n4\n\n\nChoix des données et exploration\n4\n\n\nPrésentation, Qualité\n2"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#problème-avec-la-régression",
+    "href": "cours/08 - Classification/08 - classification.html#problème-avec-la-régression",
+    "title": "08 - Modélisation - Classification",
+    "section": "Problème avec la régression…",
+    "text": "Problème avec la régression…\nCela fonctionne bien parce que nous avons une variable dépendante continue.\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  ggplot(aes(x = Sepal.Length, y = Petal.Length)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"#E48957\", se = FALSE) +\n  labs(\n    title = \"Longueur des sépales vs Longueur des pétales\",\n    subtitle = \"Iris versicolor et Iris virginica\",\n    x = \"Longueur des sépales (cm)\",\n    y = \"Longueur des pétales (cm)\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#mais-si-la-variable-dépendante-est-catégorielle",
+    "href": "cours/08 - Classification/08 - classification.html#mais-si-la-variable-dépendante-est-catégorielle",
+    "title": "08 - Modélisation - Classification",
+    "section": "Mais si la variable dépendante est catégorielle ?",
+    "text": "Mais si la variable dépendante est catégorielle ?\n\nGrapheCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(\n    Species_num = if_else(Species == \"versicolor\", 0, 1)  # conversion artificielle\n  ) %&gt;%\n  ggplot(aes(x = Petal.Length, y = Species_num)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"#D81B60\") +\n  scale_y_continuous(\n    breaks = c(0, 1),\n    labels = c(\"versicolor\", \"virginica\")   # remettre les étiquettes\n  ) +\n  labs(\n    title = \"Exemple volontairement incorrect : droite de régression entre une catégorie et une variable continue\",\n    x = \"Longueur des pétales\",\n    y = \"Espèce (codée artificiellement)\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#pourquoi-cela-ne-fonctionne-pas",
+    "href": "cours/08 - Classification/08 - classification.html#pourquoi-cela-ne-fonctionne-pas",
+    "title": "08 - Modélisation - Classification",
+    "section": "Pourquoi cela ne fonctionne pas ?",
+    "text": "Pourquoi cela ne fonctionne pas ?\n\nLa variable dépendante est catégorielle (espèce de l’iris) et non continue.\nLes valeurs prédites peuvent être en dehors des catégories possibles (par exemple, 0.5).\nLa relation entre la variable explicative et la variable dépendante n’est pas linéaire.\n\n\\(Y\\) ne suit pas une distribution normale.\n\n\n\nQuelle solution ?\nPrenons un peu de recul…"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#modèles-linéaires-généralisés",
+    "href": "cours/08 - Classification/08 - classification.html#modèles-linéaires-généralisés",
+    "title": "08 - Modélisation - Classification",
+    "section": "Modèles linéaires généralisés",
+    "text": "Modèles linéaires généralisés\n\nLa régression linéaire est un cas particulier des modèles linéaires généralisés (GLM).\n\nLa variable dépendante suit une distribution normale.\n\n\n\\[Y \\sim \\mathcal{N}(\\mu, \\sigma^2)\\] Notre modèle permet d’estimer \\(\\mu\\) en fonction des variables explicatives.\n\\[Y \\sim \\mathcal{N}(\\beta_0 + \\beta_1 X_1 + ... + \\beta_p X_p, \\sigma^2)\\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#visuellement",
+    "href": "cours/08 - Classification/08 - classification.html#visuellement",
+    "title": "08 - Modélisation - Classification",
+    "section": "Visuellement",
+    "text": "Visuellement"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#les-gml-une-généralisation",
+    "href": "cours/08 - Classification/08 - classification.html#les-gml-une-généralisation",
+    "title": "08 - Modélisation - Classification",
+    "section": "Les GML: Une généralisation",
+    "text": "Les GML: Une généralisation\nLes GML permettent de modéliser des variables dépendantes qui suivent différentes distributions (binomiale, Poisson, etc.)."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#mathématiquement",
+    "href": "cours/08 - Classification/08 - classification.html#mathématiquement",
+    "title": "08 - Modélisation - Classification",
+    "section": "Mathématiquement…",
+    "text": "Mathématiquement…\nOn cherche à estimer une valeur moyenne \\(\\mu\\) de la variable dépendante \\(Y\\) en fonction de variables \\(X\\) (\\(E(Y|X)\\)).\n\\[ E(Y|X) = \\mu \\]\nComme \\(Y\\) ne suit pas une distribution normale, on utilise une fonction de lien \\(g\\) pour relier \\(\\mu\\) au prédicteur linéaire :\n\\[ g(\\mu) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p \\]\nOn a donc :\n\\[ E(Y|X) = \\mu = g^{-1}(\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p) \\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#la-fonction-de-lien",
+    "href": "cours/08 - Classification/08 - classification.html#la-fonction-de-lien",
+    "title": "08 - Modélisation - Classification",
+    "section": "La fonction de lien",
+    "text": "La fonction de lien\nLa fonction de lien permet de transformer la moyenne de la variable dépendante pour qu’elle puisse être modélisée par une combinaison linéaire des variables explicatives. En effet, une combinaison linéaire \\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\) est généralement définie sur \\(\\mathbb{R}\\) avec des valeurs pouvant aller de \\(]-\\infty;\\infty+[\\), contrairement à \\(\\mu\\) qui ne peut pas toujours, dépendant de la loi que suit \\(Y\\)"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#classification-binaire",
+    "href": "cours/08 - Classification/08 - classification.html#classification-binaire",
+    "title": "08 - Modélisation - Classification",
+    "section": "Classification binaire",
+    "text": "Classification binaire\nNous avions vu que la régression linéaire n’était pas adaptée pour modéliser une variable dépendante catégorielle."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#une-première-manière-de-voir-les-choses",
+    "href": "cours/08 - Classification/08 - classification.html#une-première-manière-de-voir-les-choses",
+    "title": "08 - Modélisation - Classification",
+    "section": "Une première manière de voir les choses !",
+    "text": "Une première manière de voir les choses !\nNous pouvons transformer notre formule de la regression linéaire pour représenter le fait d’appartenir à une classe (0) ou l’autre (1)\n\\[\nY =\n\\begin{cases}\n1, & \\text{si } \\omega X \\ge b, \\\\\n0, & \\text{sinon}.\n\\end{cases}\n\\] où \\(Y\\) est la variable dépendante binaire, \\(X\\) est la variable explicative et où \\(\\omega\\) et \\(b\\) permettent de régler le seuil de décision et le sens de la décision (est-ce que la classe 0 est à gauche ou à droite du seuil.\nOn peut réécrire cela avec notre formulation linéaire \\(\\eta = \\beta_1 X + \\beta_0\\), en posant \\(\\omega = \\beta_1\\) et \\(b = \\beta_0\\)\n\\[\nY =\n\\begin{cases}\n1, & \\text{si } \\beta_1 X + \\beta_0 \\ge 0, \\\\\n0, & \\text{sinon}.\n\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#visuellement-1",
+    "href": "cours/08 - Classification/08 - classification.html#visuellement-1",
+    "title": "08 - Modélisation - Classification",
+    "section": "Visuellement",
+    "text": "Visuellement"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#regression-logistique",
+    "href": "cours/08 - Classification/08 - classification.html#regression-logistique",
+    "title": "08 - Modélisation - Classification",
+    "section": "Regression logistique",
+    "text": "Regression logistique\nLa fonctione paliée n’est pas idéale pour des raisons d’optimisation. De plus, on souhaite obtenir des probabilités de classe plutôt que des décisions binaires strictes.\nLa fonction sigmoïde (logistique) est une alternative lisse qui mappe toute valeur réelle à l’intervalle [0, 1], ce qui est parfait pour modéliser des probabilités.\n\\[ S(z) = \\frac{1}{1 + e^{-z}} \\] Avec notre prédicteur linéaire \\(\\eta = \\beta_0 + \\beta_1 X\\), la régression logistique modélise la probabilité que \\(Y = 1\\) comme suit :\n\\[ P(Y = 1 | X) = S(\\eta) = \\frac{1}{1 + e^{-(\\beta_0 + \\beta_1 X)}} \\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#visuellement-2",
+    "href": "cours/08 - Classification/08 - classification.html#visuellement-2",
+    "title": "08 - Modélisation - Classification",
+    "section": "Visuellement",
+    "text": "Visuellement"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#approche-plus-formelle",
+    "href": "cours/08 - Classification/08 - classification.html#approche-plus-formelle",
+    "title": "08 - Modélisation - Classification",
+    "section": "Approche plus formelle…",
+    "text": "Approche plus formelle…\nLa régression logistique est un type de modèle linéaire généralisé (GLM) adapté pour les variables dépendantes binaires.\nCela veut dire que notre variable dépendante \\(Y\\) suit une distribution binomiale : \\[ Y \\sim \\text{Binomiale}(n=1, p) \\]\noù \\(p\\) est la probabilité que \\(Y = 1\\)."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#modélisation",
+    "href": "cours/08 - Classification/08 - classification.html#modélisation",
+    "title": "08 - Modélisation - Classification",
+    "section": "Modélisation",
+    "text": "Modélisation\n\n# Data\niris_filtered &lt;- iris %&gt;% \n  filter(Species != \"setosa\") %&gt;%\n  mutate(Species = factor(Species))\n\nlogistic_model &lt;- logistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;% #Generalized Linear Model\n  fit(Species ~ Petal.Length, data = iris_filtered, family = binomial) # On indique que la loi est binomiale\n\ntidy(logistic_model)\n\n# A tibble: 2 × 5\n  term         estimate std.error statistic   p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)    -43.8      11.1      -3.94 0.0000812\n2 Petal.Length     9.00      2.28      3.94 0.0000804"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#qualité-du-modèle",
+    "href": "cours/08 - Classification/08 - classification.html#qualité-du-modèle",
+    "title": "08 - Modélisation - Classification",
+    "section": "Qualité du modèle",
+    "text": "Qualité du modèle\nPour mesurer la qualité du modèele, on ne peut pas utiliser le R² comme pour la régression linéaire. On utilise plutôt des métriques adaptées pour la classification binaire.\nTable de confusion :\n\n\n\n\nRéel : Classe 0\nRéel : Classe 1\n\n\n\n\nPrédit : Classe 0\nVrai Négatif (TN)\nFaux Négatif (FN)\n\n\nPrédit : Classe 1\nFaux Positif (FP)\nVrai Positif (TP)\n\n\n\nLes Faux Positifs (FP) constituent des erreurs de type I, tandis que les Faux Négatifs (FN) représentent des erreurs de type II."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#faire-des-prédictions",
+    "href": "cours/08 - Classification/08 - classification.html#faire-des-prédictions",
+    "title": "08 - Modélisation - Classification",
+    "section": "Faire des prédictions",
+    "text": "Faire des prédictions\nSouvent on souhaite utiliser un modèle ajusté pour faire des prédictions sur de nouvelles données. On peut le faire en régression et en classification\nPrincipe est simple:\n\nOn met les valeurs des variables explicatives d’une nouvelle observation dans le modèle\nLe modèle calcule la valeur prédite de la variable dépendante\n\nEn pratique c’est un peu plus compliqué:\n\nNous ne sommes pas sûrs que le modèle est bon\n\nNous ne sommes pas sûrs que les nouvelles données sont similaires aux données d’entraînement"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#underfitting-et-overfitting",
+    "href": "cours/08 - Classification/08 - classification.html#underfitting-et-overfitting",
+    "title": "08 - Modélisation - Classification",
+    "section": "Underfitting et Overfitting",
+    "text": "Underfitting et Overfitting"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#entraînement-vs-test",
+    "href": "cours/08 - Classification/08 - classification.html#entraînement-vs-test",
+    "title": "08 - Modélisation - Classification",
+    "section": "Entraînement vs Test",
+    "text": "Entraînement vs Test\n\nJeu d’entraînement:\n\nUtilisé pour ajuster le modèle\nMajorité des données (généralement 80%)\n\nJeu de test:\n\nUtilisé pour évaluer la performance du modèle ajusté\nImportant de ne pas l’utiliser pendant l’ajustement du modèle\nReste des données (généralement 20%)\n\n\nL’idée est de mesurer la performance du modèle sur des données que le modèle n’a jamais vues auparavant."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#en-pratique-1",
+    "href": "cours/08 - Classification/08 - classification.html#en-pratique-1",
+    "title": "08 - Modélisation - Classification",
+    "section": "En pratique",
+    "text": "En pratique\n\n# Il y a un tirage aléatoire dans la séparation des données\n# En fixant un seed, on s'assure d'obtenir toujours la même séparation - Reproductibilité \nset.seed(1116)\n# Séparer les données en deux ensembles (80% entraînement, 20% test):\niris_split &lt;- initial_split(iris_filtered, prop = 0.80)\n# Création des jeux d'entraînement et de test\ntrain_data &lt;- training(iris_split)\ntest_data  &lt;- testing(iris_split)"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#ce-que-ça-donne",
+    "href": "cours/08 - Classification/08 - classification.html#ce-que-ça-donne",
+    "title": "08 - Modélisation - Classification",
+    "section": "Ce que ça donne",
+    "text": "Ce que ça donne\n\n\n\nglimpse(train_data)\n\nRows: 80\nColumns: 5\n$ Sepal.Length &lt;dbl&gt; 6.3, 7.7, 7.2, 6.1, 6.9, 5.5, 6.0, 6.3, 5.6, 6.3, 7.7, 5.…\n$ Sepal.Width  &lt;dbl&gt; 3.4, 2.8, 3.2, 2.8, 3.1, 2.6, 2.2, 2.5, 3.0, 2.8, 2.6, 3.…\n$ Petal.Length &lt;dbl&gt; 5.6, 6.7, 6.0, 4.0, 5.1, 4.4, 4.0, 4.9, 4.5, 5.1, 6.9, 4.…\n$ Petal.Width  &lt;dbl&gt; 2.4, 2.0, 1.8, 1.3, 2.3, 1.2, 1.0, 1.5, 1.5, 1.5, 2.3, 1.…\n$ Species      &lt;fct&gt; virginica, virginica, virginica, versicolor, virginica, v…\n\n\n\n\nglimpse(test_data)\n\nRows: 20\nColumns: 5\n$ Sepal.Length &lt;dbl&gt; 7.0, 6.9, 5.5, 5.7, 6.3, 6.6, 6.1, 6.7, 5.4, 6.0, 5.6, 5.…\n$ Sepal.Width  &lt;dbl&gt; 3.2, 3.1, 2.3, 2.8, 3.3, 2.9, 2.9, 3.1, 3.0, 3.4, 2.7, 2.…\n$ Petal.Length &lt;dbl&gt; 4.7, 4.9, 4.0, 4.5, 4.7, 4.6, 4.7, 4.4, 4.5, 4.5, 4.2, 3.…\n$ Petal.Width  &lt;dbl&gt; 1.4, 1.5, 1.3, 1.3, 1.6, 1.3, 1.4, 1.4, 1.5, 1.6, 1.3, 1.…\n$ Species      &lt;fct&gt; versicolor, versicolor, versicolor, versicolor, versicolo…"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#entraînement-du-modèle",
+    "href": "cours/08 - Classification/08 - classification.html#entraînement-du-modèle",
+    "title": "08 - Modélisation - Classification",
+    "section": "Entraînement du modèle",
+    "text": "Entraînement du modèle\n\niris_fit &lt;- logistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;%\n  fit(Species ~ . , data = train_data, family = binomial) # on utilise toutes les variables explicatives\n\ntidy(iris_fit)\n\n# A tibble: 5 × 5\n  term         estimate std.error statistic p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    -41.9      26.3      -1.59  0.111 \n2 Sepal.Length    -2.46      2.39     -1.03  0.303 \n3 Sepal.Width     -6.56      4.58     -1.43  0.152 \n4 Petal.Length     9.31      4.80      1.94  0.0521\n5 Petal.Width     18.0      10.0       1.80  0.0726"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#prédictions-sur-le-jeu-de-test",
+    "href": "cours/08 - Classification/08 - classification.html#prédictions-sur-le-jeu-de-test",
+    "title": "08 - Modélisation - Classification",
+    "section": "Prédictions sur le jeu de test",
+    "text": "Prédictions sur le jeu de test\n\npredict(iris_fit, test_data)\n\n# A tibble: 20 × 1\n   .pred_class\n   &lt;fct&gt;      \n 1 versicolor \n 2 versicolor \n 3 versicolor \n 4 versicolor \n 5 versicolor \n 6 versicolor \n 7 versicolor \n 8 versicolor \n 9 versicolor \n10 versicolor \n11 versicolor \n12 versicolor \n13 versicolor \n14 virginica  \n15 virginica  \n16 virginica  \n17 virginica  \n18 virginica  \n19 virginica  \n20 virginica"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#prédictions-avec-probabilités",
+    "href": "cours/08 - Classification/08 - classification.html#prédictions-avec-probabilités",
+    "title": "08 - Modélisation - Classification",
+    "section": "Prédictions avec probabilités",
+    "text": "Prédictions avec probabilités\n\niris_pred &lt;- predict(iris_fit, test_data, type = \"prob\") %&gt;%\n  bind_cols(test_data %&gt;% select(Species))\n\niris_pred\n\n# A tibble: 20 × 3\n   .pred_versicolor .pred_virginica Species   \n              &lt;dbl&gt;           &lt;dbl&gt; &lt;fct&gt;     \n 1        1.000e+ 0       1.36 e- 5 versicolor\n 2        9.99 e- 1       1.31 e- 3 versicolor\n 3        1.000e+ 0       4.94 e- 5 versicolor\n 4        1.000e+ 0       1.19 e- 4 versicolor\n 5        9.99 e- 1       1.45 e- 3 versicolor\n 6        1.000e+ 0       1.71 e- 5 versicolor\n 7        9.99 e- 1       8.98 e- 4 versicolor\n 8        1.000e+ 0       3.37 e- 6 versicolor\n 9        9.98 e- 1       2.45 e- 3 versicolor\n10        1.000e+ 0       2.45 e- 4 versicolor\n11        1.000e+ 0       1.80 e- 5 versicolor\n12        1.000e+ 0       8.79 e-11 versicolor\n13        1.000e+ 0       2.87 e- 6 versicolor\n14        3.52 e-10       1.000e+ 0 virginica \n15        1.20 e- 6       1.000e+ 0 virginica \n16        2.90 e- 4       1.000e+ 0 virginica \n17        3.76 e- 5       1.000e+ 0 virginica \n18        2.49 e- 3       9.98 e- 1 virginica \n19        6.37 e- 8       1.000e+ 0 virginica \n20        1.12 e- 3       9.99 e- 1 virginica"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#matrices-de-confusion",
+    "href": "cours/08 - Classification/08 - classification.html#matrices-de-confusion",
+    "title": "08 - Modélisation - Classification",
+    "section": "matrices de confusion",
+    "text": "matrices de confusion\n\ncm &lt;- predict(iris_fit, test_data) %&gt;%\n  bind_cols(test_data %&gt;% select(Species)) %&gt;%\n  conf_mat(truth = Species, estimate = .pred_class)\n\ncm\n\n            Truth\nPrediction   versicolor virginica\n  versicolor         13         0\n  virginica           0         7\n\n\n\nLe tableau rendu par la fonction predict dépend de si on souhaite avoir la classe prédite ou bien la probabilité pour chaque classe (type = \"prob\").\nSelon ce que l’on souhaite faire après, il faut utiliser l’une ou l’autre."
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#comparaison",
+    "href": "cours/08 - Classification/08 - classification.html#comparaison",
+    "title": "08 - Modélisation - Classification",
+    "section": "Comparaison",
+    "text": "Comparaison\n\n\n\nlogistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;%\n  fit(Species ~ Sepal.Width, data = train_data, family = binomial) %&gt;%\n  predict(test_data) %&gt;%\n  bind_cols(test_data %&gt;% select(Species)) %&gt;%\n  conf_mat(truth = Species, estimate = .pred_class)\n\n            Truth\nPrediction   versicolor virginica\n  versicolor          3         2\n  virginica          10         5\n\n\n\n\nlogistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;%\n  fit(Species ~ Sepal.Length, data = train_data, family = binomial) %&gt;%\n  predict(test_data) %&gt;%\n  bind_cols(test_data %&gt;% select(Species)) %&gt;%\n  conf_mat(truth = Species, estimate = .pred_class)\n\n            Truth\nPrediction   versicolor virginica\n  versicolor          8         1\n  virginica           5         6"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#courbes-roc",
+    "href": "cours/08 - Classification/08 - classification.html#courbes-roc",
+    "title": "08 - Modélisation - Classification",
+    "section": "Courbes ROC",
+    "text": "Courbes ROC\nLes Courbes ROC (Receiver Operating Characteristic) sont utilisées pour évaluer la performance des modèles de classification binaire de manière visuelle en représentant le taux de vrais positifs (sensibilité) en fonction du taux de faux positifs (1-spécificté)\n\niris_pred %&gt;%\n  roc_curve(\n    truth = Species,\n    .pred_versicolor\n  ) %&gt;%\n  autoplot()"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#courbes-roc---comparaison",
+    "href": "cours/08 - Classification/08 - classification.html#courbes-roc---comparaison",
+    "title": "08 - Modélisation - Classification",
+    "section": "Courbes ROC - Comparaison",
+    "text": "Courbes ROC - Comparaison\n\n\n\nlogistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;%\n  fit(Species ~ Sepal.Width, data = train_data, family = binomial) %&gt;%\n  predict(test_data, type=\"prob\") %&gt;% # Il nous faut les probabilités\n  bind_cols(test_data %&gt;% select(Species)) %&gt;%\n  roc_curve(\n    truth = Species,\n    .pred_versicolor\n  ) %&gt;%\n  autoplot()\n\n\n\n\n\n\n\n\n\n\nlogistic_reg() %&gt;%\n  set_engine(\"glm\") %&gt;%\n  fit(Species ~ Sepal.Length, data = train_data, family = binomial) %&gt;%\n  predict(test_data, type=\"prob\") %&gt;%\n  bind_cols(test_data %&gt;% select(Species)) %&gt;%\n  roc_curve(\n    truth = Species,\n    .pred_versicolor\n  ) %&gt;%\n  autoplot()"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#références",
+    "href": "cours/08 - Classification/08 - classification.html#références",
+    "title": "08 - Modélisation - Classification",
+    "section": "Références",
+    "text": "Références\n\n\n\n\n\n\n\nPRO1036 - 08 | Tim Bollé"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#les-gml-une-généralisation-1",
+    "href": "cours/08 - Classification/08 - classification.html#les-gml-une-généralisation-1",
+    "title": "08 - Modélisation - Classification",
+    "section": "Les GML: Une généralisation",
+    "text": "Les GML: Une généralisation\nUn GLM suit trois composantes principales : 1. Distribution de la variable dépendante: Spécifie la distribution statistique de la variable dépendante (ex: binomiale pour des données catégorielles, Poisson pour des données de comptage). - Cela nous diras comment la variance de la variable dépendante est liée à sa moyenne.\n\nUn prédicteur linéaire: Une combinaison linéaire des variables explicatives \\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\)\nFonction de lien: Relie la moyenne de la variable dépendante aux variables explicatives via une transformation spécifique.\n\n\\[g(\\mu) = \\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#exemples-de-fonctions-de-lien-courantes",
+    "href": "cours/08 - Classification/08 - classification.html#exemples-de-fonctions-de-lien-courantes",
+    "title": "08 - Modélisation - Classification",
+    "section": "Exemples de fonctions de lien courantes",
+    "text": "Exemples de fonctions de lien courantes\n\nLien logit (pour les données binomiales/catégorielles) \\[ g(\\mu) = \\log\\left(\\frac{\\mu}{1 - \\mu}\\right) \\]\nLien log (pour les données de comptage, Poisson) : \\[ g(\\mu) = \\log(\\mu) \\]\nLien identité (pour les données normales) : \\[ g(\\mu) = \\mu \\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#approche-plus-formelle-1",
+    "href": "cours/08 - Classification/08 - classification.html#approche-plus-formelle-1",
+    "title": "08 - Modélisation - Classification",
+    "section": "Approche plus formelle…",
+    "text": "Approche plus formelle…\nNous cherchons à modéliser la probabilité \\(p\\) en fonction des variables explicatives via la fonction de lien logit :\n\\[ g(p) = \\log\\left(\\frac{p}{1 - p}\\right) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p \\] où \\(g(p)\\) est la fonction de lien logit, qui transforme la probabilité \\(p\\) en une échelle linéaire.\nEn regardant l’inverse de la fonction de lien, on obtient la probabilité \\(p\\) :\n\\[ p = \\frac{1}{1 + e^{-(\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p)}} \\]"
+  },
+  {
+    "objectID": "cours/08 - Classification/08 - classification.html#qualité-du-modèle-1",
+    "href": "cours/08 - Classification/08 - classification.html#qualité-du-modèle-1",
+    "title": "08 - Modélisation - Classification",
+    "section": "Qualité du modèle",
+    "text": "Qualité du modèle\nIl est ensuite possible de calculer des métriques\n\nSensibilité : \\(P(\\hat{Y}=1 \\mid Y=1) = \\frac{TP}{TP + FN} = 1-FNR\\)\nSpécificité : \\(P(\\hat{Y}=0 \\mid Y=0) = \\frac{TN}{TN + FP} = 1-FPR\\)\n\noù \\(FNR\\) est le taux de faux négatifs et \\(FPR\\) le taux de faux positifs."
   }
 ]

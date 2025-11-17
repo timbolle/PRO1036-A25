@@ -1,0 +1,634 @@
+---
+title: "08 - Modélisation - Classification"
+subtitle: "PRO1036 - Analyse de données scientifiques en R"
+author: "Tim Bollé"
+date: "2025-11-10"
+date-format: long
+footer: "PRO1036 - 08 | Tim Bollé"
+license: "CC BY-SA"
+bibliography: ../../template/references.bib
+csl: ../../template/apa-fr.csl
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+format: 
+  revealjs:
+    theme: [dark, ../../template/slides-uqtr.scss]
+    logo: /template/h-uqtr-r.png
+    slide-number: true
+    width: 1350
+    height: 900
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+library(kableExtra)
+library(plotly)
+set.seed(1036)
+```
+
+
+```{r echo=FALSE}
+# --- Jeu de données de régression ---
+n_reg <- 60
+
+reg_data <- tibble(
+  x = runif(n_reg, 0, 10),                    # variable explicative
+  y = 2 + 0.8 * x + rnorm(n_reg, sd = 2)      # relation linéaire + bruit
+)
+```
+
+```{r echo=FALSE}
+n_class <- 200
+
+class_data <- tibble(
+  x1 = c(rnorm(n_class/2, mean = 2, sd = 1),
+         rnorm(n_class/2, mean = 6, sd = 1)),
+  x2 = c(rnorm(n_class/2, mean = 6, sd = 1),
+         rnorm(n_class/2, mean = 2, sd = 1)),
+  classe = factor(rep(c("A", "B"), each = n_class/2))
+)
+
+```
+
+
+
+# Classification
+
+## Problème avec la régression...
+
+Cela fonctionne bien parce que nous avons une variable dépendante continue.
+
+:::{.panel-tabset}
+### Graphe
+
+```{r iris-regression, echo=FALSE}
+iris %>%
+  filter(Species != "setosa") %>%
+  ggplot(aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
+  labs(
+    title = "Longueur des sépales vs Longueur des pétales",
+    subtitle = "Iris versicolor et Iris virginica",
+    x = "Longueur des sépales (cm)",
+    y = "Longueur des pétales (cm)"
+  ) +
+  theme_minimal()
+
+```
+### Code
+
+```{r ref.label="iris-regression", fig.show="hide"}
+```
+
+:::
+
+## Mais si la variable dépendante est catégorielle ?
+
+:::{.panel-tabset}
+### Graphe
+```{r iris-classification, echo=FALSE}
+iris %>%
+  filter(Species != "setosa") %>%
+  mutate(
+    Species_num = if_else(Species == "versicolor", 0, 1)  # conversion artificielle
+  ) %>%
+  ggplot(aes(x = Petal.Length, y = Species_num)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "#D81B60") +
+  scale_y_continuous(
+    breaks = c(0, 1),
+    labels = c("versicolor", "virginica")   # remettre les étiquettes
+  ) +
+  labs(
+    title = "Exemple volontairement incorrect : droite de régression entre une catégorie et une variable continue",
+    x = "Longueur des pétales",
+    y = "Espèce (codée artificiellement)"
+  ) +
+  theme_minimal()
+```
+### Code
+```{r ref.label="iris-classification", fig.show="hide"}
+```
+:::
+
+
+
+## Pourquoi cela ne fonctionne pas ?
+
+- La variable dépendante est catégorielle (espèce de l'iris) et non continue.
+
+- Les valeurs prédites peuvent être en dehors des catégories possibles (par exemple, 0.5).
+
+- La relation entre la variable explicative et la variable dépendante n'est pas linéaire.
+  - $Y$ ne suit pas une distribution normale.
+
+:::{.text-align="center"}
+Quelle solution ?
+
+Prenons un peu de recul...
+:::
+
+# Les GML : Généralized Linear Models
+
+## Modèles linéaires généralisés
+
+- La régression linéaire est un cas particulier des modèles linéaires généralisés (GLM).
+  - La variable dépendante suit une distribution normale.
+
+$$Y \sim \mathcal{N}(\mu, \sigma^2)$$
+Notre modèle permet d'estimer $\mu$ en fonction des variables explicatives.
+
+$$Y \sim \mathcal{N}(\beta_0 + \beta_1 X_1 + ... + \beta_p X_p, \sigma^2)$$
+
+
+## Visuellement
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+# Filtrer les données (retirer setosa)
+data <- iris %>%
+  filter(Species != "setosa")
+
+# Paramètres pour la loi normale
+mu <- mean(data$Petal.Length)
+sigma <- sd(data$Petal.Length)
+
+# Générer la courbe normale
+y_vals <- seq(min(data$Petal.Length), max(data$Petal.Length), length.out = 100)
+density_vals <- dnorm(y_vals, mean = mu, sd = sigma/2)
+
+# Facteur pour réduire la hauteur
+scale_factor <- 0.2
+
+# Créer le graphique 3D
+p <- plot_ly(width = 1000, height = 500) %>%
+  # Nuage de points
+  add_trace(data = data,
+            x = ~Sepal.Length, y = ~Petal.Length, z = ~0,
+            type = "scatter3d", mode = "markers",
+            marker = list(color = "black", size = 2, alpha = 0.8),
+            name = "Observations") %>%
+  # Droite de régression
+  add_trace(x = sort(data$Sepal.Length),
+            y = predict(lm(Petal.Length ~ Sepal.Length, data = data),
+                        newdata = data.frame(Sepal.Length = sort(data$Sepal.Length))),
+            z = rep(0, nrow(data)),
+            type = "scatter3d", mode = "lines",
+            line = list(color = "black", width = 2),
+            name = "Régression linéaire") %>%
+  # Courbe rouge (densité normale théorique)
+  add_trace(x = rep(mean(data$Sepal.Length), length(y_vals)),
+            y = y_vals, z = density_vals * scale_factor,
+            type = "scatter3d", mode = "lines",
+            line = list(color = "firebrick", width = 4),
+            name = "Densité normale") %>%
+  # Point rouge sur la droite et sous la courbe
+  add_trace(x = mean(data$Sepal.Length),
+            y = mu, z = 0, type = "scatter3d", mode = "markers",
+            marker = list(color = "firebrick", size = 4),
+            name = "Moyenne prédite") %>%
+  layout(scene = list(
+    xaxis = list(title = "Sepal Length (cm)", gridcolor = "lightgray"),
+    yaxis = list(title = "Petal Length (cm)", gridcolor = "lightgray"),
+    zaxis = list(title = "", showticklabels = FALSE,
+                 showgrid = FALSE, zeroline = TRUE, 
+                 range = c(0, 1)),
+    bgcolor = "white"), 
+    showlegend = FALSE)
+
+p
+```
+
+
+
+
+## Les GML: Une généralisation
+
+Les GML permettent de modéliser des variables dépendantes qui suivent différentes distributions (binomiale, Poisson, etc.).
+
+## Les GML: Une généralisation
+
+Un GLM suit trois composantes principales :
+1. [Distribution de la variable dépendante]{.heavy-red}: Spécifie la distribution statistique de la variable dépendante (ex: binomiale pour des données catégorielles, Poisson pour des données de comptage).
+  - Cela nous diras comment la variance de la variable dépendante est liée à sa moyenne.
+  
+2. [Un prédicteur linéaire]{.heavy-red}: Une combinaison linéaire des variables explicatives $\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$
+  
+3. [Fonction de lien]{.heavy-red}: Relie la moyenne de la variable dépendante aux variables explicatives via une transformation spécifique.
+
+$$g(\mu) = \eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$$
+
+## Mathématiquement...
+
+On cherche à estimer une valeur moyenne $\mu$ de la variable dépendante $Y$ en fonction de variables $X$ ($E(Y|X)$).
+
+$$ E(Y|X) = \mu $$
+
+Comme $Y$ ne suit pas une distribution normale, on utilise une fonction de lien $g$ pour relier $\mu$ au prédicteur linéaire :
+
+$$ g(\mu) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p $$
+
+On a donc :
+
+$$ E(Y|X) = \mu = g^{-1}(\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p) $$
+
+## La fonction de lien
+
+La fonction de lien permet de transformer la moyenne de la variable dépendante pour qu'elle puisse être modélisée par une combinaison linéaire des variables explicatives. En effet, une combinaison linéaire $\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$ est généralement définie sur $\mathbb{R}$ avec des valeurs pouvant aller de $]-\infty;\infty+[$, contrairement à $\mu$ qui ne peut pas toujours, dépendant de la loi que suit $Y$
+
+## Exemples de fonctions de lien courantes
+
+- [Lien logit]{.heavy-red} (pour les données binomiales/catégorielles)
+$$ g(\mu) = \log\left(\frac{\mu}{1 - \mu}\right) $$
+- [Lien log]{.heavy-red} (pour les données de comptage, Poisson) :
+$$ g(\mu) = \log(\mu) $$
+- [Lien identité]{.heavy-red} (pour les données normales) :
+$$ g(\mu) = \mu $$
+
+# La regession logistique
+
+## Classification binaire
+
+Nous avions vu que la régression linéaire n'était pas adaptée pour modéliser une variable dépendante catégorielle.
+
+```{r ref.label="iris-classification", echo=FALSE}
+```
+
+## Une première manière de voir les choses !
+
+Nous pouvons transformer notre formule de la regression linéaire pour représenter le fait d'appartenir à une classe (0) ou l'autre (1)
+
+$$
+Y =
+\begin{cases}
+1, & \text{si } \omega X \ge b, \\
+0, & \text{sinon}.
+\end{cases}
+$$
+où $Y$ est la variable dépendante binaire, $X$ est la variable explicative et où $\omega$ et $b$ permettent de régler le seuil de décision et le sens de la décision (est-ce que la classe 0 est à gauche ou à droite du seuil.
+
+On peut réécrire cela avec notre formulation linéaire $\eta = \beta_1 X + \beta_0$, en posant $\omega = \beta_1$ et $b = \beta_0$
+
+$$
+Y =
+\begin{cases}
+1, & \text{si } \beta_1 X + \beta_0 \ge 0, \\
+0, & \text{sinon}.
+\end{cases}
+$$
+
+## Visuellement
+
+```{r iris-classification-2, echo=FALSE}
+data <- iris %>%
+  filter(Species != "setosa") %>%
+  mutate(
+    Species_num = if_else(Species == "versicolor", 0, 1)  # conversion artificielle
+  ) 
+# Ajuster le modèle linéaire
+mod <- lm(Species_num ~ Petal.Length, data = data)
+beta0 <- -1.8
+beta1 <- 0.37
+
+# Créer les points pour la courbe paliée
+x_vals <- seq(min(data$Petal.Length), max(data$Petal.Length), length.out = 100)
+y_step <- if_else(beta1 * x_vals + beta0 >= 0, 1, 0)
+step_data <- tibble(Petal.Length = x_vals, Species_num = y_step)
+
+# Graphe
+ggplot(data, aes(x = Petal.Length, y = Species_num)) +
+  geom_point(alpha = 0.7) +
+  geom_step(data = step_data, aes(x = Petal.Length, y = Species_num),
+            color = "firebrick", size=1.2, alpha = 0.75) +
+  scale_y_continuous(
+    breaks = c(0, 1),
+    labels = c("versicolor", "virginica")
+  ) +
+  labs(
+    title = "Classification binaire illustrée par une courbe paliée",
+    x = "Longueur des pétales",
+    y = "Espèce"
+  ) +
+  theme_minimal()
+
+```
+
+## Regression logistique
+
+La fonctione paliée n'est pas idéale pour des raisons d'optimisation. De plus, on souhaite obtenir des probabilités de classe plutôt que des décisions binaires strictes.
+
+La fonction sigmoïde (logistique) est une alternative lisse qui mappe toute valeur réelle à l'intervalle [0, 1], ce qui est parfait pour modéliser des probabilités.
+
+$$ S(z) = \frac{1}{1 + e^{-z}} $$
+Avec notre prédicteur linéaire $\eta = \beta_0 + \beta_1 X$, la régression logistique modélise la probabilité que $Y = 1$ comme suit :
+
+$$ P(Y = 1 | X) = S(\eta) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X)}} $$
+
+## Visuellement
+
+```{r iris-logistic, echo=FALSE}
+data <- iris %>%
+  filter(Species != "setosa") %>%
+  mutate(
+    Species_num = if_else(Species == "versicolor", 0, 1)  # conversion artificielle
+  )
+# Ajuster le modèle de régression logistique
+mod <- glm(Species_num ~ Petal.Length, data = data, family = binomial)
+# Créer les points pour la courbe sigmoïde
+x_vals <- seq(min(data$Petal.Length), max(data$Petal.Length), length.out = 100)
+prob_vals <- predict(mod, newdata = data.frame(Petal.Length = x_vals), type = "response")
+
+# Graphe
+ggplot(data, aes(x = Petal.Length, y = Species_num)) +
+  geom_point(alpha = 0.7) +
+  geom_line(aes(x = x_vals, y = prob_vals), color = "firebrick", size=1.2, alpha = 0.75) +
+  scale_y_continuous(
+    breaks = c(0, 1),
+    labels = c("versicolor", "virginica")
+  ) +
+  labs(
+    title = "Régression logistique illustrée par une courbe sigmoïde",
+    x = "Longueur des pétales",
+    y = "Probabilité d'être virginica"
+  ) +
+  theme_minimal()
+```
+
+## Approche plus formelle...
+
+La régression logistique est un type de modèle linéaire généralisé (GLM) adapté pour les variables dépendantes binaires.
+
+Cela veut dire que notre variable dépendante $Y$ suit une distribution binomiale :
+$$ Y \sim \text{Binomiale}(n=1, p) $$
+
+où $p$ est la probabilité que $Y = 1$.
+
+## Approche plus formelle...
+
+Nous cherchons à modéliser la probabilité $p$ en fonction des variables explicatives via la fonction de lien logit :
+
+$$ g(p) = \log\left(\frac{p}{1 - p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p $$
+où $g(p)$ est la fonction de lien logit, qui transforme la probabilité $p$ en une échelle linéaire.
+
+En regardant l'inverse de la fonction de lien, on obtient la probabilité $p$ :
+
+$$ p = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p)}} $$
+
+# En pratique
+
+## Modélisation
+
+```{r}
+# Data
+iris_filtered <- iris %>% 
+  filter(Species != "setosa") %>%
+  mutate(Species = factor(Species))
+
+logistic_model <- logistic_reg() %>%
+  set_engine("glm") %>% #Generalized Linear Model
+  fit(Species ~ Petal.Length, data = iris_filtered, family = binomial) # On indique que la loi est binomiale
+
+tidy(logistic_model)
+```
+
+## Qualité du modèle
+
+Pour mesurer la qualité du modèele, on ne peut pas utiliser le R² comme pour la régression linéaire.
+On utilise plutôt des métriques adaptées pour la classification binaire.
+
+Table de confusion :
+
+|                    | Réel : Classe 0   | Réel : Classe 1   |
+|--------------------|-------------------|-------------------|
+| Prédit : Classe 0  | Vrai Négatif (TN) | Faux Négatif (FN) |
+| Prédit : Classe 1  | Faux Positif (FP) | Vrai Positif (TP) |
+
+Les Faux Positifs (FP) constituent des erreurs de type I, tandis que les Faux Négatifs (FN) représentent des erreurs de type II.
+
+## Qualité du modèle
+
+Il est ensuite possible de calculer des métriques
+
+- [Sensibilité]{.heavy-red} : $P(\hat{Y}=1 \mid Y=1) = \frac{TP}{TP + FN} = 1-FNR$ 
+
+- [Spécificité]{.heavy-red} : $P(\hat{Y}=0 \mid Y=0) = \frac{TN}{TN + FP} = 1-FPR$
+
+où $FNR$ est le taux de faux négatifs et $FPR$ le taux de faux positifs.
+
+# Prédiction
+
+## Faire des prédictions
+
+Souvent on souhaite utiliser un modèle ajusté pour faire des prédictions sur de nouvelles données. On peut le faire en régression et en classification
+
+Principe est simple:
+
+- On met les valeurs des variables explicatives d'une nouvelle observation dans le modèle
+- Le modèle calcule la valeur prédite de la variable dépendante
+
+En pratique c'est un peu plus compliqué:
+
+- Nous ne sommes pas sûrs que le modèle est bon  
+- Nous ne sommes pas sûrs que les nouvelles données sont similaires aux données d'entraînement
+
+## Underfitting et Overfitting
+
+```{r echo=FALSE, warning=FALSE}
+lm_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(y4 ~ x2, data = association)
+
+loess_fit <- loess(y4 ~ x2, data = association)
+
+loess_overfit <- loess(y4 ~ x2, span = 0.05, data = association)
+
+association %>%
+  select(x2, y4) %>%
+  mutate(
+    Underfit = augment(lm_fit$fit) %>% select(.fitted) %>% pull(),
+    OK       = augment(loess_fit) %>% select(.fitted) %>% pull(),
+    Overfit  = augment(loess_overfit) %>% select(.fitted) %>% pull(),
+  ) %>%
+  pivot_longer(
+    cols      = Underfit:Overfit,
+    names_to  = "fit",
+    values_to = "y_hat"
+  ) %>%
+  mutate(fit = fct_relevel(fit, "Underfit", "OK", "Overfit")) %>%
+  ggplot(aes(x = x2)) +
+  geom_point(aes(y = y4), color = "darkgray") +
+  geom_line(aes(y = y_hat, group = fit, color = fit), size = 1) +
+  labs(x = NULL, y = NULL, color = NULL) +
+  scale_color_viridis_d(option = "plasma", end = 0.7)
+```
+
+# Séparation des données
+
+## Entraînement vs Test
+
+- [Jeu d'entraînement]{.heavy-red}:
+  - Utilisé pour ajuster le modèle
+  - Majorité des données (généralement 80%)
+  
+- [Jeu de test]{.heavy-red}:
+  - Utilisé pour évaluer la performance du modèle ajusté
+  - Important de ne pas l'utiliser pendant l'ajustement du modèle
+  - Reste des données (généralement 20%)
+
+L'idée est de mesurer la performance du modèle sur des données que le modèle n'a jamais vues auparavant.
+
+## En pratique
+
+```{r data-split}
+# Il y a un tirage aléatoire dans la séparation des données
+# En fixant un seed, on s'assure d'obtenir toujours la même séparation - Reproductibilité 
+set.seed(1116)
+# Séparer les données en deux ensembles (80% entraînement, 20% test):
+iris_split <- initial_split(iris_filtered, prop = 0.80)
+# Création des jeux d'entraînement et de test
+train_data <- training(iris_split)
+test_data  <- testing(iris_split)
+```
+
+## Ce que ça donne
+
+:::columns
+:::{.column width="50%"}
+```{r train-data}
+glimpse(train_data)
+```
+:::
+:::{.column width="50%"}
+```{r test-data}
+glimpse(test_data)
+```
+:::
+:::
+
+## Entraînement du modèle
+
+```{r model-training}
+iris_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(Species ~ . , data = train_data, family = binomial) # on utilise toutes les variables explicatives
+
+tidy(iris_fit)
+```
+
+## Prédictions sur le jeu de test
+
+```{r}
+predict(iris_fit, test_data)
+```
+
+## Prédictions avec probabilités
+
+```{r}
+iris_pred <- predict(iris_fit, test_data, type = "prob") %>%
+  bind_cols(test_data %>% select(Species))
+
+iris_pred
+```
+
+## matrices de confusion
+
+```{r confusion-matrix}
+cm <- predict(iris_fit, test_data) %>%
+  bind_cols(test_data %>% select(Species)) %>%
+  conf_mat(truth = Species, estimate = .pred_class)
+
+cm
+```
+
+:::{.important}
+Le tableau rendu par la fonction `predict` dépend de si on souhaite avoir la classe prédite ou bien la probabilité pour chaque classe (`type = "prob"`).
+
+Selon ce que l'on souhaite faire après, il faut utiliser l'une ou l'autre.
+:::
+
+## Comparaison
+
+:::columns
+:::{.column width="50%"}
+```{r cm1}
+#| code-line-numbers: "3"
+logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(Species ~ Sepal.Width, data = train_data, family = binomial) %>%
+  predict(test_data) %>%
+  bind_cols(test_data %>% select(Species)) %>%
+  conf_mat(truth = Species, estimate = .pred_class)
+```
+:::
+:::{.column width="50%"}
+```{r cm2}
+#| code-line-numbers: "3"
+logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(Species ~ Sepal.Length, data = train_data, family = binomial) %>%
+  predict(test_data) %>%
+  bind_cols(test_data %>% select(Species)) %>%
+  conf_mat(truth = Species, estimate = .pred_class)
+```
+:::
+:::
+
+## Courbes ROC
+
+Les [Courbes ROC]{.heavy-red} (_Receiver Operating Characteristic_) sont utilisées pour évaluer la performance des modèles de classification binaire de manière visuelle en représentant le taux de vrais positifs (sensibilité) en fonction du taux de faux positifs (1-spécificté)
+
+```{r roc-curve}
+iris_pred %>%
+  roc_curve(
+    truth = Species,
+    .pred_versicolor
+  ) %>%
+  autoplot()
+
+```
+
+
+## Courbes ROC - Comparaison
+
+:::columns
+:::{.column width="50%"}
+```{r roc1}
+logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(Species ~ Sepal.Width, data = train_data, family = binomial) %>%
+  predict(test_data, type="prob") %>% # Il nous faut les probabilités
+  bind_cols(test_data %>% select(Species)) %>%
+  roc_curve(
+    truth = Species,
+    .pred_versicolor
+  ) %>%
+  autoplot()
+```
+:::
+:::{.column width="50%"}
+```{r roc2}
+logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(Species ~ Sepal.Length, data = train_data, family = binomial) %>%
+  predict(test_data, type="prob") %>%
+  bind_cols(test_data %>% select(Species)) %>%
+  roc_curve(
+    truth = Species,
+    .pred_versicolor
+  ) %>%
+  autoplot()
+```
+:::
+:::
+
+
+
+## Références
+
+::: {#refs}
+:::
