@@ -1,0 +1,525 @@
+---
+title: "Lab 09 - The Office"
+link-citations: true
+format:
+  html:
+    include-after-body: ../../template/graph_fold.html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+![](figs/the-office.jpg){fig-align="center"}
+
+Le but de ce laboratoire est de pratiquer la modélisation de donnée, le feature engineering et le rééchantillonage.
+
+# Pour commencer
+
+Nous allons utiliser GitHub Classroom pour que vous puissiez rendre vos réponses.
+Sur le portail de cours, vous trouverez un lien vers un assignment.
+
+  - Cliquez sur le lien
+  - Connectez vous avec votre compte Github si ce n'est pas fait
+  - Acceptez l'assignment
+  - Liez votre compte avec votre nom d'étudiant
+  
+Vous devriez maintenant voir un repository appelé `Lab09-[votre-username]` où devrait être votre nom d'utilisateur GitHub.
+
+Sur la page du repository:
+
+  - Cliquez sur le bouton vert: ![](figs/github-bouton.png){.inline-image}
+  - Copiez le lien terminant en `.git`
+    - Quelque chose ressemblant à `https://github.com/PRO1036/lab09-[votre-username].git`
+
+Dans RStudio:
+
+-   Fichier \> Nouveau Projet
+-   Version Control \> Git
+-   Dans *Repository URL* : indiquez l'adresse copiée à l'étape précédente
+-   Choisissez un nom pour le dossier qui sera créé, par exemple "Lab02"
+-   Choisissez où vous voulez créer le projet dans votre ordinateur.
+
+Cela va copier les fichiers présents sur GitHub, et les copier dans le dossier spécifié.
+Dans le *YAML*, le `output` est réglé sur `"github_document"`. Cela permet d'obtenir un format adapté à GitHub. Notamment, votre fichier final sera un fichier Markdown (`.md`).
+
+## Packages
+
+Nous utiliserons le package **tidyverse** pour la manipulation des données et le package **tidymodels** pour la modélisation.
+Vous pouvez le charger en exécutant ce qui suit dans votre Console :
+
+```{r eval = TRUE, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(lubridate)
+```
+
+# Données
+
+Dans ce laboratoire, nous allons essayer de prédire le score obtenu par les épisodes de The Office. Pour cela, nous allons utiliser un jeu de données fourni par [Brad Lindblad](https://bradlindblad.github.io/schrute/).
+
+Les données sont distribuées sous forme de package R. Le package peut être installé avec la commande :
+
+```{r eval=FALSE}
+install.packages("schrute")
+```
+
+Il est ensuite possible de charger le jeu de données avec la commande :
+
+```{r}
+library(schrute)
+```
+
+# Exercices
+
+## Importation des données
+
+Si vous avez correctement charger le package, vous devriez pouvoir voir les données directement:
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: TRUE
+#| echo: TRUE
+glimpse(theoffice)
+```
+
+```{r}
+theoffice %>% head()
+```
+
+
+## Analyse Exploratoire
+
+### Exercice 1
+
+**1.1** Créez un tableau `episodes` indiquant pour chaque épisode, le titre de l'épisode, sa saison, le numéro de l'épisode, la date de sa diffusion, son score IMDB et le nombre de votes. Assurez-vous que les épisodes soient dans l'ordre.
+
+```{r echo= FALSE}
+episodes <- theoffice %>% 
+  group_by(episode_name) %>% 
+  summarise(season = first(season), 
+            episode = first(episode),
+            air_date = first(air_date),
+            imdb_rating = first(imdb_rating), 
+            total_votes = first(total_votes)
+            ) %>% 
+  arrange(season, episode)
+```
+
+Vous devriez obtenir un tableau de 186 observations et 6 variables.
+
+**1.2** Produisez un histogramme des scores IMDB des épisodes.
+
+```{r echo= FALSE}
+ggplot(episodes, aes(x = imdb_rating)) +
+  geom_histogram(binwidth = 0.25) +
+  labs(
+    title = "The Office ratings",
+    x = "IMDB Rating"
+  )
+```
+
+
+**1.3** Créez  un nuage de points représentant le score IMDB en fonction du nombre de votes. Colorez les points en fonction de la saison.
+
+```{r echo= FALSE}
+ggplot(episodes, aes(x = total_votes, y = imdb_rating, color = season)) +
+  geom_jitter(alpha = 0.7) +
+  labs(
+    title = "The Office ratings",
+    x = "Nombre de votes",
+    y = "IMDB Rating"
+  )
+```
+
+**1.4** En filtrant votre tableau, identifiez les quatres épisodes qui semblent être des outliers en terme de nombres de votes.
+
+(Optionnel) Reproduisez le nuage de points précédent en mettant en évidence ces épisodes à l'aide du package `gghighlight`.
+
+```{r echo= FALSE}
+library(gghighlight)
+ggplot(episodes, aes(x = total_votes, y = imdb_rating)) +
+  geom_jitter(alpha = 0.7) +
+  gghighlight(total_votes > 4000, label_key = episode_name) +
+  labs(
+    title = "The Office ratings",
+    x = "Nombre de votes",
+    y = "IMDB Rating"
+  )
+```
+
+
+**1.5** Produisez un boxplot pour chaque saison montrant la distribution des scores IMDB.
+
+```{r echo= FALSE}
+ggplot(episodes, aes(x = factor(season), y = imdb_rating, color = season)) +
+  geom_boxplot() +
+  geom_jitter() +
+  guides(color = "none") +
+  labs(
+    title = "The Office ratings",
+    x = "Saison",
+    y = "IMDB Rating"
+  )
+```
+
+## Feature Engineering
+
+### Exercice 2
+
+**2.1** Calculez la pourcentage de répliques prononcées par Jim, Pam, Michael et Dwight pour chaque épisode de The Office. Créez un tableau `office_lines` contenant le titre de l'épisode, la saison, le numéro de l'épisode, et les pourcentages de répliques prononcées par chacun des quatre personnages.
+
+```{r}
+#| label: lines
+#| echo: FALSE
+
+office_lines <- theoffice %>%
+  group_by(season, episode) %>%
+  mutate(
+    n_lines = n(),
+    lines_jim = sum(character == "Jim") / n_lines,
+    lines_pam = sum(character == "Pam") / n_lines,
+    lines_michael = sum(character == "Michael") / n_lines,
+    lines_dwight = sum(character == "Dwight") / n_lines,
+  ) %>%
+  ungroup() %>%
+  select(season, episode, episode_name, contains("lines_")) %>%
+  distinct(season, episode, episode_name, .keep_all = TRUE)
+```
+
+Vous devriez obtenir un tableau de 186 observations et 7 variables.
+
+```{r}
+#| echo: FALSE
+
+library(DT)
+office_lines %>% datatable()
+
+```
+
+
+
+**2.2** Créez trois nouvelles colonnes `halloween`, `valentines`, et `christmas` qui vaudront `1` si l'épisode est lié à la fête correspondante, et `0` sinon. Pour cela:
+
+  - Commencez par mettre tous le texte en minuscule avec la fonction `tolower()`.
+  - Utilisez la fonction `str_detect()` du package `stringr` pour détecter si le titre de l'épisode contient des mots clés liés à la fête.
+    - Pour Halloween, cherchez le mot clé `"halloween"`.
+    - Pour la Saint-Valentin, cherchez le mot clé `"valentine"`.
+    - Pour Noël, cherchez les mots clés `"christmas"` ou `"holiday"`.
+    
+
+Vous pouvez faire cela en une opération ou en plusieurs étapes, en créant trois tableaux, un pour chaque fête, puis en les regroupant (avec une jointure). 
+
+Votre tableau final s'appelera `office_special`
+
+
+
+```{r}
+#| label: special-episodes
+#| echo: FALSE
+
+theoffice <- theoffice %>%
+  mutate(text = tolower(text))
+
+halloween_episodes <- theoffice %>%
+  filter(str_detect(text, "halloween")) %>% 
+  count(episode_name) %>%
+  filter(n > 1) %>%
+  mutate(halloween = 1) %>%
+  select(-n)
+
+valentine_episodes <- theoffice %>%
+  filter(str_detect(text, "valentine")) %>% 
+  count(episode_name) %>%
+  filter(n > 1) %>%
+  mutate(valentine = 1) %>%
+  select(-n)
+
+christmas_episodes <- theoffice %>%
+  filter(str_detect(text, "christmas")) %>% 
+  count(episode_name) %>%
+  filter(n > 1) %>%
+  mutate(christmas = 1) %>%
+  select(-n)
+
+office_special <- theoffice %>%
+  select(season, episode, episode_name, imdb_rating, total_votes, air_date) %>%
+  distinct(season, episode, .keep_all = TRUE) %>%
+  left_join(halloween_episodes, by = "episode_name") %>% 
+  left_join(valentine_episodes, by = "episode_name") %>% 
+  left_join(christmas_episodes, by = "episode_name") %>% 
+  replace_na(list(halloween = 0, valentine = 0, christmas = 0)) %>%
+  left_join(office_lines, by = c("season", "episode", "episode_name"))
+```
+
+Vous devriez obtenir un tableau de 186 observations et 13 variables.
+
+```{r}
+#| echo: FALSE
+
+office_special %>% datatable()
+```
+
+
+**2.3** Ajoutez une colonne `michael` qui vaut `1` si Michael Scott (Steve Carrell) est présent dans l'épisode, et `0` sinon.
+
+Il faut savoir que le personnage de Michael Scott est présent dans les saisons 1 à 7.
+
+Cela nous permettra d'avoir un tableau de données final, appelé `office_df`.
+
+
+```{r}
+#| label: office-df
+#| echo: FALSE
+
+office_df <- theoffice %>%
+  select(season, episode, episode_name, imdb_rating, total_votes, air_date) %>%
+  distinct(season, episode, .keep_all = TRUE) %>%
+  left_join(halloween_episodes, by = "episode_name") %>% 
+  left_join(valentine_episodes, by = "episode_name") %>% 
+  left_join(christmas_episodes, by = "episode_name") %>% 
+  replace_na(list(halloween = 0, valentine = 0, christmas = 0)) %>%
+  mutate(michael = if_else(season > 7, 0, 1)) %>%
+  mutate(across(halloween:michael, as.factor)) %>%
+  left_join(office_lines, by = c("season", "episode", "episode_name"))
+```
+
+Vous devriez obtenir un tableau de 186 observations et 14 variables.
+
+```{r}
+#| echo: FALSE
+
+office_df %>% datatable()
+```
+
+Nous avons un jeu de données qui pourra être utilisé pour la modélisation.
+
+## Modélisation
+
+### Exercice 3 - Séparation des données
+
+**3.1** Séparez les données en un ensemble d'entraînement (75%) et un ensemble de test (25%). Utilisez la seed `set.seed(1036)` pour que vos résultats soient reproductibles.
+
+
+```{r}
+#| label: split
+#| echo: FALSE
+
+set.seed(1036)
+office_split <- initial_split(office_df)
+office_train <- training(office_split)
+office_test <- testing(office_split)
+```
+
+
+### Ecercice 4 - Modèle 1
+
+**4.1** Préparez un modèle de régression linéaire appelé `office_mod_1`.
+
+```{r}
+#| label: model-1
+#| echo: FALSE
+
+office_mod_1 <- linear_reg() %>%
+  set_engine("lm")
+```
+
+**4.2** Créez une recette `office_rec_1` qui utilise comme prédicteurs `season`, `episode`, `total_votes` et `air_date` pour prédire `imdb_rating`. La recette doit convertir `air_date` en date, extraire le mois de la date de diffusion, supprimer la variable `air_date`, créer des variables dummy pour le mois, et supprimer les prédicteurs à variance nulle.
+
+```{r}
+#| label: recipe-1
+#| echo: FALSE
+
+
+office_rec_1 <- recipe(imdb_rating ~ season + episode + total_votes + air_date, data = office_train) %>%
+  step_mutate(air_date = ymd(air_date)) %>%
+  # extract month of air_date
+  step_date(air_date, features = "month") %>%
+  step_rm(air_date) %>%
+  # make dummy variables of month 
+  step_dummy(contains("month")) %>%
+  # remove zero variance predictors
+  step_zv(all_predictors())
+```
+
+**4.3** Créez un workflow `office_wflow_1` qui combine la recette et le modèle.
+
+```{r}
+#| label: workflow-1
+#| echo: FALSE
+
+
+office_wflow_1 <- workflow() %>%
+  add_model(office_mod_1) %>%
+  add_recipe(office_rec_1)
+```
+
+**4.4** Fittez le workflow sur l'ensemble d'entraînement pour créer `office_fit_1`.
+
+```{r}
+#| label: fit-1
+#| echo: FALSE
+
+office_fit_1 <- office_wflow_1 %>%
+  fit(data = office_train)
+```
+
+
+**4.5** Évaluez la performance du modèle sur l'ensemble de d'**entrainement** en calculant le RMSE et le R². Pour cela, tutilisez les fonctions `rmse()` et `rsq()` avec les prédictions obtenues.
+
+```{r}
+#| label: evaluate-1
+#| echo: FALSE
+
+office_train_pred_1 <- predict(office_fit_1, office_train) %>%
+  bind_cols(office_train %>% select(imdb_rating, episode_name))
+```
+
+```{r}
+#| label: metrics-1
+#| echo: FALSE
+
+rmse(office_train_pred_1, truth = imdb_rating, estimate = .pred)
+rsq(office_train_pred_1, truth = imdb_rating, estimate = .pred)
+```
+
+Vous devriez obtenir un RMSE d'environ 0.35 et un R² d'environ 0.57.
+
+
+**4.6** Faites une validation croisée à 5 plis sur l'ensemble d'entraînement pour évaluer la performance du modèle. Utilisez la fonction `vfold_cv()` pour créer les plis, puis utilisez la fonction `fit_resamples()` pour fitter le modèle sur chaque pli. Enfin, utilisez la fonction `collect_metrics()` pour obtenir les métriques de performance (RMSE et R²).
+
+```{r}
+#| label: cv-1
+#| message: false
+#| error: true
+#| echo: FALSE
+
+folds <- vfold_cv(office_train, v = 5)
+
+office_fit_1_cv <- office_wflow_1 %>%
+  fit_resamples(folds)
+
+collect_metrics(office_fit_1_cv)
+```
+
+### Exercice 5 - Modèle 2
+
+**5.1** Préparez un modèle de régression linéaire appelé `office_mod_2`
+
+
+```{r}
+#| label: model-2
+#| echo: FALSE
+
+office_mod_2 <- linear_reg() %>%
+  set_engine("lm")
+```
+
+
+**5.2** Créez zune recette `office_rec_2` qui met à jour le rôle de `episode_name` pour ne pas être un prédicteur, qui enlève `air_date` comme prédicteur, et qui enlève tous les prédicteurs à variance nulle.
+
+```{r}
+#| label: recipe-2
+#| echo: FALSE
+
+office_rec_2 <- recipe(imdb_rating ~ ., data = office_train) %>%
+  update_role(episode_name, new_role = "id") %>%
+  step_rm(air_date) %>%
+  step_dummy(all_nominal(), -episode_name) %>%
+  step_zv(all_predictors())
+```
+
+
+**5.3** Créez un workflow `office_wf_2` qui combine la recette et le modèle
+
+```{r}
+#| label: workflow-2
+#| echo: FALSE
+
+office_wflow_2 <- workflow() %>%
+  add_model(office_mod_2) %>%
+  add_recipe(office_rec_2)
+```
+
+**5.4** Fittez le workflow sur l'ensemble d'entraînement pour créer `office_fit_2`.
+
+```{r}
+#| label: fit-2
+#| echo: FALSE
+
+office_fit_2 <- office_wflow_2 %>%
+  fit(data = office_train)
+
+```
+
+**5.5** Évaluez la performance du modèle sur l'ensemble de d'**entrainement** en calculant le RMSE et le R². Pour cela, tutilisez les fonctions `rmse()` et `rsq()` avec les prédictions obtenues.
+
+```{r}
+#| label: evaluate-2
+#| echo: FALSE
+
+office_train_pred_2 <- predict(office_fit_2, office_train) %>%
+  bind_cols(office_train %>% select(imdb_rating, episode_name))
+```
+
+```{r}
+#| label: metrics-2
+#| echo: FALSE
+
+rmse(office_train_pred_2, truth = imdb_rating, estimate = .pred)
+rsq(office_train_pred_2, truth = imdb_rating, estimate = .pred)
+```
+
+Vous devriez obtenir un RMSE d'environ 0.36 et un R² d'environ 0.57.
+
+**5.6** Faites une validation croisée à 5 plis sur l'ensemble d'entraînement pour évaluer la performance du modèle. Utilisez la fonction `vfold_cv()` pour créer les plis, puis utilisez la fonction `fit_resamples()` pour fitter le modèle sur chaque pli. Enfin, utilisez la fonction `collect_metrics()` pour obtenir les métriques de performance (RMSE et R²).
+
+```{r}
+#| label: cv-2
+#| message: false
+#| error: true
+#| echo: FALSE
+
+
+folds <- vfold_cv(office_train, v = 5)
+folds
+
+
+office_fit_2_cv <- office_wflow_2 %>%
+  fit_resamples(folds)
+
+collect_metrics(office_fit_2_cv)
+```
+
+
+### Exercice 6 - Évaluation finale et Comparaison des modèles
+
+**6.1** Évaluez la performance des deux modèles sur l'ensemble de test en calculant le RMSE et le R². Pour cela, tutilisez les fonctions `rmse()` et `rsq()` avec les prédictions obtenues.
+
+#### Modèle 1:
+
+```{r}
+#| label: eval-1
+#| echo: FALSE
+
+office_test_pred_1 <- predict(office_fit_1, new_data = office_test) %>%
+  bind_cols(office_test %>% select(imdb_rating, episode_name))
+
+rmse(office_test_pred_1, truth = imdb_rating, estimate = .pred)
+rsq(office_test_pred_1, truth = imdb_rating, estimate = .pred)
+```
+
+
+
+#### Modèle 2:
+```{r}
+#| label: eval-2
+#| echo: FALSE
+
+office_test_pred_2 <- predict(office_fit_2, new_data = office_test) %>%
+  bind_cols(office_test %>% select(imdb_rating, episode_name))
+
+rmse(office_test_pred_2, truth = imdb_rating, estimate = .pred)
+rsq(office_test_pred_2, truth = imdb_rating, estimate = .pred)
+```

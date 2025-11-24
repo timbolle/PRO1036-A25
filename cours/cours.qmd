@@ -116,7 +116,13 @@ Labs: [Lab07 - Grading the Professor](/labs/lab07-prof-grading/lab07-prof-gradin
 
 Slides : [Web](08 - Classification/08 - classification.qmd){target="_blank"} [PDF](08 - Classification/PRO1036_08_Classification.pdf)
 
-Labs: [Lab07 - Grading the Professor](/labs/lab08-hotel-bookings/lab08-hotel-bookings.qmd)
+Labs: [Lab08 - Hotel Bookings](/labs/lab08-hotel-bookings/lab08-hotel-bookings.qmd)
+
+## 09 - Modélisation : Feature Engineering
+
+Slides : [Web](09 - Feature engineering/09 - feature engineering.qmd){target="_blank"} [PDF](09 - Feature engineering/PRO1036_09_Feature-engineering.pdf)
+
+Labs: [Lab09 - The Office](/labs/lab09-the-office/lab09-the-office.qmd)
 
 # Références
 

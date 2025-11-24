@@ -59,6 +59,8 @@ website:
             text: Lab 07 - Grading the Professor !
           - href: labs/lab08-hotel-bookings/lab08-hotel-bookings.qmd
             text: Lab 08 - Hotel Bookings
+          - href: labs/lab09-the-office/lab09-the-office.qmd
+            text: Lab 09 - The Office
             
       - href: ressources.qmd
         text: Ressources
