@@ -96,9 +96,10 @@ Le resultat final doit ressembler à un article donc les blocs de code ne devrai
 Quelques points à bien garder en tête:
 
 - Soignez la présentation de votre rapport : Utilisez des titres, des sous-titres, des mises en forme, etc. pour structurer votre rapport et le rendre plus lisible.
-- Pensez à la reproductibilité : Assurez-vous que votre code est bien organisé et commenté, de sorte que quelqu'un d'autre puisse reproduire votre analyse à partir de vos données.
+- Pensez à la reproductibilité : Assurez-vous que votre code est bien organisé et commenté, de sorte que quelqu'un d'autre puisse reproduire votre analyse à partir de vos données. Pensez notamment à bien citer la source de vos données même si cela avait été fait dans le proposal.
 - Pour le rendu final, vous pouvez jouer sur les paramètres des blocs de code pour régler l'affichage final. Une cheatsheet sur l'utilisation de RMarkdown est disponible sur la page [Ressource](/ressources.qmd)
 - Le rendu final est une page HTML. N'oubliez pas d'inclure toutes les images et données nécessaires pour que le rapport puisse être visualisé correctement.
+
 
 
 #### Critères d'évaluation
