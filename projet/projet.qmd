@@ -65,11 +65,11 @@ Vous pouvez également produire des premières analyses exploratoires de vos don
 | Choix des données et exploration   | 4      |
 | Présentation, Qualité              | 2      |
 
-### Rapport final (30 pts)
+### Rapport final (50 pts)
 
-Votre rapport sera à rendre sous forme d'un petit article en format Markdown (`.md`). Votre article doit répondre à l'intérrogation que vous avez exprimée dans le proposal. Votre article doit plus ressembler à un post de blog : Essayez d'intéresser votre lecteur !
+Votre rapport sera à rendre sous forme d'un petit article en format HTML (`.html`). Votre article doit répondre à l'intérrogation que vous avez exprimée dans le proposal. Votre article doit plus ressembler à un post de blog : Essayez d'intéresser votre lecteur !
 
-L'ensemble des fichiers que vous avez utilisé pour générer votre rapport (fichier .Rmd, .md, données, images, ...) devra être inclus dans votre soumission. Le tout sera rendu sur Github au plus tard le **05 décembre 2025 à 23h00**.
+L'ensemble des fichiers que vous avez utilisé pour générer votre rapport (fichier .Rmd, .md, données, images, ...) devra être inclus dans votre soumission. Le tout sera rendu sur Github au plus tard le **12 décembre 2025 à 23h00**.
 
 Votre rapport devra présenter les résultats de votre analyse. Il devra contenir les éléments suivants :
 
@@ -81,7 +81,7 @@ Votre rapport devra présenter les résultats de votre analyse. Il devra conteni
   
 Notez que l'analyse et la discussion peuvent être faites de manière alternées, par question par exemple. Les questions de recherche doivent être clairement identifiées et les réponses doivent être clairement présentées. Pour résumer: assurez vous que votre rapport est clair et bien structuré. S'y retrouver devrait être facile et la lecture devrait être fluide.
 
-Il n'a y pas de longueur minimum ou maximum pour le rapport, mais il doit être suffisamment détaillé pour que nous puissions comprendre votre analyse et vos résultats. Votre rendu devrai comprendre au moins:
+Il n'a y pas de longueur minimum ou maximum pour le rapport, mais il doit être suffisamment détaillé pour que nous puissions comprendre votre analyse et vos résultats. Votre rendu devrai comprendre **au moins**:
 
   - **Deux visualisations** différentes, dont une impliquant au moins trois variables
   - **Une statistique prédictive (régression, classification, ...)** ou **un test d'hypothèse**
@@ -93,6 +93,13 @@ Votre rapport doit le plus proposer une histoire à partir des données. Votre r
 
 Le resultat final doit ressembler à un article donc les blocs de code ne devraient pas apparaitre et les résultats des blocs devraient être propres et facile à lire. Jouez avec les options de bloc pour régler l'affichage et utilisez des visualisations !
 
+Quelques points à bien garder en tête:
+
+- Soignez la présentation de votre rapport : Utilisez des titres, des sous-titres, des mises en forme, etc. pour structurer votre rapport et le rendre plus lisible.
+- Pensez à la reproductibilité : Assurez-vous que votre code est bien organisé et commenté, de sorte que quelqu'un d'autre puisse reproduire votre analyse à partir de vos données.
+- Pour le rendu final, vous pouvez jouer sur les paramètres des blocs de code pour régler l'affichage final. Une cheatsheet sur l'utilisation de RMarkdown est disponible sur la page [Ressource](/ressources.qmd)
+- Le rendu final est une page HTML. N'oubliez pas d'inclure toutes les images et données nécessaires pour que le rapport puisse être visualisé correctement.
+
 
 #### Critères d'évaluation
 
@@ -103,4 +110,4 @@ Le resultat final doit ressembler à un article donc les blocs de code ne devrai
 | Qualité des analyses                | 20     |
 | Présentation (format article)       | 20     |
 | Reproductibilité et organisation    | 5      |
-| **Total**                           | **30** |
+| **Total**                           | **50** |
