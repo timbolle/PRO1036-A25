@@ -124,6 +124,12 @@ Slides : [Web](09 - Feature engineering/09 - feature engineering.qmd){target="_b
 
 Labs: [Lab09 - The Office](/labs/lab09-the-office/lab09-the-office.qmd)
 
+## 10 - Tests d'hypothèses
+
+Pas de slides pour ce chapitre.
+
+Labs/cours: [Lab10 - Test d'hypothèses](/labs/lab10-tests-hypotheses/lab10-tests-hypotheses.qmd)
+
 # Références
 
 ::: {#refs}

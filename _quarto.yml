@@ -61,6 +61,8 @@ website:
             text: Lab 08 - Hotel Bookings
           - href: labs/lab09-the-office/lab09-the-office.qmd
             text: Lab 09 - The Office
+          - href: labs/lab10-tests-hypotheses/lab10-tests-hypotheses.qmd
+            text: Lab 10 - Tests d'hyppthèses
             
       - href: ressources.qmd
         text: Ressources

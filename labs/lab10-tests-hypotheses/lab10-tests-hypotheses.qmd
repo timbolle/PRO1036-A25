@@ -201,7 +201,7 @@ observed_statistic_diff <- gss %>%
 observed_statistic_diff
 ```
 
-Nous allons ensuite déclarer notre hypothèse nulle, qui est qu'il n'y a pas de différence dans le nombre d'heures travaillées en fonction du niveau d'éducation. Pour cela, nous utilisons la fonction `hypothesize()`. Le paramètre `null` permet de spécifier le type d'hypothèse nulle que nous voulons tester. Ici nous pouvons tester l'indépendance des moyennes Dans notre cas, nous allons tester une hypothèse nulle de type "point" avec une différence de 0 heures.
+Nous allons ensuite déclarer notre hypothèse nulle, qui est qu'il n'y a pas de différence dans le nombre d'heures travaillées en fonction du niveau d'éducation. Pour cela, nous utilisons la fonction `hypothesize()`. Le paramètre `null` permet de spécifier le type d'hypothèse nulle que nous voulons tester. Ici nous pouvons tester l'indépendance des moyennes et indiquer `independance`. 
 
 
 ```{r}
@@ -287,7 +287,7 @@ observed_f_statistic <- gss %>%
   calculate(stat = "F")
 ```
 
-Nous voulons maintenant la comparer à celle obtenue sous l'hypothèse nulle. Dans un tableau ANOVA, l'hypothèse nulle est que les moyennes de chaque groupe sont égales. Faites à attention que dans ce cas, l'hypothèse alternative est *qu'au moins une des moyennes est différente*.
+Nous voulons maintenant la comparer à celle obtenue sous l'hypothèse nulle. Dans un tableau ANOVA, l'hypothèse nulle est que les moyennes de chaque groupe sont égales. Faites à attention que dans ce cas, l'hypothèse alternative est **qu'au moins une des moyennes est différente**.
 
 ```{r}
 null_dist_anova <- gss %>%
@@ -298,7 +298,7 @@ null_dist_anova <- gss %>%
 ```
 
 
-Nous pouvons maintenant visualiser la distribution de statistiques générées et calculées.
+Nous pouvons maintenant visualiser la distribution des statistiques générées et calculées.
 
 ```{r}
 null_dist_anova %>%

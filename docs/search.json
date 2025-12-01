@@ -3365,5 +3365,82 @@
     "title": "Cours",
     "section": "09 - Modélisation : Feature Engineering",
     "text": "09 - Modélisation : Feature Engineering\nSlides : Web PDF\nLabs: Lab09 - The Office"
+  },
+  {
+    "objectID": "cours/cours.html#tests-dhypothèses",
+    "href": "cours/cours.html#tests-dhypothèses",
+    "title": "Cours",
+    "section": "10 - Tests d’hypothèses",
+    "text": "10 - Tests d’hypothèses\nPas de slides pour ce chapitre.\nLabs/cours: Lab10 - Test d’hypothèses"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "",
+    "text": "Les exemples présentés dans ce lab sont basés la documentation du package infer.\nL’objectif de ce lab est de vous familiariser avec les concepts de base des statistiques inférentielles en R. Pour cela, nous allons apprendre à utiliser le package infer pour effectuer des tests d’hypothèses et des intervalles de confiance. infer est intégré dans le tidyverse et permet de faire des inférences statistiques de manière simple et intuitive. Il est automatiquement chargé lorsque vous chargez tidymodels.\ninfer utilise une grammaire expressive pour effectuer des inférences statistiques qui s’intègre dans le tidyverse. Au lieu de fournir des méthodes pour des tests statistiques spécifiques, ce package consolide les principes partagés entre les tests d’hypothèses courants en un ensemble de 4 verbes principaux (fonctions), complétés par de nombreuses utilités pour visualiser et extraire les valeurs pertinentes.\nPeu importe l’hypothèse que nous testons, nous posons toujours la même question : l’effet/la différence dans nos données observées est-il réel ou dû au hasard ? Pour répondre à cette question, nous commençons par supposer que les données observées proviennent d’un monde où “rien ne se passe” (c’est-à-dire que l’effet observé est simplement dû au hasard), et appelons cette hypothèse notre hypothèse nulle (En réalité, nous pourrions ne pas croire en l’hypothèse nulle du tout - l’hypothèse nulle s’oppose à l’hypothèse alternative, qui suppose que l’effet présent dans les données observées est en fait dû au fait que “quelque chose se passe”). Nous calculons ensuite une statistique de test à partir de nos données qui décrit l’effet observé. Nous pouvons utiliser cette statistique de test pour calculer une valeur \\(p\\), donnant la probabilité que nos données observées puissent se produire si l’hypothèse nulle était vraie. Si cette probabilité est inférieure à un niveau de signification \\(\\alpha\\) prédéfini, alors nous pouvons rejeter notre hypothèse nulle.\nLe package fonctionne autour de 4 verbes principaux :\n\nspecify() : permet de spécifier la variable ou la relation entre les variables que vous souhaitez étudier.\nhypothesize() : permet de déclarer l’hypothèse nulle.\ngenerate() : permet de générer des données reflétant l’hypothèse nulle.\ncalculate() : permet de calculer une distribution de statistiques à partir des données générées pour former la distribution nulle.\n\n\n\nNous aurons besoin des packages suivants pour ce lab :\n\nlibrary(tidyverse)\nlibrary(infer) # ou library(tidymodels)"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#packages",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#packages",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "",
+    "text": "Nous aurons besoin des packages suivants pour ce lab :\n\nlibrary(tidyverse)\nlibrary(infer) # ou library(tidymodels)"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Exercice",
+    "text": "Exercice\nTestez si l’âge moyen des répondants est égal à 40 ans. Utilisez un niveau de signification de 0.05."
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice-1",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice-1",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Exercice",
+    "text": "Exercice\nTestez si le nombre d’heures travaillées est différent selon le sexe des participants. Utilisez un niveau de signification de 0.05."
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice-2",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#exercice-2",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Exercice",
+    "text": "Exercice\nTestez si le nombre d’heures travaillées est différent selon le revenu moyen du foyer des participants. Utilisez un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#les-données",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#les-données",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Les données",
+    "text": "Les données\nDans cet exercice, nous allons étudier l’effet de la cigarette sur la grossesse. Pour cela, nous allons utiliser le jeu de données ncbirths du package openintro. Ce jeu de données contient des données sur les grossesses de l’état de Caroline du Nord.\nChargez le package openintro et affichez un aperçu des premières lignes du jeu de données ncbirths."
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#le-poids-des-bébés",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#le-poids-des-bébés",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Le poids des bébés",
+    "text": "Le poids des bébés\nUne étude de 19951 suggère que les bébés caucasiens nés aux États-Unis ont un poids moyen de 3,369g. Ici, nous avons que les informations sur l’origine de la mère donc nous allons assumer que les bébés caucasiens sont ceux dont la mère est caucasienne (whitemom = white).\nNous voulons évaluer si le poids moyen des bébés caucasiens à changer entre 1995 et 2004.\nQuelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ? Quel test d’hypothèses devons-nous utiliser ?\nCréez un nouveau tableau de données dans lequel seulement les bébés caucasiens sont inclus. Devons nous modifier la colonne des poids des bébés ? Si oui, faites le en conséquence.\nCalculez la statistique observée à partir de vos données.\nGénérez ensuite des données reflétant l’hypothèse nulle et calculez la distribution de statistiques à partir de ces données.\nVisualisez la distribution obtenue des données générées et la statistique observée.\nCalculez la p-value avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#consommation-de-cigarette",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#consommation-de-cigarette",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Consommation de cigarette",
+    "text": "Consommation de cigarette\nNous allons maintenant nous intéresser à la consommation de cigarette pendant la grossesse. Nous allons comparer le poids des bébés en fonction des habitudes de consommation (habit).\nCommencez par représenter le problème visuellement sous forme de boxpolot.\nCréez un nouveau jeu de données dans lequel il n’y a pas de valeurs manquantes pour la variable habit.\nCalculez, à l’aide de la fontion summarize, la moyenne et l’écart-type du poids des bébés en fonction des habitudes de consommation.\nNous voulons maintenant savoir si ce que nous observons visuellement est statistiquement significatif. Quelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ? Quel test d’hypothèses devons-nous utiliser ?\nCalculez la statistique observée à partir de vos données. Générez ensuite des données reflétant l’hypothèse nulle et calculez la distribution de statistiques à partir de ces données. Calculez la p-value avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?\nDéterminez un intervalle de confiance à 95% pour la différence de poids des bébés en fonction des habitudes de consommation."
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#poids-du-bébé-en-fonction-du-poids-de-la-mère",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#poids-du-bébé-en-fonction-du-poids-de-la-mère",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Poids du bébé en fonction du poids de la mère",
+    "text": "Poids du bébé en fonction du poids de la mère\nNous allons nous intéresser aux variables mature et lowbirthweight.\nPour commencez, à l’aide de la variable mage, qui correspond à l’âge de la mère, déterminez, par la méthode de votre choix (statistique descriptive ou visualisation), l’âge limite pour être considérée dans la catégorie mature.\nNous allons maintenant vouloir déterminer si la proportion de bébés de faible poids à la naissance est différente entre les mères matures et les mères non matures.\nNous n’avons pas vu le cas de figure pour comparer deux proportions. Vous trouvez de la documentation ici\nQuelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ?\nTestez l’hypothèse nulle avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#footnotes",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#footnotes",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.↩︎"
   }
 ]

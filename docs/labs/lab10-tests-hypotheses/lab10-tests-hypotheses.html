@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PRO1036 - Lab10 - Les tests d’hypothèses</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../template/programming-icon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../template/h-uqtr-r.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">PRO1036</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cours/cours.html"> 
+<span class="menu-text">Cours</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-démos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Démos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-démos">    
+        <li>
+    <a class="dropdown-item" href="../../demo/unvotes/unvotes.html">
+ <span class="dropdown-text">UN votes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/PRO1036/star-wars">
+ <span class="dropdown-text">Star Wars</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/PRO1036/hotel-bookings">
+ <span class="dropdown-text">Hotel Bookings</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab01-pet-names/lab01-pet-names.html">
+ <span class="dropdown-text">Lab 01 - Pet names</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab02-plastic-waste/lab02-plastic-waste.html">
+ <span class="dropdown-text">Lab 02 - Plastic waste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab03-nobel-laureates/lab03-nobel-laureates.html">
+ <span class="dropdown-text">Lab 03 - Nobel laureates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab04-star-wars/lab04-star-wars.html">
+ <span class="dropdown-text">Lab 04 - Star Wars</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab05-religion-income/lab05-religion-income.html">
+ <span class="dropdown-text">Lab 05 - Religion Income</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab06-better-viz/lab06-better-viz.html">
+ <span class="dropdown-text">Lab 06 - Better Viz</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab07-prof-grading/lab07-prof-grading.html">
+ <span class="dropdown-text">Lab 07 - Grading the Professor !</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab08-hotel-bookings/lab08-hotel-bookings.html">
+ <span class="dropdown-text">Lab 08 - Hotel Bookings</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab09-the-office/lab09-the-office.html">
+ <span class="dropdown-text">Lab 09 - The Office</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html">
+ <span class="dropdown-text">Lab 10 - Tests d’hyppthèses</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../ressources.html"> 
+<span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projet/projet.html"> 
+<span class="menu-text">Projet</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  </ul></li>
+  <li><a href="#données" id="toc-données" class="nav-link" data-scroll-target="#données">Données</a></li>
+  <li><a href="#test-dhypothèses---une-variable-numérique" id="toc-test-dhypothèses---une-variable-numérique" class="nav-link" data-scroll-target="#test-dhypothèses---une-variable-numérique">Test d’hypothèses - Une variable numérique</a>
+  <ul class="collapse">
+  <li><a href="#exercice" id="toc-exercice" class="nav-link" data-scroll-target="#exercice">Exercice</a></li>
+  </ul></li>
+  <li><a href="#comparaison-de-deux-groupes" id="toc-comparaison-de-deux-groupes" class="nav-link" data-scroll-target="#comparaison-de-deux-groupes">Comparaison de deux groupes</a>
+  <ul class="collapse">
+  <li><a href="#exercice-1" id="toc-exercice-1" class="nav-link" data-scroll-target="#exercice-1">Exercice</a></li>
+  </ul></li>
+  <li><a href="#comparaison-entre-plusieurs-groupes" id="toc-comparaison-entre-plusieurs-groupes" class="nav-link" data-scroll-target="#comparaison-entre-plusieurs-groupes">Comparaison entre plusieurs groupes</a>
+  <ul class="collapse">
+  <li><a href="#exercice-2" id="toc-exercice-2" class="nav-link" data-scroll-target="#exercice-2">Exercice</a></li>
+  </ul></li>
+  <li><a href="#exercice---effet-de-la-cigarette-sur-la-grossesse" id="toc-exercice---effet-de-la-cigarette-sur-la-grossesse" class="nav-link" data-scroll-target="#exercice---effet-de-la-cigarette-sur-la-grossesse">Exercice - Effet de la cigarette sur la grossesse</a>
+  <ul class="collapse">
+  <li><a href="#les-données" id="toc-les-données" class="nav-link" data-scroll-target="#les-données">Les données</a></li>
+  <li><a href="#le-poids-des-bébés" id="toc-le-poids-des-bébés" class="nav-link" data-scroll-target="#le-poids-des-bébés">Le poids des bébés</a></li>
+  <li><a href="#consommation-de-cigarette" id="toc-consommation-de-cigarette" class="nav-link" data-scroll-target="#consommation-de-cigarette">Consommation de cigarette</a></li>
+  <li><a href="#poids-du-bébé-en-fonction-du-poids-de-la-mère" id="toc-poids-du-bébé-en-fonction-du-poids-de-la-mère" class="nav-link" data-scroll-target="#poids-du-bébé-en-fonction-du-poids-de-la-mère">Poids du bébé en fonction du poids de la mère</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab10 - Les tests d’hypothèses</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Les exemples présentés dans ce lab sont basés la documentation du package <a href="https://infer.tidymodels.org/index.html">infer</a>.</p>
+<p>L’objectif de ce lab est de vous familiariser avec les concepts de base des statistiques inférentielles en R. Pour cela, nous allons apprendre à utiliser le package <code>infer</code> pour effectuer des tests d’hypothèses et des intervalles de confiance. <code>infer</code> est intégré dans le tidyverse et permet de faire des inférences statistiques de manière simple et intuitive. Il est automatiquement chargé lorsque vous chargez <code>tidymodels</code>.</p>
+<p><code>infer</code> utilise une grammaire expressive pour effectuer des inférences statistiques qui s’intègre dans le tidyverse. Au lieu de fournir des méthodes pour des tests statistiques spécifiques, ce package consolide les principes partagés entre les tests d’hypothèses courants en un ensemble de 4 verbes principaux (fonctions), complétés par de nombreuses utilités pour visualiser et extraire les valeurs pertinentes.</p>
+<p>Peu importe l’hypothèse que nous testons, nous posons toujours la même question : l’effet/la différence dans nos données observées est-il réel ou dû au hasard ? Pour répondre à cette question, nous commençons par supposer que les données observées proviennent d’un monde où “rien ne se passe” (c’est-à-dire que l’effet observé est simplement dû au hasard), et appelons cette hypothèse notre <strong>hypothèse nulle</strong> (En réalité, nous pourrions ne pas croire en l’hypothèse nulle du tout - l’hypothèse nulle s’oppose à l’hypothèse alternative, qui suppose que l’effet présent dans les données observées est en fait dû au fait que “quelque chose se passe”). Nous calculons ensuite une statistique de test à partir de nos données qui décrit l’effet observé. Nous pouvons utiliser cette statistique de test pour calculer une valeur <span class="math inline">\(p\)</span>, donnant la probabilité que nos données observées puissent se produire si l’hypothèse nulle était vraie. Si cette probabilité est inférieure à un niveau de signification <span class="math inline">\(\alpha\)</span> prédéfini, alors nous pouvons rejeter notre hypothèse nulle.</p>
+<p>Le package fonctionne autour de 4 verbes principaux :</p>
+<ul>
+<li><code>specify()</code> : permet de spécifier la variable ou la relation entre les variables que vous souhaitez étudier.</li>
+<li><code>hypothesize()</code> : permet de déclarer l’hypothèse nulle.</li>
+<li><code>generate()</code> : permet de générer des données reflétant l’hypothèse nulle.</li>
+<li><code>calculate()</code> : permet de calculer une distribution de statistiques à partir des données générées pour former la distribution nulle.</li>
+</ul>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>Nous aurons besoin des packages suivants pour ce lab :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer) <span class="co"># ou library(tidymodels)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="données" class="level1">
+<h1>Données</h1>
+<p>Pour ce lab, nous allons utiliser le jeu de données <code>gss</code> du package <code>infer</code>. Ce jeu de données contient des données de l’enquête General Social Survey (GSS) menée aux États-Unis. Les données sont stockées dans un tibble appelé <code>gss</code>. Voici un aperçu des premières lignes du jeu de données :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 500
+Columns: 11
+$ year    &lt;dbl&gt; 2014, 1994, 1998, 1996, 1994, 1996, 1990, 2016, 2000, 1998, 20…
+$ age     &lt;dbl&gt; 36, 34, 24, 42, 31, 32, 48, 36, 30, 33, 21, 30, 38, 49, 25, 56…
+$ sex     &lt;fct&gt; male, female, male, male, male, female, female, female, female…
+$ college &lt;fct&gt; degree, no degree, degree, no degree, degree, no degree, no de…
+$ partyid &lt;fct&gt; ind, rep, ind, ind, rep, rep, dem, ind, rep, dem, dem, ind, de…
+$ hompop  &lt;dbl&gt; 3, 4, 1, 4, 2, 4, 2, 1, 5, 2, 4, 3, 4, 4, 2, 2, 3, 2, 1, 2, 5,…
+$ hours   &lt;dbl&gt; 50, 31, 40, 40, 40, 53, 32, 20, 40, 40, 23, 52, 38, 72, 48, 40…
+$ income  &lt;ord&gt; $25000 or more, $20000 - 24999, $25000 or more, $25000 or more…
+$ class   &lt;fct&gt; middle class, working class, working class, working class, mid…
+$ finrela &lt;fct&gt; below average, below average, below average, above average, ab…
+$ weight  &lt;dbl&gt; 0.8960034, 1.0825000, 0.5501000, 1.0864000, 1.0825000, 1.08640…</code></pre>
+</div>
+</div>
+</section>
+<section id="test-dhypothèses---une-variable-numérique" class="level1">
+<h1>Test d’hypothèses - Une variable numérique</h1>
+<p>Nous allons commencer par un test d’hypothèses sur une variable numérique. Supposons que nous voulons tester si le temps de travail hebdomadaire est égal à 40 heures en moyenne. Pour cela, nous allons effectuer un test d’hypothèses.</p>
+<p>Nous allons commencer par spécifier la variable que nous voulons étudier. Pour cela nous pouvons utiliser la fonction <code>specify()</code>. Nous allons spécifier la variable <code>hours</code> qui représente le temps de travail hebdomadaire.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+# A tibble: 500 × 1
+   hours
+   &lt;dbl&gt;
+ 1    50
+ 2    31
+ 3    40
+ 4    40
+ 5    40
+ 6    53
+ 7    32
+ 8    20
+ 9    40
+10    40
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+<p>Nous allons ensuite déclarer notre hypothèse nulle, qui est que le temps de travail hebdomadaire est égal à 40 heures en moyenne. Pour cela, nous utilisons la fonction <code>hypothesize()</code>. Le paramètre <code>null</code> permet de spécifier le type d’hypothèse nulle que nous voulons tester. Dans notre cas, nous allons tester une hypothèse nulle de type “point” avec une moyenne de 40 heures.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+Null Hypothesis: point
+# A tibble: 500 × 1
+   hours
+   &lt;dbl&gt;
+ 1    50
+ 2    31
+ 3    40
+ 4    40
+ 5    40
+ 6    53
+ 7    32
+ 8    20
+ 9    40
+10    40
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+<p>Enfin, nous allons générer des données reflétant cette hypothèse nulle et calculer une distribution de statistiques à partir de ces données. Pour cela, nous utilisons les fonctions <code>generate()</code> et <code>calculate()</code>.</p>
+<p><code>generate()</code> permet de générer des données reflétant l’hypothèse nulle. Le paramètre <code>reps</code> permet de spécifier le nombre de répétitions à effectuer. Plus le nombre de répétitions est élevé, plus la distribution statistique sera précise. Le paramètre <code>type</code> permet de spécifier la méthode à utiliser. Dans cet exemple, nous allons générer une distribution avec la méthode <code>bootstrap</code> : pour chaque réplicat, un nombre d’échantillons égal au nombre d’échantillons total sont tirés des données, mais avec remplacement.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+Null Hypothesis: point
+# A tibble: 500,000 × 2
+# Groups:   replicate [1,000]
+   replicate hours
+       &lt;int&gt; &lt;dbl&gt;
+ 1         1  18.6
+ 2         1  42.6
+ 3         1  25.6
+ 4         1  13.6
+ 5         1  33.6
+ 6         1  38.6
+ 7         1  86.6
+ 8         1  38.6
+ 9         1  30.6
+10         1  38.6
+# ℹ 499,990 more rows</code></pre>
+</div>
+</div>
+<p>Si vous regardez le résultat de cette fonction, vous verrez un tableau 500000 x 2. Chaque paquet de 500 lignes (500 étant la taille de l’échantillon initial) représente une répétition de l’échantillonnage bootstrap. La première colonne est l’index de l’échantillon bootstrap, et la deuxième colonne est la valeur calculée pour cet échantillon.</p>
+<p>Enfin, nous allons calculer la distribution des statistiques obtenues à partir des données générées. Pour cela, nous utilisons la fonction <code>calculate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+Null Hypothesis: point
+# A tibble: 1,000 × 2
+   replicate  stat
+       &lt;int&gt; &lt;dbl&gt;
+ 1         1  40.8
+ 2         2  39.7
+ 3         3  39.1
+ 4         4  39.9
+ 5         5  40.4
+ 6         6  40.1
+ 7         7  40.5
+ 8         8  38.5
+ 9         9  40.6
+10        10  40.9
+# ℹ 990 more rows</code></pre>
+</div>
+</div>
+<p>Cette fois, nous obtenons un tableau 1000 x 2. Chaque ligne représente une répétition de l’échantillonnage bootstrap, et la deuxième colonne est la statistique calculée pour cet échantillon, ici la moyenne.</p>
+<p>Nous pouvons maintenant visualiser la distribution des statistiques calculées. Pour cela, nous utilisons la fonction <code>visualize()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">mu =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Nous voudrions maintenant voir où se situe notre statistique de test par rapport à la distribution nulle. Pour commencer, nous allons calculer la statistique observée à partir de nos données. Pour cela, nous utilisons la fonction <code>calculate()</code> avec le paramètre <code>stat = "mean"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>obs_mean <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nous pouvons ensuite ajouter cette observation à notre distribution nulle.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> obs_mean, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La zone ombrée représente les valeurs qui sont plus extrêmes que notre statistique observée. La probabilité de tomber dans cette zone est la valeur p de notre test d’hypothèses. Plus la zone ombrée est petite, plus la valeur p est petite, et plus la probabilité d’observer cette valeur si l’hypothèse nulle est vraie est faible. Le <code>two-sided</code> permet d’indiquer que nous ne savons pas dans quelle direction la statistique testée varie de la valeur nulle (nous avions simplement considéré <span class="math inline">\(\bar{x} \neq \mu\)</span>)</p>
+<p>Nous pouvons calculer la valeur p exacte en utilisant la fonction <code>get_p_value()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a two-tailed p-value</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> obs_mean, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1    0.04</code></pre>
+</div>
+</div>
+<p>Avant de faire ce test, nous aurions du définir un niveau de signification <span class="math inline">\(\alpha\)</span>. Si la valeur <span class="math inline">\(p\)</span> est inférieure à <span class="math inline">\(\alpha\)</span>, nous pouvons rejeter l’hypothèse nulle. En fixant <span class="math inline">\(\alpha = 0.05\)</span>, nous rejetons l’hypothèse nulle. En fixant <span class="math inline">\(\alpha = 0.01\)</span>, nous ne rejetons pas l’hypothèse nulle.</p>
+<p>Nous pouvons également calculer un intervalle de confiance pour notre statistique. Pour cela, nous utilisons la fonction <code>get_confidence_interval()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a distribution like the null distribution, </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># though exclude the null hypothesis from the pipeline</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>boot_dist <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> hours) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># start with the bootstrap distribution</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> boot_dist <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the confidence interval around the point estimate</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">point_estimate =</span> obs_mean,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># at the 95% confidence level</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">level =</span> .<span class="dv">95</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># using the standard error</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">type =</span> <span class="st">"se"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     40.1     42.7</code></pre>
+</div>
+</div>
+<p>Ici, notez que dans la définition de <code>boot_dist</code>, nous n’avons pas défini d’hypothèse nulle. Cela signifie que nous générons une distribution de statistiques à partir de nos données sans hypothèse nulle. Nous utilisons ensuite cette distribution pour calculer l’intervalle de confiance.</p>
+<p>Nous pouvons également visualiser cet intervalle de confiance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>boot_dist <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(<span class="at">endpoints =</span> ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="exercice" class="level2">
+<h2 class="anchored" data-anchor-id="exercice">Exercice</h2>
+<p>Testez si l’âge moyen des répondants est égal à 40 ans. Utilisez un niveau de signification de 0.05.</p>
+</section>
+</section>
+<section id="comparaison-de-deux-groupes" class="level1">
+<h1>Comparaison de deux groupes</h1>
+<p>Nous allons maintenant effectuer un test d’hypothèses pour comparer deux groupes. Supposons que nous voulons tester s’il y a une différence dans le nombre d’heures travaillées par les répondants en fonction de leur niveau d’éducation.</p>
+<p>Nous pouvons déjà nous faire une idée visuellement:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reproduisez ce schéma.</p>
+<p>Nous allons commencer par spécifier les variables que nous voulons étudier. Nous allons spécifier les variables <code>hours</code> et <code>college</code> qui représentent le nombre d’heures travaillées et le niveau d’éducation des répondants.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(hours <span class="sc">~</span> college)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+Explanatory: college (factor)
+# A tibble: 500 × 2
+   hours college  
+   &lt;dbl&gt; &lt;fct&gt;    
+ 1    50 degree   
+ 2    31 no degree
+ 3    40 degree   
+ 4    40 no degree
+ 5    40 degree   
+ 6    53 no degree
+ 7    32 no degree
+ 8    20 degree   
+ 9    40 degree   
+10    40 no degree
+# ℹ 490 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># équivalent à </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specify(response = hours, explanatory = college)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nous pouvons calculer notre statistique observée à partir de nos données. ici, nous allons calculer la différence de moyenne entre les deux groupes. L’argument <code>order</code> permet de spécifier l’ordre des groupes pour la soustraction.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>observed_statistic_diff <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(hours <span class="sc">~</span> college) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"degree"</span>, <span class="st">"no degree"</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>observed_statistic_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: hours (numeric)
+Explanatory: college (factor)
+# A tibble: 1 × 1
+   stat
+  &lt;dbl&gt;
+1  1.54</code></pre>
+</div>
+</div>
+<p>Nous allons ensuite déclarer notre hypothèse nulle, qui est qu’il n’y a pas de différence dans le nombre d’heures travaillées en fonction du niveau d’éducation. Pour cela, nous utilisons la fonction <code>hypothesize()</code>. Le paramètre <code>null</code> permet de spécifier le type d’hypothèse nulle que nous voulons tester. Ici nous pouvons tester l’indépendance des moyennes et indiquer <code>independance</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>null_dist_diff <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(hours <span class="sc">~</span> college) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"degree"</span>, <span class="st">"no degree"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le type de generation est “permute” car nous voulons permuter les groupes pour générer des données reflétant l’hypothèse nulle. En effet, selon l’hypothèse nulle, il n’y a pas de différence entre les groupes, donc nous pouvons permuter les groupes pour générer des données qui reflètent cette hypothèse.</p>
+<p>Nous aurions pu également spécifier une hypothèse nulle de type “point” avec une différence de 0 heures.</p>
+<p>Nous pouvons mainteanant visualiser la distribution de statistiques générées et calculées.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>null_dist_diff <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_statistic_diff,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Et nous pouvons calculer la p-value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>p_value_diff <span class="ot">&lt;-</span> null_dist_diff <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_statistic_diff,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>p_value_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.248</code></pre>
+</div>
+</div>
+<section id="exercice-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-1">Exercice</h2>
+<p>Testez si le nombre d’heures travaillées est différent selon le sexe des participants. Utilisez un niveau de signification de 0.05.</p>
+</section>
+</section>
+<section id="comparaison-entre-plusieurs-groupes" class="level1">
+<h1>Comparaison entre plusieurs groupes</h1>
+<p>Pour comparer une valeur entre plusieurs groupes, nous pouvons faire un test d’hypothèses ANOVA. Supposons que nous voulons tester s’il y a une différence dans l’âge des participants en fonction de leur affiliation à un parti politique.</p>
+<p>Nous pouvons représenter le problème visuellement:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ou encore, avec un peu plus de détails:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reproduisez les deux graphes ci-dessus.</p>
+<p>Nous allons commencer par spécifier les variables que nous voulons étudier. Nous allons spécifier les variables <code>age</code> et <code>partyid</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dropping unused factor levels DK from the supplied explanatory variable
+'partyid'.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: age (numeric)
+Explanatory: partyid (factor)
+# A tibble: 500 × 2
+     age partyid
+   &lt;dbl&gt; &lt;fct&gt;  
+ 1    36 ind    
+ 2    34 rep    
+ 3    24 ind    
+ 4    42 ind    
+ 5    31 rep    
+ 6    32 rep    
+ 7    48 dem    
+ 8    36 ind    
+ 9    30 rep    
+10    33 dem    
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+<p>Le test ANOVA va utiliser le test F, ou test de Fisher, qui compare la variabilité entre les groupes à la variabilité à l’intérieur des groupes.</p>
+<p>Nous pouvons donc calculer notre statistique observée à partir de nos données.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>observed_f_statistic <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dropping unused factor levels DK from the supplied explanatory variable
+'partyid'.</code></pre>
+</div>
+</div>
+<p>Nous voulons maintenant la comparer à celle obtenue sous l’hypothèse nulle. Dans un tableau ANOVA, l’hypothèse nulle est que les moyennes de chaque groupe sont égales. Faites à attention que dans ce cas, l’hypothèse alternative est <strong>qu’au moins une des moyennes est différente</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dropping unused factor levels DK from the supplied explanatory variable
+'partyid'.</code></pre>
+</div>
+</div>
+<p>Nous pouvons maintenant visualiser la distribution des statistiques générées et calculées.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_f_statistic,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Et nous pouvons calculer la p-value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p value from the observed statistic and null distribution</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> null_dist_anova <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_f_statistic,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.058</code></pre>
+</div>
+</div>
+<section id="exercice-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-2">Exercice</h2>
+<p>Testez si le nombre d’heures travaillées est différent selon le revenu moyen du foyer des participants. Utilisez un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?</p>
+</section>
+</section>
+<section id="exercice---effet-de-la-cigarette-sur-la-grossesse" class="level1">
+<h1>Exercice - Effet de la cigarette sur la grossesse</h1>
+<section id="les-données" class="level2">
+<h2 class="anchored" data-anchor-id="les-données">Les données</h2>
+<p>Dans cet exercice, nous allons étudier l’effet de la cigarette sur la grossesse. Pour cela, nous allons utiliser le jeu de données <code>ncbirths</code> du package <code>openintro</code>. Ce jeu de données contient des données sur les grossesses de l’état de Caroline du Nord.</p>
+<p>Chargez le package <code>openintro</code> et affichez un aperçu des premières lignes du jeu de données <code>ncbirths</code>.</p>
+</section>
+<section id="le-poids-des-bébés" class="level2">
+<h2 class="anchored" data-anchor-id="le-poids-des-bébés">Le poids des bébés</h2>
+<p>Une étude de 1995<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> suggère que les bébés caucasiens nés aux États-Unis ont un poids moyen de 3,369g. Ici, nous avons que les informations sur l’origine de la mère donc nous allons assumer que les bébés caucasiens sont ceux dont la mère est caucasienne (<code>whitemom = white</code>).</p>
+<p>Nous voulons évaluer si le poids moyen des bébés caucasiens à changer entre 1995 et 2004.</p>
+<p>Quelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ? Quel test d’hypothèses devons-nous utiliser ?</p>
+<p>Créez un nouveau tableau de données dans lequel seulement les bébés caucasiens sont inclus. Devons nous modifier la colonne des poids des bébés ? Si oui, faites le en conséquence.</p>
+<p>Calculez la statistique observée à partir de vos données.</p>
+<p>Générez ensuite des données reflétant l’hypothèse nulle et calculez la distribution de statistiques à partir de ces données.</p>
+<p>Visualisez la distribution obtenue des données générées et la statistique observée.</p>
+<p>Calculez la p-value avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?</p>
+</section>
+<section id="consommation-de-cigarette" class="level2">
+<h2 class="anchored" data-anchor-id="consommation-de-cigarette">Consommation de cigarette</h2>
+<p>Nous allons maintenant nous intéresser à la consommation de cigarette pendant la grossesse. Nous allons comparer le poids des bébés en fonction des habitudes de consommation (<code>habit</code>).</p>
+<p>Commencez par représenter le problème visuellement sous forme de boxpolot.</p>
+<p>Créez un nouveau jeu de données dans lequel il n’y a pas de valeurs manquantes pour la variable <code>habit</code>.</p>
+<p>Calculez, à l’aide de la fontion <code>summarize</code>, la moyenne et l’écart-type du poids des bébés en fonction des habitudes de consommation.</p>
+<p>Nous voulons maintenant savoir si ce que nous observons visuellement est statistiquement significatif. Quelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ? Quel test d’hypothèses devons-nous utiliser ?</p>
+<p>Calculez la statistique observée à partir de vos données. Générez ensuite des données reflétant l’hypothèse nulle et calculez la distribution de statistiques à partir de ces données. Calculez la p-value avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?</p>
+<p>Déterminez un intervalle de confiance à 95% pour la différence de poids des bébés en fonction des habitudes de consommation.</p>
+</section>
+<section id="poids-du-bébé-en-fonction-du-poids-de-la-mère" class="level2">
+<h2 class="anchored" data-anchor-id="poids-du-bébé-en-fonction-du-poids-de-la-mère">Poids du bébé en fonction du poids de la mère</h2>
+<p>Nous allons nous intéresser aux variables <code>mature</code> et <code>lowbirthweight</code>.</p>
+<p>Pour commencez, à l’aide de la variable <code>mage</code>, qui correspond à l’âge de la mère, déterminez, par la méthode de votre choix (statistique descriptive ou visualisation), l’âge limite pour être considérée dans la catégorie <code>mature</code>.</p>
+<p>Nous allons maintenant vouloir déterminer si la proportion de bébés de faible poids à la naissance est différente entre les mères matures et les mères non matures.</p>
+<p>Nous n’avons pas vu le cas de figure pour comparer deux proportions. Vous trouvez de la documentation <a href="https://infer.tidymodels.org/articles/observed_stat_examples.html#two-categorical-2-level-variables">ici</a></p>
+<p>Quelle est l’hypothèse nulle ? Quelle est l’hypothèse alternative ?</p>
+<p>Testez l’hypothèse nulle avec un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Wen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Fait avec ❤️ et <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>À propos</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<p><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"></p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../license.md">
+<p>Licence CC BY-SA 4.0</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
