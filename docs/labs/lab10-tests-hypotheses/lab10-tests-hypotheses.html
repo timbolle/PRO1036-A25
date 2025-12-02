@@ -273,6 +273,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#exercice-2" id="toc-exercice-2" class="nav-link" data-scroll-target="#exercice-2">Exercice</a></li>
   </ul></li>
+  <li><a href="#modèles-théoriques" id="toc-modèles-théoriques" class="nav-link" data-scroll-target="#modèles-théoriques">Modèles théoriques</a></li>
   <li><a href="#exercice---effet-de-la-cigarette-sur-la-grossesse" id="toc-exercice---effet-de-la-cigarette-sur-la-grossesse" class="nav-link" data-scroll-target="#exercice---effet-de-la-cigarette-sur-la-grossesse">Exercice - Effet de la cigarette sur la grossesse</a>
   <ul class="collapse">
   <li><a href="#les-données" id="toc-les-données" class="nav-link" data-scroll-target="#les-données">Les données</a></li>
@@ -412,16 +413,16 @@ Null Hypothesis: point
 # Groups:   replicate [1,000]
    replicate hours
        &lt;int&gt; &lt;dbl&gt;
- 1         1  18.6
- 2         1  42.6
- 3         1  25.6
- 4         1  13.6
- 5         1  33.6
- 6         1  38.6
- 7         1  86.6
- 8         1  38.6
- 9         1  30.6
-10         1  38.6
+ 1         1 37.6 
+ 2         1 68.6 
+ 3         1  2.62
+ 4         1 12.6 
+ 5         1 38.6 
+ 6         1 43.6 
+ 7         1 38.6 
+ 8         1 33.6 
+ 9         1 48.6 
+10         1 38.6 
 # ℹ 499,990 more rows</code></pre>
 </div>
 </div>
@@ -439,16 +440,16 @@ Null Hypothesis: point
 # A tibble: 1,000 × 2
    replicate  stat
        &lt;int&gt; &lt;dbl&gt;
- 1         1  40.8
- 2         2  39.7
- 3         3  39.1
- 4         4  39.9
- 5         5  40.4
- 6         6  40.1
- 7         7  40.5
- 8         8  38.5
- 9         9  40.6
-10        10  40.9
+ 1         1  40.3
+ 2         2  40.7
+ 3         3  40.3
+ 4         4  41.2
+ 5         5  40.3
+ 6         6  40.3
+ 7         7  40.8
+ 8         8  40.0
+ 9         9  40.1
+10        10  40.2
 # ℹ 990 more rows</code></pre>
 </div>
 </div>
@@ -502,7 +503,7 @@ Null Hypothesis: point
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1    0.04</code></pre>
+1    0.03</code></pre>
 </div>
 </div>
 <p>Avant de faire ce test, nous aurions du définir un niveau de signification <span class="math inline">\(\alpha\)</span>. Si la valeur <span class="math inline">\(p\)</span> est inférieure à <span class="math inline">\(\alpha\)</span>, nous pouvons rejeter l’hypothèse nulle. En fixant <span class="math inline">\(\alpha = 0.05\)</span>, nous rejetons l’hypothèse nulle. En fixant <span class="math inline">\(\alpha = 0.01\)</span>, nous ne rejetons pas l’hypothèse nulle.</p>
@@ -529,7 +530,7 @@ Null Hypothesis: point
 <pre><code># A tibble: 1 × 2
   lower_ci upper_ci
      &lt;dbl&gt;    &lt;dbl&gt;
-1     40.1     42.7</code></pre>
+1     40.1     42.6</code></pre>
 </div>
 </div>
 <p>Ici, notez que dans la définition de <code>boot_dist</code>, nous n’avons pas défini d’hypothèse nulle. Cela signifie que nous générons une distribution de statistiques à partir de nos données sans hypothèse nulle. Nous utilisons ensuite cette distribution pour calculer l’intervalle de confiance.</p>
@@ -641,7 +642,7 @@ Explanatory: college (factor)
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.248</code></pre>
+1    0.26</code></pre>
 </div>
 </div>
 <section id="exercice-1" class="level2">
@@ -705,20 +706,15 @@ Explanatory: partyid (factor)
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>observed_f_statistic <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Dropping unused factor levels DK from the supplied explanatory variable
-'partyid'.</code></pre>
-</div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nous voulons maintenant la comparer à celle obtenue sous l’hypothèse nulle. Dans un tableau ANOVA, l’hypothèse nulle est que les moyennes de chaque groupe sont égales. Faites à attention que dans ce cas, l’hypothèse alternative est <strong>qu’au moins une des moyennes est différente</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Dropping unused factor levels DK from the supplied explanatory variable
 'partyid'.</code></pre>
@@ -726,10 +722,10 @@ Explanatory: partyid (factor)
 </div>
 <p>Nous pouvons maintenant visualiser la distribution des statistiques générées et calculées.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_f_statistic,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>null_dist_anova <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(observed_f_statistic,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -740,23 +736,59 @@ Explanatory: partyid (factor)
 </div>
 <p>Et nous pouvons calculer la p-value:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p value from the observed statistic and null distribution</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> null_dist_anova <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_f_statistic,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p value from the observed statistic and null distribution</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> null_dist_anova <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_f_statistic,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.058</code></pre>
+1   0.064</code></pre>
 </div>
 </div>
 <section id="exercice-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-2">Exercice</h2>
 <p>Testez si le nombre d’heures travaillées est différent selon le revenu moyen du foyer des participants. Utilisez un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?</p>
 </section>
+</section>
+<section id="modèles-théoriques" class="level1">
+<h1>Modèles théoriques</h1>
+<p>Jusqu’ici, nous avons utilisé des méthodes de rééchantillonnage pour générer des distributions nulles. Cependant, pour certains tests statistiques, il existe des modèles théoriques qui décrivent la distribution nulle. Par exemple, dans le cas du test ANOVA, la statistique F suit une distribution F sous l’hypothèse nulle. Nous pouvons utiliser cette information pour calculer la p-value sans avoir à générer une distribution nulle.</p>
+<p>Pratiquement, il n’est pas nécessaire d’utiliser <code>generate()</code> et <code>calculate()</code> pour obtenir la distribution nulle. Nous pouvons directement utiliser la fonction <code>assume()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>null_f_distn_theoretical <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(age <span class="sc">~</span> partyid) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="at">distribution =</span> <span class="st">"F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nous pouvons ensuite visualiser cette distribution théorique et ajouter la statistique observée.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_f_distn_theoretical, <span class="at">method =</span> <span class="st">"theoretical"</span>) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed_f_statistic, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab10-tests-hypotheses_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Et nous pouvons calculer la p-value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> null_f_distn_theoretical <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed_f_statistic,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction =</span> <span class="st">"greater"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1  0.0601</code></pre>
+</div>
+</div>
 </section>
 <section id="exercice---effet-de-la-cigarette-sur-la-grossesse" class="level1">
 <h1>Exercice - Effet de la cigarette sur la grossesse</h1>

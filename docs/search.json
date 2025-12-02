@@ -3442,5 +3442,12 @@
     "title": "Lab10 - Les tests d’hypothèses",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nWen, Shi Wu, Michael S. Kramer, and Robert H. Usher. “Comparison of birth weight distributions between Chinese and Caucasian infants.” American Journal of Epidemiology 141.12 (1995): 1177-1187.↩︎"
+  },
+  {
+    "objectID": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#modèles-théoriques",
+    "href": "labs/lab10-tests-hypotheses/lab10-tests-hypotheses.html#modèles-théoriques",
+    "title": "Lab10 - Les tests d’hypothèses",
+    "section": "Modèles théoriques",
+    "text": "Modèles théoriques\nJusqu’ici, nous avons utilisé des méthodes de rééchantillonnage pour générer des distributions nulles. Cependant, pour certains tests statistiques, il existe des modèles théoriques qui décrivent la distribution nulle. Par exemple, dans le cas du test ANOVA, la statistique F suit une distribution F sous l’hypothèse nulle. Nous pouvons utiliser cette information pour calculer la p-value sans avoir à générer une distribution nulle.\nPratiquement, il n’est pas nécessaire d’utiliser generate() et calculate() pour obtenir la distribution nulle. Nous pouvons directement utiliser la fonction assume()\n\nnull_f_distn_theoretical &lt;- gss %&gt;%\n  specify(age ~ partyid) %&gt;%\n  assume(distribution = \"F\")\n\nNous pouvons ensuite visualiser cette distribution théorique et ajouter la statistique observée.\n\nvisualize(null_f_distn_theoretical, method = \"theoretical\") +\n  shade_p_value(obs_stat = observed_f_statistic, direction = \"greater\")\n\n\n\n\n\n\n\n\nEt nous pouvons calculer la p-value:\n\np_value &lt;- null_f_distn_theoretical %&gt;%\n  get_p_value(obs_stat = observed_f_statistic,\n              direction = \"greater\")\n\np_value\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1  0.0601"
   }
 ]

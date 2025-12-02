@@ -280,10 +280,9 @@ Le test ANOVA va utiliser le test F, ou test de Fisher, qui compare la variabili
 
 Nous pouvons donc calculer notre statistique observée à partir de nos données.
 
-```{r}
+```{r message=FALSE}
 observed_f_statistic <- gss %>%
   specify(age ~ partyid) %>%
-  hypothesize(null = "independence") %>%
   calculate(stat = "F")
 ```
 
@@ -318,11 +317,40 @@ p_value <- null_dist_anova %>%
 p_value
 ```
 
+
+
 ## Exercice
 
 Testez si le nombre d'heures travaillées est différent selon le revenu moyen du foyer des participants. Utilisez un niveau de signification de 0.05. Quelle conclusion en tirez-vous ?
 
+# Modèles théoriques
 
+Jusqu'ici, nous avons utilisé des méthodes de rééchantillonnage pour générer des distributions nulles. Cependant, pour certains tests statistiques, il existe des modèles théoriques qui décrivent la distribution nulle. Par exemple, dans le cas du test ANOVA, la statistique F suit une distribution F sous l'hypothèse nulle. Nous pouvons utiliser cette information pour calculer la p-value sans avoir à générer une distribution nulle.
+
+Pratiquement, il n'est pas nécessaire d'utiliser `generate()` et `calculate()` pour obtenir la distribution nulle. Nous pouvons directement utiliser la fonction `assume()`
+
+```{r message=FALSE}
+null_f_distn_theoretical <- gss %>%
+  specify(age ~ partyid) %>%
+  assume(distribution = "F")
+```
+
+Nous pouvons ensuite visualiser cette distribution théorique et ajouter la statistique observée.
+
+```{r}
+visualize(null_f_distn_theoretical, method = "theoretical") +
+  shade_p_value(obs_stat = observed_f_statistic, direction = "greater")
+```
+
+Et nous pouvons calculer la p-value:
+
+```{r}
+p_value <- null_f_distn_theoretical %>%
+  get_p_value(obs_stat = observed_f_statistic,
+              direction = "greater")
+
+p_value
+```
 
 # Exercice - Effet de la cigarette sur la grossesse
 
