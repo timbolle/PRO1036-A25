@@ -1,5 +1,5 @@
 ---
-title: "ressources"
+title: "Ressources"
 format: html
 link-external-newwindow: true
 ---
